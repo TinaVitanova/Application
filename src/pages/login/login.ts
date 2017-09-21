@@ -19,7 +19,7 @@ import { HomePage } from '../home/home';
 export class LoginPage {
   reservepage=ReservePage;
   calendarpage=CalendarPage;
-
+  username: string;
   ReserveNav(){
     this.navCtrl.push(ReservePage)
   }
@@ -32,7 +32,7 @@ export class LoginPage {
     this.navCtrl.push(HomePage)
   }
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  
+    this.username = navParams.get('param1');
   }
 
   ionViewDidLoad() {

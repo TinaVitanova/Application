@@ -37,6 +37,7 @@ export class SignupPage {
     else
     return true;
   }
+  
   NewAccount(){
 
   }

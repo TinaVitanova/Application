@@ -17,7 +17,7 @@ import { HomePage } from '../home/home';
   templateUrl: 'admin-home.html',
 })
 export class AdminHomePage {
-
+  username:string;
   makeroom=MakeRoomPage;
 
   MakeRoomNav(){
@@ -37,6 +37,7 @@ export class AdminHomePage {
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  this.username = navParams.get('param1');
   }
 
   ionViewDidLoad() {

@@ -13,34 +13,34 @@ export class HomePage {
     login = LoginPage;
     signUp = SignupPage;
     adminhome = AdminHomePage;
-
-    todo = {
+    test1 ="test1";
+    public todo = {
       username:"",
       password:""
     };
 
     logForm(){
       console.log(this.todo)
+      
     }
     
     SignupNav(){
       this.navCtrl.push(SignupPage)
     }
-
+    
     LoginNav(){
       /**Bla bla check dali user postoi
        * Bla check dali user.pass=pass
        * Bla check dali admin or no and route accordingly
        */
       if (this.todo.username=='admin')
-      this.navCtrl.push(AdminHomePage)
-      else if (this.todo.username=="test")
-      this.navCtrl.push(LoginPage)
+      this.navCtrl.push(AdminHomePage, {param1: this.todo.username})
+      else if (this.todo.username=='test')
+      this.navCtrl.push(LoginPage, {param1: this.todo.username})
       
     }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-   
    
   }
 
