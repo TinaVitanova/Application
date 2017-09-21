@@ -1,25 +1,35 @@
 <ion-header>
+<<<<<<< HEAD
+    <ion-navbar>
+        <ion-title text-center>
+            Wellcome
+        </ion-title>
+    </ion-navbar>
+=======
   <ion-navbar>
     <ion-title>
-      Wellcome to all
+      Wellcomeb 
     </ion-title>
   </ion-navbar>
+>>>>>>> 4f06079b0124242e7637fbd4cf7b622104e56a7b
 </ion-header>
 
 <ion-content padding>
     <form (ngSubmit)="logForm()">
-  <ion-list>
-      <ion-item>
-        <ion-label floating >Username</ion-label>
-        <ion-input type="text" [(ngModel)]="todo.username" name="username"></ion-input>
-      </ion-item>
-    
-      <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="todo.password" name="password"></ion-input>
-      </ion-item>
-    </ion-list>
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Username</ion-label>
+                <ion-input type="text" [(ngModel)]="todo.username" name="username"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Password</ion-label>
+                <ion-input type="password" [(ngModel)]="todo.password" name="password"></ion-input>
+            </ion-item>
+        </ion-list>
     </form>
-    <button ion-button round (click)="LoginNav()">Login</button>
-    <button ion-button round (click)="SignupNav()">Sign up</button>
+    <ion-buttons text-center>
+        <button ion-button outline round (click)="LoginNav()">Login</button>
+        <button ion-button outline round (click)="SignupNav()">Sign up</button>
+    </ion-buttons>
 </ion-content>
