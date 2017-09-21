@@ -45,6 +45,25 @@ export class CalendarPage {
       event.setHours(0, 0, 0, 0);
       this.isToday = today.getTime() === event.getTime();
   }
+  /*
+  createEvent(){
+      var events = [];
+      var date= new Date();
+      var startTime;
+      var endTime;
+      var startDay;
+      var endDay=startDay;
+      var room;
+      
+      zemi vrednosti
+
+      events.push([
+        startTime: startTime,
+        endTime: endTime,
+        room: room
+      ])
+  }
+  */
   createRandomEvents() {
       var events = [];
       for (var i = 0; i < 50; i += 1) {

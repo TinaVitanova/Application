@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
 import { LoginPage } from '../login/login';
 import { AdminHomePage } from '../admin-home/admin-home';
+import { NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -33,12 +34,12 @@ export class HomePage {
        */
       if (this.todo.username=='admin')
       this.navCtrl.push(AdminHomePage)
-      else if (this.todo.username=='test')
+      else if (this.todo.username=="test")
       this.navCtrl.push(LoginPage)
       
     }
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
    
    
   }

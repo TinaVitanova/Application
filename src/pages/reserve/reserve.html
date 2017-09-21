@@ -17,7 +17,7 @@
 
     <ion-item>
         <ion-label>Date</ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY" min="31/12/2030" max="2017" [(ngModel)]="myDate"></ion-datetime>
+        <ion-datetime displayFormat="DD/MM/YYYY" min="2030"  [(ngModel)]="myDate"></ion-datetime>
     </ion-item>
 
     <ion-item>
@@ -43,6 +43,7 @@
                     <ion-option value="room4">Room4</ion-option>
                 </ion-select>
     </ion-item>
+    
     <ion-item [hidden]="shouldHide()">
         <button ion-button round (click)="reserve()">Reserve Room</button>
     </ion-item>

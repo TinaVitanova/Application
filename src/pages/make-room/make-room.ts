@@ -21,6 +21,10 @@ export class MakeRoomPage {
     description:""
   }
 
+  CreateRoom(){
+    
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

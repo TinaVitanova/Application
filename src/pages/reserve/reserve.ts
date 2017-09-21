@@ -23,10 +23,18 @@ export class ReservePage {
     
   }
   AddReserve(){
+    /*
     var event = [];
     var date = this.myDate;
     var time = this.myTime;
+    var rooms = this.rooms;
+    var startDay = this.myDate;
+    var startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
+    event.push([
+
+    ])
     return event;
+    */
   }
   shouldHide(){
     if(this.isReserved==true)
