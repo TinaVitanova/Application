@@ -11,13 +11,17 @@
 
 </ion-header>
 <ion-content padding>
-  <div id="button">
-    <button large ion-button round (click)=ReserveNav()>Reserve</button>
-  </div>
+    <ion-buttons text-center>
+        <div id="button" style="margin-top:40%">
+            <button large ion-button outline round (click)=ReserveNav()>Reserve</button>
+        </div>
 
-  <div id="button">
-    <button large ion-button round (click)=CalendarNav()>Calendar</button>
-  </div>
+        <div id="button" style="margin-top:20%">
+            <button large ion-button outline round (click)=CalendarNav()>Calendar</button>
+        </div>
+    </ion-buttons>
 
-  <button ion-button round (click)="LogoutNav()">Logout</button>
 </ion-content>
+<ion-footer text-center>
+    <button ion-button round (click)="LogoutNav()">Logout</button>
+</ion-footer>

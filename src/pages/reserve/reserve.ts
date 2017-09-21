@@ -19,9 +19,7 @@ export class ReservePage {
   rooms:"";
   capacity:"";
   isReserved: boolean;
-  findRoom(){
-    
-  }
+  
   AddReserve(){
     /*
     var event = [];
@@ -42,30 +40,11 @@ export class ReservePage {
     else
     return true
   }
-  showConfirm() {
-    let confirm = this.alertCtrl.create({
-      title: 'Are you sure?',
-      message: 'This will find available rooms',
-      
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-            this.isReserved=false;
-          }
-        },
-        {
-          text: 'Agree',
-          handler: () => {
-            console.log('Agree clicked');
-            this.isReserved=true;
-          }
-        }
-      ]
-    });
-    confirm.present();
+
+  findRoom(){
+    this.isReserved=true;
   }
+  
   reserve() {
     let confirm = this.alertCtrl.create({
       title: 'Are you sure?',

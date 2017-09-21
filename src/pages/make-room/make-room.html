@@ -6,9 +6,9 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>MakeRoom</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>MakeRoom</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
@@ -18,22 +18,23 @@
     <form (ngSubmit)="logForm()">
         <ion-list>
             <ion-item>
-              <ion-label floating >Room Name</ion-label>
-              <ion-input type="text" [(ngModel)]="room.name" name="roomname"></ion-input>
-            </ion-item>
-          
-            <ion-item>
-              <ion-label floating>Room Capacity</ion-label>
-              <ion-input type="number" [(ngModel)]="room.capacity" name="capacity"></ion-input>
+                <ion-label floating>Room Name</ion-label>
+                <ion-input type="text" [(ngModel)]="room.name" name="roomname"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label floating>Short Description of the Room</ion-label>
-              <ion-textarea [(ngModel)]="room.description" name="description"></ion-textarea>
+                <ion-label floating>Room Capacity</ion-label>
+                <ion-input type="number" [(ngModel)]="room.capacity" name="capacity"></ion-input>
             </ion-item>
 
-          </ion-list>
-          </form>
-          <button ion-button round (click)="CreateRoom()">Create this Room</button>
+            <ion-item>
+                <ion-label floating>Short Description of the Room</ion-label>
+                <ion-textarea [(ngModel)]="room.description" name="description"></ion-textarea>
+            </ion-item>
 
+        </ion-list>
+    </form>
+    <ion-buttons text-center>
+        <button ion-button round outline (click)="CreateRoom()">Create this Room</button>
+    </ion-buttons>
 </ion-content>
