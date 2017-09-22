@@ -68,11 +68,7 @@ export class ReservePage {
     });
     confirm.present();
     
-      this.navCtrl.push(ReservePage, {date: this.myDate});
-      this.navCtrl.push(ReservePage, {time: this.myTime});
-      this.navCtrl.push(ReservePage, {capacity: this.capacity});
-      this.navCtrl.push(ReservePage, {room: this.rooms});
-    
+      this.navCtrl.push(ReservePage, {date: this.myDate, time: this.myTime, capacity: this.capacity, room: this.rooms});
   }
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {

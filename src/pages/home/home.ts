@@ -4,7 +4,6 @@ import { SignupPage } from '../signup/signup';
 import { LoginPage } from '../login/login';
 import { AdminHomePage } from '../admin-home/admin-home';
 import { NavParams } from 'ionic-angular';
-import { Http } from '@angular/http';
 
 @Component({
   selector: 'page-home',
@@ -15,22 +14,12 @@ export class HomePage {
     signUp = SignupPage;
     adminhome = AdminHomePage;
 
-    public users : any [];
-
     public todo = {
       username:"",
       password:""
     };
 
-    ionViewWillEnter(){
-      this.load();
-    }
-
-    load(){
-      this.http.get('http://www.omdbapi.com/?apikey=[yourkey]&')
-      
-    }
-
+   
     logForm(){
       console.log(this.todo)      
     }
