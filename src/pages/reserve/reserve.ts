@@ -67,15 +67,12 @@ export class ReservePage {
       ]
     });
     confirm.present();
-<<<<<<< HEAD
     
       this.navCtrl.push(ReservePage, {date: this.myDate});
       this.navCtrl.push(ReservePage, {time: this.myTime});
       this.navCtrl.push(ReservePage, {capacity: this.capacity});
       this.navCtrl.push(ReservePage, {room: this.rooms});
     
-=======
->>>>>>> parent of 99427a4... reserve
   }
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
