@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MakeRoomPage } from '../make-room/make-room';
 import { ReservePage } from '../reserve/reserve';
 import { CalendarPage } from '../calendar/calendar';
-import { HomePage } from '../home/home';
 /**
  * Generated class for the AdminHomePage page.
  *
@@ -25,7 +24,7 @@ export class AdminHomePage {
   }
 
   LogoutNav(){
-    this.navCtrl.push(HomePage)
+    this.navCtrl.pop()
   }
 
   ReserveNav(){
