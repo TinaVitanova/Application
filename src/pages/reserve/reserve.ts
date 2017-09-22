@@ -68,7 +68,7 @@ export class ReservePage {
     });
     confirm.present();
     
-    this.navCtrl.push(ReservePage, {date: this.myDate, time: this.myTime, capacity: this.capacity, room: this.rooms}););
+    this.navCtrl.push(ReservePage, {date: this.myDate, time: this.myTime, capacity: this.capacity, room: this.rooms});
     
   }
   
