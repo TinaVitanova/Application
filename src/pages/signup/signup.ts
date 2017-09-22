@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
 import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the SignupPage page.
@@ -17,7 +16,6 @@ import { AlertController } from 'ionic-angular';
 export class SignupPage {
   checked;
   adminpassword:"";
-  homepage=HomePage;
   new = {
     username:"",
     password:"",
@@ -68,7 +66,7 @@ export class SignupPage {
       confirm.present();
     }
     */
-    this.navCtrl.push(HomePage)
+    this.navCtrl.pop()
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
