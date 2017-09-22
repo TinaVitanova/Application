@@ -67,7 +67,7 @@ export class ReservePage {
         }
       ]
     });
-    
+    confirm.present();
     
       this.navCtrl.push(ReservePage, {date: this.myDate});
       this.navCtrl.push(ReservePage, {time: this.myTime});
