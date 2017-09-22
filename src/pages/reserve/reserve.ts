@@ -47,8 +47,8 @@ export class ReservePage {
   
   reserve() {
     let confirm = this.alertCtrl.create({
-      title: 'Are you sure?',
-      message: 'Reserve room',
+      title: 'You have chosen: ',
+      message: 'Date:'+this.myDate+'<br> Time:'+this.myTime+'<br> Capacity:'+this.capacity+'<br> Room:'+this.rooms+'<br>',
       
       buttons: [
         {
@@ -64,7 +64,7 @@ export class ReservePage {
             this.AddReserve();
           }
         }
-      ]
+      ]  
     });
     confirm.present();
     
