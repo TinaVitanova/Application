@@ -13,15 +13,15 @@ export class HomePage {
     login = LoginPage;
     signUp = SignupPage;
     adminhome = AdminHomePage;
-    test1 ="test1";
+
     public todo = {
       username:"",
       password:""
     };
 
+   
     logForm(){
-      console.log(this.todo)
-      
+      console.log(this.todo)      
     }
     
     SignupNav(){
