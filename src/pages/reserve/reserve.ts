@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-
 /**
  * Generated class for the ReservePage page.
  *
@@ -48,8 +47,8 @@ export class ReservePage {
   
   reserve() {
     let confirm = this.alertCtrl.create({
-      title: 'You have chosen:',
-      message: '<div>Date:' +this.myDate+'<br> Time: '+this.myTime+'<br> Capacity: '+this.capacity+'<br> Room: '+this.rooms+'</div>',
+      title: 'Are you sure?',
+      message: 'Reserve room',
       
       buttons: [
         {
@@ -68,25 +67,23 @@ export class ReservePage {
       ]
     });
     confirm.present();
+<<<<<<< HEAD
     
       this.navCtrl.push(ReservePage, {date: this.myDate});
       this.navCtrl.push(ReservePage, {time: this.myTime});
       this.navCtrl.push(ReservePage, {capacity: this.capacity});
       this.navCtrl.push(ReservePage, {room: this.rooms});
     
+=======
+>>>>>>> parent of 99427a4... reserve
   }
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
-    this.myDate = navParams.get('date');
-    this.myTime = navParams.get('time');
-    this.capacity = navParams.get('capacity');
-    this.rooms = navParams.get('room');
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReservePage');
   }
-
-
 
 }
