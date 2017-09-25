@@ -5,57 +5,50 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-        
-            <ion-navbar>
-                <ion-title>Reserve</ion-title>
-                <button menuToggle>
-                        <ion-icon name="menu"></ion-icon>
-                </button>
-            </ion-navbar>
-        
-        </ion-header>
-        
-        
-        <ion-content padding>
-        
-            <ion-list>
-                <ion-item>
-                    <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
-                </ion-item>
-        
-                <ion-item>
-                    <ion-label>Start Time</ion-label>
-                    <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MM/DD/YYYY HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
-                </ion-item>
-        
-                <ion-item>
-                    <ion-label>End Time</ion-label>
-                    <ion-input displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MM/DD/YYYY HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-input>
-                </ion-item>
-        
-            </ion-list>
-        
-        
-            <ion-buttons text-center>
-                <button style="margin-top:4%;" large ion-button round outline (click)="findRoom()">Find</button>
-            </ion-buttons>
-        
-            <ion-item [hidden]="shouldHide()">
-                <ion-label>Room</ion-label>
-                <ion-select [(ngModel)]="rooms">
-                    <ion-option value="room1">Room1</ion-option>
-                    <ion-option value="room2">Room2</ion-option>
-                    <ion-option value="room3">Room3</ion-option>
-                    <ion-option value="room4">Room4</ion-option>
-                </ion-select>
-            </ion-item>
-        
-            <ion-buttons [hidden]="shouldHide()" text-center>
-                <button style="margin-top:4%;" large ion-button round outline (click)="reserve()">Reserve Room</button>
-            </ion-buttons>
-        
-            <button ion-button full icon-left (click)="save()">
-                    <ion-icon name="checkmark"></ion-icon>Add Event
-                  </button>
-        
-        </ion-content>
+
+    <ion-navbar>
+        <ion-title>Reserve</ion-title>
+        <button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+        </button>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-item>
+        <ion-label>Date</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" min="2017" max="2030" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Start Time</ion-label>
+        <ion-datetime displayFormat="HH:mm" [(ngModel)]="myTime1"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>End Time</ion-label>
+        <ion-datetime displayFormat="HH:mm" [(ngModel)]="myTime2"></ion-datetime>
+    </ion-item>
+
+    <ion-buttons text-center>
+        <button style="margin-top:4%;" large ion-button round outline (click)="findRoom()">Find</button>
+    </ion-buttons>
+
+    <ion-item [hidden]="shouldHide()">
+        <ion-label>Room</ion-label>
+        <ion-select [(ngModel)]="rooms">
+            <ion-option value="room1">Room1</ion-option>
+            <ion-option value="room2">Room2</ion-option>
+            <ion-option value="room3">Room3</ion-option>
+            <ion-option value="room4">Room4</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-buttons [hidden]="shouldHide()" text-center>
+        <button style="margin-top:4%;" large ion-button round outline (click)="reserve()">Reserve Room</button>
+    </ion-buttons>
+
+</ion-content>
