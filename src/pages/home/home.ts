@@ -10,6 +10,9 @@ import { NavParams } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
+    //splash screen var
+    splash = true;
+    // splash screen end
     login = LoginPage;
     signUp = SignupPage;
     adminhome = AdminHomePage;
@@ -19,7 +22,14 @@ export class HomePage {
       password:""
     };
 
-   
+    // splash screen onload func
+    ionViewDidLoad(){
+      setTimeout(() => {
+        this.splash = false;
+      }, 4000);
+    }
+    // splash screen end
+
     logForm(){
       console.log(this.todo)      
     }
