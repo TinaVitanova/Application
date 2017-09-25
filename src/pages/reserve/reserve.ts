@@ -2,7 +2,7 @@ import { ViewController } from 'ionic-angular/es2015';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import * as moment from 'moment';
+import moment from 'moment';
 /**
  * Generated class for the ReservePage page.
  *

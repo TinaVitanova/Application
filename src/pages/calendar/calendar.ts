@@ -1,7 +1,7 @@
 import { AlertController } from 'ionic-angular/umd';
 import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
-import * as moment from 'moment';
+import moment from 'moment';
 
 @Component({
   selector: 'page-calendar',
