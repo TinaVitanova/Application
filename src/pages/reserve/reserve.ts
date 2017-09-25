@@ -48,6 +48,7 @@ export class ReservePage {
   reserve() {
     let confirm = this.alertCtrl.create({
       title: 'You have chosen: ',
+
       message: 'Date:'+this.myDate+'<br> Time:'+this.myTime1+'-'+this.myTime2+'<br> Room:'+this.rooms+'<br>',
       
       buttons: [
@@ -68,12 +69,16 @@ export class ReservePage {
     });
     confirm.present();
     
+
      // this.navCtrl.push(ReservePage, {date: this.myDate, time: this.myTime, capacity: this.capacity, room: this.rooms});
 
   }
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
-    
+    this.myDate = navParams.get('date');
+    this.myTime = navParams.get('time');
+    this.capacity = navParams.get('capacity');
+    this.rooms = navParams.get('room');
   }
 
   ionViewDidLoad() {
