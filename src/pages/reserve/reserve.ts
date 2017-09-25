@@ -1,6 +1,8 @@
+import { prepareWatcher } from '@ionic/app-scripts/dist/watch';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import * as moment from 'moment';
 /**
  * Generated class for the ReservePage page.
  *
@@ -19,6 +21,8 @@ export class ReservePage {
   rooms:"";
   capacity:"";
   isReserved: boolean;
+  event = { statTime: new Date().toISOString(), endTime: new Date().toISOString()}
+  minDate = new Date().toISOString();
   
   AddReserve(){
     /*
@@ -72,6 +76,10 @@ export class ReservePage {
   }
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+    let preselectedDate = moment(this.navParams.get('selectedDay')).format();
+    this.event.statTime = preselectedDate;
+    this.event.endTime = preselectedDate;
+    
     this.myDate = navParams.get('date');
     this.myTime = navParams.get('time');
     this.capacity = navParams.get('capacity');
@@ -82,4 +90,7 @@ export class ReservePage {
     console.log('ionViewDidLoad ReservePage');
   }
 
+  save(){
+    this.viewCtrl.dismiss(this.event);
+  }
 }
