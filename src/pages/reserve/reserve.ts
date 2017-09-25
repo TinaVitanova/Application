@@ -73,14 +73,7 @@ export class ReservePage {
   }
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
-<<<<<<< HEAD
-    this.myDate = navParams.get('date');
-    this.myTime = navParams.get('time');
-    this.capacity = navParams.get('capacity');
-    this.rooms = navParams.get('room');
-=======
     
->>>>>>> parent of ac38d2c... Reserve
   }
 
   ionViewDidLoad() {
