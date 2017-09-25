@@ -15,6 +15,7 @@ import { AlertController } from 'ionic-angular';
 })
 export class SignupPage {
   checked;
+  username: string;
   adminpassword:"";
   new = {
     username:"",
@@ -26,50 +27,20 @@ export class SignupPage {
   logFormSignUp(){
     console.log(this.new)
   }
-  ShowCodeField(){
-    return true;
-  }
+
   shouldHide(){
-    if(this.checked==true)
+    if(this.username=="superadmin")
     return false;
     else
     return true;
   }
-  
-  NewAccount(){
 
-  }
-  createdAccNav(){
-    /*
-    this.NewAccount() {
-      let confirm = this.alertCtrl.create({
-        title: 'Create Accout',
-        message: 'This will find available rooms',
-        
-        buttons: [
-          {
-            text: 'Cancel',
-            handler: () => {
-              console.log('Cancel clicked');
-              this.isReserved=false;
-            }
-          },
-          {
-            text: 'Agree',
-            handler: () => {
-              console.log('Agree clicked');
-              this.isReserved=true;
-            }
-          }
-        ]
-      });
-      confirm.present();
-    }
-    */
-    this.navCtrl.pop()
+  CreateNewUser(){
+
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+    this.username = navParams.get('param2');
   }
 
   ionViewDidLoad() {

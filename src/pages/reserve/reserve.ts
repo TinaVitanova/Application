@@ -15,9 +15,9 @@ import { AlertController } from 'ionic-angular';
 })
 export class ReservePage {
   myDate: String = new Date().toISOString();
-  myTime: String = new Date().toISOString();
+  myTime1: String = new Date().toISOString();
+  myTime2: String = new Date().toISOString();
   rooms:"";
-  capacity:"";
   isReserved: boolean;
   
   AddReserve(){
@@ -48,7 +48,7 @@ export class ReservePage {
   reserve() {
     let confirm = this.alertCtrl.create({
       title: 'You have chosen: ',
-      message: 'Date:'+this.myDate+'<br> Time:'+this.myTime+'<br> Capacity:'+this.capacity+'<br> Room:'+this.rooms+'<br>',
+      message: 'Date:'+this.myDate+'<br> Time:'+this.myTime1+'-'+this.myTime2+'<br> Room:'+this.rooms+'<br>',
       
       buttons: [
         {
@@ -68,7 +68,7 @@ export class ReservePage {
     });
     confirm.present();
     
-      this.navCtrl.push(ReservePage, {date: this.myDate, time: this.myTime, capacity: this.capacity, room: this.rooms});
+     // this.navCtrl.push(ReservePage, {date: this.myDate, time: this.myTime, capacity: this.capacity, room: this.rooms});
 
   }
   
