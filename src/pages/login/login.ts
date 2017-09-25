@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ReservePage } from '../reserve/reserve';
 import { CalendarPage } from '../calendar/calendar';
-import { HomePage } from '../home/home';
 
 /**
  * Generated class for the LoginPage page.
@@ -29,7 +28,7 @@ export class LoginPage {
   }
 
   LogoutNav(){
-    this.navCtrl.push(HomePage)
+    this.navCtrl.pop()
   }
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.username = navParams.get('param1');

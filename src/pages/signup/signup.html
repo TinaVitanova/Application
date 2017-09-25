@@ -7,7 +7,10 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>Sign Up</ion-title>
+        <ion-title>Create a New User</ion-title>
+        <button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+        </button>
     </ion-navbar>
 
 </ion-header>
@@ -23,11 +26,6 @@
             </ion-item>
 
             <ion-item>
-                <ion-label floating>Username</ion-label>
-                <ion-input type="text" [(ngModel)]="new.username" name="username"></ion-input>
-            </ion-item>
-
-            <ion-item>
                 <ion-label floating>E-mail</ion-label>
                 <ion-input type="mail" [(ngModel)]="new.mail" name="mail"></ion-input>
             </ion-item>
@@ -37,23 +35,13 @@
                 <ion-input type="password" [(ngModel)]="new.password" name="password"></ion-input>
             </ion-item>
 
-            <ion-item>
-                <ion-label floating>Retype Password</ion-label>
-                <ion-input type="password" [(ngModel)]="new.passwordre" name="passwordre"></ion-input>
-            </ion-item>
-
-            <ion-item>
+            <ion-item [hidden]="shouldHide()">
                 <ion-label>Create Admin</ion-label>
                 <ion-checkbox [(ngModel)]="checked" name=checked></ion-checkbox>
             </ion-item>
 
-            <ion-item [hidden]="shouldHide()">
-                <ion-label floating>Type Admin Code</ion-label>
-                <ion-input type="password" [(ngModel)]="adminpassword" name="password"></ion-input>
-            </ion-item>
-
             <ion-buttons text-center>
-                <button style="margin-top:4%;" large ion-button round outline (click)="createdAccNav()">Create Account</button>
+                <button style="margin-top:4%;" large ion-button round outline (click)="CreateNewUser()">Create Account</button>
             </ion-buttons>
 
         </ion-list>

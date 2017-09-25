@@ -13,6 +13,10 @@ import { ReservePage } from '../pages/reserve/reserve';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { AdminHomePage } from '../pages/admin-home/admin-home';
 import { MakeRoomPage } from '../pages/make-room/make-room';
+import { MyProfilePage } from '../pages/my-profile/my-profile';
+import { MySchedulePage } from '../pages/my-schedule/my-schedule';
+import { ManageUsersPage } from '../pages/manage-users/manage-users';
+import { UsernameGlobalProvider } from '../providers/username-global/username-global';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,10 @@ import { MakeRoomPage } from '../pages/make-room/make-room';
     ReservePage,
     CalendarPage,
     AdminHomePage,
-    MakeRoomPage
+    MakeRoomPage,
+    MyProfilePage,
+    MySchedulePage,
+    ManageUsersPage
   ],
   imports: [
     BrowserModule,
@@ -39,12 +46,16 @@ import { MakeRoomPage } from '../pages/make-room/make-room';
     ReservePage,
     CalendarPage,
     AdminHomePage,
-    MakeRoomPage
+    MakeRoomPage,
+    MyProfilePage,
+    MySchedulePage,
+    ManageUsersPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UsernameGlobalProvider
   ]
 })
 export class AppModule {}
