@@ -16,6 +16,7 @@ import { MakeRoomPage } from '../pages/make-room/make-room';
 import { MyProfilePage } from '../pages/my-profile/my-profile';
 import { MySchedulePage } from '../pages/my-schedule/my-schedule';
 import { ManageUsersPage } from '../pages/manage-users/manage-users';
+import { UsernameGlobalProvider } from '../providers/username-global/username-global';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ManageUsersPage } from '../pages/manage-users/manage-users';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UsernameGlobalProvider
   ]
 })
 export class AppModule {}
