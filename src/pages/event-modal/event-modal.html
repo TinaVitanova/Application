@@ -25,7 +25,7 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>Reserve</ion-title>
+        <ion-title>Event Modal</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -39,24 +39,24 @@
     </ion-item>
 
     <!--<ion-item>
-            <ion-label>Date</ion-label>
-            <ion-datetime displayFormat="DD/MM/YYYY HH:mm" min="2030" [(ngModel)]="myDate"></ion-datetime>
-        </ion-item>-->
+        <ion-label>Date</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="event.chosenDate"></ion-datetime>
+    </ion-item>-->
 
     <ion-item>
         <ion-label>Start Time</ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
     </ion-item>
 
     <ion-item>
         <ion-label>End Time</ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm" pickerFormat="Y HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
     </ion-item>
 
-    <ion-item>
+    <!--<ion-item>
         <ion-label floating>Capacity</ion-label>
         <ion-input type="number" min="0" [(ngModel)]="capacity" name="capacity"></ion-input>
-    </ion-item>
+    </ion-item>-->
 
     <ion-buttons text-center>
         <button style="margin-top:4%;" large ion-button round outline (click)="findRoom()">Find</button>
@@ -72,9 +72,9 @@
         </ion-select>
     </ion-item>
 
-    <ion-buttons [hidden]="shouldHide()" text-center>
+    <!--<ion-buttons [hidden]="shouldHide()" text-center>
         <button style="margin-top:4%;" large ion-button round outline (click)="reserve()">Reserve Room</button>
-    </ion-buttons>
+    </ion-buttons>-->
 
     <button ion-button full icon-left (click)="save()">
             <ion-icon name="checkmark"></ion-icon>Add Event

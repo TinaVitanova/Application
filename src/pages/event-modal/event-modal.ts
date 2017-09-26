@@ -21,7 +21,7 @@ export class EventModalPage {
   capacity:"";
   isReserved: boolean;
 
-  event = { startTime: new Date().toISOString(), endTime: new Date().toISOString()}
+  event = { startTime: new Date().toISOString(), endTime: new Date().toISOString(), chosenDate: new Date().toISOString()}
   minDate = new Date().toISOString();
   
   shouldHide(){
@@ -62,6 +62,7 @@ export class EventModalPage {
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private viewCtrl: ViewController) {
     let preselectedDate = moment(this.navParams.get('selectedDay')).format();
+    this.event.chosenDate = preselectedDate;
     this.event.startTime = preselectedDate;
     this.event.endTime = preselectedDate;
     

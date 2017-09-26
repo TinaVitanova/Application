@@ -21,12 +21,14 @@ export class CalendarPage {
   }
 
   onEventSelected(event) {
-      let start = moment(event.startTime).format('LLLL');
-      let end = moment(event.endTime).format('LLLL');
+      let start = moment(event.startTime).format('HH : mm');
+      let end = moment(event.endTime).format('HH : mm');
+      let cDate = moment(event.chosenDate).format('MMM Do YYYY');
+      let rooms = this.navParams.get('room');;
 
       let alert = this.alertCtrl.create({
-         title: '' + event.title,
-         subTitle: 'From' + start + '<br>To: ' + end,
+         title: 'Event: ' + event.title,
+         message: '<div>Date:'+cDate+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+rooms+'</div>',
         buttons:['OK']
       });
       alert.present();
@@ -42,7 +44,8 @@ export class CalendarPage {
 
     modal.onDidDismiss(data=>{
         let eventData = data;
-
+        
+        eventData.chosenDate = new Date(data.chosenDate);
         eventData.startTime = new Date(data.startTime);
         eventData.endTime = new Date(data.endTime);
 
