@@ -3,10 +3,10 @@ import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AdminHomePage } from '../admin-home/admin-home';
 import { NavParams } from 'ionic-angular';
-
+import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
     login = LoginPage;
@@ -14,7 +14,7 @@ export class HomePage {
 
     public todo = {
       username:"",
-      password:""
+      password:"",
     };
 
    
@@ -23,6 +23,8 @@ export class HomePage {
     }
 
     LoginNav(){
+      
+      this.UserGlobal.setMyGlobalVar(this.todo.username);
       if (this.todo.username=='admin')
       this.navCtrl.push(AdminHomePage, {param1: this.todo.username})
       if (this.todo.username=='superadmin')
@@ -31,8 +33,10 @@ export class HomePage {
       this.navCtrl.push(LoginPage, {param1: this.todo.username})     
     }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-   
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider) {
+
+  }
+  ionViewDidLoad(){
   }
 
 }

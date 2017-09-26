@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
-
+import { Storage } from '@ionic/storage';
 /*
   Generated class for the UsernameGlobalProvider provider.
 
@@ -11,17 +9,24 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UsernameGlobalProvider {
 
-  myUsername:string;
-  constructor(public http: Http) {
-    this.myUsername = "";
-
-    console.log('Hello UsernameGlobalProvider Provider');
+  public myUsername:any;
+  public dacrknete:any='pls work';
+  constructor(public storage: Storage) {
+    if(this.myUsername=="test")
+    console.log('raboti set metoda');
+    console.log('Hello UsernameGlobal Provider');
   }
-  setMyGlobalVar(value) {
-    this.myUsername = value;
+  public setMyGlobalVar(value:any) {
+    this.storage.set(this.myUsername,value);
+    console.log('povikana set metoda ' +value);
   }
-  getMyGlobalVar() {
-    return this.myUsername;
+  public getMyGlobalVar() {
+    this.storage.get(this.myUsername).then((value) =>{
+      console.log('povikana get metoda '+value);
+      return value;
+    })
   }
-
+  public Proba12() {
+    return this.dacrknete;
+  }
 }
