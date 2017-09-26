@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,7 +15,6 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage:any = HomePage;
   name:any=this.UserGlobal.getMyGlobalVar();
-  random:any=this.UserGlobal.random();
   shouldHide(){
     if(this.name=="superadmin" || this.name=="admin")
     return false;

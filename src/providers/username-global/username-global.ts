@@ -11,7 +11,6 @@ export class UsernameGlobalProvider {
 
   public myUsername:any;
   public user:any;
-  public amanvishe:any="aaaaaaaaaa";
   constructor(public storage: Storage) {
     console.log('Hello UsernameGlobal Provider');
   }
@@ -22,10 +21,6 @@ export class UsernameGlobalProvider {
   public getMyGlobalVar() {
       return this.user;
   }
-  public random(){
-    return this.amanvishe;
-  }
-
 
 
 }
