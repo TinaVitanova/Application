@@ -39,7 +39,7 @@ $colors: (
   secondary-light: #96BFD1,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #292929
 );
 
 
@@ -50,6 +50,10 @@ $text-input-md-show-invalid-highlight:  map-get($colors, danger);
 $text-input-md-highlight-color:  map-get($colors, secondary-light);
 $text-input-md-show-valid-highlight:  map-get($colors, secondary-light);
 $label-md-text-color-focused: map-get($colors, secondary-light);
+$label-md-margin-top: 5px;
+$label-md-margin-bottom: 5px;
+$label-ios-margin-bottom: 5px;
+$label-ios-margin-top: 5px;
 
 //custom gradients
 
