@@ -180,8 +180,6 @@ page-home {
 
     form{
 
-      background: url('../../assets/logotest.png');
-
       .custom-input{
         margin: 15px 0px 0px 15px;
         width: 250px;
@@ -190,25 +188,28 @@ page-home {
         background: rgba(white, 0.85);
         color: map-get($colors, secondary);
 
-        .text-input::-moz-placeholder {
-          font-size: 14px;
-          color: map-get($colors, secondary);
-          opacity: .7;
-        }
+        .item.item-input span{width:auto;}
+        .item.item-input input{width:68%;}
         
-        .text-input:-ms-input-placeholder {
-          font-size: 14px;
-          color: map-get($colors, secondary);
-          opacity: .7;
-        }
-        
-        .text-input::-webkit-input-placeholder {
-          font-size: 14px;
-          color: map-get($colors, secondary);
-          opacity: .7;
-        }
       }
     }
     
+    .login-btn{
+      background: none;
+      border: 1px solid white;
+      border-radius: 3px;
+      padding: 15px 0px;
+      width: 150px;
+      color: map-get($colors, secondary);
+      font-size: 15px;
+      margin-top: 10px;
+
+      &:hover{
+        background: white;
+        @include basic-transition;
+      }
+
+    }
+
   }
 
