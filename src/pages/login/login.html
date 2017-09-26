@@ -8,9 +8,13 @@
 
     <ion-navbar>
         <ion-title>Hello {{username}}</ion-title>
+        <button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+        </button>
     </ion-navbar>
 
 </ion-header>
+
 <ion-content padding>
     <ion-buttons text-center>
         <div id="button" style="margin-top:40%">
@@ -18,11 +22,9 @@
         </div>
 
         <div id="button" style="margin-top:20%">
-            <button large ion-button outline round (click)=CalendarNav()>Calendar</button>
+            <button large ion-button outline round (click)=CalendarNav()>Schedule</button>
         </div>
+
     </ion-buttons>
 
 </ion-content>
-<ion-footer text-center>
-    <button ion-button round (click)="LogoutNav()">Logout</button>
-</ion-footer>
