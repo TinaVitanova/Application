@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import { AlertController } from 'ionic-angular';
 import * as moment from 'moment';
 /**
- * Generated class for the ReservePage page.
+ * Generated class for the EventModalPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,10 +11,10 @@ import * as moment from 'moment';
 
 @IonicPage()
 @Component({
-  selector: 'page-reserve',
-  templateUrl: 'reserve.html',
+  selector: 'page-event-modal',
+  templateUrl: 'event-modal.html',
 })
-export class ReservePage {
+export class EventModalPage {
   myDate: String = new Date().toISOString();
   myTime: String = new Date().toISOString();
   rooms:"";
@@ -57,7 +57,7 @@ export class ReservePage {
     });
     confirm.present();
     
-      this.navCtrl.push(ReservePage, {date: this.myDate, time: this.myTime, capacity: this.capacity, room: this.rooms});
+      this.navCtrl.push(EventModalPage, {date: this.myDate, time: this.myTime, capacity: this.capacity, room: this.rooms});
   }
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private viewCtrl: ViewController) {
