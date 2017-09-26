@@ -35,12 +35,53 @@ $app-direction: ltr;
 
 $colors: (
   primary:    #488aff,
-  secondary:  #32db64,
+  secondary:  #588AA0,
+  secondary-light: #96BFD1,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #292929
 );
 
+
+// default highlight of input fields overwritten
+$text-input-md-highlight-color-invalid:  map-get($colors, danger);
+$text-input-md-highlight-color-valid:  map-get($colors, secondary-light);
+$text-input-md-show-invalid-highlight:  map-get($colors, danger);
+$text-input-md-highlight-color:  map-get($colors, secondary-light);
+$text-input-md-show-valid-highlight:  map-get($colors, secondary-light);
+$label-md-text-color-focused: map-get($colors, secondary-light);
+$label-md-margin-top: 5px;
+$label-md-margin-bottom: 5px;
+$label-ios-margin-bottom: 5px;
+$label-ios-margin-top: 5px;
+
+//custom gradients
+
+@mixin gradient-main{
+  background-color: #74ebd5;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ACB6E5, #74ebd5);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ACB6E5, #74ebd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+// background: #085078;  /* fallback for old browsers */
+// background: -webkit-linear-gradient(to right, #85D8CE, #085078);  /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to right, #85D8CE, #085078); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+@mixin gradient-bg{
+  background: #C9D6FF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+//basic transitions
+
+@mixin basic-transition{
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  -ms-transition: all 250ms;
+  transition: all 250ms;
+}
 
 // App iOS Variables
 // --------------------------------------------------
@@ -61,6 +102,7 @@ $colors: (
 // Windows only Sass variables can go here
 
 
+//material shadows
 
 
 // App Theme
