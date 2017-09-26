@@ -171,14 +171,44 @@
 // ***********
 
 page-home {
+
+    .input-cover { position: static!important; }
  
     ion-content{
-        @include gradient-bg;
+      @include gradient-bg;
     }
 
-    ion-list item-ios{
-        background: rgba(255, 255, 255, 0.1);
-        border:none;
-        color: #f7f7f7;
+    form{
+
+      background: url('../../assets/logotest.png');
+
+      .custom-input{
+        margin: 15px 0px 0px 15px;
+        width: 250px;
+        border-radius:3px;
+        border-bottom: #ccc;
+        background: rgba(white, 0.85);
+        color: map-get($colors, secondary);
+
+        .text-input::-moz-placeholder {
+          font-size: 14px;
+          color: map-get($colors, secondary);
+          opacity: .7;
+        }
+        
+        .text-input:-ms-input-placeholder {
+          font-size: 14px;
+          color: map-get($colors, secondary);
+          opacity: .7;
+        }
+        
+        .text-input::-webkit-input-placeholder {
+          font-size: 14px;
+          color: map-get($colors, secondary);
+          opacity: .7;
+        }
+      }
     }
-}
+    
+  }
+

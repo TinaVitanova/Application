@@ -8,36 +8,25 @@
 </div>
 <!-- splash screen end -->
 
-
-<ion-header>
-
-    <ion-navbar>
-        <ion-title text-center>
-          
-            Wellcome
-
-        </ion-title>
-    </ion-navbar>
-
-</ion-header>
-
-
 <ion-content padding>
-    <form (ngSubmit)="logForm()">
-        <ion-list>
-            <ion-item>
-                <ion-label floating>Username</ion-label>
-                <ion-input type="text" [(ngModel)]="todo.username" name="username"></ion-input>
-            </ion-item>
+        <img src="../../assets/logotest.png" alt="">
+        <form (ngSubmit)="logForm()">
+            <ion-list>
+                <ion-item class="custom-input">
+                    <ion-label color="secondary" ><ion-icon ios="ios-person" md="md-person"></ion-icon></ion-label>
+                    <ion-input type="text" [(ngModel)]="todo.username" name="username" placeholder="USERNAME"></ion-input>
+                    <span class="underline"></span>
+                </ion-item>
 
-            <ion-item>
-                <ion-label floating>Password</ion-label>
-                <ion-input type="password" [(ngModel)]="todo.password" name="password"></ion-input>
-            </ion-item>
-        </ion-list>
-    </form>
-    <ion-buttons text-center>
-        <button ion-button outline round (click)="LoginNav()">Login</button>
-        <button ion-button outline round (click)="SignupNav()">Sign up</button>
-    </ion-buttons>
+                <ion-item class="custom-input">
+                    <ion-label color="secondary"><ion-icon ios="ios-lock" md="md-lock"></ion-icon></ion-label>
+                    <ion-input type="password" [(ngModel)]="todo.password" name="password" placeholder="PASSWORD"></ion-input>
+                    <span class="underline"></span>
+                </ion-item>
+            </ion-list>
+        </form>
+        <ion-buttons text-center>
+            <button ion-button outline round (click)="LoginNav()">Login</button>
+
+        </ion-buttons>
 </ion-content>
