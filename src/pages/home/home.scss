@@ -180,8 +180,6 @@ page-home {
 
     form{
 
-      background: url('../../assets/logotest.png');
-
       .custom-input{
         margin: 15px 0px 0px 15px;
         width: 250px;
@@ -189,26 +187,16 @@ page-home {
         border-bottom: #ccc;
         background: rgba(white, 0.85);
         color: map-get($colors, secondary);
-
-        .text-input::-moz-placeholder {
-          font-size: 14px;
-          color: map-get($colors, secondary);
-          opacity: .7;
-        }
         
-        .text-input:-ms-input-placeholder {
-          font-size: 14px;
-          color: map-get($colors, secondary);
-          opacity: .7;
-        }
-        
-        .text-input::-webkit-input-placeholder {
-          font-size: 14px;
-          color: map-get($colors, secondary);
-          opacity: .7;
-        }
       }
     }
     
+    .login-btn{
+      background: none;
+      border: 1px solid lightgrey;
+      border-radius: 3px;
+
+    }
+
   }
 

@@ -13,19 +13,17 @@
         <form (ngSubmit)="logForm()">
             <ion-list>
                 <ion-item class="custom-input">
-                    <ion-label color="secondary" ><ion-icon ios="ios-person" md="md-person"></ion-icon></ion-label>
-                    <ion-input type="text" [(ngModel)]="todo.username" name="username" placeholder="USERNAME"></ion-input>
-                    <span class="underline"></span>
+                    <ion-label floating color="secondary"><ion-icon ios="ios-person" md="md-person"></ion-icon> &nbsp; Username</ion-label>
+                    <ion-input type="text" [(ngModel)]="todo.username" name="username"></ion-input>
                 </ion-item>
 
                 <ion-item class="custom-input">
-                    <ion-label color="secondary"><ion-icon ios="ios-lock" md="md-lock"></ion-icon></ion-label>
-                    <ion-input type="password" [(ngModel)]="todo.password" name="password" placeholder="PASSWORD"></ion-input>
-                    <span class="underline"></span>
+                    <ion-label floating color="secondary"><ion-icon ios="ios-lock" md="md-lock"></ion-icon> &nbsp; Password</ion-label>
+                    <ion-input type="password" [(ngModel)]="todo.password" name="password"></ion-input>
                 </ion-item>
             </ion-list>
         </form>
         <ion-buttons text-center>
-            <button ion-button outline round (click)="LoginNav()">Login</button>
-          </ion-buttons>
+            <button class="login-btn" (click)="LoginNav()">LOGIN</button>
+        </ion-buttons>
 </ion-content>
