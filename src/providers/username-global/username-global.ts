@@ -10,23 +10,22 @@ import { Storage } from '@ionic/storage';
 export class UsernameGlobalProvider {
 
   public myUsername:any;
-  public dacrknete:any='pls work';
+  public user:any;
+  public amanvishe:any="aaaaaaaaaa";
   constructor(public storage: Storage) {
-    if(this.myUsername=="test")
-    console.log('raboti set metoda');
     console.log('Hello UsernameGlobal Provider');
   }
   public setMyGlobalVar(value:any) {
     this.storage.set(this.myUsername,value);
-    console.log('povikana set metoda ' +value);
+    this.user = value;
   }
   public getMyGlobalVar() {
-    this.storage.get(this.myUsername).then((value) =>{
-      console.log('povikana get metoda '+value);
-      return value;
-    })
+      return this.user;
   }
-  public Proba12() {
-    return this.dacrknete;
+  public random(){
+    return this.amanvishe;
   }
+
+
+
 }
