@@ -1,32 +1,29 @@
-<ion-header>
-
-    <ion-navbar>
-        <ion-title text-center>
-          
-            Wellcome
-
-        </ion-title>
-    </ion-navbar>
-
-</ion-header>
-
+<!-- splash screen start -->
+<div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
+    <div class="flb">
+      <div class="Aligner-item Aligner-item--top"></div>
+      <img src="../../assets/logotest.png" style="width:150px;">
+      <div class="Aligner-item Aligner-item--bottom"></div>
+    </div>
+</div>
+<!-- splash screen end -->
 
 <ion-content padding>
-    <form (ngSubmit)="logForm()">
-        <ion-list>
-            <ion-item>
-                <ion-label floating>Username</ion-label>
-                <ion-input type="text" [(ngModel)]="todo.username" name="username"></ion-input>
-            </ion-item>
+        <img src="../../assets/logotest.png" alt="">
+        <form (ngSubmit)="logForm()">
+            <ion-list>
+                <ion-item class="custom-input">
+                    <ion-label floating color="secondary"><ion-icon ios="ios-person" md="md-person"></ion-icon> &nbsp; Username</ion-label>
+                    <ion-input type="text" [(ngModel)]="todo.username" name="username"></ion-input>
+                </ion-item>
 
-            <ion-item>
-                <ion-label floating>Password</ion-label>
-                <ion-input type="password" [(ngModel)]="todo.password" name="password"></ion-input>
-            </ion-item>
-        </ion-list>
-    </form>
-    <ion-buttons text-center>
-        <button ion-button outline round (click)="LoginNav()">Login</button>
-        <button ion-button outline round (click)="SignupNav()">Sign up</button>
-    </ion-buttons>
+                <ion-item class="custom-input">
+                    <ion-label floating color="secondary"><ion-icon ios="ios-lock" md="md-lock"></ion-icon> &nbsp; Password</ion-label>
+                    <ion-input type="password" [(ngModel)]="todo.password" name="password"></ion-input>
+                </ion-item>
+            </ion-list>
+        </form>
+        <ion-buttons text-center>
+            <button class="login-btn" (click)="LoginNav()">LOGIN</button>
+        </ion-buttons>
 </ion-content>

@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MakeRoomPage } from '../make-room/make-room';
 import { ReservePage } from '../reserve/reserve';
 import { CalendarPage } from '../calendar/calendar';
-import { HomePage } from '../home/home';
+import { SignupPage } from '../signup/signup';
+import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 /**
  * Generated class for the AdminHomePage page.
  *
@@ -17,15 +18,11 @@ import { HomePage } from '../home/home';
   templateUrl: 'admin-home.html',
 })
 export class AdminHomePage {
-  username:string;
+  username=this.UserGlobal.getMyGlobalVar();
   makeroom=MakeRoomPage;
 
   MakeRoomNav(){
     this.navCtrl.push(MakeRoomPage)
-  }
-
-  LogoutNav(){
-    this.navCtrl.push(HomePage)
   }
 
   ReserveNav(){
@@ -36,8 +33,12 @@ export class AdminHomePage {
     this.navCtrl.push(CalendarPage)
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  this.username = navParams.get('param1');
+  CreateAccNav(){
+    this.navCtrl.push(SignupPage, {param2: this.username})
+  }
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider) {
   }
 
   ionViewDidLoad() {

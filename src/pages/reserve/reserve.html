@@ -8,6 +8,9 @@
 
     <ion-navbar>
         <ion-title>Reserve</ion-title>
+        <button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+        </button>
     </ion-navbar>
 
 </ion-header>
@@ -22,17 +25,23 @@
 
     <ion-item>
         <ion-label>Date</ion-label>
+
         <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="event.startTime"></ion-datetime>
+
     </ion-item>
 
     <ion-item>
         <ion-label>Start Time</ion-label>
+
         <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
+
     </ion-item>
 
     <ion-item>
         <ion-label>End Time</ion-label>
+
         <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
+
     </ion-item>
 
 
@@ -54,9 +63,11 @@
         <button style="margin-top:4%;" large ion-button round outline (click)="reserve()">Reserve Room</button>
     </ion-buttons>
 
+
     <button ion-button full icon-left (click)="save()">
             <ion-icon name="checkmark"></ion-icon>Add Event
     </button>
 
 
 </ion-content>
+

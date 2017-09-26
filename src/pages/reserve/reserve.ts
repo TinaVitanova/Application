@@ -16,9 +16,9 @@ import * as moment from 'moment';
 })
 export class ReservePage {
   myDate: String = new Date().toISOString();
-  myTime: String = new Date().toISOString();
+  myTime1: String = new Date().toISOString();
+  myTime2: String = new Date().toISOString();
   rooms:"";
-  capacity:"";
   isReserved: boolean;
 
   event = { startTime: new Date().toISOString(), endTime: new Date().toISOString()}
@@ -38,7 +38,8 @@ export class ReservePage {
   reserve() {
     let confirm = this.alertCtrl.create({
       title: 'You have chosen: ',
-      message: '<div>Date:'+this.myDate+'<br> Time:'+this.myTime+'<br> Capacity:'+this.capacity+'<br> Room:'+this.rooms+'</div>',
+
+      message: 'Date:'+this.myDate+'<br> Time:'+this.myTime1+'-'+this.myTime2+'<br> Room:'+this.rooms+'<br>',
       
       buttons: [
         {
@@ -57,9 +58,12 @@ export class ReservePage {
     });
     confirm.present();
     
-      this.navCtrl.push(ReservePage, {date: this.myDate, time: this.myTime, capacity: this.capacity, room: this.rooms});
+
+     // this.navCtrl.push(ReservePage, {date: this.myDate, time: this.myTime, capacity: this.capacity, room: this.rooms});
+
   }
   
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private viewCtrl: ViewController) {
     let preselectedDate = moment(this.navParams.get('selectedDay')).format();
     this.event.startTime = preselectedDate;
@@ -69,6 +73,7 @@ export class ReservePage {
     this.myTime = navParams.get('time');
     this.capacity = navParams.get('capacity');
     this.rooms = navParams.get('room');
+
   }
 
   ionViewDidLoad() {
