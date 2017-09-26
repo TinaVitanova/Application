@@ -16,12 +16,12 @@ import * as moment from 'moment';
 })
 export class ReservePage {
   myDate: String = new Date().toISOString();
-  myTime1: String = new Date().toISOString();
-  myTime2: String = new Date().toISOString();
+  myTime: String = new Date().toISOString();
+
   rooms:"";
   isReserved: boolean;
 
-  event = { startTime: new Date().toISOString(), endTime: new Date().toISOString()}
+  event = { startTime: new Date().toISOString(), endTime: new Date().toISOString(), chosenDate: new Date().toISOString()}
   minDate = new Date().toISOString();
   
   shouldHide(){
@@ -39,7 +39,7 @@ export class ReservePage {
     let confirm = this.alertCtrl.create({
       title: 'You have chosen: ',
 
-      message: 'Date:'+this.myDate+'<br> Time:'+this.myTime1+'-'+this.myTime2+'<br> Room:'+this.rooms+'<br>',
+      message: 'Date:'+this.event.chosenDate+'<br>Start Time: '+this.event.startTime+'<br>End Time: '+this.event.endTime+'<br> Room:'+this.rooms+'<br>',
       
       buttons: [
         {
@@ -59,7 +59,7 @@ export class ReservePage {
     confirm.present();
     
 
-     // this.navCtrl.push(ReservePage, {date: this.myDate, time: this.myTime, capacity: this.capacity, room: this.rooms});
+     this.navCtrl.push(ReservePage, {date: this.event.chosenDate, start: this.event.startTime, end: this.event.endTime, room: this.rooms});
 
   }
   
@@ -69,9 +69,9 @@ export class ReservePage {
     this.event.startTime = preselectedDate;
     this.event.endTime = preselectedDate;
     
-    this.myDate = navParams.get('date');
-    this.myTime = navParams.get('time');
-    this.capacity = navParams.get('capacity');
+    this.event.chosenDate = navParams.get('date');
+    this.event.startTime = navParams.get('start');
+    this.event.endTime = navParams.get('end');
     this.rooms = navParams.get('room');
 
   }
