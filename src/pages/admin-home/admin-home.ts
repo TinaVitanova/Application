@@ -4,6 +4,7 @@ import { MakeRoomPage } from '../make-room/make-room';
 import { ReservePage } from '../reserve/reserve';
 import { CalendarPage } from '../calendar/calendar';
 import { SignupPage } from '../signup/signup';
+import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 /**
  * Generated class for the AdminHomePage page.
  *
@@ -17,7 +18,7 @@ import { SignupPage } from '../signup/signup';
   templateUrl: 'admin-home.html',
 })
 export class AdminHomePage {
-  username:string;
+  username=this.UserGlobal.getMyGlobalVar();
   makeroom=MakeRoomPage;
 
   MakeRoomNav(){
@@ -37,8 +38,7 @@ export class AdminHomePage {
   }
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  this.username = navParams.get('param1');
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider) {
   }
 
   ionViewDidLoad() {

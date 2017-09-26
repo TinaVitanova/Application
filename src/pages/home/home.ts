@@ -33,14 +33,13 @@ export class HomePage {
     }
 
     LoginNav(){
-      
       this.UserGlobal.setMyGlobalVar(this.todo.username);
       if (this.todo.username=='admin')
-      this.navCtrl.push(AdminHomePage, {param1: this.todo.username})
+      this.navCtrl.push(AdminHomePage)
       if (this.todo.username=='superadmin')
-      this.navCtrl.push(AdminHomePage, {param1: this.todo.username})
+      this.navCtrl.push(AdminHomePage)
       else if (this.todo.username=='test')
-      this.navCtrl.push(LoginPage, {param1: this.todo.username})     
+      this.navCtrl.push(LoginPage)     
     }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider) {
