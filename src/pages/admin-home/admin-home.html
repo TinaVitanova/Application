@@ -8,8 +8,10 @@
 
     <ion-navbar>
         <ion-title>Welcome {{username}}</ion-title>
+        <button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
     </ion-navbar>
-
 </ion-header>
 
 
@@ -27,9 +29,10 @@
             <button large ion-button round outline (click)=CalendarNav()>Calendar</button>
         </div>
 
+        
+        <div id="button" style="margin-top:20%">
+            <button large ion-button outline round (click)=CreateAccNav()>Create Account</button>
+        </div>
 
     </ion-buttons>
 </ion-content>
-<ion-footer text-center>
-    <button ion-button round (click)="LogoutNav()">Logout</button>
-</ion-footer>

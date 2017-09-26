@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MakeRoomPage } from '../make-room/make-room';
 import { ReservePage } from '../reserve/reserve';
 import { CalendarPage } from '../calendar/calendar';
-import { HomePage } from '../home/home';
+import { SignupPage } from '../signup/signup';
 /**
  * Generated class for the AdminHomePage page.
  *
@@ -24,10 +24,6 @@ export class AdminHomePage {
     this.navCtrl.push(MakeRoomPage)
   }
 
-  LogoutNav(){
-    this.navCtrl.push(HomePage)
-  }
-
   ReserveNav(){
     this.navCtrl.push(ReservePage)
   }
@@ -35,6 +31,11 @@ export class AdminHomePage {
   CalendarNav(){
     this.navCtrl.push(CalendarPage)
   }
+
+  CreateAccNav(){
+    this.navCtrl.push(SignupPage, {param2: this.username})
+  }
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   this.username = navParams.get('param1');

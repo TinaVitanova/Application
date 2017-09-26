@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
 import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the SignupPage page.
@@ -16,8 +15,8 @@ import { AlertController } from 'ionic-angular';
 })
 export class SignupPage {
   checked;
+  username: string;
   adminpassword:"";
-  homepage=HomePage;
   new = {
     username:"",
     password:"",
@@ -28,50 +27,20 @@ export class SignupPage {
   logFormSignUp(){
     console.log(this.new)
   }
-  ShowCodeField(){
-    return true;
-  }
+
   shouldHide(){
-    if(this.checked==true)
+    if(this.username=="superadmin")
     return false;
     else
     return true;
   }
-  
-  NewAccount(){
 
-  }
-  createdAccNav(){
-    /*
-    this.NewAccount() {
-      let confirm = this.alertCtrl.create({
-        title: 'Create Accout',
-        message: 'This will find available rooms',
-        
-        buttons: [
-          {
-            text: 'Cancel',
-            handler: () => {
-              console.log('Cancel clicked');
-              this.isReserved=false;
-            }
-          },
-          {
-            text: 'Agree',
-            handler: () => {
-              console.log('Agree clicked');
-              this.isReserved=true;
-            }
-          }
-        ]
-      });
-      confirm.present();
-    }
-    */
-    this.navCtrl.push(HomePage)
+  CreateNewUser(){
+
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+    this.username = navParams.get('param2');
   }
 
   ionViewDidLoad() {
