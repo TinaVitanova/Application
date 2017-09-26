@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import { AlertController } from 'ionic-angular';
 import * as moment from 'moment';
 /**
- * Generated class for the ReservePage page.
+ * Generated class for the EventModalPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,14 +11,14 @@ import * as moment from 'moment';
 
 @IonicPage()
 @Component({
-  selector: 'page-reserve',
-  templateUrl: 'reserve.html',
+  selector: 'page-event-modal',
+  templateUrl: 'event-modal.html',
 })
-export class ReservePage {
+export class EventModalPage {
   myDate: String = new Date().toISOString();
   myTime: String = new Date().toISOString();
-
   rooms:"";
+  capacity:"";
   isReserved: boolean;
 
   event = { startTime: new Date().toISOString(), endTime: new Date().toISOString(), chosenDate: new Date().toISOString()}
@@ -38,8 +38,7 @@ export class ReservePage {
   reserve() {
     let confirm = this.alertCtrl.create({
       title: 'You have chosen: ',
-
-      message: 'Date:'+this.event.chosenDate+'<br>Start Time: '+this.event.startTime+'<br>End Time: '+this.event.endTime+'<br> Room:'+this.rooms+'<br>',
+      message: '<div>Date:'+this.myDate+'<br> Time:'+this.myTime+'<br> Capacity:'+this.capacity+'<br> Room:'+this.rooms+'</div>',
       
       buttons: [
         {
@@ -58,22 +57,19 @@ export class ReservePage {
     });
     confirm.present();
     
-
-     this.navCtrl.push(ReservePage, {date: this.event.chosenDate, start: this.event.startTime, end: this.event.endTime, room: this.rooms});
-
+      this.navCtrl.push(EventModalPage, {date: this.myDate, time: this.myTime, capacity: this.capacity, room: this.rooms});
   }
   
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private viewCtrl: ViewController) {
     let preselectedDate = moment(this.navParams.get('selectedDay')).format();
+    this.event.chosenDate = preselectedDate;
     this.event.startTime = preselectedDate;
     this.event.endTime = preselectedDate;
     
-    this.event.chosenDate = navParams.get('date');
-    this.event.startTime = navParams.get('start');
-    this.event.endTime = navParams.get('end');
+    this.myDate = navParams.get('date');
+    this.myTime = navParams.get('time');
+    this.capacity = navParams.get('capacity');
     this.rooms = navParams.get('room');
-
   }
 
   ionViewDidLoad() {

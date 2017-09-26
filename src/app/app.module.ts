@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { NgCalendarModule } from 'ionic2-calendar';
 import { IonicStorageModule } from '@ionic/storage';
 
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SignupPage } from '../pages/signup/signup';
@@ -38,6 +39,7 @@ import { UsernameGlobalProvider } from '../providers/username-global/username-gl
     NgCalendarModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
