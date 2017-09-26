@@ -1,14 +1,7 @@
-import { ViewController } from 'ionic-angular/es2015';
 import { Component } from '@angular/core';
-<<<<<<< HEAD
-import { IonicPage, NavController, NavParams} from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
-import moment from 'moment';
-=======
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import * as moment from 'moment';
->>>>>>> 3142a121718149b392d73e659abb3db1d75bb0c1
 /**
  * Generated class for the ReservePage page.
  *
@@ -27,21 +20,6 @@ export class ReservePage {
   rooms:"";
   capacity:"";
   isReserved: boolean;
-<<<<<<< HEAD
-  event = { statTime: new Date().toISOString(), endTime: new Date().toISOString()}
-  minDate = new Date().toISOString();
-  
-  AddReserve(){
-    /*
-    var event = [];
-    var date = this.myDate;
-    var time = this.myTime;
-    var rooms = this.rooms;
-    var startDay = this.myDate;
-    var startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
-    event.push([
-=======
->>>>>>> 3142a121718149b392d73e659abb3db1d75bb0c1
 
   event = { startTime: new Date().toISOString(), endTime: new Date().toISOString()}
   minDate = new Date().toISOString();
@@ -82,15 +60,9 @@ export class ReservePage {
       this.navCtrl.push(ReservePage, {date: this.myDate, time: this.myTime, capacity: this.capacity, room: this.rooms});
   }
   
-<<<<<<< HEAD
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public viewCtrl: ViewController ) {
-    let preselectedDate = moment(this.navParams.get('selectedDay')).format();
-    this.event.statTime = preselectedDate;
-=======
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private viewCtrl: ViewController) {
     let preselectedDate = moment(this.navParams.get('selectedDay')).format();
     this.event.startTime = preselectedDate;
->>>>>>> 3142a121718149b392d73e659abb3db1d75bb0c1
     this.event.endTime = preselectedDate;
     
     this.myDate = navParams.get('date');
@@ -106,9 +78,5 @@ export class ReservePage {
   save(){
     this.viewCtrl.dismiss(this.event);
   }
-<<<<<<< HEAD
-}
-=======
 
 }
->>>>>>> 3142a121718149b392d73e659abb3db1d75bb0c1

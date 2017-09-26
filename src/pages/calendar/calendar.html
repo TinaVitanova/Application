@@ -7,13 +7,6 @@
 <ion-header>
 
     <ion-navbar>
-<<<<<<< HEAD
-        <ion-title>{{ viewTitle }}</ion-title>
-        <ion-buttons end>
-            <button ion-button icon-only (click)="addEvent()">
-                <ion-icon name="add"></ion-icon>
-            </button>
-=======
         <ion-title> {{ viewTitle }}</ion-title>
         <ion-buttons end>
             <button ion-button (click)="changeMode('month')">M</button>
@@ -23,18 +16,12 @@
             <button ion-button icon-only (click)="addEvent()">
                     <ion-icon name="add"></ion-icon>
                 </button>
->>>>>>> 3142a121718149b392d73e659abb3db1d75bb0c1
         </ion-buttons>
     </ion-navbar>
 
 </ion-header>
 
 <ion-content padding class="has-header">
-<<<<<<< HEAD
-    <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate" (onEventsSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30" class="calendar">
-    </calendar>
-
-=======
     <ion-item>
         <ion-label>Choose a Room</ion-label>
         <ion-select [(ngModel)]="rooms">
@@ -46,5 +33,4 @@
     </ion-item>
     <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate" (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30" class="calendar">
     </calendar>
->>>>>>> 3142a121718149b392d73e659abb3db1d75bb0c1
 </ion-content>

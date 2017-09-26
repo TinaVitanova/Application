@@ -15,24 +15,6 @@
 
 <ion-content padding>
 
-<<<<<<< HEAD
-    <ion-list>
-        <ion-item>
-            <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label>Start Time</ion-label>
-            <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MM/DD/YYYY HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-            <ion-label>End Time</ion-label>
-            <ion-input displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MM/DD/YYYY HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-input>
-        </ion-item>
-
-    </ion-list>
-=======
     <ion-item>
         <ion-label>Title</ion-label>
         <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
@@ -52,7 +34,6 @@
         <ion-label>End Time</ion-label>
         <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
     </ion-item>
->>>>>>> 3142a121718149b392d73e659abb3db1d75bb0c1
 
 
     <ion-buttons text-center>
@@ -74,12 +55,8 @@
     </ion-buttons>
 
     <button ion-button full icon-left (click)="save()">
-<<<<<<< HEAD
             <ion-icon name="checkmark"></ion-icon>Add Event
-          </button>
-=======
-        <ion-icon name="checkmark"></ion-icon>Add Event
     </button>
->>>>>>> 3142a121718149b392d73e659abb3db1d75bb0c1
+
 
 </ion-content>

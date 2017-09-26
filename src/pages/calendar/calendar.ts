@@ -1,12 +1,6 @@
-import { AlertController } from 'ionic-angular/umd';
-import { Component } from '@angular/core';
-<<<<<<< HEAD
-import { ModalController, NavController } from 'ionic-angular';
-import moment from 'moment';
-=======
 import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { Component } from '@angular/core';
 import * as moment from 'moment';
->>>>>>> 3142a121718149b392d73e659abb3db1d75bb0c1
 
 @Component({
   selector: 'page-calendar',
@@ -16,44 +10,6 @@ export class CalendarPage {
   eventSource = [];
   viewTitle: string;
   selectedDay = new Date();
-<<<<<<< HEAD
-
-  calendar = {
-      mode: 'month',
-      currendDate: this.selectedDay
-  }
-  constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertController) {
-
-  }
-
-  addEvent(){
-    let modal = this.modalCtrl.create('ReservePage', {selectedDay: this.selectedDay});
-    modal.present();
-
-    modal.onDidDismiss(data =>{
-        if(data){
-            let eventData = data;
-
-            eventData.startTime = new Date(data.startTime);
-            eventData.endTime = new Date(data.endTime);
-
-            let events = this.eventSource;
-            events.push(eventData);
-            this.eventSource = [];
-            setTimeout(() =>{
-                this.eventSource = events;
-            });
-        }
-    })
-  }
-
-  onViewTitleChanged(title){
-    this.viewTitle = title;
-  }
-
-  onTimeSelected(ev){
-    this.selectedDay = ev.selectedTime;
-=======
   calendar = {
       mode: 'month',
       currentDate: this.selectedDay
@@ -113,19 +69,7 @@ export class CalendarPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private alertCtrl: AlertController) {
 
->>>>>>> 3142a121718149b392d73e659abb3db1d75bb0c1
   }
 
-  onEventSelected(event){
-    let start = moment(event.startTime).format('LLLL');
-    let end = moment(event.endTime).format('LLLL');
-
-    let alert = this.alertCtrl.create({
-       title: '' + event.title,
-       subTitle: 'From: ' + start + '<br>To: ' + end,
-       buttons: ['OK']
-    });
-    alert.present();
-  }
 
 }

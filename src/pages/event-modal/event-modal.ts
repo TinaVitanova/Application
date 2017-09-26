@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-=======
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import * as moment from 'moment';
->>>>>>> 3142a121718149b392d73e659abb3db1d75bb0c1
 /**
  * Generated class for the EventModalPage page.
  *
@@ -20,14 +15,6 @@ import * as moment from 'moment';
   templateUrl: 'event-modal.html',
 })
 export class EventModalPage {
-<<<<<<< HEAD
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EventModalPage');
-=======
   myDate: String = new Date().toISOString();
   myTime: String = new Date().toISOString();
   rooms:"";
@@ -91,7 +78,6 @@ export class EventModalPage {
 
   save(){
     this.viewCtrl.dismiss(this.event);
->>>>>>> 3142a121718149b392d73e659abb3db1d75bb0c1
   }
 
 }
