@@ -1,118 +1,75 @@
+import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-/**
- * Generated class for the CalendarPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import * as moment from 'moment';
 
-@IonicPage()
 @Component({
   selector: 'page-calendar',
   templateUrl: 'calendar.html',
 })
 export class CalendarPage {
-  eventSource;
-  viewTitle;
-  isToday: boolean;
+  eventSource = [];
+  viewTitle: string;
+  selectedDay = new Date();
   calendar = {
       mode: 'month',
-      currentDate: new Date()
-  }; // these are the variable used by the calendar.
-  loadEvents() {
-      this.eventSource = this.createRandomEvents();
-  }
+      currentDate: this.selectedDay
+  }; 
+  
   onViewTitleChanged(title) {
       this.viewTitle = title;
   }
+
   onEventSelected(event) {
-      console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
+      let start = moment(event.startTime).format('HH : mm');
+      let end = moment(event.endTime).format('HH : mm');
+      let cDate = moment(event.chosenDate).format('MMM Do YYYY');
+      let rooms = this.navParams.get('room');;
+
+      let alert = this.alertCtrl.create({
+         title: 'Event: ' + event.title,
+         message: '<div>Date:'+cDate+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+rooms+'</div>',
+        buttons:['OK']
+      });
+      alert.present();
   }
+
+  onTimeSelected(ev) {
+    this.selectedDay = ev.selectedTime;
+  }
+
+  addEvent(){
+    let modal = this.modalCtrl.create('EventModalPage', {selectedDay: this.selectedDay});
+    modal.present();
+
+    modal.onDidDismiss(data=>{
+        let eventData = data;
+        
+        eventData.chosenDate = new Date(data.chosenDate);
+        eventData.startTime = new Date(data.startTime);
+        eventData.endTime = new Date(data.endTime);
+
+        let events = this.eventSource;
+        events.push(eventData);
+        this.eventSource = [];
+        setTimeout(()=>{
+            this.eventSource = events;
+        });
+    })
+  }
+
   changeMode(mode) {
       this.calendar.mode = mode;
   }
-  today() {
-      this.calendar.currentDate = new Date();
-  }
-  onTimeSelected(ev) {
-      console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-          (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
-  }
-  onCurrentDateChanged(event:Date) {
-      var today = new Date();
-      today.setHours(0, 0, 0, 0);
-      event.setHours(0, 0, 0, 0);
-      this.isToday = today.getTime() === event.getTime();
-  }
-  /*
-  createEvent(){
-      var events = [];
-      var date= new Date();
-      var startTime;
-      var endTime;
-      var startDay;
-      var endDay=startDay;
-      var room;
-      
-      zemi vrednosti
 
-      events.push([
-        startTime: startTime,
-        endTime: endTime,
-        room: room
-      ])
-  }
-  */
-  createRandomEvents() {
-      var events = [];
-      for (var i = 0; i < 50; i += 1) {
-          var date = new Date();
-          var eventType = Math.floor(Math.random() * 2);
-          var startDay = Math.floor(Math.random() * 90) - 45;
-          var endDay = Math.floor(Math.random() * 2) + startDay;
-          var startTime;
-          var endTime;
-          if (eventType === 0) {
-              startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
-              if (endDay === startDay) {
-                  endDay += 1;
-              }
-              endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
-              events.push({
-                  title: 'All Day - ' + i,
-                  startTime: startTime,
-                  endTime: endTime,
-                  allDay: true
-              });
-          } else {
-              var startMinute = Math.floor(Math.random() * 24 * 60);
-              var endMinute = Math.floor(Math.random() * 180) + startMinute;
-              startTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + startDay, 0, date.getMinutes() + startMinute);
-              endTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + endDay, 0, date.getMinutes() + endMinute);
-              events.push({
-                  title: 'Event - ' + i,
-                  startTime: startTime,
-                  endTime: endTime,
-                  allDay: false
-              });
-          }
-      }
-      return events;
-  }
-  onRangeChanged(ev) {
-      console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
-  }
   markDisabled = (date:Date) => {
       var current = new Date();
       current.setHours(0, 0, 0);
       return date < current;
   };
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private alertCtrl: AlertController) {
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CalendarPage');
-  }
 
 }
