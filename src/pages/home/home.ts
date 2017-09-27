@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AdminHomePage } from '../admin-home/admin-home';
-import { NavParams } from 'ionic-angular';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -42,8 +42,8 @@ export class HomePage {
       this.navCtrl.push(LoginPage)     
     }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public menuCtrl: MenuController) {
+    //this.menuCtrl.enable(false, "myMenu");
   }
 
 }
