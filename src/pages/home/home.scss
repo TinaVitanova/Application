@@ -181,8 +181,8 @@ page-home {
     form{
 
       .custom-input{
-        margin: 15px 0px 0px 15px;
-        width: 250px;
+        margin: 15% 0px 0px 10%;
+        width: 80%;
         border-radius:3px;
         border-bottom: #ccc;
         background: rgba(white, 0.85);
@@ -196,17 +196,63 @@ page-home {
     
     .login-btn{
       background: none;
-      border: 1px solid white;
+      // border: 1px solid white;
       border-radius: 3px;
-      padding: 15px 0px;
+      // padding: 15px 0px;
       width: 150px;
       color: map-get($colors, secondary);
       font-size: 15px;
       margin-top: 10px;
 
-      &:hover{
-        background: white;
-        @include basic-transition;
+      a.animated-button:link:after, a.animated-button:visited:after {
+        content : "";
+        position: absolute;
+        height: 0%;
+        left: 50%;
+        top: 50%;
+        width: 150%;
+        z-index: -1;
+        -webkit-transition: all 0.75s ease 0s;
+        -moz-transition: all 0.75s ease 0s;
+        -o-transition: all 0.75s ease 0s;
+        transition: all 0.75s ease 0s;
+        @include shadow-2dp;
+      }
+      a.animated-button:link:hover, a.animated-button:visited:hover {
+        color: white;
+        text-shadow: none;
+      }
+      a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
+        height: 450%;
+      }
+      a.animated-button:link, a.animated-button:visited {
+        position: relative;
+        display: block;
+        padding: 14px 15px;
+        color: #6ACBDF;
+        font-size:15px;
+        border-radius: 3px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        letter-spacing: .08em;
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        transition: all 1s ease;
+      }
+      
+      a.animated-button.btn-one {
+        border: 2px solid map-get($colors, secondary-light);
+      }
+      a.animated-button.btn-one:after {
+        background: map-get($colors, secondary-light);
+        -moz-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+        -ms-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+        -webkit-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+        transform: translateX(-50%) translateY(-50%) rotate(-25deg);
       }
 
     }
