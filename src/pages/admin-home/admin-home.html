@@ -7,10 +7,10 @@
 <ion-header>
 
     <ion-navbar>
+        <button ion-button menuToggle right>
+                    <ion-icon name="menu"></ion-icon>
+                </button>
         <ion-title>Welcome {{username}}</ion-title>
-        <button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-        </button>
     </ion-navbar>
 </ion-header>
 
@@ -29,7 +29,7 @@
             <button large ion-button round outline (click)=CalendarNav()>Calendar</button>
         </div>
 
-        
+
         <div id="button" style="margin-top:20%">
             <button large ion-button outline round (click)=CreateAccNav()>Create Account</button>
         </div>
