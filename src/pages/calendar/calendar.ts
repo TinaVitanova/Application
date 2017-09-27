@@ -1,5 +1,6 @@
 import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { Component } from '@angular/core';
+import { EventDataProvider } from '../../providers/event-data/event-data';
 import * as moment from 'moment';
 
 @Component({
@@ -20,14 +21,14 @@ export class CalendarPage {
   }
 
   onEventSelected(event) {
-      let start = moment(event.startTime).format('HH : mm');
-      let end = moment(event.endTime).format('HH : mm');
-      let cDate = moment(event.chosenDate).format('MMM Do YYYY');
-      let rooms = this.navParams.get('room');;
+      this.loadEvents()
+      let start = moment(event.startTime).format('LLLL');
+      let end = moment(event.endTime).format('LLLL');
+      let rooms = event.room;
 
       let alert = this.alertCtrl.create({
          title: 'Event: ' + event.title,
-         message: '<div>Date:'+cDate+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+rooms+'</div>',
+         message: 'From: '+start+'<br>To: '+end+'<br> Room:'+rooms+'</div>',
         buttons:['OK']
       });
       alert.present();
@@ -36,25 +37,34 @@ export class CalendarPage {
   onTimeSelected(ev) {
     this.selectedDay = ev.selectedTime;
   }
+  loadEvents(){
+    var dateStart = this.EventData.getStartTime();
+    var dateEnd = this.EventData.getEndTime();
+    var events = [];
+    var startTime = new  Date(dateStart.getFullYear(), dateStart.getMonth(),dateStart.getDate(),dateStart.getHours(),dateStart.getMinutes());
+    var endTime = new Date(dateEnd.getFullYear(), dateEnd.getMonth(),dateEnd.getDate(),dateEnd.getHours(),dateEnd.getMinutes());
+    events.push({
+        title:this.EventData.getTitle(),
+        startTime: startTime,
+        endTime: endTime,
+    });
+    return events;
+    /*var events = [{
+        title:this.eventData.title,
+        start:this.eventData.startTime,
+        end:this.eventData.endTime
+    }]
+    this.eventSource = [];
+    setTimeout(()=>{
+        this.eventSource = events;
+        
+})
+*/
+  }
 
   addEvent(){
-    let modal = this.modalCtrl.create('EventModalPage', {selectedDay: this.selectedDay});
-    modal.present();
-
-    modal.onDidDismiss(data=>{
-        let eventData = data;
+    this.navCtrl.push('EventModalPage', {selectedDay: this.selectedDay});
         
-        eventData.chosenDate = new Date(data.chosenDate);
-        eventData.startTime = new Date(data.startTime);
-        eventData.endTime = new Date(data.endTime);
-
-        let events = this.eventSource;
-        events.push(eventData);
-        this.eventSource = [];
-        setTimeout(()=>{
-            this.eventSource = events;
-        });
-    })
   }
 
   changeMode(mode) {
@@ -67,7 +77,7 @@ export class CalendarPage {
       return date < current;
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private alertCtrl: AlertController, public EventData: EventDataProvider) {
 
   }
 

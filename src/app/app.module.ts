@@ -19,6 +19,7 @@ import { MyProfilePage } from '../pages/my-profile/my-profile';
 import { MySchedulePage } from '../pages/my-schedule/my-schedule';
 import { ManageUsersPage } from '../pages/manage-users/manage-users';
 import { UsernameGlobalProvider } from '../providers/username-global/username-global';
+import { EventDataProvider } from '../providers/event-data/event-data';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { UsernameGlobalProvider } from '../providers/username-global/username-gl
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UsernameGlobalProvider
+    UsernameGlobalProvider,
+    EventDataProvider
   ]
 })
 export class AppModule {}

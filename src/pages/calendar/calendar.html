@@ -9,7 +9,7 @@
     <ion-navbar>
         <ion-title> {{ viewTitle }}</ion-title>
         <ion-buttons end>
-            <button ion-button (click)="changeMode('month')">M</button>
+            <button ion-button (click)="changeMode('month')">Ma</button>
             <button ion-button (click)="changeMode('week')">W</button>
             <!--<button ion-button (click)="changeMode('day')">D</button>-->
 
@@ -28,6 +28,7 @@
     <ion-item>
         <ion-label>Choose a Room</ion-label>
         <ion-select [(ngModel)]="rooms">
+            <ion-option value="all" (ionSelect)="onEventSelected()">All Rooms</ion-option>
             <ion-option value="room1" (ionSelect)="onEventSelected()">Room1</ion-option>
             <ion-option value="room2" (ionSelect)="onEventSelected()">Room2</ion-option>
             <ion-option value="room3" (ionSelect)="onEventSelected()">Room3</ion-option>
