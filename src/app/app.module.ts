@@ -20,6 +20,7 @@ import { MySchedulePage } from '../pages/my-schedule/my-schedule';
 import { ManageUsersPage } from '../pages/manage-users/manage-users';
 import { UsernameGlobalProvider } from '../providers/username-global/username-global';
 import { EventDataProvider } from '../providers/event-data/event-data';
+import { ReserveEventPage } from '../pages/reserve-event/reserve-event';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { EventDataProvider } from '../providers/event-data/event-data';
     MakeRoomPage,
     MyProfilePage,
     MySchedulePage,
-    ManageUsersPage
+    ManageUsersPage,
+    ReserveEventPage,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,7 @@ import { EventDataProvider } from '../providers/event-data/event-data';
     MyProfilePage,
     MySchedulePage,
     ManageUsersPage,
+    ReserveEventPage,
   ],
   providers: [
     StatusBar,

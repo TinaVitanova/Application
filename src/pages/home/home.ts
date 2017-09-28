@@ -39,7 +39,7 @@ export class HomePage {
       if (this.todo.username=='superadmin')
       this.navCtrl.push(AdminHomePage)
       else if (this.todo.username=='test')
-      this.navCtrl.push(LoginPage)     
+      this.navCtrl.setRoot(LoginPage)     
     }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public menuCtrl: MenuController) {

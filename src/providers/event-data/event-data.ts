@@ -14,29 +14,48 @@ export class EventDataProvider {
   public EndTime;
   public Room;
   public Title;
+  public SelectedDate;
+  public eventObject;
   constructor(public storage: Storage) {
     console.log('Hello EventData Provider');
   }
+  public setPreselectedDate(preDate){
+    this.storage.set(this.SelectedDate,preDate)
+    console.log('preselected date ' +preDate);
+    this.SelectedDate=preDate;
+  }
+  public setEventObject(object){
+    this.storage.set(this.eventObject,object)
+    console.log('event object ' +object);
+    this.eventObject = object;
+  }
+  public getEventObject(){
+    return this.eventObject;
+  }
+  public getPreselectedDate(){
+    return this.SelectedDate;
+  }
   public setTitle(value){
-  this.storage.set(this.Title,value);
+  console.log('title ' +value);
   this.Title = value;
   }
   public setStartTime(value1){
-  this.storage.set(this.StartTime,value1);
+  console.log('startTime ' +value1);
   this.StartTime = value1;
   }
   public setEndTime(value2){
-  this.storage.set(this.EndTime,value2);
+  console.log('endTime ' +value2);
   this.EndTime = value2;
   }
   public setRoom(value3){
-  this.storage.set(this.Room,value3);
+  console.log('room ' +value3);
   this.Room = value3;
   }
   public getTitle(){
     return this.Title;
   }
   public getStartTime() {
+    console.log('In enevt provider: ', this.StartTime);
     return this.StartTime;
   }
   public getEndTime() {
