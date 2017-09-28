@@ -45,6 +45,19 @@ $colors: (
 );
 
 
+// toolbar
+$toolbar-background: white;
+ion-title{
+  .toolbar-title,
+  .toolbar-title-ios,
+  .toolbar-title-md{
+    color: rgba(black, .25);
+  }
+  .toolbar-title-md{
+    font-size:120%; 
+  }
+}
+
 // default highlight of input fields overwritten
 $text-input-md-highlight-color-invalid:  map-get($colors, danger);
 $text-input-md-highlight-color-valid:  map-get($colors, secondary-light);
