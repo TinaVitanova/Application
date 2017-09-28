@@ -9,9 +9,7 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
   templateUrl: 'home.html',
 })
 export class HomePage {
-    //splash screen var
     splash = true;
-    // splash screen end
     login = LoginPage;
     adminhome = AdminHomePage;
 

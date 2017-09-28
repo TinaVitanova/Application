@@ -10,25 +10,33 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-buttons text-center>
-
-        <div id="button" style="margin-top:10%;">
-            <button large ion-button round outline (click)=ReserveNav()>Reserve</button>
+    <ion-buttons class="main-buttons" text-center>
+        <div>
+            <button large ion-button (click)=ReserveNav()>
+                    <ion-icon ios="ios-book" md="md-book"></ion-icon> RESERVE
+            </button>
         </div>
 
-        <div id="button" style="margin-top:10%;">
-            <button large ion-button round outline (click)=CalendarNav()>Calendar</button>
+        <div>
+            <button large ion-button (click)=CalendarNav()>
+                <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon> CALENDAR
+            </button>
         </div>
-
-        <div [style.display]="adminBtn ? 'flex': 'none'">
-
-            <button large ion-button outline round (click)=CreateAccNav()>Create Account</button>
-
-        </div>
-
-        <div [style.display]="adminBtn ? 'flex': 'none'">
-            <button large ion-button round outline (click)=MakeRoomNav()>Create a room</button>
-        </div>
-
+        <ion-grid [style.display]="adminBtn ? 'flex': 'none'">
+            <ion-row>
+                <ion-col>
+                    <button large ion-button (click)=CreateAccNav() id="admin-btn01">
+                            <ion-icon ios="ios-person-add" md="md-person-add"></ion-icon> CREATE ACCOUNT
+                    </button>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <button large ion-button (click)=CreateAccNav() id="admin-btn02">
+                            <ion-icon ios="ios-people" md="md-people"></ion-icon>  MANAGE USERS
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
     </ion-buttons>
 </ion-content>

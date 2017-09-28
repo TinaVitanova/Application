@@ -6,12 +6,21 @@ page-calendar {
         @include gradient-cal;
     }
 
+    div .select-ios .select-icon .select-icon-inner, 
+    div .select-md .select-icon .select-icon-inner, {
+        color: white;        
+    }
+
     // choose room style
 
     .choose-room{
         background: rgba(155, 220, 239, 0.45);
         color: white;
         border: 1px solid white;
+
+        .label-md{
+            color: white;
+        }
     }
 
     //calendar style
@@ -89,7 +98,7 @@ page-calendar {
         border: 1px solid rgba(white, 0.25);
         margin-top:10%;
         
-        .item-ios{
+        .item-ios, .item-md{
             background: rgba(white, 0.45);
             color: rgba(77, 150, 165, 0.8);
             text-transform: uppercase;
