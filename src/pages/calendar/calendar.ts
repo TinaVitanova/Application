@@ -1,4 +1,4 @@
-import { IonicPage, NavController, NavParams, ModalController, AlertController, MenuController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, AlertController, MenuController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import * as moment from 'moment';
 
