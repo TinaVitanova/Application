@@ -8,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ManageUsersPage } from '../pages/manage-users/manage-users';
 import { UsernameGlobalProvider } from '../providers/username-global/username-global';
+
 @Component({
   templateUrl: 'app.html',
 })
