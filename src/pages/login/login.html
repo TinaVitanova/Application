@@ -8,7 +8,7 @@
 
     <ion-navbar>
         <ion-title>Hello {{username}}</ion-title>
-        <button menuToggle>
+        <button ion-button menuToggle right>
                 <ion-icon name="menu"></ion-icon>
         </button>
     </ion-navbar>
@@ -17,11 +17,11 @@
 
 <ion-content padding>
     <ion-buttons text-center>
-        <div id="button" style="margin-top:40%">
+        <div style="margin-top:40%">
             <button large ion-button outline round (click)=ReserveNav()>Reserve</button>
         </div>
 
-        <div id="button" style="margin-top:20%">
+        <div style="margin-top:20%">
             <button large ion-button outline round (click)=CalendarNav()>Schedule</button>
         </div>
 
