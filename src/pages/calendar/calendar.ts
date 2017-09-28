@@ -1,4 +1,4 @@
-import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, MenuController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import * as moment from 'moment';
 
@@ -67,8 +67,8 @@ export class CalendarPage {
       return date < current;
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private alertCtrl: AlertController) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private alertCtrl: AlertController, public menuCtrl: MenuController) {
+    this.menuCtrl.enable(true, "myMenu");
   }
 
 

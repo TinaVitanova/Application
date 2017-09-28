@@ -4,6 +4,7 @@ import { MakeRoomPage } from '../make-room/make-room';
 import { ReservePage } from '../reserve/reserve';
 import { CalendarPage } from '../calendar/calendar';
 import { SignupPage } from '../signup/signup';
+import { MenuController } from 'ionic-angular/es2015';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 /**
  * Generated class for the AdminHomePage page.

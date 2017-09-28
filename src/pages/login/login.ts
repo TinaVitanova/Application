@@ -1,15 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { ReservePage } from '../reserve/reserve';
 import { CalendarPage } from '../calendar/calendar';
+import { MakeRoomPage } from '../make-room/make-room';
+import { SignupPage } from '../signup/signup';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -20,6 +15,12 @@ export class LoginPage {
   reservepage=ReservePage;
   calendarpage=CalendarPage;
   username=this.UserGlobal.getMyGlobalVar();
+  adminBtn = false;
+
+  MakeRoomNav(){
+    this.navCtrl.push(MakeRoomPage)
+  }
+
   ReserveNav(){
     this.navCtrl.push(ReservePage)
   }
@@ -28,14 +29,25 @@ export class LoginPage {
     this.navCtrl.push(CalendarPage)
   }
 
-  LogoutNav(){
-    this.navCtrl.pop()
+  CreateAccNav(){
+    this.navCtrl.push(SignupPage, {param2: this.username})
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider) {
+
+  /*isAdmin(){
+    if(this.username=="admin" || this.username=="superadmin"){
+      this.adminBtn=true;
+    }
+  }*/
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
+    this.menuCtrl.enable(true, "myMenu");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+    if(this.username=="admin" || this.username=="superadmin"){
+      this.adminBtn=true;
+    }
+
   }
 
 }
