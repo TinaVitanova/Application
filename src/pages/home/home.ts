@@ -40,7 +40,8 @@ export class HomePage {
     }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
-    this.menuCtrl.enable(false, "myMenu");
+    this.menuCtrl.enable(false, "userMenu");
+    this.menuCtrl.enable(false, "adminMenu");
   }
 
 }
