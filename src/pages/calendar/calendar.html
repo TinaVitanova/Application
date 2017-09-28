@@ -9,9 +9,9 @@
     <ion-navbar>
         <ion-title> {{ viewTitle }}</ion-title>
         <ion-buttons end>
-            <button ion-button (click)="changeMode('month')">M</button>
+            <!--<button ion-button (click)="changeMode('month')">M</button>
             <button ion-button (click)="changeMode('week')">W</button>
-            <!--<button ion-button (click)="changeMode('day')">D</button>-->
+            <button ion-button (click)="changeMode('day')">D</button>-->
 
             <button ion-button icon-only (click)="addEvent()">
                     <ion-icon name="add"></ion-icon>
@@ -22,8 +22,8 @@
 </ion-header>
 
 <ion-content padding class="has-header">
-    <ion-item>
-        <ion-label>Choose a Room</ion-label>
+    <ion-item class="choose-room">
+        <ion-label>CHOOSE A ROOM</ion-label>
         <ion-select [(ngModel)]="rooms">
             <ion-option value="room1" (ionSelect)="onEventSelected()">Room1</ion-option>
             <ion-option value="room2" (ionSelect)="onEventSelected()">Room2</ion-option>

@@ -16,6 +16,7 @@ export class LoginPage {
   calendarpage=CalendarPage;
   username=this.UserGlobal.getMyGlobalVar();
   adminBtn = false;
+  
 
   MakeRoomNav(){
     this.navCtrl.push(MakeRoomPage)
@@ -33,21 +34,18 @@ export class LoginPage {
     this.navCtrl.push(SignupPage, {param2: this.username})
   }
 
-  /*isAdmin(){
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
+    
     if(this.username=="admin" || this.username=="superadmin"){
       this.adminBtn=true;
+      this.menuCtrl.enable(true, "adminMenu");
     }
-  }*/
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
-    this.menuCtrl.enable(true, "myMenu");
+    else{
+    this.menuCtrl.enable(true, "userMenu");
+    } 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
-    if(this.username=="admin" || this.username=="superadmin"){
-      this.adminBtn=true;
-    }
-
   }
-
 }
