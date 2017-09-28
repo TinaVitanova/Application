@@ -36,10 +36,10 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  primary:    #92D1E4,
   secondary:  #588AA0,
   secondary-light: #96BFD1,
-  danger:     #f53d3d,
+  gradient-green:     #77E6CF,
   light:      #f4f4f4,
   dark:       #292929
 );
@@ -74,6 +74,12 @@ $label-ios-margin-top: 5px;
   background: #C9D6FF;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@mixin gradient-cal{
+   background-color: #77E6CF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #BCC6EC, #8AF5DE);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #BCC6EC, #8AF5DE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 //basic transitions

@@ -3,8 +3,18 @@ page-calendar {
     // shadow-2dp not showing properly on table!!!!
 
     ion-content{
-        @include gradient-bg;
+        @include gradient-cal;
     }
+
+    // choose room style
+
+    .choose-room{
+        background: rgba(155, 220, 239, 0.45);
+        color: white;
+        border: 1px solid white;
+    }
+
+    //calendar style
 
     table[_ngcontent-c1]{
         margin-top: 10%;
@@ -19,9 +29,10 @@ page-calendar {
 
     .monthview-datetable[_ngcontent-c1]{
         background: rgba(white, 0.25);
-        border: 1px solid rgba(white, 0.5);
+        border: 2px solid rgba(white, 0.5);
         line-height: 30px;
         color: #FFFFFF;
+        box-shadow: none;
 
     }
 
@@ -32,11 +43,11 @@ page-calendar {
     }
 
     thead[_ngcontent-c1]{
-        background:rgba(150, 191, 209, 0.75);
+        background: map-get($colors, primary);
     }
 
     .text-muted[_ngcontent-c1]{
-        color: map-get($colors, secondary-light);
+        color: rgba(104, 180, 199, 0.8);
     }
 
     .ng-reflect-ng-class{
@@ -44,21 +55,21 @@ page-calendar {
     }
 
     .monthview-datetable[_ngcontent-c1] td:hover{
-        background: rgba(150, 191, 209, 0.2);
+        background: rgba(146, 209, 228, 0.45);
         @include basic-transition;
     }
 
     .monthview-current[_ngcontent-c1]{
-        background: rgba(black, 0.1);
+        background: rgba(#ccc, 0.4);
     }
 
     .monthview-selected[_ngcontent-c1]{
-        background: rgba(150, 191, 209, 0.5);
+        background: map-get($colors, primary);
         @include basic-transition;
     }
 
     .monthview-primary-with-event[_ngcontent-c1]{
-        background: #EC6868;
+        background: #FF7E7E;
     }
 
     small[_ngcontent-c1]{
@@ -69,24 +80,30 @@ page-calendar {
 
     //events modification
 
+    .event-detail-container[_ngcontent-c0]{
+        border-top: none;
+    }
+
     ion-list[_ngcontent-c0]{
         border-top: none;
         border: 1px solid rgba(white, 0.25);
         margin-top:10%;
         
         .item-ios{
-            background: rgba(white, 0.25);
+            background: rgba(white, 0.45);
+            color: rgba(77, 150, 165, 0.8);
             text-transform: uppercase;
             
             .no-events-label{
                 color: rgba(150, 191, 209, 1);
+                letter-spacing: 1px;
             }
         }
 
         .item-block:last-child, .list-ios  .item-wrapper:last-child .item-block{
             border-top:none;
             border-bottom:none;
-            border: 1px solid rgba(white, 0.25);
+            border: 1px solid rgba(white, 0.7);
         }
     }
 }
