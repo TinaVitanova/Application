@@ -14,26 +14,8 @@ export class EventDataProvider {
   public EndTime;
   public Room;
   public Title;
-  public SelectedDate;
-  public eventObject;
   constructor(public storage: Storage) {
     console.log('Hello EventData Provider');
-  }
-  public setPreselectedDate(preDate){
-    this.storage.set(this.SelectedDate,preDate)
-    console.log('preselected date ' +preDate);
-    this.SelectedDate=preDate;
-  }
-  public setEventObject(object){
-    this.storage.set(this.eventObject,object)
-    console.log('event object ' +object);
-    this.eventObject = object;
-  }
-  public getEventObject(){
-    return this.eventObject;
-  }
-  public getPreselectedDate(){
-    return this.SelectedDate;
   }
   public setTitle(value){
   console.log('title ' +value);

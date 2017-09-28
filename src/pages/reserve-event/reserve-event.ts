@@ -23,9 +23,6 @@ export class ReserveEventPage {
   preselectedDate = new Date();
   rooms:"";
   constructor(public navCtrl: NavController, public navParams: NavParams, public EventData: EventDataProvider) {
-    this.preselectedDate = EventData.getPreselectedDate();
-    this.event.startTime = this.preselectedDate;
-    this.event.endTime = this.preselectedDate;
   }
   shouldHide(){
     if(this.isReserved==true)
@@ -41,7 +38,6 @@ export class ReserveEventPage {
     this.EventData.setEndTime(this.event.endTime);
     this.EventData.setTitle(this.event.title);
     this.EventData.setRoom(this.rooms);
-    this.EventData.setEventObject(this.event);
     this.navCtrl.push(CalendarPage);
   }
 

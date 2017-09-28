@@ -22,23 +22,9 @@ export class CalendarPage {
       this.viewTitle = title;
   }
 
-  onEventSelected(event) {
-     let start = moment(event.startTime).format('LLLL');
-      let end = moment(event.endTime).format('LLLL');
-
-      let alert = this.alertCtrl.create({
-         title: 'Event: ' + event.title,
-         message: 'From: '+start+'<br>To: '+end+'<br> Room:'+'</div>',
-        buttons:['OK']
-      });
-      alert.present();
-    
-      console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
-  }
-
   onTimeSelected(ev) {
-    this.selectedDay = ev.selectedTime;
-    this.EventData.setPreselectedDate(this.selectedDay);
+    console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
+        (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
   }
     addEvent(){
     this.navCtrl.push(ReserveEventPage);
@@ -72,8 +58,25 @@ export class CalendarPage {
     }
     
   load(){
+      setTimeout(()=>{
     this.eventSource = this.createEvent();
+      })
 }
+
+onEventSelected(event) {
+   /*let start = moment(event.startTime).format('LLLL');
+    let end = moment(event.endTime).format('LLLL');
+
+    let alert = this.alertCtrl.create({
+       title: 'Event: ' + event.title,
+       message: 'From: '+start+'<br>To: '+end+'<br> Room:'+'</div>',
+      buttons:['OK']
+    });
+    alert.present();
+  */
+    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
+}
+
 
   ionViewDidLoad(){      
   }
