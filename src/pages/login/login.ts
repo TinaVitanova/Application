@@ -1,16 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ReservePage } from '../reserve/reserve';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { ReserveEventPage } from '../reserve-event/reserve-event';
 import { CalendarPage } from '../calendar/calendar';
-import { Storage } from '@ionic/storage';
+import { MakeRoomPage } from '../make-room/make-room';
+import { SignupPage } from '../signup/signup';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,27 +12,39 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  reservepage=ReservePage;
   calendarpage=CalendarPage;
   username=this.UserGlobal.getMyGlobalVar();
+  adminBtn = false;
+  
+
+  MakeRoomNav(){
+    this.navCtrl.push(MakeRoomPage)
+  }
+
   ReserveNav(){
-    this.navCtrl.push(ReservePage)
+    this.navCtrl.push(ReserveEventPage)
   }
 
   CalendarNav(){
     this.navCtrl.push(CalendarPage)
   }
 
-  LogoutNav(){
-    this.navCtrl.pop()
+  CreateAccNav(){
+    this.navCtrl.push(SignupPage, {param2: this.username})
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public storage: Storage) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
+    
+    if(this.username=="admin" || this.username=="superadmin"){
+      this.adminBtn=true;
+      this.menuCtrl.enable(true, "adminMenu");
+    }
+    else{
+    this.menuCtrl.enable(true, "userMenu");
+    } 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
-    console.log(this.UserGlobal.getMyGlobalVar());
-    console.log(this.UserGlobal.Proba12());
   }
-
 }

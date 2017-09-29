@@ -1,3 +1,135 @@
 page-calendar {
 
+    // shadow-2dp not showing properly on table!!!!
+
+    .no-padding {
+        padding: 0px !important;
+    }
+
+    // ion-content{
+    //     @include gradient-cal;
+    //     width: 100%;
+    // }
+
+    div .select-ios .select-icon .select-icon-inner, 
+    div .select-md .select-icon .select-icon-inner, {
+        color: white;        
+    }
+
+    // choose room style
+
+    .choose-room{
+        background: rgba(155, 220, 239, 1);
+        color: white;
+        border: 1px solid white;
+
+        .label-md{
+            color: white;
+        }
+    }
+
+    //calendar style
+
+    table[_ngcontent-c1]{
+        margin-top: 10%;
+        padding: none;
+        width: 100%;
+        @include shadow-2dp;
+        
+            &:hover,
+            &:active{
+                @include shadow-8dp;
+                @include basic-transition;
+            }
+
+        tbody[_ngcontent-c1]{
+            @include gradient-cal;
+
+            td[_ngcontent-c1]{
+                border:1px solid rgba(white, .2)!important;
+            }
+        }
+    }
+
+    .monthview-datetable[_ngcontent-c1]{
+        background: rgba(white, 0.25);
+        border: 2px solid rgba(white, 0.1);
+        line-height: 30px;
+        color: #FFFFFF;
+        box-shadow: none;
+
+    }
+
+    .table[_ngcontent-c1]    > tbody[_ngcontent-c1]    > tr[_ngcontent-c1]    > td[_ngcontent-c1], .table[_ngcontent-c1]    > tfoot[_ngcontent-c1]    > tr[_ngcontent-c1]    > td[_ngcontent-c1]{
+       line-height: 25px;
+       border: 1px solid white;
+       
+    }
+
+    thead[_ngcontent-c1]{
+        background: map-get($colors, primary);
+    }
+
+    .text-muted[_ngcontent-c1]{
+        color: rgba(104, 180, 199, 0.8);
+    }
+
+    .ng-reflect-ng-class{
+        background:rgba(white, 0.5);
+    }
+
+    .monthview-datetable[_ngcontent-c1] td:hover{
+        background: rgba(146, 209, 228, 0.45);
+        @include basic-transition;
+    }
+
+    .monthview-current[_ngcontent-c1]{
+        background: rgba(#ccc, 0.4);
+    }
+
+    .monthview-selected[_ngcontent-c1]{
+        background: map-get($colors, primary);
+        @include basic-transition;
+    }
+
+    .monthview-primary-with-event[_ngcontent-c1]{
+        background: #FF7E7E;
+    }
+
+    small[_ngcontent-c1]{
+        text-overflow:ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    //events modification
+
+    .event-detail-container[_ngcontent-c0]{
+        border-top: none;
+    }
+
+    ion-list[_ngcontent-c0]{
+        border-top: none;
+        border: 1px solid rgba(white, 0.25);
+        margin-top:10%;
+        
+        .item-ios, .item-md{
+            background: rgba(white, 0.45);
+            color: rgba(77, 150, 165, 0.8);
+            text-transform: uppercase;
+            
+            .no-events-label{
+                color: rgba(150, 191, 209, 1);
+                letter-spacing: 1px;
+            }
+        }
+
+        .item-block:last-child, .list-ios  .item-wrapper:last-child .item-block{
+            border-top:none;
+            border-bottom:none;
+            border: 1px solid rgba(white, 0.7);
+        }
+    }
 }
+
+

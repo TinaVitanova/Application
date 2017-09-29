@@ -17,7 +17,8 @@ export class MyProfilePage {
   public todo = {
     newusername:"",
     oldpassword:"",
-    newpassword:""
+    newpassword:"",
+    newemail:""
   };
 
   Change(){

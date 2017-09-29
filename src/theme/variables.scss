@@ -4,6 +4,8 @@
 // Font path is used to include ionicons,
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
+$font-family: 'Open Sans', sans-serif;
+
 
 
 // The app direction is used to include
@@ -14,6 +16,16 @@ $app-direction: ltr;
 
 @import "ionic.globals";
 
+
+::-webkit-scrollbar {
+  display: none;
+}
+::-moz-scrollbar {
+  display: none;
+}
+::-ms-scrollbar {
+  display: none;
+}
 
 // Shared Variables
 // --------------------------------------------------
@@ -34,20 +46,39 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  primary:    #92D1E4,
   secondary:  #588AA0,
-  danger:     #f53d3d,
+  secondary-light: #96BFD1,
+  gradient-green:     #77E6CF,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #292929
 );
 
 
+// toolbar
+$toolbar-background: white;
+ion-title{
+  .toolbar-title,
+  .toolbar-title-ios,
+  .toolbar-title-md{
+    color: rgba(black, .25);
+  }
+  .toolbar-title-md{
+    font-size:120%; 
+  }
+}
+
 // default highlight of input fields overwritten
-$text-input-md-highlight-color-invalid: transparent;
-$text-input-md-highlight-color-valid: transparent;
-$text-input-md-show-invalid-highlight: transparent;
-$text-input-md-highlight-color: transparent;
-$text-input-md-show-valid-highlight: transparent;
+$text-input-md-highlight-color-invalid:  map-get($colors, danger);
+$text-input-md-highlight-color-valid:  map-get($colors, secondary-light);
+$text-input-md-show-invalid-highlight:  map-get($colors, danger);
+$text-input-md-highlight-color:  map-get($colors, secondary-light);
+$text-input-md-show-valid-highlight:  map-get($colors, secondary-light);
+$label-md-text-color-focused: map-get($colors, secondary-light);
+$label-md-margin-top: 5px;
+$label-md-margin-bottom: 5px;
+$label-ios-margin-bottom: 5px;
+$label-ios-margin-top: 5px;
 
 //custom gradients
 
@@ -57,6 +88,11 @@ $text-input-md-show-valid-highlight: transparent;
   background: linear-gradient(to right, #ACB6E5, #74ebd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+@mixin gradient-home{
+  background: rgba(201, 214, 255, 0.3);  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, rgba(216, 231, 231, 0.5), rgba(183, 243, 253, 0.5));  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, rgba(216, 231, 231, 0.5), rgba(183, 243, 253, 0.5)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 // background: #085078;  /* fallback for old browsers */
 // background: -webkit-linear-gradient(to right, #85D8CE, #085078);  /* Chrome 10-25, Safari 5.1-6 */
 // background: linear-gradient(to right, #85D8CE, #085078); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -68,6 +104,12 @@ $text-input-md-show-valid-highlight: transparent;
   background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+@mixin gradient-cal{
+   background-color: #77E6CF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #BCC6EC, #8AF5DE);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #BCC6EC, #8AF5DE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 //basic transitions
 
 @mixin basic-transition{
@@ -75,6 +117,32 @@ $text-input-md-show-valid-highlight: transparent;
   -moz-transition: all 250ms;
   -ms-transition: all 250ms;
   transition: all 250ms;
+}
+
+@mixin shadow-2dp{
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+  0 1px 5px 0 rgba(0, 0, 0, 0.12),
+  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+  -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+  0 1px 5px 0 rgba(0, 0, 0, 0.12),
+  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+  -ms-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+  0 1px 5px 0 rgba(0, 0, 0, 0.12),
+  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+  0 1px 5px 0 rgba(0, 0, 0, 0.12),
+  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+@mixin shadow-8dp{
+   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),                   0 3px 14px 2px rgba(0, 0, 0, 0.12),                   0 5px 5px -3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  -ms-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  
 }
 
 // App iOS Variables

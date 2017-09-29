@@ -180,35 +180,115 @@ page-home {
 
     form{
 
-      background: url('../../assets/logotest.png');
-
       .custom-input{
-        margin: 15px 0px 0px 15px;
-        width: 250px;
+        margin: 15% 0px 0px 10%;
+        width: 80%;
         border-radius:3px;
-        border-bottom: #ccc;
-        background: rgba(white, 0.85);
-        color: map-get($colors, secondary);
+        border: 1px solid white;
+        background: rgba(white, 0.2);
+        color: map-get($colors, secondary-light);
 
-        .text-input::-moz-placeholder {
-          font-size: 14px;
-          color: map-get($colors, secondary);
-          opacity: .7;
-        }
+        .item.item-input span{width:auto;}
+        .item.item-input input{width:68%;}
         
-        .text-input:-ms-input-placeholder {
-          font-size: 14px;
-          color: map-get($colors, secondary);
-          opacity: .7;
-        }
-        
-        .text-input::-webkit-input-placeholder {
-          font-size: 14px;
-          color: map-get($colors, secondary);
-          opacity: .7;
-        }
       }
     }
     
-  }
+    .login-btn{
+      background: rgba(white, .1);
+      border:2px solid white;
+      border-radius: 3px;
+      width: 60%;
+      color: white;
+      font-family: 'Open-sans', sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-top: 10%;
+      padding: 7%;   
+      box-shadow: 0 0 0 0 transparent;   
+      @include basic-transition;
+    
+      &:hover {
+        color: white;
+        box-shadow: 0 0 30px 0 transparentize(map-get($colors, secondary), 0.5);
+        background-color: map-get($colors, secondary);
+    
+        @include basic-transition;
+    
+        &:before {
+          -webkit-animation: shine 0.5s 0s linear;
+          -moz-animation: shine 0.5s 0s linear;
+          -ms-animation: shine 0.5s 0s linear;
+          animation: shine 0.5s 0s linear;
+        }
+      }
+    
+      &:active {
+        box-shadow: 0 0 0 0 transparent;
+        @include basic-transition;
+      }
+    
+      &:before {
+        content: '';
+        display: block;
+        width: 0px;
+        height: 86%;
+        position: absolute;
+        top: 7%;
+        left: 0%;
+    
+        opacity: 0;
+        background: white;
+        box-shadow: 0 0 15px 3px white;
+        -webkit-transform: skewX(-20deg);
+        -moz-transform: skewX(-20deg);
+        -ms-transform: skewX(-20deg);
+        -o-transform: skewX(-20deg);
+        transform: skewX(-20deg);
+      }
+    }
+    
+    @-webkit-keyframes shine {
+      from {
+        opacity: 0;
+        left: 0%;
+      }
+      50% {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+        left: 100%;
+      }
+    }
+    @-moz-keyframes shine {
+      from {
+        opacity: 0;
+        left: 0%;
+      }
+      50% {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+        left: 100%;
+      }
+    }
+    @keyframes shine {
+      from {
+        opacity: 0;
+        left: 0%;
+      }
+      50% {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+        left: 100%;
+      }
+    }
+    }
+
+  
 

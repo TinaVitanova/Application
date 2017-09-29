@@ -6,12 +6,9 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>My Profile</ion-title>
-    <button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-    </button>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>My Profile</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
@@ -23,6 +20,11 @@
             <ion-item>
                 <ion-label floating>New Username</ion-label>
                 <ion-input type="text" [(ngModel)]="todo.newusername" name="username"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>New Email</ion-label>
+                <ion-input type="email" [(ngModel)]="todo.newemail" name="newemail"></ion-input>
             </ion-item>
 
             <ion-item>
