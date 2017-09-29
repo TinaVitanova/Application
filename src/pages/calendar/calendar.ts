@@ -39,6 +39,10 @@ export class CalendarPage {
       current.setHours(0, 0, 0);
       return date < current;
   };
+  onRangeChanged(ev) {
+    
+    console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
+  }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public EventData: EventDataProvider) {
 
@@ -53,6 +57,7 @@ export class CalendarPage {
             title: this.EventData.getTitle(),
             startTime: startTime,
             endTime: endTime,
+            allday: false
         });
         return events;
     }
@@ -60,7 +65,7 @@ export class CalendarPage {
   load(){
       setTimeout(()=>{
     this.eventSource = this.createEvent();
-      })
+      },3000)
 }
 
 onEventSelected(event) {
