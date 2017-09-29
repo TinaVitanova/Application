@@ -1,21 +1,41 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 
-/**
- * Generated class for the ManageUsersPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
-@IonicPage()
 @Component({
   selector: 'page-manage-users',
   templateUrl: 'manage-users.html',
 })
 export class ManageUsersPage {
+  users;
+  username=this.UserGlobal.getMyGlobalVar();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider) {
+    this.initializeUsers();
+  }
+
+  initializeUsers(){
+    this.users=[
+      this.username//samo toj user shto e momentalno logiran
+
+    ];
+  }
+
+
+  getUsers(ev){
+    //reset users back to all of users
+    this.initializeUsers();
+    
+    //set val to the value of the ev target
+    var val = ev.target.value;
+
+    //if the value is an empty strign don't filter the items 
+    if( val && val.trim() != ''){
+      this.users = this.users.filter((user)=>{
+        return (user.toLowerCase().indexOf(val.toLowerCase()) > -1);       
+      })
+    }
   }
 
   ionViewDidLoad() {
