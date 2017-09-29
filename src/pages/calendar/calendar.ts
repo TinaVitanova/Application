@@ -40,15 +40,9 @@ export class CalendarPage {
       current.setHours(0, 0, 0);
       return date < current;
   };
-  onRangeChanged(ev) {
-    
-    console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
-  }
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
-this.menuCtrl.enable(true, "myMenu");
-
   }
   createEvent (){
       var startDate = new Date(this.EventData.getStartTime());
@@ -56,18 +50,21 @@ this.menuCtrl.enable(true, "myMenu");
       var events = [];
       var startTime = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
       var endTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
-        events.push({
+
+      events.push({
             title: this.EventData.getTitle(),
             startTime: startTime,
             endTime: endTime,
             allday: false
         });
+        console.log('create event returns ' + events);
         return events;
     }
     
-  load(){
+  loadEvents(){
       setTimeout(()=>{
     this.eventSource = this.createEvent();
+    console.log('load event ' + this.eventSource);
       },3000)
 }
 
