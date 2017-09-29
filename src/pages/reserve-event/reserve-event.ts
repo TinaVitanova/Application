@@ -39,7 +39,12 @@ export class ReserveEventPage {
     this.EventData.setTitle(this.event.title);
     this.EventData.setRoom(this.rooms);
     // this.EventData.setDay(this.event.day);
+   // var flag = this.EventData.getNavFlag();
+   // if (flag = true)
     this.navCtrl.push(CalendarPage);
+   // else{
+
+    //}
   }
 
   ionViewDidLoad() {
