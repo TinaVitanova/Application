@@ -10,7 +10,6 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 export class HomePage {
     splash = true;
     login = LoginPage;
-  
 
     public todo = {
       username:"",
