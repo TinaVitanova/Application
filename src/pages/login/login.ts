@@ -5,6 +5,7 @@ import { CalendarPage } from '../calendar/calendar';
 import { MakeRoomPage } from '../make-room/make-room';
 import { SignupPage } from '../signup/signup';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
+import { EventDataProvider } from '../../providers/event-data/event-data';
 
 @IonicPage()
 @Component({
@@ -15,13 +16,14 @@ export class LoginPage {
   calendarpage=CalendarPage;
   username=this.UserGlobal.getMyGlobalVar();
   adminBtn = false;
-  
+  flagCalendar;
 
   MakeRoomNav(){
     this.navCtrl.push(MakeRoomPage)
   }
 
   ReserveNav(){
+   this.EventData.setFlag(this.flagCalendar);
     this.navCtrl.push(ReserveEventPage)
   }
 
@@ -33,8 +35,8 @@ export class LoginPage {
     this.navCtrl.push(SignupPage, {param2: this.username})
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
+ 
     if(this.username=="admin" || this.username=="superadmin"){
       this.adminBtn=true;
       this.menuCtrl.enable(true, "adminMenu");
@@ -45,6 +47,7 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
+    this.flagCalendar = false;
     console.log('ionViewDidLoad LoginPage');
   }
 }

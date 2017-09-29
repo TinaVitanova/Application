@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angular';
 import * as moment from 'moment';
 import { EventDataProvider } from '../../providers/event-data/event-data';
-import { CalendarPage } from '../calendar/calendar';
 
 /**
  * Generated class for the ReserveEventPage page.
@@ -18,11 +17,12 @@ import { CalendarPage } from '../calendar/calendar';
 })
 export class ReserveEventPage {
   isReserved: boolean;
+  flag;
   event = { day: new Date(), startTime: new Date(), endTime: new Date(), allDay: false, title:""};
   minDate = new Date().toISOString();
   preselectedDate = new Date();
   rooms:"";
-  constructor(public navCtrl: NavController, public navParams: NavParams, public EventData: EventDataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
   }
   shouldHide(){
     if(this.isReserved==true)
@@ -39,15 +39,23 @@ export class ReserveEventPage {
     this.EventData.setTitle(this.event.title);
     this.EventData.setRoom(this.rooms);
     // this.EventData.setDay(this.event.day);
-   // var flag = this.EventData.getNavFlag();
-   // if (flag = true)
-    this.navCtrl.push(CalendarPage);
-   // else{
-
-    //}
+    if (this.flag == true)
+    this.navCtrl.pop();
+    else{
+      let date = moment(this.event.startTime).format('Do MMMM YYYY');
+      let start = moment(this.event.startTime).format('HH:MM');
+       let end = moment(this.event.endTime).format('HH:MM');
+      let alert = this.alertCtrl.create({
+        title: 'You have created an event: ' + this.event.title,
+        message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+ this.rooms + '</div>',
+       buttons:['OK']
+     });
+     alert.present();
+    }
   }
 
   ionViewDidLoad() {
+    this.flag = this.EventData.getFlag();
     console.log('ionViewDidLoad ReserveEventPage');
   }
 

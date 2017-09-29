@@ -12,6 +12,7 @@ export class CalendarPage {
   eventSource = [];
   viewTitle: string;
   selectedDay = new Date();
+  flagCalendar;
 
   calendar = {
       mode: 'month',
@@ -29,6 +30,7 @@ export class CalendarPage {
         (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
   }
     addEvent(){
+      this.EventData.setFlag(this.flagCalendar);
     this.navCtrl.push(ReserveEventPage);
   }
 
@@ -85,7 +87,8 @@ onEventSelected(event) {
 }
 
 
-  ionViewDidLoad(){      
+  ionViewDidLoad(){    
+    this.flagCalendar=true;  
   }
 
 }

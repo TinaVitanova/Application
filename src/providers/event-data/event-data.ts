@@ -13,12 +13,19 @@ export class EventDataProvider {
   public StartTime;
   public EndTime;
   public Room;
+  public flag;
   // public Day;
   public Title;
  // public AllRooms: Array<{title: string, number: number}>;
   constructor(public storage: Storage) {
     console.log('Hello EventData Provider');
 
+  }
+  public setFlag(value){
+    this.flag=value;
+  }
+  public getFlag(){
+    return this.flag;
   }
  /* public AddRoom(title:string, number: number){
     this.AllRooms;
