@@ -2,34 +2,58 @@ page-calendar {
 
     // shadow-2dp not showing properly on table!!!!
 
-    ion-content{
-        @include gradient-cal;
+    .no-padding {
+        padding: 0px !important;
+    }
+
+    // ion-content{
+    //     @include gradient-cal;
+    //     width: 100%;
+    // }
+
+    div .select-ios .select-icon .select-icon-inner, 
+    div .select-md .select-icon .select-icon-inner, {
+        color: white;        
     }
 
     // choose room style
 
     .choose-room{
-        background: rgba(155, 220, 239, 0.45);
+        background: rgba(155, 220, 239, 1);
         color: white;
         border: 1px solid white;
+
+        .label-md{
+            color: white;
+        }
     }
 
     //calendar style
 
     table[_ngcontent-c1]{
         margin-top: 10%;
+        padding: none;
+        width: 100%;
         @include shadow-2dp;
         
-                &:hover,
-                &:active{
-                    @include shadow-8dp;
-                    @include basic-transition;
-                }
+            &:hover,
+            &:active{
+                @include shadow-8dp;
+                @include basic-transition;
+            }
+
+        tbody[_ngcontent-c1]{
+            @include gradient-cal;
+
+            td[_ngcontent-c1]{
+                border:1px solid rgba(white, .2)!important;
+            }
+        }
     }
 
     .monthview-datetable[_ngcontent-c1]{
         background: rgba(white, 0.25);
-        border: 2px solid rgba(white, 0.5);
+        border: 2px solid rgba(white, 0.1);
         line-height: 30px;
         color: #FFFFFF;
         box-shadow: none;
@@ -89,7 +113,7 @@ page-calendar {
         border: 1px solid rgba(white, 0.25);
         margin-top:10%;
         
-        .item-ios{
+        .item-ios, .item-md{
             background: rgba(white, 0.45);
             color: rgba(77, 150, 165, 0.8);
             text-transform: uppercase;

@@ -1,4 +1,3 @@
-
 import { NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { ReserveEventPage } from '../reserve-event/reserve-event';
