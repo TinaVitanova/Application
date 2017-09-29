@@ -18,7 +18,9 @@ export class CalendarPage {
       mode: 'month',
       currentDate: this.selectedDay
   }; 
-  
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
+    this.loadEvents();
+    }
   onViewTitleChanged(title) {
       this.viewTitle = title;
   }
@@ -40,24 +42,25 @@ export class CalendarPage {
       current.setHours(0, 0, 0);
       return date < current;
   };
-
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
+  onRangeChanged(ev) {
+    console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
+
+  
   createEvent (){
-      var startDate = new Date(this.EventData.getStartTime());
+     var startDate = new Date(this.EventData.getStartTime());
       var endDate = new Date(this.EventData.getEndTime());
       var events = [];
-      var startTime = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
-      var endTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
-
+      var startTime = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes());
+      var endTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(), endDate.getHours(), endDate.getMinutes());
+console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end time  ')
+      
       events.push({
             title: this.EventData.getTitle(),
             startTime: startTime,
             endTime: endTime,
             allday: false
         });
-        console.log('create event returns ' + events);
         return events;
     }
     
@@ -65,7 +68,7 @@ export class CalendarPage {
       setTimeout(()=>{
     this.eventSource = this.createEvent();
     console.log('load event ' + this.eventSource);
-      },3000)
+      })
 }
 
 onEventSelected(event) {
