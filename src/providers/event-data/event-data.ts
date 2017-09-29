@@ -14,8 +14,13 @@ export class EventDataProvider {
   public EndTime;
   public Room;
   public Title;
+  public AllRooms: Array<{title: string, number: number}>;
   constructor(public storage: Storage) {
     console.log('Hello EventData Provider');
+
+  }
+  public AddRoom(title:string, number: number){
+    this.AllRooms;
   }
   public setTitle(value){
   console.log('title ' +value);
