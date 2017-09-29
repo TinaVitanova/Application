@@ -72,7 +72,7 @@ console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end
 }
 
 onEventSelected(event) {
-   /*let start = moment(event.startTime).format('LLLL');
+   let start = moment(event.startTime).format('LLLL');
     let end = moment(event.endTime).format('LLLL');
 
     let alert = this.alertCtrl.create({
@@ -81,7 +81,6 @@ onEventSelected(event) {
       buttons:['OK']
     });
     alert.present();
-  */
     console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
 }
 
