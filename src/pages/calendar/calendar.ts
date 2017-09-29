@@ -1,5 +1,7 @@
-import { NavController, NavParams, ModalController, AlertController, MenuController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { Component } from '@angular/core';
+import { ReserveEventPage } from '../reserve-event/reserve-event';
+import { EventDataProvider } from '../../providers/event-data/event-data';
 import * as moment from 'moment';
 
 @Component({
@@ -10,6 +12,7 @@ export class CalendarPage {
   eventSource = [];
   viewTitle: string;
   selectedDay = new Date();
+
   calendar = {
       mode: 'month',
       currentDate: this.selectedDay
@@ -19,42 +22,12 @@ export class CalendarPage {
       this.viewTitle = title;
   }
 
-  onEventSelected(event) {
-      let start = moment(event.startTime).format('HH : mm');
-      let end = moment(event.endTime).format('HH : mm');
-      let cDate = moment(event.chosenDate).format('MMM Do YYYY');
-      let rooms = this.navParams.get('room');;
-
-      let alert = this.alertCtrl.create({
-         title: 'Event: ' + event.title,
-         message: '<div>Date:'+cDate+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+rooms+'</div>',
-        buttons:['OK']
-      });
-      alert.present();
-  }
-
   onTimeSelected(ev) {
-    this.selectedDay = ev.selectedTime;
+    console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
+        (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
   }
-
-  addEvent(){
-    let modal = this.modalCtrl.create('EventModalPage', {selectedDay: this.selectedDay});
-    modal.present();
-
-    modal.onDidDismiss(data=>{
-        let eventData = data;
-        
-        eventData.chosenDate = new Date(data.chosenDate);
-        eventData.startTime = new Date(data.startTime);
-        eventData.endTime = new Date(data.endTime);
-
-        let events = this.eventSource;
-        events.push(eventData);
-        this.eventSource = [];
-        setTimeout(()=>{
-            this.eventSource = events;
-        });
-    })
+    addEvent(){
+    this.navCtrl.push(ReserveEventPage);
   }
 
   changeMode(mode) {
@@ -66,10 +39,53 @@ export class CalendarPage {
       current.setHours(0, 0, 0);
       return date < current;
   };
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private alertCtrl: AlertController, public menuCtrl: MenuController) {
-    this.menuCtrl.enable(true, "myMenu");
+  onRangeChanged(ev) {
+    
+    console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
 
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
+this.menuCtrl.enable(true, "myMenu");
+
+  }
+  createEvent (){
+      var startDate = new Date(this.EventData.getStartTime());
+      var endDate = new Date(this.EventData.getEndTime());
+      var events = [];
+      var startTime = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+      var endTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+        events.push({
+            title: this.EventData.getTitle(),
+            startTime: startTime,
+            endTime: endTime,
+            allday: false
+        });
+        return events;
+    }
+    
+  load(){
+      setTimeout(()=>{
+    this.eventSource = this.createEvent();
+      },3000)
+}
+
+onEventSelected(event) {
+   /*let start = moment(event.startTime).format('LLLL');
+    let end = moment(event.endTime).format('LLLL');
+
+    let alert = this.alertCtrl.create({
+       title: 'Event: ' + event.title,
+       message: 'From: '+start+'<br>To: '+end+'<br> Room:'+'</div>',
+      buttons:['OK']
+    });
+    alert.present();
+  */
+    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
+}
+
+
+  ionViewDidLoad(){      
+  }
 
 }
