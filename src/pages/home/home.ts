@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
-import { AdminHomePage } from '../admin-home/admin-home';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 
 @Component({
@@ -13,7 +12,6 @@ export class HomePage {
     splash = true;
     // splash screen end
     login = LoginPage;
-    adminhome = AdminHomePage;
 
     public todo = {
       username:"",
