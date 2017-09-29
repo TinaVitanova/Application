@@ -10,9 +10,9 @@
         <ion-title> {{ viewTitle }}</ion-title>
         <ion-buttons end>
 
-            <!--<button ion-button (click)="changeMode('month')">M</button>
+     <!--       <button ion-button (click)="changeMode('month')">M</button>
             <button ion-button (click)="changeMode('week')">W</button>
-            <button ion-button (click)="changeMode('day')">D</button>-->
+            <button ion-button (click)="changeMode('day')">D</button> -->
 
             <button ion-button icon-only (click)="addEvent()">
                     <ion-icon name="add"></ion-icon>
@@ -26,13 +26,22 @@
     <ion-item class="choose-room">
         <ion-label>CHOOSE A ROOM</ion-label>
         <ion-select [(ngModel)]="rooms">
-            <ion-option value="all" (ionSelect)="load()">All Rooms</ion-option>
-            <ion-option value="room1" (ionSelect)="load()">Room1</ion-option>
-            <ion-option value="room2" (ionSelect)="load()">Room2</ion-option>
-            <ion-option value="room3" (ionSelect)="load()">Room3</ion-option>
-            <ion-option value="room4" (ionSelect)="load()">Room4</ion-option>
+            <ion-option value="all" [selected]="all == rooms" (ionSelect)="loadEvents()">All Rooms</ion-option>
+            <ion-option value="room1" (ionSelect)="loadEvents()">Room1</ion-option>
+            <ion-option value="room2" (ionSelect)="loadEvents()">Room2</ion-option>
+            <ion-option value="room3" (ionSelect)="loadEvents()">Room3</ion-option>
+            <ion-option value="room4" (ionSelect)="loadEvents()">Room4</ion-option>
         </ion-select>
     </ion-item>
-    <calendar *ngIf="eventSource" [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate" (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30" (onRangeChanged)="onRangeChanged($event)" class="calendar">
+    <calendar  
+    [eventSource]="eventSource" 
+    [calendarMode]="calendar.mode" 
+    [currentDate]="calendar.currentDate" 
+    (onEventSelected)="onEventSelected($event)" 
+    (onTitleChanged)="onViewTitleChanged($event)"
+    (onTimeSelected)="onTimeSelected($event)" 
+    step="30" 
+    (onRangeChanged)="onRangeChanged($event)" 
+    class="calendar">
     </calendar>
 </ion-content>

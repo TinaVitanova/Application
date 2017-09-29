@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
-import { ReservePage } from '../reserve/reserve';
+import { ReserveEventPage } from '../reserve-event/reserve-event';
 import { CalendarPage } from '../calendar/calendar';
 import { MakeRoomPage } from '../make-room/make-room';
 import { SignupPage } from '../signup/signup';
@@ -12,7 +12,6 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  reservepage=ReservePage;
   calendarpage=CalendarPage;
   username=this.UserGlobal.getMyGlobalVar();
   adminBtn = false;
@@ -23,7 +22,7 @@ export class LoginPage {
   }
 
   ReserveNav(){
-    this.navCtrl.push(ReservePage)
+    this.navCtrl.push(ReserveEventPage)
   }
 
   CalendarNav(){

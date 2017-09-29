@@ -15,6 +15,18 @@ $app-direction: ltr;
 
 
 @import "ionic.globals";
+
+
+::-webkit-scrollbar {
+  display: none;
+}
+::-moz-scrollbar {
+  display: none;
+}
+::-ms-scrollbar {
+  display: none;
+}
+=======
 .overflow-scroll{overflow-y:auto !important;}
 
 
