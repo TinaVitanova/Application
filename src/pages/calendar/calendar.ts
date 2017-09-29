@@ -71,12 +71,13 @@ console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end
 }
 
 onEventSelected(event) {
-   let start = moment(event.startTime).format('LLLL');
-    let end = moment(event.endTime).format('LLLL');
-
+   let date = moment(event.startTime).format('Do MMMM YYYY');
+   let start = moment(event.startTime).format('HH:MM');
+    let end = moment(event.endTime).format('HH:MM');
+ 
     let alert = this.alertCtrl.create({
        title: 'Event: ' + event.title,
-       message: 'From: '+start+'<br>To: '+end+'<br> Room:'+'</div>',
+       message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+this.EventData.getRoom() + '</div>',
       buttons:['OK']
     });
     alert.present();

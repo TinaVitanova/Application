@@ -18,7 +18,7 @@ import { CalendarPage } from '../calendar/calendar';
 })
 export class ReserveEventPage {
   isReserved: boolean;
-  event = { startTime: new Date(), endTime: new Date(), allDay: false, title:""};
+  event = { day: new Date(), startTime: new Date(), endTime: new Date(), allDay: false, title:""};
   minDate = new Date().toISOString();
   preselectedDate = new Date();
   rooms:"";
@@ -38,6 +38,7 @@ export class ReserveEventPage {
     this.EventData.setEndTime(this.event.endTime);
     this.EventData.setTitle(this.event.title);
     this.EventData.setRoom(this.rooms);
+    // this.EventData.setDay(this.event.day);
     this.navCtrl.push(CalendarPage);
   }
 
