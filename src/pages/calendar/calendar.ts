@@ -1,4 +1,5 @@
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+
+import { NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { ReserveEventPage } from '../reserve-event/reserve-event';
 import { EventDataProvider } from '../../providers/event-data/event-data';
@@ -44,7 +45,9 @@ export class CalendarPage {
     console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public EventData: EventDataProvider) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
+this.menuCtrl.enable(true, "myMenu");
 
   }
   createEvent (){

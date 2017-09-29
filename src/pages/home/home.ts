@@ -34,16 +34,14 @@ export class HomePage {
 
     LoginNav(){
       this.UserGlobal.setMyGlobalVar(this.todo.username);
-      if (this.todo.username=='admin')
-      this.navCtrl.push(AdminHomePage)
-      if (this.todo.username=='superadmin')
-      this.navCtrl.push(AdminHomePage)
-      else if (this.todo.username=='test')
-      this.navCtrl.setRoot(LoginPage)     
+      if (this.todo.username=='test' || this.todo.username=='superadmin'|| this.todo.username=='admin'){
+      this.navCtrl.setRoot(LoginPage);  
+      }
     }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public menuCtrl: MenuController) {
-    //this.menuCtrl.enable(false, "myMenu");
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
+    this.menuCtrl.enable(false, "userMenu");
+    this.menuCtrl.enable(false, "adminMenu");
   }
 
 }

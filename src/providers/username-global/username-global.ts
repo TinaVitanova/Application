@@ -22,5 +22,4 @@ export class UsernameGlobalProvider {
       return this.user;
   }
 
-
 }

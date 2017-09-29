@@ -8,34 +8,34 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ManageUsersPage } from '../pages/manage-users/manage-users';
 import { UsernameGlobalProvider } from '../providers/username-global/username-global';
+
 @Component({
   templateUrl: 'app.html',
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage:any = HomePage;
-  name:any=this.UserGlobal.getMyGlobalVar();
-  pages: Array<{title: string, component: any}>;
-
-  shouldHide(){
-    if(this.name=="superadmin" || this.name=="admin")
-    return false;
-    else
-    return true;
-  }
+  pages1: Array<{title: string, component: any}>;
+  pages2: Array<{title: string, component: any}>;
  
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public UserGlobal: UsernameGlobalProvider) {
     this.initializeApp();
-    
+  
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: LoginPage },
+    this.pages1 = [
       { title: 'My Profile', component: MyProfilePage },
       { title: 'My Schedule', component: MySchedulePage },
       { title: 'Manage Users', component: ManageUsersPage },
       { title: 'Logout', component: HomePage }
     ];
- 
+
+    this.pages2 = [
+      { title: 'My Profile', component: MyProfilePage },
+      { title: 'My Schedule', component: MySchedulePage },
+      { title: 'Logout', component: HomePage }
+    ];
+   
+   
   }
 
   initializeApp() {

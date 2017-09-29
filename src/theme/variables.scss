@@ -36,10 +36,10 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  primary:    #92D1E4,
   secondary:  #588AA0,
   secondary-light: #96BFD1,
-  danger:     #f53d3d,
+  gradient-green:     #77E6CF,
   light:      #f4f4f4,
   dark:       #292929
 );
@@ -76,6 +76,12 @@ $label-ios-margin-top: 5px;
   background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+@mixin gradient-cal{
+   background-color: #77E6CF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #BCC6EC, #8AF5DE);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #BCC6EC, #8AF5DE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 //basic transitions
 
 @mixin basic-transition{
@@ -89,15 +95,26 @@ $label-ios-margin-top: 5px;
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
   0 1px 5px 0 rgba(0, 0, 0, 0.12),
   0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
   -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
   0 1px 5px 0 rgba(0, 0, 0, 0.12),
   0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
   -ms-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
   0 1px 5px 0 rgba(0, 0, 0, 0.12),
   0 3px 1px -2px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-                0 1px 5px 0 rgba(0, 0, 0, 0.12),
-                0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+  0 1px 5px 0 rgba(0, 0, 0, 0.12),
+  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+@mixin shadow-8dp{
+   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),                   0 3px 14px 2px rgba(0, 0, 0, 0.12),                   0 5px 5px -3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  -ms-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  
 }
 
 // App iOS Variables

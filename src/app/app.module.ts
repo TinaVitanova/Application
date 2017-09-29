@@ -13,7 +13,6 @@ import { SignupPage } from '../pages/signup/signup';
 import { LoginPage } from '../pages/login/login';
 import { ReservePage } from '../pages/reserve/reserve';
 import { CalendarPage } from '../pages/calendar/calendar';
-import { AdminHomePage } from '../pages/admin-home/admin-home';
 import { MakeRoomPage } from '../pages/make-room/make-room';
 import { MyProfilePage } from '../pages/my-profile/my-profile';
 import { MySchedulePage } from '../pages/my-schedule/my-schedule';
@@ -30,7 +29,6 @@ import { ReserveEventPage } from '../pages/reserve-event/reserve-event';
     LoginPage,
     ReservePage,
     CalendarPage,
-    AdminHomePage,
     MakeRoomPage,
     MyProfilePage,
     MySchedulePage,
@@ -52,7 +50,6 @@ import { ReserveEventPage } from '../pages/reserve-event/reserve-event';
     LoginPage,
     ReservePage,
     CalendarPage,
-    AdminHomePage,
     MakeRoomPage,
     MyProfilePage,
     MySchedulePage,
