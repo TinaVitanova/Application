@@ -7,7 +7,6 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title> {{ viewTitle }}</ion-title>
         <ion-buttons end>
 
      <!--       <button ion-button (click)="changeMode('month')">M</button>
@@ -33,6 +32,7 @@
             <ion-option value="room4" (ionSelect)="loadEvents()">Room4</ion-option>
         </ion-select>
     </ion-item>
+    <ion-title> {{ viewTitle }}</ion-title>
     <calendar  
     [eventSource]="eventSource" 
     [calendarMode]="calendar.mode" 

@@ -11,12 +11,13 @@
     <ion-searchbar (ionInput)="getUsers($event)"></ion-searchbar>
     <ion-list>
         <ion-item *ngFor="let user of users">
-            <ion-label> {{user}} </ion-label>
-            <ion-checkbox color="danger"></ion-checkbox>
+            <ion-label item-start> {{user}}
+
+            </ion-label>
+            <button ion-button clear icon-only item-end>
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+
         </ion-item>
     </ion-list>
-    <ion-buttons text-center>
-        <button ion-button color="secondary" outline>EDIT</button>
-        <button ion-button color="danger" outline>DELETE</button>
-    </ion-buttons>
 </ion-content>

@@ -17,8 +17,14 @@ export class ManageUsersPage {
 
   initializeUsers(){
     this.users=[
-      this.username//samo toj user shto e momentalno logiran
-
+      this.username,//samo toj user shto e momentalno logiran
+      'user1',
+      'user2',
+      'user3',
+      'user4',
+      'user5',
+      'user6',
+      'user7'
     ];
   }
 
