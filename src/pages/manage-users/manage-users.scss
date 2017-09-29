@@ -1,3 +1,10 @@
 page-manage-users {
 
+    .item-inner{
+        border: none!important;
+    }
+
+    .list-ios  .item-block:last-child{
+        border-bottom: none;
+    }
 }
