@@ -11,7 +11,6 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SignupPage } from '../pages/signup/signup';
 import { LoginPage } from '../pages/login/login';
-import { ReservePage } from '../pages/reserve/reserve';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { MakeRoomPage } from '../pages/make-room/make-room';
 import { MyProfilePage } from '../pages/my-profile/my-profile';
@@ -27,7 +26,6 @@ import { ReserveEventPage } from '../pages/reserve-event/reserve-event';
     HomePage,
     SignupPage,
     LoginPage,
-    ReservePage,
     CalendarPage,
     MakeRoomPage,
     MyProfilePage,
@@ -48,7 +46,6 @@ import { ReserveEventPage } from '../pages/reserve-event/reserve-event';
     HomePage,
     SignupPage,
     LoginPage,
-    ReservePage,
     CalendarPage,
     MakeRoomPage,
     MyProfilePage,

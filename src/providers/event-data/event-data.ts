@@ -13,10 +13,21 @@ export class EventDataProvider {
   public StartTime;
   public EndTime;
   public Room;
+  // public Day;
   public Title;
+ // public AllRooms: Array<{title: string, number: number}>;
   constructor(public storage: Storage) {
     console.log('Hello EventData Provider');
+
   }
+ /* public AddRoom(title:string, number: number){
+    this.AllRooms;
+  }
+  
+  public setDay(value){
+    this.Day=value;
+  }
+  */
   public setTitle(value){
   console.log('title ' +value);
   this.Title = value;
@@ -43,6 +54,11 @@ export class EventDataProvider {
   public getEndTime() {
     return this.EndTime;
   }
+  /*
+  public getDay(){
+    return this.Day;
+  }
+  */
   public getRoom() {
     return this.Room;
   }

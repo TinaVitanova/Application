@@ -8,7 +8,7 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
   templateUrl: 'home.html',
 })
 export class HomePage {
-    splash = true;
+
     login = LoginPage;
 
     public todo = {
@@ -18,9 +18,7 @@ export class HomePage {
 
     // splash screen onload func
     ionViewDidLoad(){
-      setTimeout(() => {
-        this.splash = false;
-      }, 4000);
+      
     }
     // splash screen end
 
