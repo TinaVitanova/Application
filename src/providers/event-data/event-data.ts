@@ -44,6 +44,7 @@ export class EventDataProvider {
   console.log('room ' +value3);
   this.Room = value3;
   }
+
   public getTitle(){
     return this.Title;
   }
@@ -54,6 +55,9 @@ export class EventDataProvider {
   public getEndTime() {
     return this.EndTime;
   }
+
+  
+
   /*
   public getDay(){
     return this.Day;

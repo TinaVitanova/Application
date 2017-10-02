@@ -61,6 +61,7 @@ console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end
             allday: false
         });
         return events;
+
     }
     
   loadEvents(){
