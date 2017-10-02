@@ -15,6 +15,7 @@ export class EventDataProvider {
   public Room;
   public flag;
   public Title;
+  public events = [];
   public RoomsData: {name: string, capacity: string, description: string};
   public FullRooms = {};
   constructor(public storage: Storage) {
@@ -53,21 +54,22 @@ export class EventDataProvider {
   console.log('room ' +value3);
   this.Room = value3;
   }
+  public setEvents(value: any){
+    this.events = value;
+  }
+
   public getTitle(){
     return this.Title;
   }
   public getStartTime() {
-    console.log('In enevt provider: ', this.StartTime);
     return this.StartTime;
   }
   public getEndTime() {
     return this.EndTime;
   }
-  /*
-  public getDay(){
-    return this.Day;
+  public getEvents(){
+    return this.events;
   }
-  */
   public getRoom() {
     return this.Room;
   }
