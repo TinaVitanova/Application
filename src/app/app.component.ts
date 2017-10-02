@@ -1,6 +1,5 @@
 import { MySchedulePage } from './../pages/my-schedule/my-schedule';
 import { MyProfilePage } from './../pages/my-profile/my-profile';
-import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
