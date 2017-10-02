@@ -14,9 +14,9 @@ export class EventDataProvider {
   public EndTime;
   public Room;
   public flag;
-  // public Day;
   public Title;
- // public AllRooms: Array<{title: string, number: number}>;
+  public RoomsData: {name: string, capacity: string, description: string};
+  public FullRooms = {};
   constructor(public storage: Storage) {
     console.log('Hello EventData Provider');
 
@@ -27,14 +27,16 @@ export class EventDataProvider {
   public getFlag(){
     return this.flag;
   }
- /* public AddRoom(title:string, number: number){
-    this.AllRooms;
+  public getRoomData(){
+    return this.FullRooms;
   }
-  
-  public setDay(value){
-    this.Day=value;
+  public SendRoomData(value:string, value1:string, value2: string){
+    this.RoomsData = {name: value, capacity: value1, description: value2}
+    console.log('u provider: '+ this.RoomsData.name + ' '+ this.RoomsData.capacity + ' '+ this.RoomsData.description);
+    this.FullRooms = this.RoomsData;
+    console.log('the array in provider issss!: '+ this.FullRooms)
   }
-  */
+
   public setTitle(value){
   console.log('title ' +value);
   this.Title = value;

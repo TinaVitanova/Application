@@ -13,6 +13,7 @@ export class CalendarPage {
   viewTitle: string;
   selectedDay = new Date();
   flagCalendar;
+  ListOfRooms = [];
 
   calendar = {
       mode: 'month',
@@ -20,6 +21,7 @@ export class CalendarPage {
   }; 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
     this.loadEvents();
+    
     }
   onViewTitleChanged(title) {
       this.viewTitle = title;
@@ -30,6 +32,7 @@ export class CalendarPage {
         (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
   }
     addEvent(){
+      this.flagCalendar = true;  
       this.EventData.setFlag(this.flagCalendar);
     this.navCtrl.push(ReserveEventPage);
   }
@@ -46,7 +49,6 @@ export class CalendarPage {
   onRangeChanged(ev) {
     console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
-
   
   createEvent (){
      var startDate = new Date(this.EventData.getStartTime());
@@ -88,7 +90,7 @@ onEventSelected(event) {
 
 
   ionViewDidLoad(){    
-    this.flagCalendar=true;  
+    this.ListOfRooms.push(this.EventData.getRoomData());
   }
 
 }

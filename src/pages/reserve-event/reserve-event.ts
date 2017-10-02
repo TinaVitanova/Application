@@ -23,7 +23,14 @@ export class ReserveEventPage {
   preselectedDate = new Date();
   rooms:"";
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
+  
+    this.flag = this.EventData.getFlag();
   }
+  
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ReserveEventPage');
+  }
+
   shouldHide(){
     if(this.isReserved==true)
     return false;
@@ -39,6 +46,8 @@ export class ReserveEventPage {
     this.EventData.setTitle(this.event.title);
     this.EventData.setRoom(this.rooms);
     // this.EventData.setDay(this.event.day);
+    
+    this.flag = this.EventData.getFlag();
     if (this.flag == true)
     this.navCtrl.pop();
     else{
@@ -52,11 +61,6 @@ export class ReserveEventPage {
      });
      alert.present();
     }
-  }
-
-  ionViewDidLoad() {
-    this.flag = this.EventData.getFlag();
-    console.log('ionViewDidLoad ReserveEventPage');
   }
 
 }

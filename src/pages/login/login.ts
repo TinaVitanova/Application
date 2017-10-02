@@ -23,7 +23,9 @@ export class LoginPage {
   }
 
   ReserveNav(){
-   this.EventData.setFlag(this.flagCalendar);
+    
+    this.flagCalendar = false;
+    this.EventData.setFlag(this.flagCalendar);
     this.navCtrl.push(ReserveEventPage)
   }
 
@@ -47,7 +49,6 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    this.flagCalendar = false;
     console.log('ionViewDidLoad LoginPage');
   }
 }
