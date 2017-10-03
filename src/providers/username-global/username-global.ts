@@ -8,7 +8,7 @@ import { Storage } from '@ionic/storage';
 */
 @Injectable()
 export class UsernameGlobalProvider {
-
+  public Usernames = ['test','admin','superadmin'];
   public myUsername:any;
   public user:any;
   constructor(public storage: Storage) {
@@ -17,6 +17,16 @@ export class UsernameGlobalProvider {
   public setMyGlobalVar(value:any) {
     this.storage.set(this.myUsername,value);
     this.user = value;
+  }
+  public setDeleteAccName(value){
+    this.Usernames.splice(value,1);
+    console.log('setDeleteAccName e povikana i ova mi e usernames: '+ this.Usernames)
+  }
+  public addNewUser(value) {
+    this.Usernames.push(value);
+  }
+  public getUsernames(){
+    return this.Usernames;
   }
   public getMyGlobalVar() {
       return this.user;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 
 /**
@@ -23,12 +23,16 @@ export class MakeRoomPage {
   }
 
   CreateRoom(){
-    console.log('prakjam room data so klikanje na jebeno kopche '+ this.room.name+ ' ' + this.room.capacity + ' '+ this.room.description);
     this.EventData.SendRoomData(this.room.name, this.room.capacity, this.room.description);
+    let alert = this.alertCtrl.create({
+      title: 'You have created the room: ' + this.room.name,
+     buttons:['OK']
+   });
+   alert.present();
   }
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public EventData: EventDataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
   }
 
   ionViewDidLoad() {

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import * as moment from 'moment';
 
 /*
   Generated class for the EventDataProvider provider.
@@ -15,6 +16,7 @@ export class EventDataProvider {
   public Room;
   public flag;
   public Title;
+  public Day;
   public events = [];
   public RoomsData: {name: string, capacity: string, description: string};
   public FullRooms = {};
@@ -42,6 +44,9 @@ export class EventDataProvider {
   console.log('title ' +value);
   this.Title = value;
   }
+  public setDay(value){
+    this.Day=value;
+  }
   public setStartTime(value1){
   console.log('startTime ' +value1);
   this.StartTime = value1;
@@ -60,6 +65,9 @@ export class EventDataProvider {
 
   public getTitle(){
     return this.Title;
+  }
+  public getDay(){
+    return this.Day;
   }
   public getStartTime() {
     return this.StartTime;

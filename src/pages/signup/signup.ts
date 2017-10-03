@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 /**
  * Generated class for the SignupPage page.
  *
@@ -18,9 +19,7 @@ export class SignupPage {
   username: string;
   adminpassword:"";
   new = {
-    username:"",
     password:"",
-    passwordre:"",
     mail:"",
     name:"",
   };
@@ -36,10 +35,11 @@ export class SignupPage {
   }
 
   CreateNewUser(){
+    this.UserGlobal.addNewUser(this.new.name);
 
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public UserGlobal: UsernameGlobalProvider) {
     this.username = navParams.get('param2');
   }
 

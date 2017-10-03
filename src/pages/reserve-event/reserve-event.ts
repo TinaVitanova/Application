@@ -22,6 +22,7 @@ export class ReserveEventPage {
   minDate = new Date().toISOString();
   preselectedDate = new Date();
   rooms:"";
+  ListOfRooms = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
   
     this.flag = this.EventData.getFlag();
@@ -29,6 +30,8 @@ export class ReserveEventPage {
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReserveEventPage');
+    
+    this.ListOfRooms.push(this.EventData.getRoomData());
   }
 
   shouldHide(){
@@ -45,15 +48,14 @@ export class ReserveEventPage {
     this.EventData.setEndTime(this.event.endTime);
     this.EventData.setTitle(this.event.title);
     this.EventData.setRoom(this.rooms);
-    // this.EventData.setDay(this.event.day);
-    
+    this.EventData.setDay(this.event.day);
     this.flag = this.EventData.getFlag();
     if (this.flag == true)
     this.navCtrl.pop();
     else{
-      let date = moment(this.event.startTime).format('Do MMMM YYYY');
-      let start = moment(this.event.startTime).format('HH:MM');
-       let end = moment(this.event.endTime).format('HH:MM');
+      let date = moment(this.event.day).format('Do MMMM YYYY');
+      let start = this.event.startTime;
+       let end = this.event.endTime;
       let alert = this.alertCtrl.create({
         title: 'You have created an event: ' + this.event.title,
         message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+ this.rooms + '</div>',
