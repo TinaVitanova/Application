@@ -14,7 +14,7 @@ import { EventDataProvider } from '../../providers/event-data/event-data';
 })
 export class LoginPage {
   calendarpage=CalendarPage;
-  username=this.UserGlobal.getMyGlobalVar();
+  username;
   adminBtn = false;
   flagCalendar;
 
@@ -39,6 +39,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
  
+    this.username=this.UserGlobal.getMyGlobalVar();
     if(this.username=="admin" || this.username=="superadmin"){
       this.adminBtn=true;
       this.menuCtrl.enable(true, "adminMenu");

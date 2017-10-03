@@ -9,14 +9,19 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class UsernameGlobalProvider {
   public Usernames = ['test','admin','superadmin'];
-  public myUsername:any;
-  public user:any;
+  public userIndex:any;
+  public user;
+  public Email;
+
   constructor(public storage: Storage) {
     console.log('Hello UsernameGlobal Provider');
   }
   public setMyGlobalVar(value:any) {
-    this.storage.set(this.myUsername,value);
-    this.user = value;
+    this.userIndex = this.Usernames.indexOf(value);
+    this.user=this.Usernames[this.userIndex];
+  }
+  public setEmail(value){
+    this.Email=value;
   }
   public setDeleteAccName(value){
     this.Usernames.splice(value,1);
@@ -24,6 +29,14 @@ export class UsernameGlobalProvider {
   }
   public addNewUser(value) {
     this.Usernames.push(value);
+  }
+  public ChangeUser(value){
+    this.Usernames[this.userIndex]=value.newusername;
+    this.user=this.Usernames[this.userIndex];
+    console.log('u usernameglobal ova value so e: '+ value +' i ako pristapam do .neso: '+ value.newusername);
+  }
+  public getEmail(){
+    return this.Email;
   }
   public getUsernames(){
     return this.Usernames;

@@ -17,7 +17,6 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 export class SignupPage {
   checked;
   username: string;
-  adminpassword:"";
   new = {
     password:"",
     mail:"",
@@ -36,7 +35,7 @@ export class SignupPage {
 
   CreateNewUser(){
     this.UserGlobal.addNewUser(this.new.name);
-
+    this.UserGlobal.setEmail(this.new.mail);
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public UserGlobal: UsernameGlobalProvider) {

@@ -17,6 +17,7 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 export class MyProfilePage {
   flagChange=false;
   Username=this.UserGlobal.getMyGlobalVar();
+  email=this.UserGlobal.getEmail();
   public todo = {
     newusername:"",
     oldpassword:"",
@@ -25,7 +26,7 @@ export class MyProfilePage {
   };
 
   Change(){
- 
+    this.UserGlobal.ChangeUser(this.todo);
   }
   OpenChange(){
     this.flagChange=true;
