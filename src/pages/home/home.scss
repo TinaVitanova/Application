@@ -1,6 +1,9 @@
-
+$label-md-text-color: white;
+$label-md-text-color-focused: white;
 
 page-home {
+
+   
 
     .input-cover { position: static!important; }
  
@@ -8,18 +11,36 @@ page-home {
       @include gradient-bg;
     }
 
+    img{
+      width: 55%;
+      margin-top:15%;
+    }
+
+    .form-container ion-item .item {
+      border: none!important;
+      border-bottom: none!important;
+      border-top:none;
+    }
+
     form{
+
+      .list-ios .item-block .item-inner,
+      ion-item .item-md .item-input,
+      ion-item .item-ios .item-input,
+      .item-block{
+        border-bottom: none;
+        border-top: none;
+      }
 
       .custom-input{
         margin: 15% 0px 0px 10%;
-        width: 80%;
-        border-radius:3px;
-        border: 1px solid white;
-        background: rgba(white, 0.2);
-        color: map-get($colors, secondary-light);
+        width: 70%;
+        border-bottom:none;
+        background: none;
+        color: white;
 
-        .item.item-input span{width:auto;}
-        .item.item-input input{width:68%;}
+        .item.item-input span{width:auto; border:none;}
+        .item.item-input input{width:68%; border:none;}
         
       }
     }

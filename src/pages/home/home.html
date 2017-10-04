@@ -1,16 +1,18 @@
 
 
 <ion-content padding>
-    <img src="../../assets/logotest.png" alt="">
+    <div text-center>
+            <img src="../../assets/logo02.png">
+    </div>
     <form (ngSubmit)="logForm()">
         <ion-list>
-            <ion-item class="custom-input">
-                <ion-label floating color="secondary">
+            <ion-item class="custom-input item-borderless">
+                <ion-label stacked color="white" text-center>
                     <ion-icon ios="ios-person" md="md-person"></ion-icon> &nbsp; Username</ion-label>
                 <ion-input type="text" [(ngModel)]="todo.username" name="username"></ion-input>
             </ion-item>
-            <ion-item class="custom-input">
-                <ion-label floating color="secondary">
+            <ion-item class="custom-input item-borderless">
+                <ion-label stacked color="white" text-center>
                     <ion-icon ios="ios-lock" md="md-lock"></ion-icon> &nbsp; Password</ion-label>
                 <ion-input type="password" [(ngModel)]="todo.password" name="password"></ion-input>
             </ion-item>
