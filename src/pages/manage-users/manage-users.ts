@@ -15,19 +15,10 @@ export class ManageUsersPage {
   }
 
   initializeUsers(){
-    this.users=[
-      'user1',
-      'user2',
-      'user3',
-      'user4',
-      'user5',
-      'user6',
-      'user7'
-    ];
+    this.users=[];
       for (var i=0; i < this.usernames.length; i++){
         this.users.push(this.usernames[i]);
       }
-      
   }
   deleteUser(user){
     let alert = this.alertCtrl.create({

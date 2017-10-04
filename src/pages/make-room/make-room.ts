@@ -26,7 +26,8 @@ export class MakeRoomPage {
   CreateRoom(){
     this.EventData.SendRoomData(this.room.name, this.room.capacity, this.room.description);
     let alert = this.alertCtrl.create({
-      title: 'You have created the room: ' + this.room.name,
+      title: 'You have created the room: ',
+      subTitle: 'Room name: ' + this.room.name + '<br>Room capacity: ' + this.room.capacity + '<br>Description: ' + this.room.description,
      buttons:['OK']
    });
    alert.present();
