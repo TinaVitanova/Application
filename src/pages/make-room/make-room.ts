@@ -15,7 +15,6 @@ import { EventDataProvider } from '../../providers/event-data/event-data';
   templateUrl: 'make-room.html',
 })
 export class MakeRoomPage {
-  showRoom = this.EventData.getshowRoom();
   room = {
     name:"",
     capacity:"",
@@ -29,7 +28,7 @@ export class MakeRoomPage {
      buttons:['OK']
    });
    alert.present();
-   this.showRoom = true;
+
    }
 
 
