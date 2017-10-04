@@ -70,9 +70,11 @@ export class EventDataProvider {
   console.log('room ' +value3);
   this.Room = value3;
   }
+
   public setEvents(value: any){
     this.events = value;
   }
+
 
   public getTitle(){
     return this.Title;
@@ -86,8 +88,10 @@ export class EventDataProvider {
   public getEndTime() {
     return this.EndTime;
   }
+
   public getEvents(){
     return this.events;
+
   }
   public getRoom() {
     return this.Room;
