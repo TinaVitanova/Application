@@ -1,49 +1,49 @@
 <ion-header>
+  
+   <ion-navbar>
+       <ion-title>Reserve a Room</ion-title>
 
-    <ion-navbar>
-        <ion-title>Reserve a Room</ion-title>
-
-    </ion-navbar>
+   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
 
-    <ion-item>
-        <ion-label>Title</ion-label>
-        <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
-    </ion-item>
+   <ion-item>
+       <ion-label>Title</ion-label>
+       <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
+   </ion-item>
 
-    <ion-item>
-        <ion-label>Day</ion-label>
-        <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="event.day" [min]="minDate"></ion-datetime>
+   <ion-item>
+       <ion-label>Day</ion-label>
+       <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="event.day" [min]="minDate"></ion-datetime>
+   </ion-item>
+   <ion-item>
+    <ion-label>Start</ion-label>
+    <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
     </ion-item>
-    <ion-item>
-        <ion-label>Start</ion-label>
-        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
-    </ion-item>
-    <ion-item>
-        <ion-label>End</ion-label>
-        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
-    </ion-item>
+   <ion-item>
+       <ion-label>End</ion-label>
+       <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
+   </ion-item>
 
-    <ion-buttons text-center>
-        <button style="margin-top:4%;" large ion-button round outline (click)="findRoom()">Find</button>
-    </ion-buttons>
+   <ion-buttons text-center>
+       <button style="margin-top:4%;" large ion-button round outline (click)="findRoom()">Find</button>
+   </ion-buttons>
 
-    <ion-item [hidden]="shouldHide()">
-        <ion-label>Room</ion-label>
-        <ion-select [(ngModel)]="rooms">
-            <ion-option value="room1">Room1</ion-option>
-            <ion-option value="room2">Room2</ion-option>
-            <ion-option value="room3">Room3</ion-option>
-            <ion-option value="room4">Room4</ion-option>
-            <ion-option [hidden]="showRoom()" (ionSelect)="loadEvents()" *ngFor="let r of ListOfRooms">{{ListOfRooms[0].name}}</ion-option>
-        </ion-select>
-    </ion-item>
+   <ion-item [hidden]="shouldHide()">
+       <ion-label>Room</ion-label>
+       <ion-select [(ngModel)]="rooms">
+           <ion-option value="room1">Room1</ion-option>
+           <ion-option value="room2">Room2</ion-option>
+           <ion-option value="room3">Room3</ion-option>
+           <ion-option value="room4">Room4</ion-option>
+           <ion-option (ionSelect)="loadEvents()" *ngFor="let r of ListOfRooms">{{ListOfRooms[0].name}}</ion-option>
+       </ion-select>
+   </ion-item>
 
-    <button ion-button full icon-left (click)="save()">
+   <button ion-button full icon-left (click)="save()">
            <ion-icon></ion-icon>Add Event
        </button>
 
