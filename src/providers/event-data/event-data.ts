@@ -20,13 +20,24 @@ export class EventDataProvider {
   public events = [];
   public RoomsData: {name: string, capacity: string, description: string};
   public FullRooms = {};
+  public ShowRoom;
   constructor(public storage: Storage) {
     console.log('Hello EventData Provider');
 
   }
+
+  public setshowRoom(value:boolean){
+    this.ShowRoom = false;
+  }
+
+  public getshowRoom(){
+    return this.ShowRoom;
+  }
+
   public setFlag(value){
     this.flag=value;
   }
+
   public getFlag(){
     return this.flag;
   }

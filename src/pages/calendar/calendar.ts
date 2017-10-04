@@ -78,6 +78,10 @@ console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end
       })
 }
 
+showRoom(){
+  
+}
+
 onEventSelected(event) {
    let date = moment(event.startTime).format('Do MMMM YYYY');
    let start = moment(event.startTime).format('HH:mm');
