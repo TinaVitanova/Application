@@ -39,7 +39,7 @@
             <ion-option value="room2">Room2</ion-option>
             <ion-option value="room3">Room3</ion-option>
             <ion-option value="room4">Room4</ion-option>
-            <ion-option [hidden]="showRoom()" (ionSelect)="loadEvents()" *ngFor="let r of ListOfRooms">{{ListOfRooms[0].name}}</ion-option>
+            <ion-option (ionSelect)="loadEvennts()" *ngFor="let r of ListOfRooms">{{ListOfRooms[0].name}}</ion-option>
         </ion-select>
     </ion-item>
 

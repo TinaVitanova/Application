@@ -15,12 +15,13 @@ import { EventDataProvider } from '../../providers/event-data/event-data';
   templateUrl: 'make-room.html',
 })
 export class MakeRoomPage {
-  showRoom = this.EventData.getshowRoom();
   room = {
     name:"",
     capacity:"",
     description:""
   }
+  showRoom=this.EventData.getShowRoom();
+  
 
   CreateRoom(){
     this.EventData.SendRoomData(this.room.name, this.room.capacity, this.room.description);
@@ -30,6 +31,7 @@ export class MakeRoomPage {
    });
    alert.present();
    this.showRoom = true;
+   this.EventData.setShowRoom(this.showRoom);
    }
 
 
