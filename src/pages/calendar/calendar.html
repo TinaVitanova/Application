@@ -24,18 +24,11 @@
             <ion-option value="room2" (ionSelect)="loadEvents()">Room2</ion-option>
             <ion-option value="room3" (ionSelect)="loadEvents()">Room3</ion-option>
             <ion-option value="room4" (ionSelect)="loadEvents()">Room4</ion-option>
+            <ion-option [hidden]="showRoom()" (ionSelect)="loadEvents()" *ngFor="let r of ListOfRooms">{{ListOfRooms[0].name}}</ion-option>
         </ion-select>
     </ion-item>
-    <ion-title> {{ viewTitle }}</ion-title>
-    <calendar  
-    [eventSource]="eventSource" 
-    [calendarMode]="calendar.mode" 
-    [currentDate]="calendar.currentDate" 
-    (onEventSelected)="onEventSelected($event)" 
-    (onTitleChanged)="onViewTitleChanged($event)"
-    (onTimeSelected)="onTimeSelected($event)" 
-    step="30" 
-    (onRangeChanged)="onRangeChanged($event)" 
-    class="calendar">
+    <ion-title text-center> {{ viewTitle }}</ion-title>
+    <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate" (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30" (onRangeChanged)="onRangeChanged($event)"
+        class="calendar">
     </calendar>
 </ion-content>

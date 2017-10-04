@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 
 
@@ -9,15 +9,13 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 })
 export class ManageUsersPage {
   users;
-  username=this.UserGlobal.getMyGlobalVar();
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider) {
+  usernames=this.UserGlobal.getUsernames();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController) {
     this.initializeUsers();
   }
 
   initializeUsers(){
     this.users=[
-      this.username,//samo toj user shto e momentalno logiran
       'user1',
       'user2',
       'user3',
@@ -26,13 +24,39 @@ export class ManageUsersPage {
       'user6',
       'user7'
     ];
+      for (var i=0; i < this.usernames.length; i++){
+        this.users.push(this.usernames[i]);
+      }
+      
   }
+  deleteUser(user){
+    let alert = this.alertCtrl.create({
+      title: 'Are you sure?',
+      message: 'Delete the user: '+ user,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.UserGlobal.setDeleteAccName(this.usernames.indexOf(user));
+            this.initializeUsers();
+          }
+        }
+      ]
+   });
+   alert.present();
 
+  }
 
   getUsers(ev){
     //reset users back to all of users
     this.initializeUsers();
-    
     //set val to the value of the ev target
     var val = ev.target.value;
 

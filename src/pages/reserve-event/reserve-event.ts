@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angular';
 import * as moment from 'moment';
 import { EventDataProvider } from '../../providers/event-data/event-data';
-import { CalendarPage } from '../calendar/calendar';
 
 /**
  * Generated class for the ReserveEventPage page.
@@ -18,12 +17,23 @@ import { CalendarPage } from '../calendar/calendar';
 })
 export class ReserveEventPage {
   isReserved: boolean;
+  flag;
   event = { day: new Date(), startTime: new Date(), endTime: new Date(), allDay: false, title:""};
   minDate = new Date().toISOString();
   preselectedDate = new Date();
   rooms:"";
-  constructor(public navCtrl: NavController, public navParams: NavParams, public EventData: EventDataProvider) {
+  ListOfRooms = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
+  
+    this.flag = this.EventData.getFlag();
   }
+  
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ReserveEventPage');
+    
+    this.ListOfRooms.push(this.EventData.getRoomData());
+  }
+
   shouldHide(){
     if(this.isReserved==true)
     return false;
@@ -38,17 +48,21 @@ export class ReserveEventPage {
     this.EventData.setEndTime(this.event.endTime);
     this.EventData.setTitle(this.event.title);
     this.EventData.setRoom(this.rooms);
-    // this.EventData.setDay(this.event.day);
-   // var flag = this.EventData.getNavFlag();
-   // if (flag = true)
-    this.navCtrl.push(CalendarPage);
-   // else{
-
-    //}
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReserveEventPage');
+    this.EventData.setDay(this.event.day);
+    this.flag = this.EventData.getFlag();
+    if (this.flag == true)
+    this.navCtrl.pop();
+    else{
+      let date = moment(this.event.day).format('Do MMMM YYYY');
+      let start = this.event.startTime;
+       let end = this.event.endTime;
+      let alert = this.alertCtrl.create({
+        title: 'You have created an event: ' + this.event.title,
+        message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+ this.rooms + '</div>',
+       buttons:['OK']
+     });
+     alert.present();
+    }
   }
 
 }
