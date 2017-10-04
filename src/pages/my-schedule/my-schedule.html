@@ -15,4 +15,10 @@
 
 <ion-content padding>
 
+    <ion-list>
+        <button menuClose ion-item *ngFor="let events of MyEvents" (click)="AlertForEvent(events)">
+    {{events.title}} - <time>{{events.startTime}}</time>:<time>{{events.endTime}}</time>
+  </button>
+    </ion-list>
+
 </ion-content>

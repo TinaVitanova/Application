@@ -9,26 +9,27 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 })
 export class HomePage {
 
-    login = LoginPage;
-
+    UsernamesList = [];
+    flagUser;
     public todo = {
       username:"",
       password:"",
     };
 
-    // splash screen onload func
     ionViewDidLoad(){
-      
     }
-    // splash screen end
 
     logForm(){
       console.log(this.todo)      
     }
 
     LoginNav(){
+      
+      this.UsernamesList = this.UserGlobal.getUsernames();
       this.UserGlobal.setMyGlobalVar(this.todo.username);
-      if (this.todo.username=='test' || this.todo.username=='superadmin'|| this.todo.username=='admin'){
+      this.flagUser = this.UsernamesList.indexOf(this.todo.username);
+      console.log('UsernamesList: ' + this.UsernamesList + 'za dali ja dobiva vrednosta: ' + this.flagUser)
+      if ( this.flagUser != -1 ){
       this.navCtrl.setRoot(LoginPage);  
       }
     }
