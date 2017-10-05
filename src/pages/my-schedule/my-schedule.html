@@ -1,18 +1,5 @@
-<ion-header>
-
-    <ion-navbar>
-        <ion-title>MySchedule</ion-title>
-    </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-    <ion-list>
-        <button menuClose ion-item *ngFor="let events of MyEvents" (click)="AlertForEvent(events)">
-    {{events.title}} - <time>{{events.startTime}}</time>:<time>{{events.endTime}}</time>
-  </button>
-    </ion-list>
-
-</ion-content>
+    <ion-tabs>
+        <ion-tab [root]="Today"></ion-tab>
+        <ion-tab [root]="Tomorrow"></ion-tab>
+        <ion-tab [root]="nextDays"></ion-tab>
+    </ion-tabs>
