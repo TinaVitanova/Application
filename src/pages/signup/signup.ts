@@ -35,8 +35,6 @@ export class SignupPage {
   }
 
   CreateNewUser(){
-    
-
     this.UserGlobal.SendUserData(this.new.fullname, this.new.username, this.new.email, this.new.password, this.isAdmin);
     let alert = this.alertCtrl.create({
       title: 'You have created the user: ',
