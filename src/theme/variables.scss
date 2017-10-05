@@ -46,10 +46,10 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #92D1E4,
-  secondary:  #588AA0,
-  secondary-light: #96BFD1,
-  gradient-green:     #77E6CF,
+  primary:    #24C6DC,
+  secondary:  #6280B7,
+  bg-gray: #f7f7f7,
+  text-color: #d6d6d6,
   light:      #f4f4f4,
   dark:       #292929
 );
@@ -68,17 +68,22 @@ ion-title{
   }
 }
 
+
+button{
+  cursor: pointer;
+}
+
 // default highlight of input fields overwritten
 $text-input-md-highlight-color-invalid:  map-get($colors, danger);
-$text-input-md-highlight-color-valid:  map-get($colors, secondary-light);
+$text-input-md-highlight-color-valid:  none;
 $text-input-md-show-invalid-highlight:  map-get($colors, danger);
-$text-input-md-highlight-color:  map-get($colors, secondary-light);
-$text-input-md-show-valid-highlight:  map-get($colors, secondary-light);
-$label-md-text-color-focused: map-get($colors, secondary-light);
-$label-md-margin-top: 5px;
-$label-md-margin-bottom: 5px;
-$label-ios-margin-bottom: 5px;
-$label-ios-margin-top: 5px;
+$text-input-md-highlight-color:  none;
+$text-input-md-show-valid-highlight:  none;
+$label-md-text-color:	none;
+$label-md-text-color-focused: none;
+$list-ios-border-color: transparent;
+$list-md-border-color: transparent;
+
 
 //custom gradients
 
@@ -99,9 +104,13 @@ $label-ios-margin-top: 5px;
 
 
 @mixin gradient-bg{
-  background: #C9D6FF;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: rgba(212,253,235,1);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(212,253,235,1)), color-stop(100%, rgba(36,199,220,1)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
+  background: radial-gradient(ellipse at center, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
 }
 
 @mixin gradient-cal{
@@ -119,30 +128,12 @@ $label-ios-margin-top: 5px;
   transition: all 250ms;
 }
 
-@mixin shadow-2dp{
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.2);
 
-  -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.2);
-
-  -ms-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.2);
-
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.2);
-}
-
-@mixin shadow-8dp{
-   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),                   0 3px 14px 2px rgba(0, 0, 0, 0.12),                   0 5px 5px -3px rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
-  -moz-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
-  -ms-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
-  
+@mixin white-shadow{
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
+  -webkit-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
+  -moz-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
+  -ms-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
 }
 
 // App iOS Variables
@@ -157,14 +148,31 @@ $label-ios-margin-top: 5px;
 // Material Design only Sass variables can go here
 
 
+@mixin shadow-2dp{
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  -ms-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
 
+@mixin shadow-8dp{
+   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),                   0 3px 14px 2px rgba(0, 0, 0, 0.12),                   0 5px 5px -3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  -ms-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  
+}
+
+.md button:hover,
+.md button:active{
+  @include basic-transition;
+  @include shadow-2dp;
+}
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
 
-
-//material shadows
 
 
 // App Theme
