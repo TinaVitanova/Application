@@ -3,23 +3,22 @@ $label-md-text-color-focused: white;
 
 page-home {
 
-   
-
     .input-cover { position: static!important; }
  
     ion-content{
       @include gradient-bg;
     }
 
+    ion-input  .text-input,
+    ion-input .text-input{
+       color: white;
+       border-bottom: 1px solid white;
+       padding: 5% 0%;
+     }
+
     img{
       width: 55%;
-      margin-top:15%;
-    }
-
-    .form-container ion-item .item {
-      border: none!important;
-      border-bottom: none!important;
-      border-top:none;
+      margin-top:10%;
     }
 
     form{
@@ -28,118 +27,57 @@ page-home {
       ion-item .item-md .item-input,
       ion-item .item-ios .item-input,
       .item-block{
+        color: white;
+        border-top: none;
+      }
+
+      .list-ios .item-block,
+      .list-md .item-block{
+        margin-left: 20%;
         border-bottom: none;
         border-top: none;
       }
 
+      .item-input .label-md{
+        color: white;
+      }
+
       .custom-input{
-        margin: 15% 0px 0px 10%;
-        width: 70%;
-        border-bottom:none;
+        width: 60%;
+        border-top: none;
         background: none;
         color: white;
 
-        .item.item-input span{width:auto; border:none;}
-        .item.item-input input{width:68%; border:none;}
+        .item.item-input span{width:auto;}
+        .item.item-input input{width:60%;  margin-top: none;}
         
       }
     }
     
     .login-btn{
-      background: rgba(white, .1);
-      border:2px solid white;
+      background: white;
       border-radius: 3px;
-      width: 60%;
-      color: white;
-      font-family: 'Open-sans', sans-serif;
-      font-size: 16px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      margin-top: 10%;
-      padding: 7%;   
-      box-shadow: 0 0 0 0 transparent;   
-      @include basic-transition;
+      color: map-get($colors, primary);
+      width: 55%;
+      padding: 5% 0%;
+      font-size: 120%;
+      letter-spacing: 1px;
+
+      &:hover,
+      &:active{
+        color: map-get($colors, secondary);
+        @include basic-transition;
+      }
+    }
     
-      &:hover {
+    p a{
+      color: rgba(white, .75);
+      text-decoration: none;
+
+      &:hover{
+        @include basic-transition;
         color: white;
-        box-shadow: 0 0 30px 0 transparentize(map-get($colors, secondary), 0.5);
-        background-color: map-get($colors, secondary);
-    
-        @include basic-transition;
-    
-        &:before {
-          -webkit-animation: shine 0.5s 0s linear;
-          -moz-animation: shine 0.5s 0s linear;
-          -ms-animation: shine 0.5s 0s linear;
-          animation: shine 0.5s 0s linear;
-        }
-      }
-    
-      &:active {
-        box-shadow: 0 0 0 0 transparent;
-        @include basic-transition;
-      }
-    
-      &:before {
-        content: '';
-        display: block;
-        width: 0px;
-        height: 86%;
-        position: absolute;
-        top: 7%;
-        left: 0%;
-    
-        opacity: 0;
-        background: white;
-        box-shadow: 0 0 15px 3px white;
-        -webkit-transform: skewX(-20deg);
-        -moz-transform: skewX(-20deg);
-        -ms-transform: skewX(-20deg);
-        -o-transform: skewX(-20deg);
-        transform: skewX(-20deg);
       }
     }
-    
-    @-webkit-keyframes shine {
-      from {
-        opacity: 0;
-        left: 0%;
-      }
-      50% {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-        left: 100%;
-      }
-    }
-    @-moz-keyframes shine {
-      from {
-        opacity: 0;
-        left: 0%;
-      }
-      50% {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-        left: 100%;
-      }
-    }
-    @keyframes shine {
-      from {
-        opacity: 0;
-        left: 0%;
-      }
-      50% {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-        left: 100%;
-      }
-    }
-    }
-
   
-
+  }
