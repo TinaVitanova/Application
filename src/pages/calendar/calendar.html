@@ -17,7 +17,7 @@
 <ion-content class="has-header">
     <ion-item class="choose-room">
         <ion-label>CHOOSE A ROOM</ion-label>
-        <ion-select [(ngModel)]="rooms">
+        <ion-select [(ngModel)]="rooms" [style.display]="showRoom ? 'flex': 'none'">
             <ion-option value="all" [selected]="all == rooms" (ionSelect)="loadEvents()">All Rooms</ion-option>
             <ion-option value="room1" (ionSelect)="loadEvents()">Room1</ion-option>
             <ion-option value="room2" (ionSelect)="loadEvents()">Room2</ion-option>
