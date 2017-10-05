@@ -20,7 +20,7 @@ export class MakeRoomPage {
     capacity:"",
     description:""
   }
-  showRoom=this.EventData.getShowRoom();
+  showRoom;
   
 
   CreateRoom(){
