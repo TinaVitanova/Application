@@ -2,7 +2,6 @@ import { EventDataProvider } from './../../providers/event-data/event-data';
 import { ReserveEventPage } from './../reserve-event/reserve-event';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { EventDataProvider } from '../../providers/event-data/event-data';
 import * as moment from 'moment';
 
 /**
