@@ -33,6 +33,7 @@ export class MakeRoomPage {
    alert.present();
    this.showRoom = true;
    this.EventData.setShowRoom(this.showRoom);
+
    }
 
 

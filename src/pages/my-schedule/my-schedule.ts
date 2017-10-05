@@ -1,6 +1,7 @@
+import { EventDataProvider } from './../../providers/event-data/event-data';
+import { ReserveEventPage } from './../reserve-event/reserve-event';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { EventDataProvider } from '../../providers/event-data/event-data';
 import * as moment from 'moment';
 
 @IonicPage()
@@ -9,10 +10,12 @@ import * as moment from 'moment';
   templateUrl: 'my-schedule.html',
 })
 export class MySchedulePage {
+
   MyEvents=this.EventData.getEvents();
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
   }
   
+
 
   ionViewDidLoad() {
     
