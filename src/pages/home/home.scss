@@ -29,7 +29,8 @@ page-home {
       }
 
       .list-ios .item-block,
-      .list-md .item-block{
+      .list-md .item-block,
+      .list-wp .item-block{
         margin-left: 20%;
         border-bottom: none;
         border-top: none;
@@ -75,6 +76,12 @@ page-home {
         @include basic-transition;
         color: white;
       }
+    }
+
+    .md button:hover,
+    .md button:active{
+      @include basic-transition;
+      @include shadow-2dp;
     }
   
   }
