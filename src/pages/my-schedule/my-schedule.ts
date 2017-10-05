@@ -1,3 +1,4 @@
+import { EventDataProvider } from './../../providers/event-data/event-data';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TodayPage } from '../my-schedule/days/today/today';
@@ -10,11 +11,13 @@ import { NextDaysPage } from '../my-schedule/days/next-days/next-days';
   templateUrl: 'my-schedule.html',
 })
 export class MySchedulePage {
+
   Today = TodayPage;
   Tomorrow = TomorrowPage;
   NextDays = NextDaysPage;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad MySchedulePage');
   }
