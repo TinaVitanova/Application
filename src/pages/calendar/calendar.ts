@@ -1,7 +1,9 @@
+import { MakeRoomPage } from './../make-room/make-room';
 import { NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { ReserveEventPage } from '../reserve-event/reserve-event';
 import { EventDataProvider } from '../../providers/event-data/event-data';
+
 import * as moment from 'moment';
 
 @Component({
@@ -14,6 +16,9 @@ export class CalendarPage {
   selectedDay = new Date();
   flagCalendar;
   ListOfRooms = [];
+  showRoom = this.EventData.getShowRoom();
+  
+
 
   calendar = {
       mode: 'month',
@@ -21,7 +26,7 @@ export class CalendarPage {
   }; 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
     this.loadEvents();
-    
+    console.log('JAS SUM VO CALENDAR !!!!!!!!!!!!!!!!!!! ' + this.showRoom);
     }
   onViewTitleChanged(title) {
       this.viewTitle = title;
@@ -77,10 +82,6 @@ console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end
     this.eventSource = this.createEvent();
     console.log('load event ' + this.eventSource);
       })
-}
-
-showRoom(){
-  
 }
 
 onEventSelected(event) {

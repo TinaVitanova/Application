@@ -12,6 +12,8 @@ export class UsernameGlobalProvider {
   public userIndex:any;
   public user;
   public Email;
+  public UsersData: {fullname: string, username: string, email: string, password: string , isAdmin: boolean};
+  public FullUsers = {};
 
   constructor(public storage: Storage) {
     console.log('Hello UsernameGlobal Provider');
@@ -43,6 +45,13 @@ export class UsernameGlobalProvider {
   }
   public getMyGlobalVar() {
       return this.user;
+  }
+
+  public SendUserData(value:string, value1:string, value2: string, value3: string, value4: boolean){
+    this.UsersData = {fullname: value, username: value1, email: value2, password: value3, isAdmin: value4}
+    console.log('u provider: '+ this.UsersData.fullname + ' '+ this.UsersData.username + ' '+ this.UsersData.email + ' '+ this.UsersData.password + ' '+ this.UsersData.isAdmin);
+    this.FullUsers = this.UsersData;
+    console.log('ja sum eden user: '+ this.FullUsers)
   }
 
 }

@@ -15,12 +15,13 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
   templateUrl: 'signup.html',
 })
 export class SignupPage {
-  checked;
   username: string;
+  isAdmin: boolean;
   new = {
+    fullname:"",
     password:"",
-    mail:"",
-    name:"",
+    email:"",
+    username:""
   };
   logFormSignUp(){
     console.log(this.new)
@@ -34,8 +35,36 @@ export class SignupPage {
   }
 
   CreateNewUser(){
-    this.UserGlobal.addNewUser(this.new.name);
-    this.UserGlobal.setEmail(this.new.mail);
+    
+
+    this.UserGlobal.SendUserData(this.new.fullname, this.new.username, this.new.email, this.new.password, this.isAdmin);
+    let alert = this.alertCtrl.create({
+      title: 'You have created the user: ',
+      subTitle: 'Fullname: ' + this.new.fullname + 
+                '<br>Username: ' + this.new.username + 
+                '<br>Email: ' + this.new.email + 
+                '<br>Password: ' + this.new.password + 
+                '<br>Is admin? '  + this.isAdmin,       
+     buttons:[
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Confirm',
+        role: 'confirm',
+        handler: data => {
+          this.UserGlobal.addNewUser(this.new.username);
+          this.UserGlobal.setEmail(this.new.email);
+          console.log('Created new user');
+        }
+      }
+     ]
+   });
+   alert.present();
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public UserGlobal: UsernameGlobalProvider) {
