@@ -21,7 +21,6 @@ export class ReserveEventPage {
   flag;
   event = { day: new Date(), startTime: new Date(), endTime: new Date(), allDay: false, title:""};
   minDate = new Date().toISOString();
-  preselectedDate = new Date();
   rooms:"";
   ListOfRooms = [];
 
@@ -46,25 +45,55 @@ export class ReserveEventPage {
     this.isReserved=true;
   }
   save(){
-    this.EventData.setStartTime(this.event.startTime);
-    this.EventData.setEndTime(this.event.endTime);
-    this.EventData.setTitle(this.event.title);
-    this.EventData.setRoom(this.rooms);
-    this.EventData.setDay(this.event.day);
     this.flag = this.EventData.getFlag();
-    if (this.flag == true)
-    this.navCtrl.pop();
-    else{
+
       let date = moment(this.event.day).format('Do MMMM YYYY');
       let start = this.event.startTime;
-       let end = this.event.endTime;
+      let end = this.event.endTime;
+      console.log(new Date() + '    rthsrh   ')
+      if (start==end || start == new Date()){
+        let alert = this.alertCtrl.create({
+          title: 'Error!',
+          message: 'You have not added a start and end time for your event',
+          buttons:["OK"]
+       });
+       alert.present();
+      }
+      else{
       let alert = this.alertCtrl.create({
         title: 'You have created an event: ' + this.event.title,
         message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+ this.rooms + '</div>',
-       buttons:['OK']
+        buttons:[
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Reserve',
+            role: 'confirm',
+            handler: data => {
+              this.EventData.setStartTime(this.event.startTime);
+              this.EventData.setEndTime(this.event.endTime);
+              this.EventData.setTitle(this.event.title);
+              this.EventData.setRoom(this.rooms);
+              this.EventData.setDay(this.event.day);
+              console.log('Created new event');
+              if (this.flag == true)
+                this.navCtrl.pop();
+                else
+                this.ionViewWillEnter();
+            }
+          }
+         ]
      });
      alert.present();
     }
+  }
+  ionViewWillEnter(){
+
   }
 
 }

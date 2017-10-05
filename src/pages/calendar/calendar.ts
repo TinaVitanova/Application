@@ -79,9 +79,8 @@ console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end
     this.eventSource = this.createEvent();
     console.log('load event ' + this.eventSource);
       })
-}
-
-onEventSelected(event) {
+  }
+  onEventSelected(event) {
    let date = moment(event.startTime).format('Do MMMM YYYY');
    let start = moment(event.startTime).format('HH:mm');
     let end = moment(event.endTime).format('HH:mm');
@@ -95,11 +94,13 @@ onEventSelected(event) {
     console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
 }
 
-
+ionViewDidEnter(){
+  this.loadEvents();
+}
   ionViewDidLoad(){    
     this.ListOfRooms.push(this.EventData.getRoomData());
-    
     this.showRoom = this.EventData.getShowRoom();
+    console.log('view za calendar')
   }
 
 }

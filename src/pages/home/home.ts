@@ -33,7 +33,9 @@ export class HomePage {
       this.navCtrl.setRoot(LoginPage);  
       }
     }
-
+    forgotPassword(){
+      
+    }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
     this.menuCtrl.enable(false, "userMenu");
