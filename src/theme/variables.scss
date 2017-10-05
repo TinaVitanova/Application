@@ -104,13 +104,13 @@ $list-md-border-color: transparent;
 
 
 @mixin gradient-bg{
-  background: rgba(212,253,235,1);
-  background: -moz-radial-gradient(center, ellipse cover, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(212,253,235,1)), color-stop(100%, rgba(36,199,220,1)));
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
-  background: -o-radial-gradient(center, ellipse cover, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
-  background: -ms-radial-gradient(center, ellipse cover, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
-  background: radial-gradient(ellipse at center, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
+  background: rgba(192,241,250,1);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(192,241,250,1) 0%, rgba(36,199,220,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(192,241,250,1)), color-stop(100%, rgba(36,199,220,1)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(192,241,250,1) 0%, rgba(36,199,220,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(192,241,250,1) 0%, rgba(36,199,220,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(192,241,250,1) 0%, rgba(36,199,220,1) 100%);
+  background: radial-gradient(ellipse at center, rgba(192,241,250,1) 0%, rgba(36,199,220,1) 100%);
 }
 
 @mixin gradient-cal{

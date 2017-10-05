@@ -1,5 +1,3 @@
-$label-md-text-color: white;
-$label-md-text-color-focused: white;
 
 page-home {
 
@@ -9,17 +7,16 @@ page-home {
       @include gradient-bg;
     }
 
-    ion-input  .text-input,
+    img{
+      width: 55%;
+      margin-top:10%;
+    }
+
     ion-input .text-input{
        color: white;
        border-bottom: 1px solid white;
        padding: 5% 0%;
      }
-
-    img{
-      width: 55%;
-      margin-top:10%;
-    }
 
     form{
 
