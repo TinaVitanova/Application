@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { ReservePage } from './reserve';
+import { NextDaysPage } from './next-days';
 
 @NgModule({
   declarations: [
-    ReservePage,
+    NextDaysPage,
   ],
   imports: [
-    IonicPageModule.forChild(ReservePage),
+    IonicPageModule.forChild(NextDaysPage),
   ],
 })
-export class ReservePageModule {}
+export class NextDaysPageModule {}

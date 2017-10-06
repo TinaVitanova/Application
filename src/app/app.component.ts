@@ -1,24 +1,24 @@
 import { MySchedulePage } from './../pages/my-schedule/my-schedule';
 import { MyProfilePage } from './../pages/my-profile/my-profile';
-import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ManageUsersPage } from '../pages/manage-users/manage-users';
 import { UsernameGlobalProvider } from '../providers/username-global/username-global';
 
 @Component({
   templateUrl: 'app.html',
+  
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
+  splash = true;
   rootPage:any = HomePage;
   pages1: Array<{title: string, component: any}>;
   pages2: Array<{title: string, component: any}>;
  
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public UserGlobal: UsernameGlobalProvider) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public UserGlobal: UsernameGlobalProvider) {
     this.initializeApp();
   
     // used for an example of ngFor and navigation
@@ -43,7 +43,10 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      console.log('1');
+      setTimeout(() => {
+        this.splash = false;
+      }, 4000);
     });
   }
 

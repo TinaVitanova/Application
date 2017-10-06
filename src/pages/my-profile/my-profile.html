@@ -16,6 +16,24 @@
 <ion-content padding>
 
     <form (ngSubmit)="logForm()">
+        <label class="uploader">
+                    <ion-icon name="person-add"></ion-icon>
+                    
+                        <img 
+                            [src]="imageSrc" 
+                            (load)="handleImageLoad()" 
+                            [class.loaded]="imageLoaded"/>
+                        
+                        <input type="file" name="file" accept="image/*"
+                            (change)="handleInputChange($event)">
+                </label>
+
+        <!-- <div text-center>
+                <input type="file" id="uploadPicture" />
+                <label for="uploadPicture">
+                    <ion-icon name="person"></ion-icon>
+                </label>
+            </div> -->
         <ion-list>
             <ion-item>
                 <ion-label floating>New Username</ion-label>
@@ -41,5 +59,4 @@
     <ion-buttons text-center>
         <button ion-button outline round (click)="Change()">Change</button>
     </ion-buttons>
-
 </ion-content>

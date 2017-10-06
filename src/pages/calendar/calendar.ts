@@ -2,6 +2,7 @@ import { NavController, NavParams, AlertController, MenuController } from 'ionic
 import { Component } from '@angular/core';
 import { ReserveEventPage } from '../reserve-event/reserve-event';
 import { EventDataProvider } from '../../providers/event-data/event-data';
+
 import * as moment from 'moment';
 
 @Component({
@@ -12,11 +13,17 @@ export class CalendarPage {
   eventSource = [];
   viewTitle: string;
   selectedDay = new Date();
-
+  flagCalendar;
+  ListOfRooms = [];
+  showRoom = this.EventData.getShowRoom();
+  
   calendar = {
       mode: 'month',
       currentDate: this.selectedDay
   }; 
+  showRooms(){
+    return this.showRoom;
+  }
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
     this.loadEvents();
     }
@@ -29,6 +36,8 @@ export class CalendarPage {
         (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
   }
     addEvent(){
+      this.flagCalendar = true;  
+      this.EventData.setFlag(this.flagCalendar);
     this.navCtrl.push(ReserveEventPage);
   }
 
@@ -44,14 +53,14 @@ export class CalendarPage {
   onRangeChanged(ev) {
     console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
-
   
   createEvent (){
-     var startDate = new Date(this.EventData.getStartTime());
-      var endDate = new Date(this.EventData.getEndTime());
+    var day = new Date(this.EventData.getDay());
+     var startDate = moment(this.EventData.getStartTime(),"hh:mm").toDate();
+      var endDate = moment(this.EventData.getEndTime(),"hh:mm").toDate();
       var events = [];
-      var startTime = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes());
-      var endTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(), endDate.getHours(), endDate.getMinutes());
+      var startTime = new Date(day.getFullYear(), day.getMonth(), day.getDate(), startDate.getHours(), startDate.getMinutes());
+      var endTime = new Date(day.getFullYear(), day.getMonth(), day.getDate(), endDate.getHours(), endDate.getMinutes());
 console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end time  ')
       
       events.push({
@@ -60,23 +69,27 @@ console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end
             endTime: endTime,
             allday: false
         });
+        this.EventData.setEvents(events);
         return events;
+
     }
     
   loadEvents(){
       setTimeout(()=>{
     this.eventSource = this.createEvent();
+    this.EventData.setLoadEvents(this.eventSource);
     console.log('load event ' + this.eventSource);
       })
 }
 
 onEventSelected(event) {
-   let start = moment(event.startTime).format('LLLL');
-    let end = moment(event.endTime).format('LLLL');
-
+   let date = moment(event.startTime).format('Do MMMM YYYY');
+   let start = moment(event.startTime).format('HH:mm');
+    let end = moment(event.endTime).format('HH:mm');
+ 
     let alert = this.alertCtrl.create({
        title: 'Event: ' + event.title,
-       message: 'From: '+start+'<br>To: '+end+'<br> Room:'+'</div>',
+       message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+this.EventData.getRoom() + '</div>',
       buttons:['OK']
     });
     alert.present();
@@ -84,7 +97,10 @@ onEventSelected(event) {
 }
 
 
-  ionViewDidLoad(){      
+  ionViewDidLoad(){    
+    this.ListOfRooms.push(this.EventData.getRoomData());
+    
+    this.showRoom = this.EventData.getShowRoom();
   }
 
 }

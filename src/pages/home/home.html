@@ -1,30 +1,25 @@
-<!-- splash screen start -->
-<div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
-    <div class="flb">
-        <div class="Aligner-item Aligner-item--top"></div>
-        <img src="../../assets/logotest.png" style="width:150px;">
-        <div class="Aligner-item Aligner-item--bottom"></div>
-    </div>
-</div>
-<!-- splash screen end -->
+
 
 <ion-content padding>
-    <img src="../../assets/logotest.png" alt="">
-    <form (ngSubmit)="logForm()">
-        <ion-list>
-            <ion-item class="custom-input">
-                <ion-label floating color="secondary">
-                    <ion-icon ios="ios-person" md="md-person"></ion-icon> &nbsp; Username</ion-label>
-                <ion-input type="text" [(ngModel)]="todo.username" name="username"></ion-input>
+    <div text-center>
+            <img src="../../assets/logo02.png">
+    </div>
+    <form (ngSubmit)="logForm()" text-center>
+        <ion-list style="margin-top:30%; margin-bottom:5%;">
+            <ion-item class="custom-input"> 
+                <ion-label floating text-center>
+                    <ion-icon ios="ios-person" md="md-person"></ion-icon> &nbsp; Username </ion-label>
+                    <ion-input text-center type="text" [(ngModel)]="todo.username" name="username"></ion-input>                
             </ion-item>
             <ion-item class="custom-input">
-                <ion-label floating color="secondary">
-                    <ion-icon ios="ios-lock" md="md-lock"></ion-icon> &nbsp; Password</ion-label>
-                <ion-input type="password" [(ngModel)]="todo.password" name="password"></ion-input>
+                <ion-label floating text-center>
+                    <ion-icon ios="ios-lock" md="md-lock"></ion-icon> &nbsp; Password </ion-label>
+                    <ion-input text-center style="border:none;" type="password" [(ngModel)]="todo.password" name="password"></ion-input>                
             </ion-item>
         </ion-list>
     </form>
     <ion-buttons text-center>
-        <button class="login-btn" (click)="LoginNav()">LOGIN</button>
+        <button class="login-btn"(click)="LoginNav()">LOGIN</button>
     </ion-buttons>
+    <p text-center><a href="">Forgot password?</a></p>
 </ion-content>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
-import { LoginPage } from '../login/login';
+import { DashboardPage } from '../dashboard/dashboard';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 
 @Component({
@@ -8,30 +8,29 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
   templateUrl: 'home.html',
 })
 export class HomePage {
-    splash = true;
-    login = LoginPage;
 
+    UsernamesList = [];
+    flagUser;
     public todo = {
       username:"",
       password:"",
     };
 
-    // splash screen onload func
     ionViewDidLoad(){
-      setTimeout(() => {
-        this.splash = false;
-      }, 4000);
     }
-    // splash screen end
 
     logForm(){
       console.log(this.todo)      
     }
 
     LoginNav(){
+      
+      this.UsernamesList = this.UserGlobal.getUsernames();
       this.UserGlobal.setMyGlobalVar(this.todo.username);
-      if (this.todo.username=='test' || this.todo.username=='superadmin'|| this.todo.username=='admin'){
-      this.navCtrl.setRoot(LoginPage);  
+      this.flagUser = this.UsernamesList.indexOf(this.todo.username);
+      console.log('UsernamesList: ' + this.UsernamesList + 'za dali ja dobiva vrednosta: ' + this.flagUser)
+      if ( this.flagUser != -1 ){
+      this.navCtrl.setRoot(DashboardPage);  
       }
     }
 

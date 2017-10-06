@@ -16,7 +16,6 @@ $app-direction: ltr;
 
 @import "ionic.globals";
 
-
 ::-webkit-scrollbar {
   display: none;
 }
@@ -46,69 +45,61 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #92D1E4,
-  secondary:  #588AA0,
-  secondary-light: #96BFD1,
-  gradient-green:     #77E6CF,
+  primary:    #24C6DC,
+  secondary:  #6280B7,
+  secondary-hover: #7194C6,
+  bg-gray: #f7f7f7,
+  text-color: #C7C7C7,
   light:      #f4f4f4,
   dark:       #292929
 );
 
 
-// toolbar
-$toolbar-background: white;
-ion-title{
-  .toolbar-title,
-  .toolbar-title-ios,
-  .toolbar-title-md{
-    color: rgba(black, .25);
-  }
-  .toolbar-title-md{
-    font-size:120%; 
-  }
+button{
+  cursor: pointer;
 }
 
 // default highlight of input fields overwritten
 $text-input-md-highlight-color-invalid:  map-get($colors, danger);
-$text-input-md-highlight-color-valid:  map-get($colors, secondary-light);
+$text-input-md-highlight-color-valid:  none;
 $text-input-md-show-invalid-highlight:  map-get($colors, danger);
-$text-input-md-highlight-color:  map-get($colors, secondary-light);
-$text-input-md-show-valid-highlight:  map-get($colors, secondary-light);
-$label-md-text-color-focused: map-get($colors, secondary-light);
-$label-md-margin-top: 5px;
-$label-md-margin-bottom: 5px;
-$label-ios-margin-bottom: 5px;
-$label-ios-margin-top: 5px;
+$text-input-md-highlight-color:  none;
+$text-input-md-show-valid-highlight:  none;
+$label-md-text-color:	none;
+$label-md-text-color-focused: none;
+$list-ios-border-color: transparent;
+$list-md-border-color: transparent;
+$input-wp-border-color:none;
+$text-input-wp-highlight-color-valid: none;
+$text-input-wp-highlight-color:  none;
+$label-wp-text-color:	none;
+$label-wp-text-color-focused: none;
 
-//custom gradients
+$toolbar-ios-title-font-weight: 500;
 
-@mixin gradient-main{
-  background-color: #74ebd5;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #ACB6E5, #74ebd5);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #ACB6E5, #74ebd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.toolbar-title{
+  text-transform: uppercase;
+  text-align: center;
 }
 
-@mixin gradient-home{
-  background: rgba(201, 214, 255, 0.3);  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, rgba(216, 231, 231, 0.5), rgba(183, 243, 253, 0.5));  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, rgba(216, 231, 231, 0.5), rgba(183, 243, 253, 0.5)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.toolbar-title-md,
+.toolbar-title-wp{
+  margin-right: 15%;
 }
-// background: #085078;  /* fallback for old browsers */
-// background: -webkit-linear-gradient(to right, #85D8CE, #085078);  /* Chrome 10-25, Safari 5.1-6 */
-// background: linear-gradient(to right, #85D8CE, #085078); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+
+//custom gradient
 
 @mixin gradient-bg{
-  background: #C9D6FF;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: rgba(181,244,255,1);
+  background: -moz-linear-gradient(top, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(181,244,255,1)), color-stop(50%, rgba(45,209,227,1)), color-stop(99%, rgba(98,230,245,1)), color-stop(100%, rgba(98,230,245,1)));
+  background: -webkit-linear-gradient(top, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
+  background: -o-linear-gradient(top, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
+  background: -ms-linear-gradient(top, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
+  background: linear-gradient(to bottom, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
 }
 
-@mixin gradient-cal{
-   background-color: #77E6CF;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #BCC6EC, #8AF5DE);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #BCC6EC, #8AF5DE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
 
 //basic transitions
 
@@ -119,30 +110,28 @@ $label-ios-margin-top: 5px;
   transition: all 250ms;
 }
 
-@mixin shadow-2dp{
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.2);
 
-  -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+// @mixin white-shadow{
+//   box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
+//   -webkit-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
+//   -moz-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
+//   -ms-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
+// }
 
-  -ms-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+//button style
 
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+@mixin button-style{
+    border-radius: 7px;
+    border: 2px solid map-get($colors, secondary);
+    color: map-get($colors, secondary);
+    background: white;
+    &:hover,
+    &:active{
+        background: map-get($colors, secondary);
+        color: white;
+        border: 2px solid white;
+        @include basic-transition;
 }
-
-@mixin shadow-8dp{
-   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),                   0 3px 14px 2px rgba(0, 0, 0, 0.12),                   0 5px 5px -3px rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
-  -moz-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
-  -ms-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
-  
 }
 
 // App iOS Variables
@@ -157,14 +146,27 @@ $label-ios-margin-top: 5px;
 // Material Design only Sass variables can go here
 
 
+@mixin shadow-2dp{
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  -ms-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+@mixin shadow-8dp{
+   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),                   0 3px 14px 2px rgba(0, 0, 0, 0.12),                   0 5px 5px -3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  -ms-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  
+}
+
 
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
 
-
-//material shadows
 
 
 // App Theme
