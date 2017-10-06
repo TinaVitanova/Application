@@ -1,40 +1,40 @@
-<ion-header>
 
-    <ion-navbar>
-        <ion-title text-center>Hello {{username}}</ion-title>
+<ion-header no-border>
+    <ion-navbar color="primary">
+        <ion-title color="light">Hello {{username}}</ion-title>
         <button ion-button menuToggle left>
                 <ion-icon name="menu"></ion-icon>
         </button>
     </ion-navbar>
-
 </ion-header>
 
 <ion-content padding scrollbar-y="false">
     <ion-buttons class="main-buttons" text-center>
         <div>
             <button large ion-button (click)=ReserveNav()>
-                    <ion-icon ios="ios-book" md="md-book"></ion-icon>RESERVE
+                <ion-icon name="book"></ion-icon><span>RESERVE</span>
             </button>
         </div>
 
         <div>
             <button large ion-button (click)=CalendarNav()>
-                <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>SCHEDULE
+                <ion-icon name="calendar"></ion-icon><span style="margin-left:20%;">CALENDAR</span>
             </button>
         </div>
         <ion-grid [style.display]="adminBtn ? 'flex': 'none'">
             <ion-row>
                 <ion-col>
-                    <button large ion-button class="btn-3d" (click)=CreateAccNav() id="admin-btn01">
-                            <ion-icon ios="ios-person-add" md="md-person-add"></ion-icon>CREATE NEW USER
+                    <button large ion-button id="createAcc" class="admin-btn" (click)=CreateAccNav()>
+                            <ion-icon name="person-add"></ion-icon><span>CREATE<br /> ACCOUNT</span>
+
                     </button>
                 </ion-col>
             </ion-row>
 
             <ion-row>
                 <ion-col>
-                    <button large ion-button class="btn-3d" (click)=MakeRoomNav() id="admin-btn02">
-                        <ion-icon ios="ios-cube" md="md-cube"></ion-icon>CREATE NEW ROOM
+                    <button large ion-button class="admin-btn" (click)=MakeRoomNav()>
+                        <ion-icon name="cube"></ion-icon><span style="margin-left:20%;">MAKE ROOM</span>
                     </button>
                 </ion-col>
             </ion-row>

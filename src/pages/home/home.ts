@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
-import { LoginPage } from '../login/login';
+import { DashboardPage } from '../dashboard/dashboard';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 
 @Component({
@@ -30,7 +30,7 @@ export class HomePage {
       this.flagUser = this.UsernamesList.indexOf(this.todo.username);
       console.log('UsernamesList: ' + this.UsernamesList + 'za dali ja dobiva vrednosta: ' + this.flagUser)
       if ( this.flagUser != -1 ){
-      this.navCtrl.setRoot(LoginPage);  
+      this.navCtrl.setRoot(DashboardPage);  
       }
     }
 

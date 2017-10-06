@@ -77,6 +77,7 @@ console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end
   loadEvents(){
       setTimeout(()=>{
     this.eventSource = this.createEvent();
+    this.EventData.setLoadEvents(this.eventSource);
     console.log('load event ' + this.eventSource);
       })
 }

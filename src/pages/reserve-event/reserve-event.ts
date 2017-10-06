@@ -24,16 +24,27 @@ export class ReserveEventPage {
   preselectedDate = new Date();
   rooms:"";
   ListOfRooms = [];
+   
+  showRoom = this.EventData.getShowRoom();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
     
     this.flag = this.EventData.getFlag();
   }
+
+  loadEvents(){  
+  this.EventData.getLoadEvents();
+  }
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReserveEventPage');
-    
+    this.showRoom = this.EventData.getShowRoom();
+
     this.ListOfRooms.push(this.EventData.getRoomData());
+  }
+
+  showRooms(){
+    return this.showRoom;
   }
 
   shouldHide(){

@@ -9,10 +9,11 @@ import { UsernameGlobalProvider } from '../providers/username-global/username-gl
 
 @Component({
   templateUrl: 'app.html',
+  
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  splash = true
+  splash = true;
   rootPage:any = HomePage;
   pages1: Array<{title: string, component: any}>;
   pages2: Array<{title: string, component: any}>;
