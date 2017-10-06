@@ -19,10 +19,10 @@ export class NextDaysPage {
     let date = moment(events.startTime).format('DD MM YYYY');
     let nextDay =  moment().add(1,'days').format('DD MM YYYY');
     let dateToday = moment().format('DD MM YYYY');
-
+    let otherDays = moment().add(5,'days').format('DD MM YYYY');
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
-    if (date == nextDay || date == dateToday)
+    if (date == nextDay || date == dateToday && date<=otherDays)
       return false;
     else
        return true;
