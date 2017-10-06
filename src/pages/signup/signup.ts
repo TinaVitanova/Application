@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
+
+import {FileUploaderComponent} from 'file-uploader-component/angular';
 /**
  * Generated class for the SignupPage page.
  *
@@ -13,6 +15,7 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
+  //directives: [FileUploaderComponent]
 })
 export class SignupPage {
   username: string;
@@ -23,6 +26,11 @@ export class SignupPage {
     email:"",
     username:""
   };
+
+  loaded: boolean = false;
+  imageLoaded: boolean = false;
+  imageSrc: string = '';
+
   logFormSignUp(){
     console.log(this.new)
   }
@@ -72,5 +80,32 @@ export class SignupPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
+
+  handleImageLoad() {
+    this.imageLoaded = true;
+}
+
+handleInputChange(e) {
+    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+
+    var pattern = /image-*/;
+    var reader = new FileReader();
+
+    if (!file.type.match(pattern)) {
+        alert('invalid format');
+        return;
+    }
+
+    this.loaded = false;
+
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
+}
+
+_handleReaderLoaded(e) {
+    var reader = e.target;
+    this.imageSrc = reader.result;
+    this.loaded = true;
+}
 
 }
