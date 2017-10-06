@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import * as moment from 'moment';
+// import * as moment from 'moment';
 
 /*
   Generated class for the EventDataProvider provider.

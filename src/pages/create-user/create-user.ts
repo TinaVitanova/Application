@@ -3,14 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 
-import {FileUploaderComponent} from 'file-uploader-component/angular';
-/**
- * Generated class for the SignupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-create-user',
