@@ -1,8 +1,9 @@
 import { EventDataProvider } from './../../providers/event-data/event-data';
-import { ReserveEventPage } from './../reserve-event/reserve-event';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import * as moment from 'moment';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TodayPage } from '../my-schedule/days/today/today';
+import { TomorrowPage } from '../my-schedule/days/tomorrow/tomorrow';
+import { NextDaysPage } from '../my-schedule/days/next-days/next-days';
 
 @IonicPage()
 @Component({
@@ -11,30 +12,14 @@ import * as moment from 'moment';
 })
 export class MySchedulePage {
 
-  MyEvents=this.EventData.getEvents();
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
+  Today = TodayPage;
+  Tomorrow = TomorrowPage;
+  NextDays = NextDaysPage;
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-  
-
 
   ionViewDidLoad() {
-    
-    console.log('Mine Eventsss '+ this.MyEvents[0].title + 'vreme: '+ this.MyEvents[0].startTime + ' vreme dooo: '+ this.MyEvents[0].endTime);
     console.log('ionViewDidLoad MySchedulePage');
-  }
-  AlertForEvent(events){
-    console.log('ova e ona events: '+ events);
-    let date = moment(events.startTime).format('Do MMMM YYYY');
-    let start = moment(events.startTime).format('HH:mm');
-     let end = moment(events.endTime).format('HH:mm');
-  
-     let alert = this.alertCtrl.create({
-        title: 'Event: ' + events.title,
-        message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+this.EventData.getRoom() + '</div>',
-       buttons:['OK']
-     });
-     alert.present();
-
   }
 
 }
