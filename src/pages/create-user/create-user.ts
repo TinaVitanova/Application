@@ -13,11 +13,11 @@ import {FileUploaderComponent} from 'file-uploader-component/angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-signup',
-  templateUrl: 'signup.html',
+  selector: 'page-create-user',
+  templateUrl: 'create-user.html',
   //directives: [FileUploaderComponent]
 })
-export class SignupPage {
+export class CreateUserPage {
   username: string;
   isAdmin: boolean;
   new = {
@@ -78,7 +78,7 @@ export class SignupPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
+    console.log('ionViewDidLoad CreateUserPage');
   }
 
   handleImageLoad() {

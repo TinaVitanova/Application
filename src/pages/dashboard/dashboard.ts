@@ -3,16 +3,16 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 import { ReserveEventPage } from '../reserve-event/reserve-event';
 import { CalendarPage } from '../calendar/calendar';
 import { MakeRoomPage } from '../make-room/make-room';
-import { SignupPage } from '../signup/signup';
+import { CreateUserPage } from '../create-user/create-user';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-dashboard',
+  templateUrl: 'dashboard.html',
 })
-export class LoginPage {
+export class DashboardPage {
   calendarpage=CalendarPage;
   username;
   adminBtn = false;
@@ -34,7 +34,7 @@ export class LoginPage {
   }
 
   CreateAccNav(){
-    this.navCtrl.push(SignupPage, {param2: this.username})
+    this.navCtrl.push(CreateUserPage, {param2: this.username})
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
