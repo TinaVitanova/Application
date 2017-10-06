@@ -59,13 +59,13 @@ page-calendar {
 
     table[_ngcontent-c1]{
         // padding: 10px 0px!important;
+        line-height: 1.7em;
         thead[_ngcontent-c1]{
             background: map-get($colors, primary);
             color: white;
             border: none;
             text-transform: uppercase;
             font-size: 97%;
-            line-height: 1.7em;
 
             th[_ngcontent-c1]{
                 border:none!important;
@@ -76,29 +76,23 @@ page-calendar {
             border:none!important;
         }
 
-        tr[_ngcontent-c1]{
-            margin: 2%!important;
-        }
+        // tr[_ngcontent-c1]{
+        //     margin: 2%!important;
+        // }
 
         tbody[_ngcontent-c1]{
             padding: 10px;
-            line-height: 1.5em;
         }
     }
 
     .monthview-datetable[_ngcontent-c1]{
         color: map-get($colors, primary);
         box-shadow: none;
-
     }
 
     .text-muted[_ngcontent-c1]{
         color: rgba(36, 198, 220, .5);
     }
-
-    // .ng-reflect-ng-class{
-    //     background: black;
-    // }
 
     .monthview-datetable[_ngcontent-c1] td:hover{
         background: rgba(36, 198, 220, .5);
@@ -141,13 +135,13 @@ page-calendar {
     }
 
     ion-list[_ngcontent-c0]{
-        border: 2px solid map-get($colors, secondary);
         margin-top: 8%;
         
         .item-ios, .item-md{
-            background: rgba(white, 0.45);
-            color: rgba(77, 150, 165, 0.8);
+            border: 2px solid map-get($colors, text-color);
+            color: map-get($colors, secondary);
             text-transform: uppercase;
+            border-radius: 4px;
             
             .no-events-label{
                 color: map-get($colors, text-color);
@@ -156,9 +150,7 @@ page-calendar {
         }
 
         .item-block:last-child, .list-ios  .item-wrapper:last-child .item-block{
-            border-top:none;
-            border-bottom:none;
-            border: 1px solid rgba(white, 0.7);
+            border: 2px solid map-get($colors, secondary);
         }
     }
 }
