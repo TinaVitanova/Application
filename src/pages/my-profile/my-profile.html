@@ -14,45 +14,31 @@
 
 
 <ion-content padding>
-    <ion-card [hidden]="flagChange">
-      <!-- we will cross the bridge of adding and changing pictures when we get to it <img src="PHOTOOOOS"/> -->
-        <ion-card-content>
-                <ion-card-title>
-                    {{Username}} <br> {{email}}
-                </ion-card-title>
-        <ion-buttons text-center>
-                <button ion-button outline round (click)="OpenChange()">Change</button>
-        </ion-buttons>
-        </ion-card-content>
-    </ion-card>
-    <ion-card [hidden]="!flagChange">
-    <ion-card-content>
-        <form (ngSubmit)="logForm()">
-            <ion-list>
-                <ion-item>
-                    <ion-label floating>New Username</ion-label>
-                    <ion-input type="text" [(ngModel)]="todo.newusername" name="username"></ion-input>
-                </ion-item>
 
-                <ion-item>
-                    <ion-label floating>New Email</ion-label>
-                    <ion-input type="email" [(ngModel)]="todo.newemail" name="newemail"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                    <ion-label floating>New Password</ion-label>
-                    <ion-input type="password" [(ngModel)]="todo.newpassword" name="newpassword"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                    <ion-label floating>Old Password</ion-label>
-                    <ion-input type="password" [(ngModel)]="todo.oldpassword" name="oldpassword"></ion-input>
-                </ion-item>
-            </ion-list>
-        </form>
-        <ion-buttons text-center>
-            <button ion-button outline round (click)="Change()">Change</button>
-        </ion-buttons>
-    </ion-card-content>
-    </ion-card>
+                  <form (ngSubmit)="logForm()">
+                      <ion-list>
+                          <ion-item>
+                              <ion-label floating>New Username</ion-label>
+                              <ion-input type="text" [(ngModel)]="todo.newusername" name="username"></ion-input>
+                          </ion-item>
+          
+                          <ion-item>
+                              <ion-label floating>New Email</ion-label>
+                              <ion-input type="email" [(ngModel)]="todo.newemail" name="newemail"></ion-input>
+                          </ion-item>
+          
+                          <ion-item>
+                              <ion-label floating>New Password</ion-label>
+                              <ion-input type="password" [(ngModel)]="todo.newpassword" name="newpassword"></ion-input>
+                          </ion-item>
+          
+                          <ion-item>
+                              <ion-label floating>Old Password</ion-label>
+                              <ion-input type="password" [(ngModel)]="todo.oldpassword" name="oldpassword"></ion-input>
+                          </ion-item>
+                      </ion-list>
+                  </form>
+                  <ion-buttons text-center>
+                      <button ion-button outline round (click)="Change()">Change</button>
+                  </ion-buttons>
 </ion-content>

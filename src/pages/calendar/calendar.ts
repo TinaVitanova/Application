@@ -2,6 +2,7 @@ import { NavController, NavParams, AlertController, MenuController } from 'ionic
 import { Component } from '@angular/core';
 import { ReserveEventPage } from '../reserve-event/reserve-event';
 import { EventDataProvider } from '../../providers/event-data/event-data';
+
 import * as moment from 'moment';
 
 @Component({
@@ -14,14 +15,17 @@ export class CalendarPage {
   selectedDay = new Date();
   flagCalendar;
   ListOfRooms = [];
-
+  showRoom = this.EventData.getShowRoom();
+  
   calendar = {
       mode: 'month',
       currentDate: this.selectedDay
   }; 
+  showRooms(){
+    return this.showRoom;
+  }
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
     this.loadEvents();
-    
     }
   onViewTitleChanged(title) {
       this.viewTitle = title;
@@ -55,8 +59,6 @@ export class CalendarPage {
      var startDate = moment(this.EventData.getStartTime(),"hh:mm").toDate();
       var endDate = moment(this.EventData.getEndTime(),"hh:mm").toDate();
       var events = [];
-      console.log('ova e bez toa new Date day: '+ this.EventData.getDay()+ ' sledecho e startDate: '+ this.EventData.getStartTime()+ ' and lastly endDate: '+ this.EventData.getEndTime());
-      console.log('ajmooo day: '+ day+ ' sledecho e startDate: '+ startDate+ ' and lastly endDate: '+ endDate);
       var startTime = new Date(day.getFullYear(), day.getMonth(), day.getDate(), startDate.getHours(), startDate.getMinutes());
       var endTime = new Date(day.getFullYear(), day.getMonth(), day.getDate(), endDate.getHours(), endDate.getMinutes());
 console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end time  ')
@@ -69,6 +71,7 @@ console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end
         });
         this.EventData.setEvents(events);
         return events;
+
     }
     
   loadEvents(){
@@ -77,7 +80,6 @@ console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end
     console.log('load event ' + this.eventSource);
       })
 }
-
 
 onEventSelected(event) {
    let date = moment(event.startTime).format('Do MMMM YYYY');
@@ -96,6 +98,8 @@ onEventSelected(event) {
 
   ionViewDidLoad(){    
     this.ListOfRooms.push(this.EventData.getRoomData());
+    
+    this.showRoom = this.EventData.getShowRoom();
   }
 
 }

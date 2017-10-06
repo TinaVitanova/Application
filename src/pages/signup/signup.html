@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>Create a New User</ion-title>
+        <ion-title>Create New User</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -15,16 +15,40 @@
 <ion-content padding>
 
     <form (ngSubmit)="logFormSignUp()">
+
+        <label class="uploader">
+                    <i class="icon icon-upload"></i>
+                
+                    <img 
+                        [src]="imageSrc" 
+                        (load)="handleImageLoad()" 
+                        [class.loaded]="imageLoaded"/>
+                    
+                    <input type="file" name="file" accept="image/*"
+                        (change)="handleInputChange($event)">
+            </label>
+
+        <!-- <div text-center>
+            <input type="file" id="uploadPicture" />
+            <label for="uploadPicture">
+                <ion-icon name="person"></ion-icon>
+            </label>
+        </div> -->
         <ion-list>
 
             <ion-item>
-                <ion-label floating>Name</ion-label>
-                <ion-input type="text" [(ngModel)]="new.name" name="name"></ion-input>
+                <ion-label floating>Full Name</ion-label>
+                <ion-input type="text" [(ngModel)]="new.fullname" name="fullname"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Username</ion-label>
+                <ion-input type="text" [(ngModel)]="new.username" name="username"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label floating>E-mail</ion-label>
-                <ion-input type="mail" [(ngModel)]="new.mail" name="mail"></ion-input>
+                <ion-input type="mail" [(ngModel)]="new.email" name="email"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -34,11 +58,11 @@
 
             <ion-item [hidden]="shouldHide()">
                 <ion-label>Create Admin</ion-label>
-                <ion-checkbox [(ngModel)]="checked" name=checked></ion-checkbox>
+                <ion-checkbox [(ngModel)]="isAdmin" name=checked></ion-checkbox>
             </ion-item>
 
             <ion-buttons text-center>
-                <button style="margin-top:4%;" large ion-button round outline (click)="CreateNewUser()">Create Account</button>
+                <button style="margin-top:4%;" large ion-button round outline (click)="CreateNewUser()">Create User</button>
             </ion-buttons>
 
         </ion-list>

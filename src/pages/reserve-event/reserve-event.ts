@@ -3,6 +3,7 @@ import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angu
 import * as moment from 'moment';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 
+
 /**
  * Generated class for the ReserveEventPage page.
  *
@@ -23,8 +24,9 @@ export class ReserveEventPage {
   preselectedDate = new Date();
   rooms:"";
   ListOfRooms = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
-  
+    
     this.flag = this.EventData.getFlag();
   }
   
