@@ -7,4 +7,11 @@ page-manage-users {
     .list-ios  .item-block:last-child{
         border-bottom: none;
     }
+
+    .searchbar-ios .searchbar-left-aligned .searchbar-input{
+        border: none!important;
+        background: map-get($colors, secondary);
+        color: white;
+        border-radius: 5px;
+    }
 }
