@@ -17,6 +17,12 @@ export class MyProfilePage {
     newpassword:"",
     newemail:""
   };
+  
+  
+  loaded: boolean = false;
+  imageLoaded: boolean = false;
+  imageSrc: string = '';
+
 
   Change(){
     this.UserGlobal.ChangeUser(this.todo);
@@ -31,5 +37,32 @@ export class MyProfilePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyProfilePage');
   }
+
+  handleImageLoad() {
+    this.imageLoaded = true;
+}
+
+handleInputChange(e) {
+    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+
+    var pattern = /image-*/;
+    var reader = new FileReader();
+
+    if (!file.type.match(pattern)) {
+        alert('invalid format');
+        return;
+    }
+
+    this.loaded = false;
+
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
+}
+
+_handleReaderLoaded(e) {
+    var reader = e.target;
+    this.imageSrc = reader.result;
+    this.loaded = true;
+}
 
 }
