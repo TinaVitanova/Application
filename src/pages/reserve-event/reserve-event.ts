@@ -19,19 +19,26 @@ import { EventDataProvider } from '../../providers/event-data/event-data';
 export class ReserveEventPage {
   isReserved: boolean;
   flag;
-  event = { day: new Date(), startTime: new Date(), endTime: new Date(), allDay: false, title:""};
-  minDate = new Date().toISOString();
+  public title;
+  public endTime;
+  public startTime;
+  public day;
+  public minDate = moment().utc().format('YYYY-MM-DD').toString();
+  public maxDate = moment().utc().add(30,'y').format('YYYY').toString();
+
   rooms:"";
   ListOfRooms = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
-    
+    console.log ('initial event start time: ' + this.startTime + ' initial end time: ' + this.endTime + ' initial date: ' + this.day)
     this.flag = this.EventData.getFlag();
+  
   }
+
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReserveEventPage');
-    
+    this.day = moment().toISOString();
     this.ListOfRooms.push(this.EventData.getRoomData());
   }
 
@@ -47,9 +54,9 @@ export class ReserveEventPage {
   save(){
     this.flag = this.EventData.getFlag();
 
-      let date = moment(this.event.day).format('Do MMMM YYYY');
-      let start = this.event.startTime;
-      let end = this.event.endTime;
+      let date = moment(this.day).format('Do MMMM YYYY');
+      let start = this.startTime;
+      let end = this.endTime;
       console.log(new Date() + '    rthsrh   ')
       if (start==end || start == new Date()){
         let alert = this.alertCtrl.create({
@@ -61,7 +68,7 @@ export class ReserveEventPage {
       }
       else{
       let alert = this.alertCtrl.create({
-        title: 'You have created an event: ' + this.event.title,
+        title: 'You have created an event: ' + this.title,
         message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+ this.rooms + '</div>',
         buttons:[
           {
@@ -75,11 +82,11 @@ export class ReserveEventPage {
             text: 'Reserve',
             role: 'confirm',
             handler: data => {
-              this.EventData.setStartTime(this.event.startTime);
-              this.EventData.setEndTime(this.event.endTime);
-              this.EventData.setTitle(this.event.title);
+              this.EventData.setStartTime(this.startTime);
+              this.EventData.setEndTime(this.endTime);
+              this.EventData.setTitle(this.title);
               this.EventData.setRoom(this.rooms);
-              this.EventData.setDay(this.event.day);
+              this.EventData.setDay(this.day);
               console.log('Created new event');
               if (this.flag == true)
                 this.navCtrl.pop();
