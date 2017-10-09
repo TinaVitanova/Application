@@ -51,7 +51,16 @@ $colors: (
   bg-gray: #f7f7f7,
   text-color: #C7C7C7,
   light:      #f4f4f4,
-  dark:       #292929
+  dark:       #292929,
+  make-room : (
+    base: #fff,
+    contrast: #24c6dc,
+  ),
+  create-users : (
+    base: #fff,
+    contrast: #6280B7,
+  )
+
 );
 
 
@@ -132,6 +141,21 @@ $toolbar-ios-title-font-weight: 500;
         border: 2px solid white;
         @include basic-transition;
 }
+}
+
+@mixin create-btn{
+  width: 80%;
+  font-size: 130%;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  &:hover,
+  &:active{
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      @include basic-transition;
+  }
 }
 
 // App iOS Variables

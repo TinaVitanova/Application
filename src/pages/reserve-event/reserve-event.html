@@ -8,20 +8,21 @@
 <ion-content padding>
     <ion-item>
         <ion-label>Title</ion-label>
-        <ion-input type="text" [(ngModel)]="event.title" text-right></ion-input>
+        <ion-input type="text" placeholder="Title" [(ngModel)]="title"></ion-input>
+
     </ion-item>
 
     <ion-item>
         <ion-label>Day</ion-label>
-        <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="event.day" [min]="minDate"></ion-datetime>
+        <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="day" [max]="maxDate" [min]="minDate"></ion-datetime>
     </ion-item>
     <ion-item>
         <ion-label>Start</ion-label>
-        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,15,30,45" [(ngModel)]="startTime" initialValue="00:00"></ion-datetime>
     </ion-item>
     <ion-item>
         <ion-label>End</ion-label>
-        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,15,30,45" [(ngModel)]="endTime" initialValue="00:00"></ion-datetime>
     </ion-item>
 
     <ion-buttons text-center id="find-room">

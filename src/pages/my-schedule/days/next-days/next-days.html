@@ -1,9 +1,3 @@
-<!--
-  Generated template for the NextDaysPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -14,5 +8,9 @@
 
 
 <ion-content padding>
-
+    <ion-list>
+        <button menuClose ion-item *ngFor="let events of MyEvents" [hidden]="!IsDate(events)" (click)="AlertForEvent(events)">
+            {{events.title}} - {{StartTime}}:{{EndTime}}
+        </button>
+    </ion-list>
 </ion-content>
