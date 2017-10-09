@@ -1,5 +1,10 @@
-    <ion-tabs>
-        <ion-tab [root]="Today"></ion-tab>
-        <ion-tab [root]="Tomorrow"></ion-tab>
-        <ion-tab [root]="nextDays"></ion-tab>
+<ion-header>
+<ion-navbar>
+    <ion-title>My Schedule</ion-title>
+</ion-navbar>
+</ion-header>
+    <ion-tabs tabsPlacement=top>
+        <ion-tab [root]="Today" tabTitle="Today"></ion-tab>
+        <ion-tab [root]="Tomorrow" tabTitle="Tomorrow"></ion-tab>
+        <ion-tab [root]="NextDays" tabTitle="Next Days"></ion-tab>
     </ion-tabs>

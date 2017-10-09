@@ -19,17 +19,22 @@ import { EventDataProvider } from '../../providers/event-data/event-data';
 export class ReserveEventPage {
   isReserved: boolean;
   flag;
-  event = { day: new Date(), startTime: new Date(), endTime: new Date(), allDay: false, title:""};
-  minDate = new Date().toISOString();
-  preselectedDate = new Date();
+  public title;
+  public endTime;
+  public startTime;
+  public day;
+  public minDate = moment().utc().format('YYYY-MM-DD').toString();
+  public maxDate = moment().utc().add(30,'y').format('YYYY').toString();
+
   rooms:"";
   ListOfRooms = [];
    
   showRoom = this.EventData.getShowRoom();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
-    
+    console.log ('initial event start time: ' + this.startTime + ' initial end time: ' + this.endTime + ' initial date: ' + this.day)
     this.flag = this.EventData.getFlag();
+  
   }
 
   loadEvents(){  
@@ -39,6 +44,8 @@ export class ReserveEventPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReserveEventPage');
     this.showRoom = this.EventData.getShowRoom();
+
+    this.day = moment().toISOString();
 
     this.ListOfRooms.push(this.EventData.getRoomData());
   }
@@ -57,25 +64,55 @@ export class ReserveEventPage {
     this.isReserved=true;
   }
   save(){
-    this.EventData.setStartTime(this.event.startTime);
-    this.EventData.setEndTime(this.event.endTime);
-    this.EventData.setTitle(this.event.title);
-    this.EventData.setRoom(this.rooms);
-    this.EventData.setDay(this.event.day);
     this.flag = this.EventData.getFlag();
-    if (this.flag == true)
-    this.navCtrl.pop();
-    else{
-      let date = moment(this.event.day).format('Do MMMM YYYY');
-      let start = this.event.startTime;
-       let end = this.event.endTime;
+
+      let date = moment(this.day).format('Do MMMM YYYY');
+      let start = this.startTime;
+      let end = this.endTime;
+      console.log(new Date() + '    rthsrh   ')
+      if (start==end || start == new Date()){
+        let alert = this.alertCtrl.create({
+          title: 'Error!',
+          message: 'You have not added a start and end time for your event',
+          buttons:["OK"]
+       });
+       alert.present();
+      }
+      else{
       let alert = this.alertCtrl.create({
-        title: 'You have created an event: ' + this.event.title,
+        title: 'You have created an event: ' + this.title,
         message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+ this.rooms + '</div>',
-       buttons:['OK']
+        buttons:[
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Reserve',
+            role: 'confirm',
+            handler: data => {
+              this.EventData.setStartTime(this.startTime);
+              this.EventData.setEndTime(this.endTime);
+              this.EventData.setTitle(this.title);
+              this.EventData.setRoom(this.rooms);
+              this.EventData.setDay(this.day);
+              console.log('Created new event');
+              if (this.flag == true)
+                this.navCtrl.pop();
+                else
+                this.ionViewWillEnter();
+            }
+          }
+         ]
      });
      alert.present();
     }
+  }
+  ionViewWillEnter(){
+
   }
 
 }
