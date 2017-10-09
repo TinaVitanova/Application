@@ -16,7 +16,6 @@ $app-direction: ltr;
 
 @import "ionic.globals";
 
-
 ::-webkit-scrollbar {
   display: none;
 }
@@ -48,25 +47,21 @@ $app-direction: ltr;
 $colors: (
   primary:    #24C6DC,
   secondary:  #6280B7,
+  secondary-hover: #7194C6,
   bg-gray: #f7f7f7,
-  text-color: #d6d6d6,
+  text-color: #C7C7C7,
   light:      #f4f4f4,
-  dark:       #292929
+  dark:       #292929,
+  make-room : (
+    base: #fff,
+    contrast: #24c6dc,
+  ),
+  create-users : (
+    base: #fff,
+    contrast: #6280B7,
+  )
+
 );
-
-
-// toolbar
-$toolbar-background: white;
-ion-title{
-  .toolbar-title,
-  .toolbar-title-ios,
-  .toolbar-title-md{
-    color: rgba(black, .25);
-  }
-  .toolbar-title-md{
-    font-size:120%; 
-  }
-}
 
 
 button{
@@ -83,41 +78,37 @@ $label-md-text-color:	none;
 $label-md-text-color-focused: none;
 $list-ios-border-color: transparent;
 $list-md-border-color: transparent;
+$input-wp-border-color:none;
+$text-input-wp-highlight-color-valid: none;
+$text-input-wp-highlight-color:  none;
+$label-wp-text-color:	none;
+$label-wp-text-color-focused: none;
 
+$toolbar-ios-title-font-weight: 500;
 
-//custom gradients
-
-@mixin gradient-main{
-  background-color: #74ebd5;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #ACB6E5, #74ebd5);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #ACB6E5, #74ebd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.toolbar-title{
+  text-transform: uppercase;
+  text-align: center;
 }
 
-@mixin gradient-home{
-  background: rgba(201, 214, 255, 0.3);  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, rgba(216, 231, 231, 0.5), rgba(183, 243, 253, 0.5));  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, rgba(216, 231, 231, 0.5), rgba(183, 243, 253, 0.5)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.toolbar-title-md,
+.toolbar-title-wp{
+  margin-right: 15%;
 }
-// background: #085078;  /* fallback for old browsers */
-// background: -webkit-linear-gradient(to right, #85D8CE, #085078);  /* Chrome 10-25, Safari 5.1-6 */
-// background: linear-gradient(to right, #85D8CE, #085078); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+
+//custom gradient
 
 @mixin gradient-bg{
-  background: rgba(212,253,235,1);
-  background: -moz-radial-gradient(center, ellipse cover, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(212,253,235,1)), color-stop(100%, rgba(36,199,220,1)));
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
-  background: -o-radial-gradient(center, ellipse cover, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
-  background: -ms-radial-gradient(center, ellipse cover, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
-  background: radial-gradient(ellipse at center, rgba(212,253,235,1) 0%, rgba(36,199,220,1) 100%);
+  background: rgba(181,244,255,1);
+  background: -moz-linear-gradient(top, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(181,244,255,1)), color-stop(50%, rgba(45,209,227,1)), color-stop(99%, rgba(98,230,245,1)), color-stop(100%, rgba(98,230,245,1)));
+  background: -webkit-linear-gradient(top, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
+  background: -o-linear-gradient(top, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
+  background: -ms-linear-gradient(top, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
+  background: linear-gradient(to bottom, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
 }
 
-@mixin gradient-cal{
-   background-color: #77E6CF;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #BCC6EC, #8AF5DE);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #BCC6EC, #8AF5DE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
 
 //basic transitions
 
@@ -129,11 +120,42 @@ $list-md-border-color: transparent;
 }
 
 
-@mixin white-shadow{
-  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
-  -webkit-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
-  -moz-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
-  -ms-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
+// @mixin white-shadow{
+//   box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
+//   -webkit-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
+//   -moz-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
+//   -ms-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
+// }
+
+//button style
+
+@mixin button-style{
+    border-radius: 7px;
+    border: 2px solid map-get($colors, secondary);
+    color: map-get($colors, secondary);
+    background: white;
+    &:hover,
+    &:active{
+        background: map-get($colors, secondary);
+        color: white;
+        border: 2px solid white;
+        @include basic-transition;
+}
+}
+
+@mixin create-btn{
+  width: 80%;
+  font-size: 130%;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  &:hover,
+  &:active{
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      @include basic-transition;
+  }
 }
 
 // App iOS Variables
@@ -163,11 +185,7 @@ $list-md-border-color: transparent;
   
 }
 
-.md button:hover,
-.md button:active{
-  @include basic-transition;
-  @include shadow-2dp;
-}
+
 
 // App Windows Variables
 // --------------------------------------------------

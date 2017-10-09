@@ -2,19 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
-/**
- * Generated class for the SignupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
-  selector: 'page-signup',
-  templateUrl: 'signup.html',
+  selector: 'page-create-user',
+  templateUrl: 'create-user.html',
 })
-export class SignupPage {
+export class CreateUserPage {
   username: string;
   isAdmin: boolean;
   new = {
@@ -23,6 +17,7 @@ export class SignupPage {
     email:"",
     username:""
   };
+
   logFormSignUp(){
     console.log(this.new)
   }
@@ -35,8 +30,6 @@ export class SignupPage {
   }
 
   CreateNewUser(){
-    
-
     this.UserGlobal.SendUserData(this.new.fullname, this.new.username, this.new.email, this.new.password, this.isAdmin);
     let alert = this.alertCtrl.create({
       title: 'You have created the user: ',
@@ -72,7 +65,7 @@ export class SignupPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
+    console.log('ionViewDidLoad CreateUserPage');
   }
 
 }

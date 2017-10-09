@@ -1,0 +1,43 @@
+page-dashboard {
+    ion-header {
+        color: white!important;
+        ion-icon,
+        ion-title {
+            color: white;
+        }
+    }
+    ion-content {
+        ion-icon {
+            color: map-get($colors, secondary);
+            border-radius: 2px;
+            width: 18%;
+            background: white;
+            line-height: 1.5em;
+            position: absolute;
+            left: 4.5%;
+        }
+    }
+    .main-buttons div button {
+        margin-top: 8%;
+    }
+    .main-buttons button {
+        width: 65%;
+    }
+    .main-buttons .admin-btn {
+        width: 70%;
+        margin-left: 2%;
+        margin-top: 7%;
+    }
+    span {
+        margin-left: 5%;
+    }
+    .main-buttons button {
+        background: map-get($colors, primary);
+        &:hover,
+        &:active,
+        &:focus {
+            background: map-get($colors, secondary);
+            @include basic-transition;
+        }
+    }
+}

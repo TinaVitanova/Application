@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import * as moment from 'moment';
+// import * as moment from 'moment';
 
 /*
   Generated class for the EventDataProvider provider.
@@ -21,10 +21,19 @@ export class EventDataProvider {
   public RoomsData: {name: string, capacity: string, description: string};
   public FullRooms = {};
   public ShowRoom: boolean = false;
+  public loadEvent;
   constructor(public storage: Storage) {
     console.log('Hello EventData Provider');
 
   } 
+
+  public setLoadEvents(value){
+    this.loadEvent = value;
+  }
+
+  public getLoadEvents(){
+    return this.loadEvent;
+  }
 
   public setShowRoom(value: boolean){
     console.log('jas sum value na showRoom ' + value);

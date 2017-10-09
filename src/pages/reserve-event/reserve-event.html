@@ -1,18 +1,15 @@
 <ion-header>
-
-    <ion-navbar>
-        <ion-title>Reserve a Room</ion-title>
-
+    <ion-navbar color="primary">
+        <ion-title>RESERVE A ROOM</ion-title>
     </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
-
     <ion-item>
         <ion-label>Title</ion-label>
         <ion-input type="text" placeholder="Title" [(ngModel)]="title"></ion-input>
+
     </ion-item>
 
     <ion-item>
@@ -28,23 +25,20 @@
         <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,15,30,45" [(ngModel)]="endTime" initialValue="00:00"></ion-datetime>
     </ion-item>
 
-    <ion-buttons text-center>
-        <button style="margin-top:4%;" large ion-button round outline (click)="findRoom()">Find</button>
+    <ion-buttons text-center id="find-room">
+        <button style="margin-top:4%;" large ion-button (click)="findRoom()">FIND</button>
     </ion-buttons>
 
-    <ion-item [hidden]="shouldHide()">
-        <ion-label>Room</ion-label>
+    <ion-item [hidden]="shouldHide()" id="choose-room">
+        <ion-label>
+            <ion-icon color="secondary" name="cube"></ion-icon> &nbsp; CHOOSE ROOM</ion-label>
         <ion-select [(ngModel)]="rooms">
-            <ion-option value="room1">Room1</ion-option>
-            <ion-option value="room2">Room2</ion-option>
-            <ion-option value="room3">Room3</ion-option>
-            <ion-option value="room4">Room4</ion-option>
-            <ion-option (ionSelect)="loadEvents()" *ngFor="let r of ListOfRooms">{{ListOfRooms[0].name}}</ion-option>
+            <!-- <ion-option value="all" [selected]="all == rooms" (ionSelect)="loadEvents()">All Rooms</ion-option> -->
+            <label>No Room Created</label>
+            <span *ngIf="showRoom">
+                        <ion-option (ionSelect)="loadEvents()" *ngFor="let r of ListOfRooms">{{ListOfRooms[0].name}}</ion-option>
+                    </span>
         </ion-select>
     </ion-item>
-
-    <button ion-button full icon-left (click)="save()">
-           <ion-icon></ion-icon>Add Event
-       </button>
-
+    <button id="add-event" ion-button full icon-left (click)="save()">ADD EVENT</button>
 </ion-content>

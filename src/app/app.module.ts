@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { NgCalendarModule } from 'ionic2-calendar';
 import { IonicStorageModule } from '@ionic/storage';
-import { Camera } from '@ionic-native/camera';
 
 
 import { TodayPage } from '../pages/my-schedule/days/today/today';
@@ -13,8 +12,8 @@ import { TomorrowPage } from '../pages/my-schedule/days/tomorrow/tomorrow';
 import { NextDaysPage } from '../pages/my-schedule/days/next-days/next-days';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { SignupPage } from '../pages/signup/signup';
-import { LoginPage } from '../pages/login/login';
+import { CreateUserPage } from '../pages/create-user/create-user';
+import { DashboardPage } from '../pages/dashboard/dashboard';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { MakeRoomPage } from '../pages/make-room/make-room';
 import { MyProfilePage } from '../pages/my-profile/my-profile';
@@ -28,8 +27,8 @@ import { ReserveEventPage } from '../pages/reserve-event/reserve-event';
   declarations: [
     MyApp,
     HomePage,
-    SignupPage,
-    LoginPage,
+    CreateUserPage,
+    DashboardPage,
     CalendarPage,
     MakeRoomPage,
     MyProfilePage,
@@ -51,8 +50,8 @@ import { ReserveEventPage } from '../pages/reserve-event/reserve-event';
   entryComponents: [
     MyApp,
     HomePage,
-    SignupPage,
-    LoginPage,
+    CreateUserPage,
+    DashboardPage,
     CalendarPage,
     MakeRoomPage,
     MyProfilePage,
@@ -66,7 +65,6 @@ import { ReserveEventPage } from '../pages/reserve-event/reserve-event';
   providers: [
     StatusBar,
     SplashScreen,
-    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UsernameGlobalProvider,
     EventDataProvider

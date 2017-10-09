@@ -28,6 +28,8 @@ export class ReserveEventPage {
 
   rooms:"";
   ListOfRooms = [];
+   
+  showRoom = this.EventData.getShowRoom();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
     console.log ('initial event start time: ' + this.startTime + ' initial end time: ' + this.endTime + ' initial date: ' + this.day)
@@ -35,11 +37,21 @@ export class ReserveEventPage {
   
   }
 
+  loadEvents(){  
+  this.EventData.getLoadEvents();
+  }
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReserveEventPage');
+    this.showRoom = this.EventData.getShowRoom();
+
     this.day = moment().toISOString();
+
     this.ListOfRooms.push(this.EventData.getRoomData());
+  }
+
+  showRooms(){
+    return this.showRoom;
   }
 
   shouldHide(){

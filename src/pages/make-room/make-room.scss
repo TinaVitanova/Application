@@ -1,3 +1,40 @@
 page-make-room {
 
+    ion-title{
+        .toolbar-title .toolbat-title-md{
+            text-transform: uppercase;
+            color: map-get($colors, primary);
+        }
+    }
+
+    .background, .background .pane, .background .item, .background .item-complex .item-content{
+        background-color: map-get($colors, primary);
+        color: white;
+        margin-top: 2%;
+    }
+
+    ion-label{
+        text-transform: uppercase;
+    }
+
+    .item-ios, .item-md, .item-wp{
+        border-bottom: 2px solid white;
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .input-cover { position: static!important; }
+
+    ion-textarea{
+        border: 2px solid white;
+        border-radius: 5px;
+        padding: 10%;
+    }
+
+    #create-room{
+        background: #fff;
+        color: map-get($colors, primary); 
+        @include create-btn;       
+    }
+
 }
