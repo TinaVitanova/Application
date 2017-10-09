@@ -11,7 +11,8 @@ export class UsernameGlobalProvider {
   public Usernames = ['test','admin','superadmin'];
   public userIndex:any;
   public user;
-  public Email;
+  public email;
+  public Emails = ['1', '2', '3'];
   public UsersData: {fullname: string, username: string, email: string, password: string , isAdmin: boolean};
   public FullUsers = {};
 
@@ -23,7 +24,7 @@ export class UsernameGlobalProvider {
     this.user=this.Usernames[this.userIndex];
   }
   public setEmail(value){
-    this.Email=value;
+    this.Emails.push(value);
   }
   public setDeleteAccName(value){
     this.Usernames.splice(value,1);
@@ -37,8 +38,15 @@ export class UsernameGlobalProvider {
     this.user=this.Usernames[this.userIndex];
     console.log('u usernameglobal ova value so e: '+ value +' i ako pristapam do .neso: '+ value.newusername);
   }
-  public getEmail(){
-    return this.Email;
+
+  public ChangeEmail(value){
+    this.Emails[this.userIndex]=value.newemail;
+    this.email = this.Emails[this.userIndex];
+    console.log('USER EMAIL !!!!' + value.newemail);
+  }
+
+  public getEmails(){
+    return this.Emails;
   }
   public getUsernames(){
     return this.Usernames;
