@@ -12,6 +12,11 @@ page-manage-users {
         width: 90%;
     }
 
+    .background, .background .pane, .background .item, .background .item-complex .item-content{
+        background-color: white;
+        color: white;
+      }
+
     .list-md, .list-ios, .list-wp{
         margin-left: 5%;
     }
