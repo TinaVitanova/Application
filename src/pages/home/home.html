@@ -4,22 +4,22 @@
     <div text-center>
             <img src="../../assets/logo02.png">
     </div>
-    <form (ngSubmit)="logForm()" text-center>
+    <form (ngSubmit)="logForm()" [formGroup]="loginForm" text-center>
         <ion-list style="margin-top:30%; margin-bottom:5%;">
             <ion-item class="custom-input"> 
                 <ion-label floating text-center>
                     <ion-icon ios="ios-person" md="md-person"></ion-icon> &nbsp; Username </ion-label>
-                    <ion-input text-center type="text" [(ngModel)]="todo.username" name="username"></ion-input>                
+                    <ion-input text-center type="text" formControlName="username" [class.invalid]="!loginForm.controls.username.valid && loginForm.controls.username.dirty && submitAttempt" [(ngModel)]="login.username" name="username"></ion-input>                
             </ion-item>
             <ion-item class="custom-input">
                 <ion-label floating text-center>
                     <ion-icon ios="ios-lock" md="md-lock"></ion-icon> &nbsp; Password </ion-label>
-                    <ion-input text-center style="border:none;" type="password" [(ngModel)]="todo.password" name="password"></ion-input>                
+                    <ion-input text-center style="border:none;" type="password" formControlName="password"  [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty && submitAttempt" [(ngModel)]="login.password" name="password"></ion-input>                
             </ion-item>
         </ion-list> 
     </form>
     <ion-buttons text-center>
-        <button class="login-btn"(click)="LoginNav()">LOGIN</button>
+        <button class="login-btn" [disabled]="!loginForm.valid" (click)="LoginNav()">LOGIN</button>
     </ion-buttons>
     <p text-center><a href="">Forgot password?</a></p>
 </ion-content>

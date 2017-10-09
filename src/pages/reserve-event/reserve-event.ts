@@ -2,14 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angular';
 import * as moment from 'moment';
 import { EventDataProvider } from '../../providers/event-data/event-data';
-
-
-/**
- * Generated class for the ReserveEventPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -17,6 +10,8 @@ import { EventDataProvider } from '../../providers/event-data/event-data';
   templateUrl: 'reserve-event.html',
 })
 export class ReserveEventPage {
+  submitAttempt: boolean = false;
+  ReserveEventForm: FormGroup;
   isReserved: boolean;
   flag;
   public title;
@@ -31,8 +26,13 @@ export class ReserveEventPage {
    
   showRoom = this.EventData.getShowRoom();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
-    console.log ('initial event start time: ' + this.startTime + ' initial end time: ' + this.endTime + ' initial date: ' + this.day)
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public formBuilder: FormBuilder) {
+    this.ReserveEventForm = formBuilder.group({
+      title: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required])],
+      day: ['',Validators.compose([Validators.required])],
+      startTime: ['',Validators.compose([Validators.required])],
+      endTime: ['',Validators.compose([Validators.required])]
+  });
     this.flag = this.EventData.getFlag();
   
   }
@@ -42,7 +42,6 @@ export class ReserveEventPage {
   }
   
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ReserveEventPage');
     this.showRoom = this.EventData.getShowRoom();
 
     this.day = moment().toISOString();

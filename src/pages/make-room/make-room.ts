@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EventDataProvider } from '../../providers/event-data/event-data';
-
-/**
- * Generated class for the MakeRoomPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -21,7 +15,8 @@ export class MakeRoomPage {
     description:""
   }
   showRoom;
-  
+  MakeRoomForm: FormGroup;
+  submitAttempt: boolean = false;
 
   CreateRoom(){
     this.EventData.SendRoomData(this.room.name, this.room.capacity, this.room.description);
@@ -37,11 +32,15 @@ export class MakeRoomPage {
    }
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public formBuilder: FormBuilder) {
+    this.MakeRoomForm = formBuilder.group({
+      RoomName: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required])],
+      Capacity: ['',Validators.compose([Validators.required])],
+      Description: ['',Validators.compose([Validators.required,Validators.maxLength(300)])]
+  });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MakeRoomPage');
   }
 
 }

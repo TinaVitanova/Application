@@ -6,27 +6,28 @@
 
 
 <ion-content padding>
+    <form [formGroup]="ReserveEventForm">
     <ion-item>
         <ion-label>Title</ion-label>
-        <ion-input type="text" placeholder="Title" [(ngModel)]="title"></ion-input>
+        <ion-input type="text" placeholder="Title" formControlName="title" [class.invalid]="!ReserveEventForm.controls.title.valid && ReserveEventForm.controls.title.dirty && submitAttempt" [(ngModel)]="title"></ion-input>
 
     </ion-item>
 
     <ion-item>
         <ion-label>Day</ion-label>
-        <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="day" [max]="maxDate" [min]="minDate"></ion-datetime>
+        <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" formControlName="day" [class.invalid]="!ReserveEventForm.controls.day.valid && ReserveEventForm.controls.day.dirty && submitAttempt" [(ngModel)]="day" [max]="maxDate" [min]="minDate"></ion-datetime>
     </ion-item>
     <ion-item>
         <ion-label>Start</ion-label>
-        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,15,30,45" [(ngModel)]="startTime" initialValue="00:00"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,15,30,45" formControlName="startTime" [class.invalid]="!ReserveEventForm.controls.startTime.valid && ReserveEventForm.controls.startTime.dirty && submitAttempt" [(ngModel)]="startTime"></ion-datetime>
     </ion-item>
     <ion-item>
         <ion-label>End</ion-label>
-        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,15,30,45" [(ngModel)]="endTime" initialValue="00:00"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,15,30,45" formControlName="endTime" [class.invalid]="!ReserveEventForm.controls.endTime.valid && ReserveEventForm.controls.endTime.dirty && submitAttempt" [(ngModel)]="endTime"></ion-datetime>
     </ion-item>
-
+</form>
     <ion-buttons text-center id="find-room">
-        <button style="margin-top:4%;" large ion-button (click)="findRoom()">FIND</button>
+        <button style="margin-top:4%;" large ion-button [disabled]="!ReserveEventForm.valid" (click)="findRoom()">FIND</button>
     </ion-buttons>
 
     <ion-item [hidden]="shouldHide()" id="choose-room">
@@ -40,5 +41,6 @@
                     </span>
         </ion-select>
     </ion-item>
-    <button id="add-event" ion-button full icon-left (click)="save()">ADD EVENT</button>
+
+    <button id="add-event" ion-button full icon-left [disabled]="!ReserveEventForm.valid" (click)="save()">ADD EVENT</button>
 </ion-content>
