@@ -194,28 +194,10 @@
   color: white;
 }
 
-// #adminMenu ion-header,
-// #userMenu ion-header{
-//   margin: 4% 5% 10% 5%;
-//   width: 90%;
-//   border-radius: 5px!important;
-
-//   .toolbar-md, .toolbar-ios .toolbar-wp{
-//     border-radius: 5px!important;
-//     background: white;
-//     padding: none;
-//   }
-
-//   ion-toolbar .toolbar .toolbar-ios .statusbar-padding{
-//     background: white;
-//     height: 80%;
-//     padding-top:none!important;
-//   }
-// }
-
   .avatar{
     width: 50%;
     margin: 20% 25% 10% 25%;
+    border-radius:50%;
   }
 
   ion-list .sm-list{
@@ -254,7 +236,7 @@
     position: relative;
     left: -10%;
     font-weight:bold;
-
+    
     .item-inner{
       background: white;
       color:map-get($colors, secondary);
