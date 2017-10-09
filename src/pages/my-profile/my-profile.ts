@@ -15,13 +15,13 @@ export class MyProfilePage {
     newusername:"",
     oldpassword:"",
     newpassword:"",
-    newemail:""
+    newemail:"" 
   };
   
-  
+  base64textString:any;
   loaded: boolean = false;
   imageLoaded: boolean = false;
-  imageSrc: string = '';
+  imageSrc: String = '';
 
 
   Change(){
@@ -38,31 +38,47 @@ export class MyProfilePage {
     console.log('ionViewDidLoad MyProfilePage');
   }
 
-  handleImageLoad() {
+  ImageLoad() {
     this.imageLoaded = true;
 }
 
-handleInputChange(e) {
+InputChange(e) {
     var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
 
     var pattern = /image-*/;
     var reader = new FileReader();
 
     if (!file.type.match(pattern)) {
-        alert('invalid format');
+        alert('invalid format'); 
         return;
     }
-
+  
     this.loaded = false;
 
-    reader.onload = this._handleReaderLoaded.bind(this);
-    reader.readAsDataURL(file);
+    reader.onload = this.ReaderLoaded.bind(this);
+    reader.readAsBinaryString(file);
+    //reader.readAsDataURL(file); za da ja prikazuva slikata odma
 }
 
-_handleReaderLoaded(e) {
-    var reader = e.target;
-    this.imageSrc = reader.result;
-    this.loaded = true;
+ReaderLoaded(e) {
+  var reader = e.target;
+  var binaryString = e.target.result;
+  this.base64textString = btoa(binaryString);
+  console.log(this.base64textString);
+  this.imageSrc = atob(this.base64textString);
+  //console.log(atob(binaryString));
+  //console.log("ja sum binaryString ###" + atob(this.base64textString));
+  //this.imageSrc = reader.result;
+
+  this.loaded = true;
+  //this.base64Encoded(e);
+  
+  
+    
+}
+
+base64Encoded(e){
+  
 }
 
 }
