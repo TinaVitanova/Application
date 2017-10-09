@@ -8,18 +8,19 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
   templateUrl: 'manage-users.html',
 })
 export class ManageUsersPage {
-  users;
+  username;
   usernames=this.UserGlobal.getUsernames();
   constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController) {
     this.initializeUsers();
   }
 
   initializeUsers(){
-    this.users=[];
+    this.username=[];
       for (var i=0; i < this.usernames.length; i++){
-        this.users.push(this.usernames[i]);
+        this.username.push(this.usernames[i]);
       }
   }
+
   deleteUser(user){
     let alert = this.alertCtrl.create({
       title: 'Are you sure?',
@@ -53,7 +54,7 @@ export class ManageUsersPage {
 
     //if the value is an empty strign don't filter the items 
     if( val && val.trim() != ''){
-      this.users = this.users.filter((user)=>{
+      this.username = this.username.filter((user)=>{
         return (user.toLowerCase().indexOf(val.toLowerCase()) > -1);       
       })
     }

@@ -17,9 +17,17 @@
 
     <ion-content>
         <ion-list>
+            <ion-avatar item-start>
+                <img src="assets/logo.png">
+            </ion-avatar>
             <button menuClose ion-item *ngFor="let p of pages1" (click)="openPage(p)">
         {{p.title}}
       </button>
+            <ion-item>
+                <ion-label>Notifications</ion-label>
+                <ion-toggle value="notification" checked="true" color="primary"></ion-toggle>
+            </ion-item>
+            <button ion-item (click)="LogOut()">Logout</button>
         </ion-list>
     </ion-content>
 
@@ -35,10 +43,19 @@
 
     <ion-content>
         <ion-list>
+            <ion-avatar item-start>
+                <img src="assets/logo.png">
+            </ion-avatar>
             <button menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)">
             {{p.title}}
           </button>
+            <ion-item>
+                <ion-label>Notifications</ion-label>
+                <ion-toggle value="notification" checked="true" color="primary"></ion-toggle>
+            </ion-item>
+            <button ion-item (click)="LogOut()">Logout</button>
         </ion-list>
+
     </ion-content>
 
 </ion-menu>

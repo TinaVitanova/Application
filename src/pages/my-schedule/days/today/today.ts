@@ -2,12 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EventDataProvider } from '../../../../providers/event-data/event-data';
 import * as moment from 'moment';
-/**
- * Generated class for the TodayPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -17,12 +11,31 @@ import * as moment from 'moment';
 export class TodayPage {
   MyEvents=this.EventData.getEvents();
   today= new Date();
+  StartTime;
+  EndTime;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TodayPage');
   }
+  IsDateToday(events){
+    let date = moment(events.startTime).format('DD MM YYYY');
+    let dateToday = moment().format('DD MM YYYY');
+
+    this.StartTime = moment(events.startTime).format('HH:mm');
+    this.EndTime = moment(events.endTime).format('HH:mm');
+    if (date == dateToday){
+     console.log('isti se');
+      return true;
+    }
+    else{
+      console.log('ne se');
+       return false;
+     }
+  }
+
+
   AlertForEvent(events){
     let date = moment(events.startTime).format('Do MMMM YYYY');
     let start = moment(events.startTime).format('HH:mm');
