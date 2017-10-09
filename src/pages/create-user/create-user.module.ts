@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { CreateUserPage } from './create-user';
 
-
 @NgModule({
   declarations: [
     CreateUserPage,
   ],
-  imports: [,
+  imports: [
     IonicPageModule.forChild(CreateUserPage),
   ],
 })

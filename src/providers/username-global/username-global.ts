@@ -29,7 +29,7 @@ export class UsernameGlobalProvider {
     this.Usernames.splice(value,1);
     console.log('setDeleteAccName e povikana i ova mi e usernames: '+ this.Usernames)
   }
-  public addNewUser(value) {
+  public addNewUsername(value) {
     this.Usernames.push(value);
   }
   public ChangeUser(value){
@@ -46,7 +46,7 @@ export class UsernameGlobalProvider {
   public getMyGlobalVar() {
       return this.user;
   }
-
+ 
   public SendUserData(value:string, value1:string, value2: string, value3: string, value4: boolean){
     this.UsersData = {fullname: value, username: value1, email: value2, password: value3, isAdmin: value4}
     console.log('u provider: '+ this.UsersData.fullname + ' '+ this.UsersData.username + ' '+ this.UsersData.email + ' '+ this.UsersData.password + ' '+ this.UsersData.isAdmin);

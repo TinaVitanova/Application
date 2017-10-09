@@ -1,9 +1,9 @@
+import { HomePage } from './../pages/home/home';
 import { MySchedulePage } from './../pages/my-schedule/my-schedule';
 import { MyProfilePage } from './../pages/my-profile/my-profile';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-import { HomePage } from '../pages/home/home';
 import { ManageUsersPage } from '../pages/manage-users/manage-users';
 import { UsernameGlobalProvider } from '../providers/username-global/username-global';
 
@@ -25,17 +25,18 @@ export class MyApp {
     this.pages1 = [
       { title: 'My Profile', component: MyProfilePage },
       { title: 'My Schedule', component: MySchedulePage },
-      { title: 'Manage Users', component: ManageUsersPage },
-      { title: 'Logout', component: HomePage }
+      { title: 'Manage Users', component: ManageUsersPage }
     ];
 
     this.pages2 = [
       { title: 'My Profile', component: MyProfilePage },
-      { title: 'My Schedule', component: MySchedulePage },
-      { title: 'Logout', component: HomePage }
+      { title: 'My Schedule', component: MySchedulePage }
     ];
    
-   
+  }
+
+  LogOut(){
+    this.nav.setRoot(HomePage);
   }
 
   initializeApp() {

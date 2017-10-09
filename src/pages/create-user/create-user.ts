@@ -50,7 +50,7 @@ export class CreateUserPage {
         text: 'Confirm',
         role: 'confirm',
         handler: data => {
-          this.UserGlobal.addNewUser(this.new.username);
+          this.UserGlobal.addNewUsername(this.new.username);
           this.UserGlobal.setEmail(this.new.email);
           console.log('Created new user');
         }
