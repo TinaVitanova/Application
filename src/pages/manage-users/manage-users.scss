@@ -1,12 +1,55 @@
 page-manage-users {
 
-    .item-inner{
-        border: none!important;
+    ion-searchbar{
+        border-radius: 5px;
+        width: 90%;
+        margin: 5% 0% 0% 5%;
     }
 
-    .list-ios  .item-block:last-child{
+    ion-list{
+        border: 2px solid map-get($colors, secondary);
+        border-radius: 7px;
+        width: 90%;
+    }
+
+    .background, .background .pane, .background .item, .background .item-complex .item-content{
+        background-color: white;
+        color: white;
+      }
+
+    .list-md, .list-ios, .list-wp{
+        margin-left: 5%;
+    }
+
+    .item-md, .item-ios, .item-wp{
+        padding: none;
+        margin: 4% 0% 0% 7%;
+        width: 85%;
+        border-bottom: 2px solid map-get($colors, secondary);
+    }
+
+    .list-ios  .item-block:last-child,
+    .list-md .item-block:last-child{
         border-bottom: none;
     }
 
+    .item-md, .item-ios, .item-wp{
+        h2{
+            color: map-get($colors, secondary);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        p{
+            color: map-get($colors, secondary);
+        }
+    } 
+
+    #delete-user:hover,
+    #delete-user:active,
+    #delete-user:focus{
+        color: map-get($colors, primary-hover);
+        outline: none;
+        @include basic-transition;
+    }
 
 }
