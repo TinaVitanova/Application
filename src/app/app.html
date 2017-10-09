@@ -17,6 +17,9 @@
 
     <ion-content>
         <ion-list>
+            <ion-avatar item-start>
+                <img src="assets/logo.png">
+            </ion-avatar>
             <button menuClose ion-item *ngFor="let p of pages1" (click)="openPage(p)">
         {{p.title}}
       </button>
@@ -40,6 +43,9 @@
 
     <ion-content>
         <ion-list>
+            <ion-avatar item-start>
+                <img src="assets/logo.png">
+            </ion-avatar>
             <button menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)">
             {{p.title}}
           </button>
