@@ -46,6 +46,7 @@ $app-direction: ltr;
 
 $colors: (
   primary:    #24C6DC,
+  primary-hover: #53D7E9,
   secondary:  #6280B7,
   secondary-hover: #7194C6,
   bg-gray: #f7f7f7,
@@ -67,22 +68,6 @@ $colors: (
 button{
   cursor: pointer;
 }
-
-// default highlight of input fields overwritten
-$text-input-md-highlight-color-invalid:  map-get($colors, danger);
-$text-input-md-highlight-color-valid:  none;
-$text-input-md-show-invalid-highlight:  map-get($colors, danger);
-$text-input-md-highlight-color:  none;
-$text-input-md-show-valid-highlight:  none;
-$label-md-text-color:	none;
-$label-md-text-color-focused: none;
-$list-ios-border-color: transparent;
-$list-md-border-color: transparent;
-$input-wp-border-color:none;
-$text-input-wp-highlight-color-valid: none;
-$text-input-wp-highlight-color:  none;
-$label-wp-text-color:	none;
-$label-wp-text-color-focused: none;
 
 $toolbar-ios-title-font-weight: 500;
 
@@ -158,11 +143,23 @@ $toolbar-ios-title-font-weight: 500;
   }
 }
 
+//input style
+
+
+
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
+$list-ios-border-color: transparent;
 
+$searchbar-ios-background-color: map-get($colors, secondary);
+$searchbar-ios-border-color: transparent;
+$searchbar-ios-input-search-icon-color: white;
+$searchbar-ios-input-text-color: white;
+$searchbar-ios-input-placeholder-color: white;
+$searchbar-ios-input-background-color: map-get($colors, secondary);
+$searchbar-ios-toolbar-input-background: transparent;
 
 
 // App Material Design Variables
@@ -185,13 +182,53 @@ $toolbar-ios-title-font-weight: 500;
   
 }
 
+//default input
+
+$text-input-md-highlight-color-invalid:  map-get($colors, danger);
+$text-input-md-highlight-color-valid:  none;
+$text-input-md-show-invalid-highlight:  map-get($colors, danger);
+$text-input-md-highlight-color:  none;
+$text-input-md-show-valid-highlight:  none;
+$label-md-text-color:	none;
+$label-md-text-color-focused: none;
+$list-md-border-color: transparent;
+
+//search input
+
+$searchbar-md-background-color: transparent;
+$searchbar-md-input-search-icon-color: white;
+$searchbar-md-input-placeholder-color: white;
+$searchbar-md-input-text-color:	white;
+$searchbar-md-input-background-color: map-get($colors, secondary);
+$searchbar-md-input-border-radius: 5px;
+$searchbar-md-input-clear-icon-color: white;
+$searchbar-ios-input-clear-icon-color: white;
 
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
 
+//default input
 
+$input-wp-border-color:none;
+$text-input-wp-highlight-color-valid: none;
+$text-input-wp-highlight-color:  none;
+$label-wp-text-color:	none;
+$label-wp-text-color-focused: none;
+
+//search input
+
+$searchbar-wp-background-color: transparent;
+$searchbar-wp-border-color: white;
+$searchbar-wp-border-color-focused: white;
+$searchbar-wp-input-search-icon-color: white;
+$searchbar-wp-input-placeholder-color: white;
+$searchbar-wp-input-text-color: white;
+$searchbar-wp-input-background-color: map-get($colors, secondary);
+$searchbar-wp-input-border-radius: 5px;
+$searchbar-wp-input-clear-icon-color: white;
+$searchbar-wp-input-line-height: 3.5rem;
 
 // App Theme
 // --------------------------------------------------

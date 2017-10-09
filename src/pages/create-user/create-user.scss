@@ -33,4 +33,10 @@ page-create-user {
         @include create-btn;    
     }
 
+    #create-admin{
+        border-bottom: none;
+        font-size: 90%;
+        margin-top: 5%;
+    }
+
 }

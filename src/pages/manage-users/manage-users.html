@@ -1,6 +1,6 @@
 <ion-header>
 
-    <ion-navbar>
+    <ion-navbar color="secondary">
         <ion-title>Manage Users</ion-title>
     </ion-navbar>
 
@@ -17,10 +17,9 @@
             <h2>{{user}}</h2>
             <p>email</p>
             <!--tuka treba da stoi email na userot-->
-            <button ion-button clear icon-only item-end (click)="deleteUser(user)">
+            <button id="delete-user" ion-button clear icon-only item-end (click)="deleteUser(user)">
                     <ion-icon name="trash"></ion-icon>
                 </button>
-
         </ion-item>
     </ion-list>
 </ion-content>
