@@ -10,16 +10,19 @@
 <ion-content padding class="background">
     <ion-searchbar (ionInput)="getUsers($event)"></ion-searchbar>
     <ion-list>
-        <ion-item *ngFor="let user of username">
+
+        <ion-item *ngFor="let item of singleArray">
             <ion-avatar item-start>
                 <img src="assets/avatar.png">
             </ion-avatar>
-            <h2>{{user}}</h2>
-            <p>email</p>
+
+            <h2>{{item.username}}</h2>
+            <p>{{item.email}}</p>
             <!--tuka treba da stoi email na userot-->
-            <button id="delete-user" ion-button clear icon-only item-end (click)="deleteUser(user)">
-                    <ion-icon name="trash"></ion-icon>
-                </button>
+            <button ion-button clear icon-only item-end (click)="deleteUser(item)">
+                <ion-icon name="trash"></ion-icon>
+            </button>
         </ion-item>
+
     </ion-list>
 </ion-content>

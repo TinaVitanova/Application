@@ -10,7 +10,7 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 export class MyProfilePage {
   
   Username=this.UserGlobal.getMyGlobalVar();
-  email=this.UserGlobal.getEmail();
+  email=this.UserGlobal.getEmails();
   public todo = {
     newusername:"",
     oldpassword:"",

@@ -9,15 +9,23 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 })
 export class ManageUsersPage {
   username;
+  singleArray;
   usernames=this.UserGlobal.getUsernames();
+  email;
+  emails=this.UserGlobal.getEmails();
   constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController) {
     this.initializeUsers();
   }
 
   initializeUsers(){
     this.username=[];
-      for (var i=0; i < this.usernames.length; i++){
-        this.username.push(this.usernames[i]);
+    this.email=[];
+    this.singleArray=[];
+        for (var _i = 0; _i < this.usernames.length; _i++) {
+          this.singleArray.push({
+                               username: this.usernames[_i],
+                               email: this.emails[_i] 
+                              });
       }
   }
 
@@ -50,12 +58,12 @@ export class ManageUsersPage {
     //reset users back to all of users
     this.initializeUsers();
     //set val to the value of the ev target
-    var val = ev.target.value;
+    var val1 = ev.target.value;
 
-    //if the value is an empty strign don't filter the items 
-    if( val && val.trim() != ''){
+    //if the value is an empty string don't filter the items 
+    if( val1 && val1.trim() != ''){
       this.username = this.username.filter((user)=>{
-        return (user.toLowerCase().indexOf(val.toLowerCase()) > -1);       
+        return (user.toLowerCase().indexOf(val1.toLowerCase()) > -1);       
       })
     }
   }
