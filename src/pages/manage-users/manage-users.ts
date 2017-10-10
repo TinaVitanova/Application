@@ -6,27 +6,39 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 @Component({
   selector: 'page-manage-users',
   templateUrl: 'manage-users.html',
+  
 })
 export class ManageUsersPage {
   username;
-  singleArray;
-  usernames=this.UserGlobal.getUsernames();
   email;
+  picture;
+  singleArray;
+  userImage = this.UserGlobal.getUserImage();
+  usernames=this.UserGlobal.getUsernames(); 
   emails=this.UserGlobal.getEmails();
+  userProfilePicture;
   constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController) {
     this.initializeUsers();
+    //this.userProfilePicture = "data:image/png;base64," + this.userImage;
+    
   }
 
   initializeUsers(){
+    this.userProfilePicture = "data:image/png;base64," + this.userImage;
+    
     this.username=[];
     this.email=[];
+    this.picture=[];
     this.singleArray=[];
         for (var _i = 0; _i < this.usernames.length; _i++) {
           this.singleArray.push({
                                username: this.usernames[_i],
-                               email: this.emails[_i] 
+                               email: this.emails[_i],
+                               picture: this.userProfilePicture[_i] 
                               });
+                              
       }
+      
   }
 
   deleteUser(user){

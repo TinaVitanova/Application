@@ -13,7 +13,7 @@
 
         <ion-item *ngFor="let item of singleArray">
             <ion-avatar item-start>
-                <img src="assets/logo.png">
+                <img [src]="userProfilePicture">
             </ion-avatar>
             <h2>USERNAME: {{item.username}}</h2>
             <p>EMAIL: {{item.email}}</p>

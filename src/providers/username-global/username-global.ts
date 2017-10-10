@@ -15,10 +15,27 @@ export class UsernameGlobalProvider {
   public Emails = ['1', '2', '3'];
   public UsersData: {fullname: string, username: string, email: string, password: string , isAdmin: boolean};
   public FullUsers = {};
+  public userImage;
+  public imgSrc;
+  public flagUserImage = false;
 
   constructor(public storage: Storage) {
     console.log('Hello UsernameGlobal Provider');
   }
+
+  public setUserImage(value){
+    this.userImage = value;
+    this.flagUserImage=true;
+    console.log('Userglobal base64 !!!1' + this.userImage);
+  }
+  public getFlagUserimage(){
+    return this.flagUserImage;
+  }
+
+  public getUserImage(){
+    return this.userImage;
+  }
+
   public setMyGlobalVar(value:any) {
     this.userIndex = this.Usernames.indexOf(value);
     this.user=this.Usernames[this.userIndex];

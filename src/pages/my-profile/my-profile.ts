@@ -40,43 +40,39 @@ export class MyProfilePage {
 
   ImageLoad() {
     this.imageLoaded = true;
-}
+  }
 
-InputChange(e) {
-    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-
-    var pattern = /image-*/;
-    var reader = new FileReader();
-
-    if (!file.type.match(pattern)) {
-        alert('invalid format'); 
-        return;
-    }
+  InputChange(e) {
+      var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
   
-    this.loaded = false;
-
-
-    //za da go pretvori vo base64 format
-    reader.onload = this.ReaderLoaded.bind(this);
-    reader.readAsBinaryString(file);
-
-
-    //ja prikazuva prikachenata slika
-    //reader.readAsDataURL(file);
+      var pattern = /image-*/;
+      var reader = new FileReader();
+  
+      if (!file.type.match(pattern)) {
+          alert('invalid format'); 
+          return;
+      }
     
-}
+      this.loaded = false;
+  
+  
+      //za da go pretvori vo base64 format
+      reader.onload = this.ReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+  
+  
+      //ja prikazuva prikachenata slika
+      //reader.readAsDataURL(file);
+      
+  }
  
-ReaderLoaded(e) {
-  var reader = e.target;
-  var binaryString = e.target.result;
-  this.base64textString = btoa(binaryString);
-  //this.imageSrc = atob(this.base64textString);
-  //console.log(atob(binaryString));
-  //console.log("ja sum binaryString ###" + atob(this.base64textString));
-  this.imageSrc = "data:image/any;base64," + this.base64textString;
-
-  this.loaded = true;
-    
-}
+  ReaderLoaded(e) {
+    var reader = e.target;
+    var binaryString = e.target.result;
+    this.base64textString = btoa(binaryString);
+    this.imageSrc = "data:image/png;base64," + this.base64textString;
+    this.UserGlobal.setUserImage(this.base64textString);
+    this.loaded = true;  
+  }
 
 }
