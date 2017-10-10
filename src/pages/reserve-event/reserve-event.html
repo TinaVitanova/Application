@@ -15,15 +15,15 @@
 
     <ion-item>
         <ion-label>Day</ion-label>
-        <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" formControlName="day" [class.invalid]="!ReserveEventForm.controls.day.valid && ReserveEventForm.controls.day.dirty && submitAttempt" [(ngModel)]="day" [max]="maxDate" [min]="minDate"></ion-datetime>
+         <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" formControlName="day" [class.invalid]="!ReserveEventForm.controls.day.valid && ReserveEventForm.controls.day.dirty && submitAttempt" [(ngModel)]="day" [max]="maxDate" [min]="minDate"></ion-datetime> 
     </ion-item>
     <ion-item>
         <ion-label>Start</ion-label>
-        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,15,30,45" formControlName="startTime" [class.invalid]="!ReserveEventForm.controls.startTime.valid && ReserveEventForm.controls.startTime.dirty && submitAttempt" [(ngModel)]="startTime"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm"  (ionChange)="OnBlurStartTime()" pickerFormat="HH:mm" minuteValues="0,15,30,45" formControlName="startTime" [class.invalid]="!ReserveEventForm.controls.startTime.valid && ReserveEventForm.controls.startTime.dirty && submitAttempt" [(ngModel)]="startTime"></ion-datetime>
     </ion-item>
     <ion-item>
         <ion-label>End</ion-label>
-        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,15,30,45" formControlName="endTime" [class.invalid]="!ReserveEventForm.controls.endTime.valid && ReserveEventForm.controls.endTime.dirty && submitAttempt" [(ngModel)]="endTime"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm" (ionChange)="OnBlurEndTime()" pickerFormat="HH:mm" minuteValues="0,15,30,45" formControlName="endTime" [class.invalid]="!ReserveEventForm.controls.endTime.valid && ReserveEventForm.controls.endTime.dirty && submitAttempt" [(ngModel)]="endTime"></ion-datetime>
     </ion-item>
 </form>
     <ion-buttons text-center id="find-room">

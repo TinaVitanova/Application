@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angular';
 import * as moment from 'moment';
+import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Validator } from '../../validators/FormValidator';
 
 @IonicPage()
 @Component({
@@ -18,6 +20,9 @@ export class ReserveEventPage {
   public endTime;
   public startTime;
   public day;
+  public BlurEndTimeFlag;
+  public BlurStartTimeFlag;
+  public FlagStartEndTime = false;
   public minDate = moment().utc().format('YYYY-MM-DD').toString();
   public maxDate = moment().utc().add(30,'y').format('YYYY').toString();
 
@@ -26,12 +31,12 @@ export class ReserveEventPage {
    
   showRoom = this.EventData.getShowRoom();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder) {
     this.ReserveEventForm = formBuilder.group({
       title: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required])],
       day: ['',Validators.compose([Validators.required])],
       startTime: ['',Validators.compose([Validators.required])],
-      endTime: ['',Validators.compose([Validators.required])]
+      endTime: ['',Validators.compose([Validators.required, new Validator(UserGlobal, EventData).isTimeDifferent])]
   });
     this.flag = this.EventData.getFlag();
   
@@ -47,6 +52,20 @@ export class ReserveEventPage {
     this.day = moment().toISOString();
 
     this.ListOfRooms.push(this.EventData.getRoomData());
+  }
+  OnBlurEndTime(){
+    this.BlurEndTimeFlag = true;
+    if (this.BlurStartTimeFlag == true){
+    this.FlagStartEndTime = this.EventData.checkEndTime(this.endTime);
+    this.EventData.setFlagStartEndTime(this.FlagStartEndTime);
+    }
+  }
+  OnBlurStartTime(){
+    this.BlurStartTimeFlag = true;
+    if (this.BlurEndTimeFlag == true){
+    this.FlagStartEndTime = this.EventData.checkStartTime(this.startTime);
+    this.EventData.setFlagStartEndTime(this.FlagStartEndTime);
+    }
   }
 
   showRooms(){

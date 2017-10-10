@@ -4,7 +4,7 @@
     <div text-center>
             <img src="../../assets/logo02.png">
     </div>
-    <form (ngSubmit)="logForm()" [formGroup]="loginForm" text-center>
+    <form [formGroup]="loginForm" text-center>
         <ion-list style="margin-top:30%; margin-bottom:5%;">
             <ion-item class="custom-input"> 
                 <ion-label floating text-center>
@@ -18,8 +18,9 @@
             </ion-item>
         </ion-list> 
     </form>
+    <p text-center [hidden]="!flagIncorectLogin">Incorect username or password!</p>
     <ion-buttons text-center>
-        <button class="login-btn" [disabled]="!loginForm.valid" (click)="LoginNav()">LOGIN</button>
+        <button class="login-btn" (click)="LoginNav()">LOGIN</button>
     </ion-buttons>
     <p text-center><a href="">Forgot password?</a></p>
 </ion-content>
