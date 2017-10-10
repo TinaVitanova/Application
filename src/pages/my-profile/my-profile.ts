@@ -55,30 +55,28 @@ InputChange(e) {
   
     this.loaded = false;
 
+
+    //za da go pretvori vo base64 format
     reader.onload = this.ReaderLoaded.bind(this);
     reader.readAsBinaryString(file);
-    //reader.readAsDataURL(file); za da ja prikazuva slikata odma
-}
 
+
+    //ja prikazuva prikachenata slika
+    //reader.readAsDataURL(file);
+    
+}
+ 
 ReaderLoaded(e) {
   var reader = e.target;
   var binaryString = e.target.result;
   this.base64textString = btoa(binaryString);
-  console.log(this.base64textString);
-  this.imageSrc = atob(this.base64textString);
+  //this.imageSrc = atob(this.base64textString);
   //console.log(atob(binaryString));
   //console.log("ja sum binaryString ###" + atob(this.base64textString));
-  //this.imageSrc = reader.result;
+  this.imageSrc = "data:image/any;base64," + this.base64textString;
 
   this.loaded = true;
-  //this.base64Encoded(e);
-  
-  
     
-}
-
-base64Encoded(e){
-  
 }
 
 }
