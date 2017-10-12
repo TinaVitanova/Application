@@ -17,6 +17,9 @@ export class ManageUsersPage {
   usernames=this.UserGlobal.getUsernames(); 
   emails=this.UserGlobal.getEmails();
   userProfilePicture;
+
+  imageLoaded: boolean = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController) {
     this.initializeUsers();
     //this.userProfilePicture = "data:image/png;base64," + this.userImage;
@@ -24,7 +27,7 @@ export class ManageUsersPage {
   }
 
   initializeUsers(){
-    this.userProfilePicture = "data:image/png;base64," + this.userImage;
+   // this.userProfilePicture = "data:image/png;base64," + this.userImage;
     
     this.username=[];
     this.email=[];
@@ -34,9 +37,9 @@ export class ManageUsersPage {
           this.singleArray.push({
                                username: this.usernames[_i],
                                email: this.emails[_i],
-                               picture: this.userProfilePicture[_i] 
+                               picture: "data:image/png;base64," + this.userImage
                               });
-                              
+                                                            
       }
       
   }
@@ -64,6 +67,10 @@ export class ManageUsersPage {
    });
    alert.present();
 
+  }
+
+  ImageLoad() {
+    this.imageLoaded = true;
   }
 
   getUsers(ev){

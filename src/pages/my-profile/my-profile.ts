@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 
 @IonicPage()
@@ -31,7 +31,7 @@ export class MyProfilePage {
   logForm(){
     console.log(this.todo)      
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -40,34 +40,38 @@ export class MyProfilePage {
 
   ImageLoad() {
     this.imageLoaded = true;
+    
+    
   }
 
   InputChange(e) {
+    this.presentLoading();
       var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-  
+      
+      
+       
       var pattern = /image-*/;
       var reader = new FileReader();
   
+      //proveruva dali e prikachena slika
       if (!file.type.match(pattern)) {
           alert('invalid format'); 
           return;
       }
-    
+      
+      //proveruva golemina na slika 
+      if (file.size > 500000){
+        alert('max image size 500kb '); 
+        return;
+      }
+
       this.loaded = false;
-  
-  
-      //za da go pretvori vo base64 format
+      //pretvori vo base64 format
       reader.onload = this.ReaderLoaded.bind(this);
       reader.readAsBinaryString(file);
-  
-  
-      //ja prikazuva prikachenata slika
-      //reader.readAsDataURL(file);
-      
   }
  
   ReaderLoaded(e) {
-    var reader = e.target;
     var binaryString = e.target.result;
     this.base64textString = btoa(binaryString);
     this.imageSrc = "data:image/png;base64," + this.base64textString;
@@ -75,4 +79,11 @@ export class MyProfilePage {
     this.loaded = true;  
   }
 
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 1200
+    });
+    loader.present();
+  }
 }
