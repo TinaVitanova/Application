@@ -29,27 +29,21 @@ export class MyProfilePage {
   }
  
   logForm(){
-    console.log(this.todo)      
+    //console.log(this.todo)      
   }
   constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MyProfilePage');
   }
 
   ImageLoad() {
     this.imageLoaded = true;
-    
-    
   }
 
   InputChange(e) {
     this.presentLoading();
       var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-      
-      
-       
       var pattern = /image-*/;
       var reader = new FileReader();
   

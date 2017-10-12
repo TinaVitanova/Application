@@ -3,14 +3,6 @@ import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angu
 import * as moment from 'moment';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 
-
-/**
- * Generated class for the ReserveEventPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-reserve-event',
@@ -32,9 +24,7 @@ export class ReserveEventPage {
   showRoom = this.EventData.getShowRoom();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
-    console.log ('initial event start time: ' + this.startTime + ' initial end time: ' + this.endTime + ' initial date: ' + this.day)
     this.flag = this.EventData.getFlag();
-  
   }
 
   loadEvents(){  
@@ -42,11 +32,8 @@ export class ReserveEventPage {
   }
   
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ReserveEventPage');
     this.showRoom = this.EventData.getShowRoom();
-
     this.day = moment().toISOString();
-
     this.ListOfRooms.push(this.EventData.getRoomData());
   }
 
@@ -69,7 +56,6 @@ export class ReserveEventPage {
       let date = moment(this.day).format('Do MMMM YYYY');
       let start = this.startTime;
       let end = this.endTime;
-      console.log(new Date() + '    rthsrh   ')
       if (start==end || start == new Date()){
         let alert = this.alertCtrl.create({
           title: 'Error!',

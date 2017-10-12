@@ -16,19 +16,14 @@ export class ManageUsersPage {
   userImage = this.UserGlobal.getUserImage();
   usernames=this.UserGlobal.getUsernames(); 
   emails=this.UserGlobal.getEmails();
-  userProfilePicture;
 
   imageLoaded: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController) {
     this.initializeUsers();
-    //this.userProfilePicture = "data:image/png;base64," + this.userImage;
-    
   }
 
   initializeUsers(){
-   // this.userProfilePicture = "data:image/png;base64," + this.userImage;
-    
     this.username=[];
     this.email=[];
     this.picture=[];
@@ -88,7 +83,6 @@ export class ManageUsersPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ManageUsersPage');
   }
 
 }

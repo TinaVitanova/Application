@@ -50,6 +50,5 @@ export class DashboardPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
   }
 }

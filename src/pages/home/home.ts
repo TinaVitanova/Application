@@ -19,16 +19,13 @@ export class HomePage {
     ionViewDidLoad(){
     }
 
-    logForm(){
-      console.log(this.todo)      
+    logForm(){     
     }
 
     LoginNav(){
-      
       this.UsernamesList = this.UserGlobal.getUsernames();
       this.UserGlobal.setMyGlobalVar(this.todo.username);
       this.flagUser = this.UsernamesList.indexOf(this.todo.username);
-      console.log('UsernamesList: ' + this.UsernamesList + 'za dali ja dobiva vrednosta: ' + this.flagUser)
       if ( this.flagUser != -1 ){
       this.navCtrl.setRoot(DashboardPage);  
       }
