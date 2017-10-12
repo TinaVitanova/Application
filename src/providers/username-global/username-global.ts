@@ -4,57 +4,78 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class UsernameGlobalProvider {
   public Usernames = ['test','admin','superadmin'];
+  public Fullnames = ['Test 1', 'Admin 1', 'Superadmin 1'];
+  public Emails = ['test@test.com', 'admin@admin.com','superadmin@superadmin.com'];
+  public Passwords = ['pass', 'pass', 'pass'];
+  public IsAdmin = [false,true,true];
   public userIndex:any;
-  public user;
-  public Email;
-  public UsersData: {fullname: string, username: string, email: string, password: string , isAdmin: boolean};
-  public FullUsers = {};
+  public CurrentUser;
+  public UsersData: {username: string, fullname: string, email: string, password: string, isAdmin: boolean};
+  public FullUsers:{username: string, fullname: string, email: string, password: string, isAdmin: boolean}[]= [];
+  public CurrentUserIndex;
 
   constructor(public storage: Storage) {
+    console.log('pochetok?')
+    for (var i=0; i<3; i++){
+    this.UsersData = {username: this.Usernames[i], fullname: this.Fullnames[i], email: this.Emails[i], password: this.Passwords[i], isAdmin: this.IsAdmin[i]};
+    this.FullUsers.push(this.UsersData);
+    }
+    console.log(this.FullUsers)
   }
 
   public setMyGlobalVar(value:any) {
-    this.userIndex = this.Usernames.indexOf(value);
-    this.user=this.Usernames[this.userIndex];
+    for (var i=0; i<this.FullUsers.length; i++){
+    if (this.FullUsers[i].username==value)
+      this.userIndex = i;
+    }
+    this.CurrentUserIndex=this.userIndex;
+    this.CurrentUser=this.FullUsers[this.CurrentUserIndex].username;
+    console.log('indeksot: ' + this.CurrentUserIndex + ' userot: '+ this.CurrentUser)
   }
 
   public setEmail(value){
-    this.Email=value;
+    this.FullUsers[this.CurrentUserIndex].email = value;
   }
 
   public setDeleteAccName(value){
-    this.Usernames.splice(value,1);
+    this.FullUsers.splice(value,1);
   }
 
   public addNewUser(value) {
-    this.Usernames.push(value);
+    this.FullUsers.push(value);
   }
   
   public ChangeUser(value){
-    this.Usernames[this.userIndex]=value.newusername;
-    this.user=this.Usernames[this.userIndex];
+    this.FullUsers[this.CurrentUserIndex].username = value.newusername;
+    this.FullUsers[this.CurrentUserIndex].password = value.newpassword;
+    this.FullUsers[this.CurrentUserIndex].email = value.newemail;
+    this.CurrentUser=this.FullUsers[this.CurrentUserIndex].username;
   }
 
   public getEmail(){
-    return this.Email;
+    return this.FullUsers[this.CurrentUserIndex].email;
   }
 
   public getUsernames(){
+    for (var i=0; i<this.FullUsers.length; i++)
+    this.Usernames[i] = this.FullUsers[i].username;
     return this.Usernames;
   }
 
   public getMyGlobalVar() {
-      return this.user;
+      return this.FullUsers[this.CurrentUserIndex].username;
   }
 
+  /*
   public SendUserData(value:string, value1:string, value2: string, value3: string, value4: boolean){
     this.UsersData = {fullname: value, username: value1, email: value2, password: value3, isAdmin: value4}
     this.FullUsers = this.UsersData;
   }
+*/
 
   checkUsername(value){
-    for (var i=0; i<this.Usernames.length; i++){
-      if (value == this.Usernames[i]){
+    for (var i=0; i<this.FullUsers.length; i++){
+      if (value == this.FullUsers[i].username){
        return true
       }
       }

@@ -48,8 +48,10 @@ export class DashboardPage {
     this.menuCtrl.enable(true, "userMenu");
     } 
   }
-
+  ionViewDidEnter(){
+    this.username=this.UserGlobal.getMyGlobalVar();
+    console.log(this.username)
+  }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
   }
 }

@@ -35,7 +35,7 @@ export class ReserveEventPage {
     this.ReserveEventForm = formBuilder.group({
       title: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required])],
       day: ['',Validators.compose([Validators.required])],
-      startTime: ['',Validators.compose([Validators.required])],
+      startTime: ['',Validators.compose([Validators.required, new Validator(UserGlobal, EventData).isTimeDifferent])],
       endTime: ['',Validators.compose([Validators.required, new Validator(UserGlobal, EventData).isTimeDifferent])]
   });
     this.flag = this.EventData.getFlag();

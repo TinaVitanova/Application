@@ -21,10 +21,6 @@ export class HomePage {
       password:"",
     };
 
-    ionViewDidLoad(){
-      
-    }
-
     LoginNav(){
       this.submitAttempt = true;
       this.UsernamesList = this.UserGlobal.getUsernames();
