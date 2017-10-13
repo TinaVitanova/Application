@@ -17,7 +17,6 @@ export class TodayPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TodayPage');
   }
   IsDateToday(events){
     let date = moment(events.startTime).format('DD MM YYYY');
@@ -26,11 +25,9 @@ export class TodayPage {
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
     if (date == dateToday){
-     console.log('isti se');
       return true;
     }
     else{
-      console.log('ne se');
        return false;
      }
   }
@@ -43,7 +40,7 @@ export class TodayPage {
   
      let alert = this.alertCtrl.create({
         title: 'Event: ' + events.title,
-        message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+this.EventData.getRoom() + '</div>',
+        message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:</div>',
        buttons:['OK']
      });
      alert.present();

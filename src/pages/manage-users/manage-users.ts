@@ -6,33 +6,37 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 @Component({
   selector: 'page-manage-users',
   templateUrl: 'manage-users.html',
+  
 })
 export class ManageUsersPage {
-  username;
+
   singleArray;
-  usernames=this.UserGlobal.getUsernames();
-  email;
-  emails=this.UserGlobal.getEmails();
+  public AllUsers = this.UserGlobal.getFullUsers();
+
+  imageLoaded: boolean = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController) {
     this.initializeUsers();
   }
 
   initializeUsers(){
-    this.username=[];
-    this.email=[];
     this.singleArray=[];
-        for (var _i = 0; _i < this.usernames.length; _i++) {
+        for (var _i = 0; _i < this.AllUsers.length; _i++) {
+          console.log(this.AllUsers[_i].picture + '    initialize users slikata')
           this.singleArray.push({
-                               username: this.usernames[_i],
-                               email: this.emails[_i] 
+                               username: this.AllUsers[_i].username,
+                               email: this.AllUsers[_i].email,
+                               picture: "data:image/png;base64," + this.AllUsers[_i].picture
                               });
+                                                            
       }
+      
   }
 
-  deleteUser(user){
+  deleteUser(item){
     let alert = this.alertCtrl.create({
       title: 'Are you sure?',
-      message: 'Delete the user: '+ user,
+      message: 'Delete the user: '+ item,
       buttons: [
         {
           text: 'Cancel',
@@ -44,7 +48,7 @@ export class ManageUsersPage {
         {
           text: 'Delete',
           handler: () => {
-            this.UserGlobal.setDeleteAccName(this.usernames.indexOf(user));
+            this.UserGlobal.setDeleteAccName(this.AllUsers.indexOf(item));
             this.initializeUsers();
           }
         }
@@ -52,6 +56,10 @@ export class ManageUsersPage {
    });
    alert.present();
 
+  }
+
+  ImageLoad() {
+    this.imageLoaded = true;
   }
 
   getUsers(ev){
@@ -62,14 +70,13 @@ export class ManageUsersPage {
 
     //if the value is an empty string don't filter the items 
     if( val1 && val1.trim() != ''){
-      this.username = this.username.filter((user)=>{
-        return (user.toLowerCase().indexOf(val1.toLowerCase()) > -1);       
+      this.singleArray = this.singleArray.filter((item:any) => {
+        return (item.username.toLowerCase().indexOf(val1.toLowerCase()) > -1);      
       })
     }
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ManageUsersPage');
   }
 
 }

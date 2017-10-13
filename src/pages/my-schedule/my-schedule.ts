@@ -19,7 +19,6 @@ export class MySchedulePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MySchedulePage');
   }
 
 }

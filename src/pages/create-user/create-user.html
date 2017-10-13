@@ -13,41 +13,43 @@
 </ion-header>
 
 <ion-content padding class="background">
-    <form (ngSubmit)="logFormSignUp()">
+    <form (ngSubmit)="logFormSignUp()" [formGroup]="CreateUserForm">
         <ion-list>
-
             <ion-item>
                 <ion-label floating><ion-icon name="person"></ion-icon> &nbsp; Full Name</ion-label>
-                <ion-input type="text" [(ngModel)]="new.fullname" name="fullname"></ion-input>
+                <ion-input type="text" formControlName="fullname" [class.invalid]="!CreateUserForm.controls.fullname.valid && CreateUserForm.controls.fullname.dirty && submitAttempt"  [(ngModel)]="new.fullname" name="fullname"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label floating><ion-icon name="person-add"></ion-icon> &nbsp;  Username</ion-label>
-                <ion-input type="text" [(ngModel)]="new.username" name="username"></ion-input>
+                <ion-input type="text"  formControlName="username" [class.invalid]="!CreateUserForm.controls.username.valid && CreateUserForm.controls.username.dirty && submitAttempt" [(ngModel)]="new.username" name="username"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label floating><ion-icon name="mail"></ion-icon> &nbsp; E-mail</ion-label>
-                <ion-input type="mail" [(ngModel)]="new.email" name="email"></ion-input>
+                <ion-input type="mail" formControlName="email" [class.invalid]="!CreateUserForm.controls.email.valid && CreateUserForm.controls.email.dirty && submitAttempt"  [(ngModel)]="new.email" name="email"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label floating><ion-icon name="lock"></ion-icon> &nbsp; Password</ion-label>
-                <ion-input type="password" [(ngModel)]="new.password" name="password"></ion-input>
+                <ion-input type="password" formControlName="password" [class.invalid]="!CreateUserForm.controls.password.valid && CreateUserForm.controls.password.dirty && submitAttempt" [(ngModel)]="new.password" name="password"></ion-input>
             </ion-item>
 
-            <ion-item id="create-admin" [hidden]="shouldHide()">
+
+            <ion-item [hidden]="shouldHide()">
+
                 <ion-label>Create Admin</ion-label>
-                <ion-checkbox [(ngModel)]="isAdmin" name=checked></ion-checkbox>
+                <ion-checkbox formControlName="isAdmin" [(ngModel)]="isAdmin" name=checked></ion-checkbox>
             </ion-item>
-
-            <ion-buttons text-center>
-                <button id="create-user" large ion-button round outline (click)="CreateNewUser()">Create User</button>
-            </ion-buttons>
 
         </ion-list>
+        
+</form>
+            <ion-buttons text-center>
+                <button id="create-user" large ion-button round outline [disabled]="!CreateUserForm.valid" (click)="CreateNewUser()">Create User</button>
+            </ion-buttons>
 
-    </form>
+
 
 
 </ion-content>

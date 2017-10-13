@@ -5,38 +5,34 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding text-center>
-    <form (ngSubmit)="logForm()" text-center>
-        
-            <label class="uploader">
-                <span><ion-icon name="person"></ion-icon></span>
-                
-                    <img
-                        [src]="imageSrc" 
-                        (load)="handleImageLoad()" 
+
+    <form (ngSubmit)="logForm()" [formGroup]="ChangeUserForm">
+
+        <label class="uploader">
+                <span style="padding: 5% 0%;"><ion-icon name="person-add"></ion-icon></span>
+                        <img 
+                        [src]="imageSrc"
+                        (load)="ImageLoad()" 
                         [class.loaded]="imageLoaded"/>
                     
                     <input type="file" name="file" accept="image/*"
-                        (change)="handleInputChange($event)">
+                        (change)="InputChange($event)">
             </label>
+        <!-- <textarea id="base64textarea" placeholder="Base64 will appear here" cols="30" rows="15">{{base64textString}}</textarea> -->
         <ion-list text-center>
             <ion-item>
                 <ion-label floating>New Username</ion-label>
-                <ion-input type="text" [(ngModel)]="todo.newusername" name="username"></ion-input>
+                <ion-input type="text" formControlName="newusername" [(ngModel)]="todo.newusername" name="username"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label floating>New Email</ion-label>
-                <ion-input type="email" [(ngModel)]="todo.newemail" name="newemail"></ion-input>
+                <ion-input type="email" formControlName="newemail" [(ngModel)]="todo.newemail" name="newemail"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label floating>New Password</ion-label>
-                <ion-input type="password" [(ngModel)]="todo.newpassword" name="newpassword"></ion-input>
-            </ion-item>
-
-            <ion-item style="border-bottom: 2px solid #24C6DC;">
-                <ion-label floating>Old Password</ion-label>
-                <ion-input type="password" [(ngModel)]="todo.oldpassword" name="oldpassword"></ion-input>
+                <ion-input type="password" formControlName="newpassword" [(ngModel)]="todo.newpassword" name="newpassword"></ion-input>
             </ion-item>
         </ion-list>
     </form>

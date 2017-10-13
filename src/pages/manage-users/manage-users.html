@@ -12,8 +12,8 @@
     <ion-list>
 
         <ion-item *ngFor="let item of singleArray">
-            <ion-avatar item-start>
-                <img src="assets/avatar.png">
+            <ion-avatar item-start class="uploader">
+                <img src={{item.picture}} (load)="ImageLoad()" [class.loaded]="imageLoaded">
             </ion-avatar>
 
             <h2>{{item.username}}</h2>

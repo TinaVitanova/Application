@@ -46,7 +46,7 @@ page-my-profile {
             @include basic-transition;
         }
     }
-
+      
     .uploader input {
         display: none;
     }
@@ -54,7 +54,7 @@ page-my-profile {
         -webkit-align-items: center;
         align-items: center;
         border: 2px solid map-get($colors, primary);
-        border-radius:50%;
+        border-radius: 50%;
         cursor: pointer;
         display: -webkit-flex;
         display: flex;
@@ -66,10 +66,20 @@ page-my-profile {
         margin-bottom: 2%;
         left: 30%;
         top: 15%;
+// =======
+//         width: 150px;
+//         height: 150px;
+//         -webkit-justify-content: center;
+//         justify-content: center;
+//         position: relative;
+//         bottom: 1px;
+// >>>>>>> in-development
     }
     .uploader img,
     .uploader .icon {
         pointer-events: none;
+        width: 100%;
+        height: 100%;
     }
     .uploader,
     .uploader .icon {
@@ -82,6 +92,7 @@ page-my-profile {
     .uploader .icon {
         color:map-get($colors, primary);
         font-size: 5.5em;
+
     }
     .uploader img {
         left: 50%;
@@ -90,7 +101,7 @@ page-my-profile {
         max-width: 90%;
         position: absolute;
         top: 50%;
-        border-radius: 50%;
+        border-radius: 100%;
         @include basic-transition;
         -webkit-transform: translate(-50%, -50%);
         -moz-transform: translate(-50%, -50%);
@@ -98,7 +109,6 @@ page-my-profile {
         -o-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
         z-index: -1;
-        margin-bottom: 2%;
     }
     .uploader img.loaded {
         opacity: 1;
