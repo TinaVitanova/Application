@@ -11,7 +11,6 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 export class ManageUsersPage {
   usernames = this.UserGlobal.getUsernames();
   email;
-  username;
   picture;
   singleArray;
   userImage = this.UserGlobal.getUserImage();
@@ -24,7 +23,6 @@ export class ManageUsersPage {
   }
 
   initializeUsers(){
-    this.username=[];
     this.singleArray=[];
         for (var _i = 0; _i < this.AllUsers.length; _i++) {
           this.singleArray.push({
@@ -32,7 +30,6 @@ export class ManageUsersPage {
                                email: this.AllUsers[_i].email,
                                picture: "data:image/png;base64," + this.AllUsers[_i].picture
                               });
-                              this.username.push(this.singleArray.username)
                                                             
       }
       
