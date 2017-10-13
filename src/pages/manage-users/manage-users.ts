@@ -9,8 +9,9 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
   
 })
 export class ManageUsersPage {
-  username;
+  usernames = this.UserGlobal.getUsernames();
   email;
+  username;
   picture;
   singleArray;
   userImage = this.UserGlobal.getUserImage();
@@ -23,6 +24,7 @@ export class ManageUsersPage {
   }
 
   initializeUsers(){
+    this.username=[];
     this.singleArray=[];
         for (var _i = 0; _i < this.AllUsers.length; _i++) {
           this.singleArray.push({
@@ -30,6 +32,7 @@ export class ManageUsersPage {
                                email: this.AllUsers[_i].email,
                                picture: "data:image/png;base64," + this.AllUsers[_i].picture
                               });
+                              this.username.push(this.singleArray.username)
                                                             
       }
       
@@ -72,8 +75,8 @@ export class ManageUsersPage {
 
     //if the value is an empty string don't filter the items 
     if( val1 && val1.trim() != ''){
-      this.username = this.username.filter((item)=>{
-        return (item.toLowerCase().indexOf(val1.toLowerCase()) > -1);       
+      this.singleArray = this.singleArray.filter((item:any) => {
+        return (item.username.toLowerCase().indexOf(val1.toLowerCase()) > -1);      
       })
     }
   }
