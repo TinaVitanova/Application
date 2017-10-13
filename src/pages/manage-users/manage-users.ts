@@ -9,6 +9,7 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
   
 })
 export class ManageUsersPage {
+
   singleArray;
   public AllUsers = this.UserGlobal.getFullUsers();
 
