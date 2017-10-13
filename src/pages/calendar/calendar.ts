@@ -15,6 +15,7 @@ export class CalendarPage {
   selectedDay = new Date();
   flagCalendar;
   ListOfRooms = [];
+  room;
   showRoom = this.EventData.getShowRoom();
   
   calendar = {
@@ -37,7 +38,7 @@ export class CalendarPage {
   }
     addEvent(){
       this.flagCalendar = true;  
-      this.EventData.setFlag(this.flagCalendar);
+      this.EventData.setFlagIsCalendarPage(this.flagCalendar);
     this.navCtrl.push(ReserveEventPage);
   }
 
@@ -55,21 +56,17 @@ export class CalendarPage {
   }
   
   createEvent (){
-    var day = new Date(this.EventData.getDay());
-     var startDate = moment(this.EventData.getStartTime(),"hh:mm").toDate();
-      var endDate = moment(this.EventData.getEndTime(),"hh:mm").toDate();
+      var allEvents = this.EventData.getEvents();
       var events = [];
-      var startTime = new Date(day.getFullYear(), day.getMonth(), day.getDate(), startDate.getHours(), startDate.getMinutes());
-      var endTime = new Date(day.getFullYear(), day.getMonth(), day.getDate(), endDate.getHours(), endDate.getMinutes());
-console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end time  ')
-      
+    for (var i=0; i<allEvents.length; i++){
       events.push({
-            title: this.EventData.getTitle(),
-            startTime: startTime,
-            endTime: endTime,
-            allday: false
+            title: allEvents[i].title,
+            startTime: allEvents[i].startTime,
+            endTime: allEvents[i].endTime,
+            allday: allEvents[i].allDay
         });
-        this.EventData.setEvents(events);
+      }
+    //    this.EventData.setEvents(events);
         return events;
 
     }
@@ -77,8 +74,7 @@ console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end
   loadEvents(){
       setTimeout(()=>{
     this.eventSource = this.createEvent();
-    this.EventData.setLoadEvents(this.eventSource);
-    console.log('load event ' + this.eventSource);
+    this.EventData.setLoadEvents(this.eventSource,this.room);
       })
   }
   onEventSelected(event) {
@@ -88,7 +84,7 @@ console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end
  
     let alert = this.alertCtrl.create({
        title: 'Event: ' + event.title,
-       message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+this.EventData.getRoom() + '</div>',
+       message: 'On: '+date+'<br>From: '+start+'<br>To: '+ end +'<br> Room:</div>',
       buttons:['OK']
     });
     alert.present();
@@ -99,9 +95,8 @@ ionViewDidEnter(){
   this.loadEvents();
 }
   ionViewDidLoad(){    
-    this.ListOfRooms.push(this.EventData.getRoomData());
+    this.ListOfRooms = this.EventData.getRoomData();
     this.showRoom = this.EventData.getShowRoom();
-    console.log('view za calendar')
   }
 
 }

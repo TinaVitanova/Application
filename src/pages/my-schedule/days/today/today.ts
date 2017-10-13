@@ -43,7 +43,7 @@ export class TodayPage {
   
      let alert = this.alertCtrl.create({
         title: 'Event: ' + events.title,
-        message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+this.EventData.getRoom() + '</div>',
+        message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:</div>',
        buttons:['OK']
      });
      alert.present();

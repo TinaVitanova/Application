@@ -20,7 +20,6 @@ export class UsernameGlobalProvider {
     this.UsersData = {username: this.Usernames[i], fullname: this.Fullnames[i], email: this.Emails[i], password: this.Passwords[i], isAdmin: this.IsAdmin[i]};
     this.FullUsers.push(this.UsersData);
     }
-    console.log(this.FullUsers)
   }
 
   public setMyGlobalVar(value:any) {
@@ -30,7 +29,6 @@ export class UsernameGlobalProvider {
     }
     this.CurrentUserIndex=this.userIndex;
     this.CurrentUser=this.FullUsers[this.CurrentUserIndex].username;
-    console.log('indeksot: ' + this.CurrentUserIndex + ' userot: '+ this.CurrentUser)
   }
 
   public setEmail(value){

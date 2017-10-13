@@ -20,6 +20,7 @@ export class ReserveEventPage {
   public endTime;
   public startTime;
   public day;
+  public allDay: boolean=false;
   public BlurEndTimeFlag;
   public BlurStartTimeFlag;
   public FlagStartEndTime = false;
@@ -38,7 +39,7 @@ export class ReserveEventPage {
       startTime: ['',Validators.compose([Validators.required, new Validator(UserGlobal, EventData).isTimeDifferent])],
       endTime: ['',Validators.compose([Validators.required, new Validator(UserGlobal, EventData).isTimeDifferent])]
   });
-    this.flag = this.EventData.getFlag();
+    this.flag = this.EventData.getFlagisCalendarPage();
   
   }
 
@@ -82,12 +83,11 @@ export class ReserveEventPage {
     this.isReserved=true;
   }
   save(){
-    this.flag = this.EventData.getFlag();
+    this.flag = this.EventData.getFlagisCalendarPage();
 
       let date = moment(this.day).format('Do MMMM YYYY');
       let start = this.startTime;
       let end = this.endTime;
-      console.log(new Date() + '    rthsrh   ')
       if (start==end || start == new Date()){
         let alert = this.alertCtrl.create({
           title: 'Error!',
@@ -112,11 +112,13 @@ export class ReserveEventPage {
             text: 'Reserve',
             role: 'confirm',
             handler: data => {
-              this.EventData.setStartTime(this.startTime);
-              this.EventData.setEndTime(this.endTime);
-              this.EventData.setTitle(this.title);
-              this.EventData.setRoom(this.rooms);
-              this.EventData.setDay(this.day);
+              
+            this.day = new Date(this.day);
+            var startDate = moment(this.startTime,"hh:mm").toDate();
+            var endDate = moment(this.endTime,"hh:mm").toDate();
+            this.startTime = new Date(this.day.getFullYear(), this.day.getMonth(), this.day.getDate(), startDate.getHours(), startDate.getMinutes());
+            this.endTime = new Date(this.day.getFullYear(), this.day.getMonth(), this.day.getDate(), endDate.getHours(), endDate.getMinutes());
+            this.EventData.setEvent(this.title, this.startTime, this.endTime, this.allDay, this.rooms);
               console.log('Created new event');
               if (this.flag == true)
                 this.navCtrl.pop();

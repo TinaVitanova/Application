@@ -25,7 +25,7 @@ export class DashboardPage {
   ReserveNav(){
     
     this.flagCalendar = false;
-    this.EventData.setFlag(this.flagCalendar);
+    this.EventData.setFlagIsCalendarPage(this.flagCalendar);
     this.navCtrl.push(ReserveEventPage)
   }
 
