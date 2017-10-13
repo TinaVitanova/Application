@@ -3,6 +3,7 @@ import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angu
 import * as moment from 'moment';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 import { EventDataProvider } from '../../providers/event-data/event-data';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Validator } from '../../validators/FormValidator';
 
@@ -32,6 +33,7 @@ export class ReserveEventPage {
    
   showRoom = this.EventData.getShowRoom();
 
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder) {
     this.ReserveEventForm = formBuilder.group({
       title: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required])],
@@ -41,6 +43,7 @@ export class ReserveEventPage {
   });
     this.flag = this.EventData.getFlagisCalendarPage();
   
+
   }
   SelectedRoom(r){
     this.room = r.value;
@@ -48,8 +51,8 @@ export class ReserveEventPage {
   
   ionViewDidLoad() {
     this.showRoom = this.EventData.getShowRoom();
-
     this.day = moment().toISOString();
+
 
     this.ListOfRooms=this.EventData.getRoomData();
   }
@@ -66,6 +69,7 @@ export class ReserveEventPage {
     this.FlagStartEndTime = this.EventData.checkStartTime(this.startTime);
     this.EventData.setFlagStartEndTime(this.FlagStartEndTime);
     }
+
   }
 
   showRooms(){

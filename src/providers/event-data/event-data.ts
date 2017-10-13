@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+
 import * as moment from 'moment';
 
 @Injectable()
 export class EventDataProvider {
-
   public flag;
   public RoomsData: {name: string, capacity: string, description: string};
   public Eventdata: {title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object};
@@ -14,6 +14,7 @@ export class EventDataProvider {
   public loadEvent;
   public FlagStartEndTime;
   constructor(public storage: Storage) {
+
   } 
   public checkRoomName(value){
     for (var i=0; i<this.FullRooms.length; i++){
@@ -40,12 +41,14 @@ export class EventDataProvider {
   }
 
   public SendRoomData(value:string, value1:string, value2: string){
+
     this.RoomsData = {name: value, capacity: value1, description: value2};
     this.FullRooms.push(this.RoomsData);
   }
 
   public getRoomData(){
     return this.FullRooms;
+
   }
 
   public setEvent(value1,value2,value3,value4,value5){
@@ -61,6 +64,7 @@ export class EventDataProvider {
     if (checkStartTime == this.checkEndTime)
     return true;
     else return false;
+
   }
   public checkEndTime(value){
     var checkEndTime = value;

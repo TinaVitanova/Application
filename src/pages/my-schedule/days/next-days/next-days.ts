@@ -40,7 +40,6 @@ export class NextDaysPage {
      alert.present();
   }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NextDaysPage');
   }
 
 }

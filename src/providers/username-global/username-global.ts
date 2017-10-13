@@ -9,6 +9,7 @@ export class UsernameGlobalProvider {
   public Passwords = ['pass', 'pass', 'pass'];
   public IsAdmin = [false,true,true];
   public userIndex:any;
+
   public CurrentUser;
   public UsersData: {username: string, fullname: string, email: string, password: string, isAdmin: boolean};
   public FullUsers:{username: string, fullname: string, email: string, password: string, isAdmin: boolean}[]= [];
@@ -22,6 +23,25 @@ export class UsernameGlobalProvider {
     }
   }
 
+
+  public userImage;
+  public imgSrc;
+  public flagUserImage = false;
+
+
+
+  public setUserImage(value){
+    this.userImage = value;
+    this.flagUserImage=true;
+  }
+  public getFlagUserimage(){
+    return this.flagUserImage;
+  }
+
+  public getUserImage(){
+    return this.userImage;
+  }
+
   public setMyGlobalVar(value:any) {
     for (var i=0; i<this.FullUsers.length; i++){
     if (this.FullUsers[i].username==value)
@@ -33,9 +53,11 @@ export class UsernameGlobalProvider {
 
   public setEmail(value){
     this.FullUsers[this.CurrentUserIndex].email = value;
+
   }
 
   public setDeleteAccName(value){
+
     this.FullUsers.splice(value,1);
   }
 
@@ -52,6 +74,7 @@ export class UsernameGlobalProvider {
 
   public getEmail(){
     return this.FullUsers[this.CurrentUserIndex].email;
+
   }
 
   public getUsernames(){
@@ -63,6 +86,7 @@ export class UsernameGlobalProvider {
   public getMyGlobalVar() {
       return this.FullUsers[this.CurrentUserIndex].username;
   }
+
 
   /*
   public SendUserData(value:string, value1:string, value2: string, value3: string, value4: boolean){
@@ -78,6 +102,7 @@ export class UsernameGlobalProvider {
       }
       }
       return false
+
   }
 
   checkPassword(value){

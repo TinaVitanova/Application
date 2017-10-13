@@ -15,7 +15,6 @@
 <ion-content padding class="background">
     <form (ngSubmit)="logFormSignUp()" [formGroup]="CreateUserForm">
         <ion-list>
-
             <ion-item>
                 <ion-label floating><ion-icon name="person"></ion-icon> &nbsp; Full Name</ion-label>
                 <ion-input type="text" formControlName="fullname" [class.invalid]="!CreateUserForm.controls.fullname.valid && CreateUserForm.controls.fullname.dirty && submitAttempt"  [(ngModel)]="new.fullname" name="fullname"></ion-input>
@@ -38,6 +37,7 @@
 
 
             <ion-item [hidden]="shouldHide()">
+
                 <ion-label>Create Admin</ion-label>
                 <ion-checkbox formControlName="isAdmin" [(ngModel)]="isAdmin" name=checked></ion-checkbox>
             </ion-item>

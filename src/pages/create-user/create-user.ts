@@ -54,8 +54,10 @@ export class CreateUserPage {
         text: 'Confirm',
         role: 'confirm',
         handler: data => {
+
           this.submitAttempt = true;
           this.UserGlobal.addNewUser(this.new);
+
           console.log('Created new user');
         }
       }

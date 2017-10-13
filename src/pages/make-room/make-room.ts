@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EventDataProvider } from '../../providers/event-data/event-data';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Validator } from '../../validators/FormValidator';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';

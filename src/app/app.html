@@ -7,39 +7,54 @@
     </div>
 </div>
 <!-- splash screen end -->
+<!-- ADMIN MENU -->
 <ion-menu id="adminMenu" [content]="content" persistent="true" enable-menu-with-back-views="false" side="left">
-
-    <ion-header>
-        <ion-toolbar>
-            <ion-title>Menu</ion-title>
+    <!-- <ion-header no-border>
+        <ion-toolbar color="make-room">
+            <ion-title><ion-icon name="arrow-round-back"></ion-icon></ion-title>
         </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
+    </ion-header> -->
+    <ion-content class="background">
         <ion-list>
-            <button menuClose ion-item *ngFor="let p of pages1" (click)="openPage(p)">
-        {{p.title}}
-      </button>
+            <ion-avatar item-start>
+                <img class="avatar" src="assets/avatar.png">
+            </ion-avatar>
+            <ion-item class="sm-list">
+                <button menuClose ion-item *ngFor="let p of pages1" (click)="openPage(p)">
+                {{p.title}}
+                </button>
+            </ion-item>
+            <ion-item class="notifications">
+                <ion-label>Notifications</ion-label>
+                <ion-toggle value="notification" checked="true" color="white"></ion-toggle>
+            </ion-item>
+            <button class="logout-btn" ion-item (click)="LogOut()"><ion-icon name="log-out"></ion-icon> &nbsp; Logout</button>
         </ion-list>
     </ion-content>
-
 </ion-menu>
-
+<!-- USER MENU -->
 <ion-menu id="userMenu" [content]="content" persistent="true" enable-menu-with-back-views="false" side="left">
-
-    <ion-header>
+    <!-- <ion-header no-border color="make-room">
         <ion-toolbar>
-            <ion-title>Menu</ion-title>
+            <ion-title><ion-icon name="arrow-round-back"></ion-icon></ion-title>
         </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
+    </ion-header> -->
+    <ion-content class="background">
         <ion-list>
-            <button menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)">
-            {{p.title}}
-          </button>
+            <ion-avatar item-start>
+                <img class="avatar" src="assets/avatar.png">
+            </ion-avatar>
+            <ion-item class="sm-list">
+                <button menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)">
+                     {{p.title}}
+                </button>
+            </ion-item>
+            <ion-item class="notifications">
+                <ion-label>Notifications</ion-label>
+                <ion-toggle value="notification" checked="true" color="white"></ion-toggle>
+            </ion-item>
+            <button style="margin-top:42%" class="logout-btn" ion-item (click)="LogOut()"><ion-icon name="log-out"></ion-icon> &nbsp; Logout</button>
         </ion-list>
     </ion-content>
-
 </ion-menu>
 <ion-nav id="nav" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -1,9 +1,7 @@
 page-my-profile {
-
-    ion-title{
+    ion-title {
         text-transform: uppercase;
     }
-
     .uploader input {
         display: none;
     }
@@ -11,18 +9,22 @@ page-my-profile {
         -webkit-align-items: center;
         align-items: center;
         border: 2px solid map-get($colors, primary);
-        border-radius:50%;
+        border-radius: 50%;
         cursor: pointer;
         display: -webkit-flex;
         display: flex;
-        width: 27%;
+        width: 150px;
+        height: 150px;
         -webkit-justify-content: center;
         justify-content: center;
         position: relative;
+        bottom: 1px;
     }
     .uploader img,
     .uploader .icon {
         pointer-events: none;
+        width: 100%;
+        height: 100%;
     }
     .uploader,
     .uploader .icon {
@@ -33,17 +35,15 @@ page-my-profile {
         transition: all 100ms ease-in;
     }
     .uploader .icon {
-        color:map-get($colors, primary);
-        font-size: 4.5em;
+        color: map-get($colors, primary);
+        font-size: 4em;
     }
     .uploader img {
         left: 50%;
         opacity: 0;
-        max-height: 100%;
-        max-width: 100%;
         position: absolute;
         top: 50%;
-        border-radius: 50%;
+        border-radius: 100%;
         @include basic-transition;
         -webkit-transform: translate(-50%, -50%);
         -moz-transform: translate(-50%, -50%);
@@ -51,7 +51,6 @@ page-my-profile {
         -o-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
         z-index: -1;
-        margin-bottom: 2%;
     }
     .uploader img.loaded {
         opacity: 1;
