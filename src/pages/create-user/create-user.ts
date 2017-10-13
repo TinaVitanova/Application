@@ -19,7 +19,8 @@ export class CreateUserPage {
     fullname:"",
     email:"",
     password:"",
-    isAdmin:""
+    isAdmin:"",
+    image:"",
   };
 
   logFormSignUp(){
@@ -40,15 +41,11 @@ export class CreateUserPage {
       subTitle: 'Fullname: ' + this.new.fullname + 
                 '<br>Username: ' + this.new.username + 
                 '<br>Email: ' + this.new.email + 
-                '<br>Password: ' + this.new.password + 
-                '<br>Is admin? '  + this.isAdmin,       
+                '<br>Password: ' + this.new.password,   
      buttons:[
       {
         text: 'Cancel',
         role: 'cancel',
-        handler: data => {
-          console.log('Cancel clicked');
-        }
       },
       {
         text: 'Confirm',
@@ -56,9 +53,9 @@ export class CreateUserPage {
         handler: data => {
 
           this.submitAttempt = true;
+          this.new.image = this.UserGlobal.getDefaultImage();
+          console.log(this.new.image + '               daefawerge');
           this.UserGlobal.addNewUser(this.new);
-
-          console.log('Created new user');
         }
       }
      ]

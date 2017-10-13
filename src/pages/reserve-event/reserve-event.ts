@@ -3,7 +3,6 @@ import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angu
 import * as moment from 'moment';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 import { EventDataProvider } from '../../providers/event-data/event-data';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Validator } from '../../validators/FormValidator';
 
