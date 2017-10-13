@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angular';
 import * as moment from 'moment';
+import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 import { EventDataProvider } from '../../providers/event-data/event-data';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Validator } from '../../validators/FormValidator';
 
 @IonicPage()
 @Component({
@@ -9,32 +12,63 @@ import { EventDataProvider } from '../../providers/event-data/event-data';
   templateUrl: 'reserve-event.html',
 })
 export class ReserveEventPage {
+  submitAttempt: boolean = false;
+  ReserveEventForm: FormGroup;
   isReserved: boolean;
   flag;
   public title;
   public endTime;
   public startTime;
   public day;
+  public room;
+  public allDay: boolean=false;
+  public BlurEndTimeFlag;
+  public BlurStartTimeFlag;
+  public FlagStartEndTime = false;
   public minDate = moment().utc().format('YYYY-MM-DD').toString();
   public maxDate = moment().utc().add(30,'y').format('YYYY').toString();
 
-  rooms:"";
   ListOfRooms = [];
    
   showRoom = this.EventData.getShowRoom();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
-    this.flag = this.EventData.getFlag();
-  }
 
-  loadEvents(){  
-  this.EventData.getLoadEvents();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder) {
+    this.ReserveEventForm = formBuilder.group({
+      title: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required])],
+      day: ['',Validators.compose([Validators.required])],
+      startTime: ['',Validators.compose([Validators.required, new Validator(UserGlobal, EventData).isTimeDifferent])],
+      endTime: ['',Validators.compose([Validators.required, new Validator(UserGlobal, EventData).isTimeDifferent])]
+  });
+    this.flag = this.EventData.getFlagisCalendarPage();
+  
+
+  }
+  SelectedRoom(r){
+    this.room = r.value;
   }
   
   ionViewDidLoad() {
     this.showRoom = this.EventData.getShowRoom();
     this.day = moment().toISOString();
-    this.ListOfRooms.push(this.EventData.getRoomData());
+
+
+    this.ListOfRooms=this.EventData.getRoomData();
+  }
+  OnBlurEndTime(){
+    this.BlurEndTimeFlag = true;
+    if (this.BlurStartTimeFlag == true){
+    this.FlagStartEndTime = this.EventData.checkEndTime(this.endTime);
+    this.EventData.setFlagStartEndTime(this.FlagStartEndTime);
+    }
+  }
+  OnBlurStartTime(){
+    this.BlurStartTimeFlag = true;
+    if (this.BlurEndTimeFlag == true){
+    this.FlagStartEndTime = this.EventData.checkStartTime(this.startTime);
+    this.EventData.setFlagStartEndTime(this.FlagStartEndTime);
+    }
+
   }
 
   showRooms(){
@@ -51,23 +85,14 @@ export class ReserveEventPage {
     this.isReserved=true;
   }
   save(){
-    this.flag = this.EventData.getFlag();
+    this.flag = this.EventData.getFlagisCalendarPage();
 
       let date = moment(this.day).format('Do MMMM YYYY');
       let start = this.startTime;
       let end = this.endTime;
-      if (start==end || start == new Date()){
-        let alert = this.alertCtrl.create({
-          title: 'Error!',
-          message: 'You have not added a start and end time for your event',
-          buttons:["OK"]
-       });
-       alert.present();
-      }
-      else{
       let alert = this.alertCtrl.create({
         title: 'You have created an event: ' + this.title,
-        message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+ this.rooms + '</div>',
+        message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+ this.room + '</div>',
         buttons:[
           {
             text: 'Cancel',
@@ -80,12 +105,13 @@ export class ReserveEventPage {
             text: 'Reserve',
             role: 'confirm',
             handler: data => {
-              this.EventData.setStartTime(this.startTime);
-              this.EventData.setEndTime(this.endTime);
-              this.EventData.setTitle(this.title);
-              this.EventData.setRoom(this.rooms);
-              this.EventData.setDay(this.day);
-              console.log('Created new event');
+              
+            this.day = new Date(this.day);
+            var startDate = moment(this.startTime,"hh:mm").toDate();
+            var endDate = moment(this.endTime,"hh:mm").toDate();
+            var startTimeEvent = new Date(this.day.getFullYear(), this.day.getMonth(), this.day.getDate(), startDate.getHours(), startDate.getMinutes());
+            var endTimeEvent = new Date(this.day.getFullYear(), this.day.getMonth(), this.day.getDate(), endDate.getHours(), endDate.getMinutes());
+            this.EventData.setEvent(this.title, startTimeEvent, endTimeEvent, this.allDay, this.room);
               if (this.flag == true)
                 this.navCtrl.pop();
                 else
@@ -95,7 +121,6 @@ export class ReserveEventPage {
          ]
      });
      alert.present();
-    }
   }
   ionViewWillEnter(){
 

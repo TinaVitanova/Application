@@ -25,7 +25,7 @@ export class DashboardPage {
   ReserveNav(){
     
     this.flagCalendar = false;
-    this.EventData.setFlag(this.flagCalendar);
+    this.EventData.setFlagIsCalendarPage(this.flagCalendar);
     this.navCtrl.push(ReserveEventPage)
   }
 
@@ -48,7 +48,9 @@ export class DashboardPage {
     this.menuCtrl.enable(true, "userMenu");
     } 
   }
-
+  ionViewDidEnter(){
+    this.username=this.UserGlobal.getMyGlobalVar();
+  }
   ionViewDidLoad() {
   }
 }
