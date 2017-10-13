@@ -39,7 +39,7 @@ export class MakeRoomPage {
     this.MakeRoomForm = formBuilder.group({
       RoomName: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required,new Validator(UserGlobal, EventData).isRoomValid])],
       Capacity: ['',Validators.compose([Validators.required])],
-      Description: ['',Validators.compose([Validators.required,Validators.maxLength(300)])]
+      Description: ['',Validators.compose([Validators.maxLength(300)])]
   });
   }
 
