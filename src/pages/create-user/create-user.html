@@ -39,7 +39,7 @@
                 <ion-input type="password" [(ngModel)]="new.password" name="password"></ion-input>
             </ion-item>
 
-            <ion-item [hidden]="shouldHide()">
+            <ion-item id="create-admin" [hidden]="shouldHide()">
                 <ion-label>Create Admin</ion-label>
                 <ion-checkbox [(ngModel)]="isAdmin" name=checked></ion-checkbox>
             </ion-item>
