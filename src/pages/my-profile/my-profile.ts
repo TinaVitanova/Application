@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EventDataProvider } from '../../providers/event-data/event-data';
+import { Validator } from '../../validators/FormValidator';
 
 @IonicPage()
 @Component({
@@ -10,13 +13,12 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 export class MyProfilePage {
   
   Username=this.UserGlobal.getMyGlobalVar();
-  email=this.UserGlobal.getEmails();
   public todo = {
-    newusername:"",
-    newpassword:"",
-    newemail:"" 
+    newusername:this.UserGlobal.getMyGlobalVar(),
+    newpassword:this.UserGlobal.getMyGlobalPass(),
+    newemail:this.UserGlobal.getMyGlobalEmail() 
   };
-  
+  ChangeUserForm: FormGroup;
   base64textString:any;
   loaded: boolean = false;
   imageLoaded: boolean = false;
@@ -46,7 +48,14 @@ export class MyProfilePage {
           handler: data => {
             if (data.password == "ok") {
               console.log('yup')
-              this.UserGlobal.ChangeUser(this.todo);
+          /*    if (this.todo.newusername=="")
+              this.todo.newusername=this.UserGlobal.getMyGlobalVar();
+              if(this.todo.newpassword=="")
+              this.todo.newpassword=this.UserGlobal.getMyGlobalPass();
+              if(this.todo.newemail=="")
+              this.todo.newemail=this.UserGlobal.getMyGlobalEmail();
+              */
+              this.UserGlobal.ChangeUser(this.todo,this.base64textString);
             } else {
               console.log('nope')
               return false;
@@ -62,7 +71,12 @@ export class MyProfilePage {
     //console.log(this.todo)      
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public formBuilder: FormBuilder, public EventData: EventDataProvider) {
+    this.ChangeUserForm = formBuilder.group({
+      newusername: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'), new Validator(UserGlobal, EventData).isNewUsernameValid,Validators.required])],
+      newemail: ['',Validators.compose([Validators.pattern('[a-z]+\@[a-z]+\.[a-z]+'), new Validator(UserGlobal, EventData).isEmailValid,Validators.required])],
+      newpassword: ['', Validators.compose([Validators.required])],
+  });
   }
 
   ionViewDidLoad() {
@@ -101,6 +115,7 @@ export class MyProfilePage {
     this.base64textString = btoa(binaryString);
     this.imageSrc = "data:image/png;base64," + this.base64textString;
     this.UserGlobal.setUserImage(this.base64textString);
+
     this.loaded = true;  
   }
 

@@ -14,8 +14,7 @@ export class ManageUsersPage {
   picture;
   singleArray;
   userImage = this.UserGlobal.getUserImage();
-  usernames=this.UserGlobal.getUsernames(); 
-  emails=this.UserGlobal.getEmails();
+  AllUsers = this.UserGlobal.getFullUsers();
 
   imageLoaded: boolean = false;
 
@@ -24,15 +23,12 @@ export class ManageUsersPage {
   }
 
   initializeUsers(){
-    this.username=[];
-    this.email=[];
-    this.picture=[];
     this.singleArray=[];
-        for (var _i = 0; _i < this.usernames.length; _i++) {
+        for (var _i = 0; _i < this.AllUsers.length; _i++) {
           this.singleArray.push({
-                               username: this.usernames[_i],
-                               email: this.emails[_i],
-                               picture: "data:image/png;base64," + this.userImage
+                               username: this.AllUsers[_i].username,
+                               email: this.AllUsers[_i].email,
+                               picture: "data:image/png;base64," + this.AllUsers[_i].picture
                               });
                                                             
       }
@@ -54,7 +50,7 @@ export class ManageUsersPage {
         {
           text: 'Delete',
           handler: () => {
-            this.UserGlobal.setDeleteAccName(this.usernames.indexOf(user));
+            this.UserGlobal.setDeleteAccName(this.AllUsers.indexOf(user));
             this.initializeUsers();
           }
         }

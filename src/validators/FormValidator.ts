@@ -49,4 +49,18 @@ export class Validator {
         return null;
 
     }
+    isNewUsernameValid(control: FormControl):any{
+        if (Validator.globalProvider.checkUsername(control.value))
+        return {
+            "That username already exists": true
+        }
+        return null;
+    }
+    isEmailValid(control: FormControl):any{
+        if (!Validator.globalProvider.checkUsername(control.value))
+        return {
+            "That email already exists": true
+        }
+        return null;
+    }
 }
