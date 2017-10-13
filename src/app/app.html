@@ -9,15 +9,10 @@
 <!-- splash screen end -->
 <!-- ADMIN MENU -->
 <ion-menu id="adminMenu" [content]="content" persistent="true" enable-menu-with-back-views="false" side="left">
-    <!-- <ion-header no-border>
-        <ion-toolbar color="make-room">
-            <ion-title><ion-icon name="arrow-round-back"></ion-icon></ion-title>
-        </ion-toolbar>
-    </ion-header> -->
     <ion-content class="background">
         <ion-list>
             <ion-avatar item-start>
-                <img class="avatar" src="assets/avatar.png">
+                <img class="avatar" src={{userImage}}>
             </ion-avatar>
             <ion-item class="sm-list">
                 <button menuClose ion-item *ngFor="let p of pages1" (click)="openPage(p)">
@@ -34,11 +29,6 @@
 </ion-menu>
 <!-- USER MENU -->
 <ion-menu id="userMenu" [content]="content" persistent="true" enable-menu-with-back-views="false" side="left">
-    <!-- <ion-header no-border color="make-room">
-        <ion-toolbar>
-            <ion-title><ion-icon name="arrow-round-back"></ion-icon></ion-title>
-        </ion-toolbar>
-    </ion-header> -->
     <ion-content class="background">
         <ion-list>
             <ion-avatar item-start>

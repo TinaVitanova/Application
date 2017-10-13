@@ -1,10 +1,10 @@
-<ion-header>
-<ion-navbar>
+<ion-header no-border>
+<ion-navbar color="secondary">
     <ion-title>My Schedule</ion-title>
 </ion-navbar>
 </ion-header>
     <ion-tabs tabsPlacement=top>
-        <ion-tab [root]="Today" tabTitle="Today"></ion-tab>
-        <ion-tab [root]="Tomorrow" tabTitle="Tomorrow"></ion-tab>
-        <ion-tab [root]="NextDays" tabTitle="Next Days"></ion-tab>
+        <ion-tab tabsHideOnSubPages [root]="Today" tabTitle="TODAY"></ion-tab>
+        <ion-tab tabsHideOnSubPages [root]="Tomorrow" tabTitle="TOMORROW"></ion-tab>
+        <ion-tab tabsHideOnSubPages [root]="NextDays" tabTitle="NEXT DAYS"></ion-tab>
     </ion-tabs>

@@ -9,13 +9,9 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
   
 })
 export class ManageUsersPage {
-  usernames = this.UserGlobal.getUsernames();
-  email;
-  username;
-  picture;
+
   singleArray;
-  userImage = this.UserGlobal.getUserImage();
-  AllUsers = this.UserGlobal.getFullUsers();
+  public AllUsers = this.UserGlobal.getFullUsers();
 
   imageLoaded: boolean = false;
 
@@ -24,14 +20,14 @@ export class ManageUsersPage {
   }
 
   initializeUsers(){
-    this.username=[];
     this.singleArray=[];
         for (var _i = 0; _i < this.AllUsers.length; _i++) {
+          console.log(this.AllUsers[_i].picture + '    initialize users slikata')
           this.singleArray.push({
                                username: this.AllUsers[_i].username,
                                email: this.AllUsers[_i].email,
                                picture: "data:image/png;base64," + this.AllUsers[_i].picture
-                              });                              
+                              });                                                        
       }
       
   }
