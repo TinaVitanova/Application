@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { NgCalendarModule } from 'ionic2-calendar';
 import { IonicStorageModule } from '@ionic/storage';
-
+import { Validator } from '../validators/FormValidator';
 
 import { TodayPage } from '../pages/my-schedule/days/today/today';
 import { TomorrowPage } from '../pages/my-schedule/days/tomorrow/tomorrow';
@@ -67,7 +67,8 @@ import { ReserveEventPage } from '../pages/reserve-event/reserve-event';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UsernameGlobalProvider,
-    EventDataProvider
+    EventDataProvider,
+    Validator
   ]
 })
 export class AppModule {}

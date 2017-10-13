@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 
 @IonicPage()
@@ -13,7 +13,6 @@ export class MyProfilePage {
   email=this.UserGlobal.getEmails();
   public todo = {
     newusername:"",
-    oldpassword:"",
     newpassword:"",
     newemail:"" 
   };
@@ -25,13 +24,45 @@ export class MyProfilePage {
 
 
   Change(){
-    this.UserGlobal.ChangeUser(this.todo);
+    let alert = this.alertCtrl.create({
+      title: 'Change',
+      inputs: [
+        {
+          name: 'password',
+          placeholder: 'Password',
+          type: 'password'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Change',
+          handler: data => {
+            if (data.password == "ok") {
+              console.log('yup')
+              this.UserGlobal.ChangeUser(this.todo);
+            } else {
+              console.log('nope')
+              return false;
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
   }
  
   logForm(){
     //console.log(this.todo)      
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {

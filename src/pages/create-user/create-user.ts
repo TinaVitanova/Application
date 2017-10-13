@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -10,12 +11,15 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 })
 export class CreateUserPage {
   username: string;
-  isAdmin: boolean;
+  isAdmin: boolean = false;
+  CreateUserForm: FormGroup;
+  submitAttempt: boolean = false;
   new = {
+    username:"",
     fullname:"",
-    password:"",
     email:"",
-    username:""
+    password:"",
+    isAdmin:""
   };
 
   logFormSignUp(){
@@ -30,7 +34,7 @@ export class CreateUserPage {
   }
 
   CreateNewUser(){
-    this.UserGlobal.SendUserData(this.new.fullname, this.new.username, this.new.email, this.new.password, this.isAdmin);
+   // this.UserGlobal.SendUserData(this.new.fullname, this.new.username, this.new.email, this.new.password, this.isAdmin);
     let alert = this.alertCtrl.create({
       title: 'You have created the user: ',
       subTitle: 'Fullname: ' + this.new.fullname + 
@@ -50,8 +54,10 @@ export class CreateUserPage {
         text: 'Confirm',
         role: 'confirm',
         handler: data => {
-          this.UserGlobal.addNewUsername(this.new.username);
-          this.UserGlobal.setEmail(this.new.email);
+
+          this.submitAttempt = true;
+          this.UserGlobal.addNewUser(this.new);
+
           console.log('Created new user');
         }
       }
@@ -60,7 +66,14 @@ export class CreateUserPage {
    alert.present();
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public UserGlobal: UsernameGlobalProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder) {
+    this.CreateUserForm = formBuilder.group({
+      username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required])],
+      fullname: ['', Validators.compose([Validators.required,Validators.maxLength(30)])],
+      email: ['',Validators.compose([Validators.required,Validators.pattern('[a-z]+\@[a-z]+\.[a-z]+')])],
+      password: ['',Validators.compose([Validators.required])],
+      isAdmin:[''],
+  });
     this.username = navParams.get('param2');
   }
 
