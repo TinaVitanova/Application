@@ -27,8 +27,7 @@ export class ManageUsersPage {
                                username: this.AllUsers[_i].username,
                                email: this.AllUsers[_i].email,
                                picture: "data:image/png;base64," + this.AllUsers[_i].picture
-                              });
-                                                            
+                              });                                                        
       }
       
   }
