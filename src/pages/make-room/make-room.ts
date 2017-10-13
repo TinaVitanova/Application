@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Validator } from '../../validators/FormValidator';
+import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 
 @IonicPage()
 @Component({
@@ -9,20 +11,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: 'make-room.html',
 })
 export class MakeRoomPage {
-  room = {
-    name:"",
-    capacity:"",
-    description:""
-  }
+ 
+    name;
+    capacity;
+    description
+
   showRoom;
   MakeRoomForm: FormGroup;
   submitAttempt: boolean = false;
 
   CreateRoom(){
-    this.EventData.SendRoomData(this.room.name, this.room.capacity, this.room.description);
+    this.EventData.SendRoomData(this.name, this.capacity, this.description);
     let alert = this.alertCtrl.create({
       title: 'You have created the room: ',
-      subTitle: 'Room name: ' + this.room.name + '<br>Room capacity: ' + this.room.capacity + '<br>Description: ' + this.room.description,
+      subTitle: 'Room name: ' + this.name + '<br>Room capacity: ' + this.capacity + '<br>Description: ' + this.description,
      buttons:['OK']
    });
    alert.present();
@@ -32,9 +34,9 @@ export class MakeRoomPage {
    }
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public formBuilder: FormBuilder, public UserGlobal: UsernameGlobalProvider) {
     this.MakeRoomForm = formBuilder.group({
-      RoomName: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required])],
+      RoomName: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required,new Validator(UserGlobal, EventData).isRoomValid])],
       Capacity: ['',Validators.compose([Validators.required])],
       Description: ['',Validators.compose([Validators.required,Validators.maxLength(300)])]
   });

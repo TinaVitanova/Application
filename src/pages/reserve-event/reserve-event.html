@@ -34,11 +34,10 @@
         <ion-label>
             <ion-icon color="secondary" name="cube"></ion-icon> &nbsp; CHOOSE ROOM</ion-label>
         <ion-select [(ngModel)]="rooms">
-            <!-- <ion-option value="all" [selected]="all == rooms" (ionSelect)="loadEvents()">All Rooms</ion-option> -->
-            <label>No Room Created</label>
+            <label *ngIf="!showRoom">No Room Created</label>
             <span *ngIf="showRoom">
-                        <ion-option (ionSelect)="loadEvents()" *ngFor="let r of ListOfRooms">{{ListOfRooms[0].name}}</ion-option>
-                    </span>
+                        <ion-option (ionSelect)="SelectedRoom(r)" *ngFor="let r of ListOfRooms">{{r.name}}</ion-option>
+            </span>
         </ion-select>
     </ion-item>
 

@@ -15,7 +15,6 @@ export class CalendarPage {
   selectedDay = new Date();
   flagCalendar;
   ListOfRooms = [];
-  room;
   showRoom = this.EventData.getShowRoom();
   
   calendar = {
@@ -30,6 +29,12 @@ export class CalendarPage {
     }
   onViewTitleChanged(title) {
       this.viewTitle = title;
+  }
+  loadRoomEvents(room){
+    var room= room;
+    setTimeout(()=>{
+      this.eventSource = this.showRoomEvents(room);
+        })
   }
 
   onTimeSelected(ev) {
@@ -54,7 +59,20 @@ export class CalendarPage {
   onRangeChanged(ev) {
     console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
-  
+  showRoomEvents(room){
+    var allEvents = this.EventData.getEvents();
+    var events = [];
+  for (var i=0; i<allEvents.length; i++){
+    if(allEvents[i].room == room){
+    events.push({
+          title: allEvents[i].title,
+          startTime: allEvents[i].startTime,
+          endTime: allEvents[i].endTime,
+          allday: allEvents[i].allDay
+      });
+    }}
+      return events;
+  }
   createEvent (){
       var allEvents = this.EventData.getEvents();
       var events = [];
@@ -74,7 +92,6 @@ export class CalendarPage {
   loadEvents(){
       setTimeout(()=>{
     this.eventSource = this.createEvent();
-    this.EventData.setLoadEvents(this.eventSource,this.room);
       })
   }
   onEventSelected(event) {

@@ -50,7 +50,6 @@ export class DashboardPage {
   }
   ionViewDidEnter(){
     this.username=this.UserGlobal.getMyGlobalVar();
-    console.log(this.username)
   }
   ionViewDidLoad() {
   }

@@ -20,6 +20,7 @@ export class ReserveEventPage {
   public endTime;
   public startTime;
   public day;
+  public room;
   public allDay: boolean=false;
   public BlurEndTimeFlag;
   public BlurStartTimeFlag;
@@ -27,7 +28,6 @@ export class ReserveEventPage {
   public minDate = moment().utc().format('YYYY-MM-DD').toString();
   public maxDate = moment().utc().add(30,'y').format('YYYY').toString();
 
-  rooms:"";
   ListOfRooms = [];
    
   showRoom = this.EventData.getShowRoom();
@@ -42,9 +42,8 @@ export class ReserveEventPage {
     this.flag = this.EventData.getFlagisCalendarPage();
   
   }
-
-  loadEvents(){  
-  this.EventData.getLoadEvents();
+  SelectedRoom(r){
+    this.room = r.value;
   }
   
   ionViewDidLoad() {
@@ -52,7 +51,7 @@ export class ReserveEventPage {
 
     this.day = moment().toISOString();
 
-    this.ListOfRooms.push(this.EventData.getRoomData());
+    this.ListOfRooms=this.EventData.getRoomData();
   }
   OnBlurEndTime(){
     this.BlurEndTimeFlag = true;
@@ -88,18 +87,9 @@ export class ReserveEventPage {
       let date = moment(this.day).format('Do MMMM YYYY');
       let start = this.startTime;
       let end = this.endTime;
-      if (start==end || start == new Date()){
-        let alert = this.alertCtrl.create({
-          title: 'Error!',
-          message: 'You have not added a start and end time for your event',
-          buttons:["OK"]
-       });
-       alert.present();
-      }
-      else{
       let alert = this.alertCtrl.create({
         title: 'You have created an event: ' + this.title,
-        message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+ this.rooms + '</div>',
+        message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+ this.room + '</div>',
         buttons:[
           {
             text: 'Cancel',
@@ -116,10 +106,9 @@ export class ReserveEventPage {
             this.day = new Date(this.day);
             var startDate = moment(this.startTime,"hh:mm").toDate();
             var endDate = moment(this.endTime,"hh:mm").toDate();
-            this.startTime = new Date(this.day.getFullYear(), this.day.getMonth(), this.day.getDate(), startDate.getHours(), startDate.getMinutes());
-            this.endTime = new Date(this.day.getFullYear(), this.day.getMonth(), this.day.getDate(), endDate.getHours(), endDate.getMinutes());
-            this.EventData.setEvent(this.title, this.startTime, this.endTime, this.allDay, this.rooms);
-              console.log('Created new event');
+            var startTimeEvent = new Date(this.day.getFullYear(), this.day.getMonth(), this.day.getDate(), startDate.getHours(), startDate.getMinutes());
+            var endTimeEvent = new Date(this.day.getFullYear(), this.day.getMonth(), this.day.getDate(), endDate.getHours(), endDate.getMinutes());
+            this.EventData.setEvent(this.title, startTimeEvent, endTimeEvent, this.allDay, this.room);
               if (this.flag == true)
                 this.navCtrl.pop();
                 else
@@ -129,7 +118,6 @@ export class ReserveEventPage {
          ]
      });
      alert.present();
-    }
   }
   ionViewWillEnter(){
 

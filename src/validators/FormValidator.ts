@@ -41,4 +41,12 @@ export class Validator {
         }
           return null;
     }
+    isRoomValid(control: FormControl): any{
+        if (Validator.eventProvider.checkRoomName(control.value))
+        return {
+            "That room already exists":true
+        }
+        return null;
+
+    }
 }

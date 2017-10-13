@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-// import * as moment from 'moment';
+import * as moment from 'moment';
 
 @Injectable()
 export class EventDataProvider {
@@ -15,13 +15,12 @@ export class EventDataProvider {
   public FlagStartEndTime;
   constructor(public storage: Storage) {
   } 
-
-  public setLoadEvents(value, value1){
-    this.Eventdata = {title: value.title, startTime: value.startTime, endTime: value.endTime, allDay: value.allDay, room: value1};
-  }
-
-  public getLoadEvents(){
-    return this.Eventdata;
+  public checkRoomName(value){
+    for (var i=0; i<this.FullRooms.length; i++){
+      if (this.FullRooms[i].name == value)
+      return true;
+    }
+    return false;
   }
 
   public setShowRoom(value: boolean){
