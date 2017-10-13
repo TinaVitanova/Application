@@ -46,9 +46,6 @@ export class CreateUserPage {
       {
         text: 'Cancel',
         role: 'cancel',
-        handler: data => {
-          console.log('Cancel clicked');
-        }
       },
       {
         text: 'Confirm',
@@ -57,9 +54,8 @@ export class CreateUserPage {
 
           this.submitAttempt = true;
           this.new.image = this.UserGlobal.getDefaultImage();
+          console.log(this.new.image + '               daefawerge');
           this.UserGlobal.addNewUser(this.new);
-
-          console.log('Created new user');
         }
       }
      ]

@@ -48,13 +48,6 @@ export class MyProfilePage {
           handler: data => {
             if (data.password == "ok") {
               console.log('yup')
-          /*    if (this.todo.newusername=="")
-              this.todo.newusername=this.UserGlobal.getMyGlobalVar();
-              if(this.todo.newpassword=="")
-              this.todo.newpassword=this.UserGlobal.getMyGlobalPass();
-              if(this.todo.newemail=="")
-              this.todo.newemail=this.UserGlobal.getMyGlobalEmail();
-              */
               this.UserGlobal.ChangeUser(this.todo,this.base64textString);
             } else {
               console.log('nope')

@@ -35,10 +35,10 @@ export class ManageUsersPage {
       
   }
 
-  deleteUser(user){
+  deleteUser(item){
     let alert = this.alertCtrl.create({
       title: 'Are you sure?',
-      message: 'Delete the user: '+ user,
+      message: 'Delete the user: '+ item,
       buttons: [
         {
           text: 'Cancel',
@@ -50,7 +50,7 @@ export class ManageUsersPage {
         {
           text: 'Delete',
           handler: () => {
-            this.UserGlobal.setDeleteAccName(this.AllUsers.indexOf(user));
+            this.UserGlobal.setDeleteAccName(this.AllUsers.indexOf(item));
             this.initializeUsers();
           }
         }
@@ -72,8 +72,8 @@ export class ManageUsersPage {
 
     //if the value is an empty string don't filter the items 
     if( val1 && val1.trim() != ''){
-      this.username = this.username.filter((user)=>{
-        return (user.toLowerCase().indexOf(val1.toLowerCase()) > -1);       
+      this.username = this.username.filter((item)=>{
+        return (item.toLowerCase().indexOf(val1.toLowerCase()) > -1);       
       })
     }
   }
