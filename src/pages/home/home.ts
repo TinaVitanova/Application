@@ -27,7 +27,6 @@ export class HomePage {
       this.UserGlobal.setMyGlobalVar(this.login.username);
       if (this.loginForm.valid){
         this.navCtrl.setRoot(DashboardPage);  
-
       }
       else 
         this.flagIncorectLogin = true;

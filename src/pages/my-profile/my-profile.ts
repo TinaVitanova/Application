@@ -107,8 +107,6 @@ export class MyProfilePage {
     var binaryString = e.target.result;
     this.base64textString = btoa(binaryString);
     this.imageSrc = "data:image/png;base64," + this.base64textString;
-    this.UserGlobal.setUserImage(this.base64textString);
-
     this.loaded = true;  
   }
 

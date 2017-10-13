@@ -20,7 +20,7 @@ export class CreateUserPage {
     email:"",
     password:"",
     isAdmin:"",
-    image:"",
+    picture:"",
   };
 
   logFormSignUp(){
@@ -53,8 +53,7 @@ export class CreateUserPage {
         handler: data => {
 
           this.submitAttempt = true;
-          this.new.image = this.UserGlobal.getDefaultImage();
-          console.log(this.new.image + '               daefawerge');
+          this.new.picture = this.UserGlobal.getDefaultImage();
           this.UserGlobal.addNewUser(this.new);
         }
       }

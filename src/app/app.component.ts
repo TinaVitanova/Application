@@ -14,6 +14,7 @@ import { UsernameGlobalProvider } from '../providers/username-global/username-gl
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   splash = true;
+  userImage = "data:image/png;base64," + this.UserGlobal.getUserImage();
   rootPage:any = HomePage;
   pages1: Array<{title: string, component: any}>;
   pages2: Array<{title: string, component: any}>;
@@ -21,6 +22,7 @@ export class MyApp {
   constructor(public platform: Platform, public statusBar: StatusBar, public UserGlobal: UsernameGlobalProvider) {
     this.initializeApp();
   
+    console.log('app component')
     // used for an example of ngFor and navigation
     this.pages1 = [
       { title: 'My Profile', component: MyProfilePage },
