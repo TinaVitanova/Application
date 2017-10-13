@@ -21,7 +21,7 @@ page-my-profile {
             margin-left: 15%;
             color: map-get($colors, text-color);
         }
-
+ 
         .list-ios  .item-block:last-child,
         .list-md .item-block:last-child,
         .list-wp .item-block:last-child{
@@ -58,22 +58,14 @@ page-my-profile {
         cursor: pointer;
         display: -webkit-flex;
         display: flex;
-        width: 38%;
-        height: 90px;
+        width: 150px;
+        height: 150px;
         -webkit-justify-content: center;
         justify-content: center;
         position: relative;
         margin-bottom: 2%;
         left: 30%;
         top: 15%;
-// =======
-//         width: 150px;
-//         height: 150px;
-//         -webkit-justify-content: center;
-//         justify-content: center;
-//         position: relative;
-//         bottom: 1px;
-// >>>>>>> in-development
     }
     .uploader img,
     .uploader .icon {
@@ -98,7 +90,7 @@ page-my-profile {
         left: 50%;
         opacity: 0;
         max-height: 100%;
-        max-width: 90%;
+        max-width: 100%;
         position: absolute;
         top: 50%;
         border-radius: 100%;
