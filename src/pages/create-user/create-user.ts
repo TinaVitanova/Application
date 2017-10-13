@@ -54,7 +54,6 @@ export class CreateUserPage {
 
           this.submitAttempt = true;
           this.new.picture = this.UserGlobal.getDefaultImage();
-          console.log(this.new.picture + '               daefawerge');
           this.UserGlobal.addNewUser(this.new);
         }
       }

@@ -7,7 +7,6 @@ export class UsernameGlobalProvider {
   public Fullnames = ['Test 1', 'Admin 1', 'Superadmin 1'];
   public Emails = ['test@test.com', 'admin@admin.com','superadmin@superadmin.com'];
   public Passwords = ['pass', 'pass', 'pass'];
-  public Images = ['','','']
   public IsAdmin = [false,true,true];
   public userIndex:any;
   public CurrentUser;
@@ -16,24 +15,11 @@ export class UsernameGlobalProvider {
   public CurrentUserIndex;
 
   constructor(public storage: Storage) {
+    console.log('usernameglobal')
     for (var i=0; i<3; i++){
     this.UsersData = {username: this.Usernames[i], fullname: this.Fullnames[i], email: this.Emails[i], password: this.Passwords[i], isAdmin: this.IsAdmin[i], picture: this.defaultImage };
     this.FullUsers.push(this.UsersData);
     }
-  }
-
-
-  public userImage;
-  public imgSrc;
-
-
-
-  public setUserImage(value){
-    this.userImage = value;
-  }
-
-  public getUserImage(){
-    return this.userImage;
   }
 
   public setMyGlobalVar(value:any) {
@@ -44,6 +30,11 @@ export class UsernameGlobalProvider {
     this.CurrentUserIndex=this.userIndex;
     this.CurrentUser=this.FullUsers[this.CurrentUserIndex].username;
   }
+  
+  public getUserImage(){
+    return this.defaultImage;
+  }
+
 
   public setEmail(value){
     this.FullUsers[this.CurrentUserIndex].email = value;
@@ -56,9 +47,7 @@ export class UsernameGlobalProvider {
   }
 
   public addNewUser(value) {
-    console.log (value.image + '  vo username global')
     this.FullUsers.push(value);
-    console.log (this.FullUsers[this.CurrentUserIndex].picture + '    vo username global od full users')
   }
   
   public ChangeUser(value,value1){

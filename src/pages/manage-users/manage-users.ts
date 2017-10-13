@@ -9,11 +9,7 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
   
 })
 export class ManageUsersPage {
-  usernames = this.UserGlobal.getUsernames();
-  email;
-  picture;
   singleArray;
-  userImage = this.UserGlobal.getUserImage();
   public AllUsers = this.UserGlobal.getFullUsers();
 
   imageLoaded: boolean = false;
