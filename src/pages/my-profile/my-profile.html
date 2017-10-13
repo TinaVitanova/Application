@@ -8,27 +8,20 @@
 
 
 <ion-content padding text-center>
-    <form (ngSubmit)="logForm()" text-center>
-        
-            <label class="uploader">
+    <form (ngSubmit)="logForm()">
+
+        <label class="uploader">
                 <span style="padding: 5% 0%;"><ion-icon name="person-add"></ion-icon></span>
                 
-                    <img style="padding: 0% 3%;"
-                        [src]="imageSrc" 
-                        (load)="handleImageLoad()" 
+                    <img 
+                        [src]="imageSrc"
+                        (load)="ImageLoad()" 
                         [class.loaded]="imageLoaded"/>
                     
                     <input type="file" name="file" accept="image/*"
-                        (change)="handleInputChange($event)">
+                        (change)="InputChange($event)">
             </label>
-        
-
-        <!-- <div text-center>
-                <input type="file" id="uploadPicture" />
-                <label for="uploadPicture">
-                    <ion-icon name="person"></ion-icon>
-                </label>
-            </div> -->
+        <!-- <textarea id="base64textarea" placeholder="Base64 will appear here" cols="30" rows="15">{{base64textString}}</textarea> -->
         <ion-list text-center>
             <ion-item>
                 <ion-label floating>New Username</ion-label>

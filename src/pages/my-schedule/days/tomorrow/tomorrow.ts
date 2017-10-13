@@ -17,7 +17,6 @@ export class TomorrowPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TomorrowPage');
   }
   IsDateTomorrow(events){
     let date = moment(events.startTime).format('DD MM YYYY');
@@ -26,11 +25,9 @@ export class TomorrowPage {
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
     if (date == nextDay){
-     console.log('isti se');
       return true;
     }
     else{
-      console.log('ne se');
        return false;
      }
     

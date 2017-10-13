@@ -65,7 +65,6 @@ export class CreateUserPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CreateUserPage');
   }
 
 }

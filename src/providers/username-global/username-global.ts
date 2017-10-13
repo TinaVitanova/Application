@@ -15,10 +15,25 @@ export class UsernameGlobalProvider {
   public Emails = ['1', '2', '3'];
   public UsersData: {fullname: string, username: string, email: string, password: string , isAdmin: boolean};
   public FullUsers = {};
+  public userImage;
+  public imgSrc;
+  public flagUserImage = false;
 
   constructor(public storage: Storage) {
-    console.log('Hello UsernameGlobal Provider');
   }
+
+  public setUserImage(value){
+    this.userImage = value;
+    this.flagUserImage=true;
+  }
+  public getFlagUserimage(){
+    return this.flagUserImage;
+  }
+
+  public getUserImage(){
+    return this.userImage;
+  }
+
   public setMyGlobalVar(value:any) {
     this.userIndex = this.Usernames.indexOf(value);
     this.user=this.Usernames[this.userIndex];
@@ -28,7 +43,6 @@ export class UsernameGlobalProvider {
   }
   public setDeleteAccName(value){
     this.Usernames.splice(value,1);
-    console.log('setDeleteAccName e povikana i ova mi e usernames: '+ this.Usernames)
   }
   public addNewUsername(value) {
     this.Usernames.push(value);
@@ -36,13 +50,11 @@ export class UsernameGlobalProvider {
   public ChangeUser(value){
     this.Usernames[this.userIndex]=value.newusername;
     this.user=this.Usernames[this.userIndex];
-    console.log('u usernameglobal ova value so e: '+ value +' i ako pristapam do .neso: '+ value.newusername);
   }
 
   public ChangeEmail(value){
     this.Emails[this.userIndex]=value.newemail;
     this.email = this.Emails[this.userIndex];
-    console.log('USER EMAIL !!!!' + value.newemail);
   }
 
   public getEmails(){
@@ -57,9 +69,7 @@ export class UsernameGlobalProvider {
  
   public SendUserData(value:string, value1:string, value2: string, value3: string, value4: boolean){
     this.UsersData = {fullname: value, username: value1, email: value2, password: value3, isAdmin: value4}
-    console.log('u provider: '+ this.UsersData.fullname + ' '+ this.UsersData.username + ' '+ this.UsersData.email + ' '+ this.UsersData.password + ' '+ this.UsersData.isAdmin);
     this.FullUsers = this.UsersData;
-    console.log('ja sum eden user: '+ this.FullUsers)
   }
 
 }
