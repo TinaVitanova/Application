@@ -23,7 +23,7 @@ export class MyProfilePage {
 
   //public newpicture = this.UserGlobal.getUserImage();
   ChangeUserForm: FormGroup;
-  base64textString:any;
+  base64textString = this.UserGlobal.getUserImage();
   loaded: boolean = false;
   imageLoaded: boolean = false;
   public imageSrc: String = "data:image/png;base64," + this.UserGlobal.getUserImage();
@@ -97,8 +97,8 @@ export class MyProfilePage {
       }
       
       //proveruva golemina na slika 
-      if (file.size > 500000){
-        alert('max image size 500kb '); 
+      if (file.size > 7000000){
+        alert('max image size 7Mb '); 
         return;
       }
 
