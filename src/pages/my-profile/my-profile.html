@@ -22,17 +22,17 @@
         <ion-list text-center>
             <ion-item>
                 <ion-label floating>New Username</ion-label>
-                <ion-input type="text" formControlName="newusername" [class.invalid]="!ChangeUserForm.controls.newusername.valid && ChangeUserForm.controls.newusername.dirty && SubmitAttempt" [(ngModel)]="todo.newusername" name="username"></ion-input>
+                <ion-input type="text" formControlName="newusername" [class.invalid]="!ChangeUserForm.controls.newusername.valid && SubmitAttempt" [(ngModel)]="todo.newusername" name="username"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label floating>New Email</ion-label>
-                <ion-input type="email" formControlName="newemail" [class.invalid]="!ChangeUserForm.controls.newemail.valid && ChangeUserForm.controls.newemail.dirty && SubmitAttempt" [(ngModel)]="todo.newemail" name="newemail"></ion-input>
+                <ion-input type="email" formControlName="newemail" [class.invalid]="!ChangeUserForm.controls.newemail.valid && SubmitAttempt" [(ngModel)]="todo.newemail" name="newemail"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label floating>New Password</ion-label>
-                <ion-input type="password" formControlName="newpassword" [class.invalid]="!ChangeUserForm.controls.newpassword.valid && ChangeUserForm.controls.newpassword.dirty && SubmitAttempt"  [(ngModel)]="todo.newpassword" name="newpassword"></ion-input>
+                <ion-input type="password" formControlName="newpassword" [class.invalid]="!ChangeUserForm.controls.newpassword.valid && SubmitAttempt"  [(ngModel)]="todo.newpassword" name="newpassword"></ion-input>
             </ion-item>
         </ion-list>
     </form>
