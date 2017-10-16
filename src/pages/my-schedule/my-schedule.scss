@@ -1,3 +1,8 @@
 page-my-schedule {
 
+    .tabs .tab-button{
+        color: map-get($colors, secondary);
+        font-weight: bold;
+    }
+
 }
