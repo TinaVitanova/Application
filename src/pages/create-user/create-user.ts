@@ -64,9 +64,9 @@ export class CreateUserPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder) {
     this.CreateUserForm = formBuilder.group({
-      username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z0-9]*'),Validators.required])],
+      username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z0-9_.-]*'),Validators.required])],
       fullname: ['', Validators.compose([Validators.required,Validators.maxLength(30)])],
-      email: ['',Validators.compose([Validators.required,Validators.pattern('[a-z0-9]+\@[a-z]+\.com')])],
+      email: ['',Validators.compose([Validators.required,Validators.pattern('[a-z0-9_.-]+\@[a-z]+\.com')])],
       password: ['',Validators.compose([Validators.required])],
       isAdmin:[''],
   });

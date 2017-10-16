@@ -52,6 +52,7 @@ export class ReserveEventPage {
   ionViewDidLoad() {
     this.showRoom = this.EventData.getShowRoom();
     this.day = moment().toISOString();
+    this.ListOfRooms=this.EventData.getRoomData();
   }
   OnBlurEndTime(){
     this.BlurEndTimeFlag = true;
@@ -87,14 +88,10 @@ export class ReserveEventPage {
       var CheckEventStartTimeAllTime = moment(this.AllEvents[i].startTime).format("HH:mm");
       var CheckStartTimeAllDay = moment(this.day).format("DD MM YYYY");
       for(var j=0;j<this.ListOfRooms.length;i++){
-        console.log(roomNameCheck + ' <ime soba   ime soba so proveruva> '+ this.ListOfRooms[j].name +'    '+ CheckEventStartTimeAllDay + '  <den  den so proveruva>  '+ CheckStartTimeAllDay + '  '+ CheckEventStartTimeAllTime +' <vreme vremeso proveruva>   ' + this.startTime)
         if(roomNameCheck == this.ListOfRooms[j].name){
-          console.log('se desilo prv if')
           if(CheckEventStartTimeAllDay == CheckStartTimeAllDay){
-            console.log('se desilo vtor if')
             if(CheckEventStartTimeAllTime == this.startTime){
           this.ListOfRooms.splice(j,1);
-          console.log('se desilo splice')
         }
         else break; 
       }
