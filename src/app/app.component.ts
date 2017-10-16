@@ -6,6 +6,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { ManageUsersPage } from '../pages/manage-users/manage-users';
 import { UsernameGlobalProvider } from '../providers/username-global/username-global';
+import { Events } from 'ionic-angular';
 
 @Component({
   templateUrl: 'app.html',
@@ -15,13 +16,16 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   splash = true;
   userImage = "data:image/png;base64," + this.UserGlobal.getUserImage();
+
   rootPage:any = HomePage;
   pages1: Array<{title: string, component: any}>;
   pages2: Array<{title: string, component: any}>;
  
-  constructor(public platform: Platform, public statusBar: StatusBar, public UserGlobal: UsernameGlobalProvider) {
+  constructor(public platform: Platform, public events: Events, public statusBar: StatusBar, public UserGlobal: UsernameGlobalProvider) {
     this.initializeApp();
-  
+    events.subscribe('image:added',(image) => {
+      this.userImage = "data:image/png;base64," + image;
+    })
     console.log('app component')
     // used for an example of ngFor and navigation
     this.pages1 = [

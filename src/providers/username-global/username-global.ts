@@ -12,7 +12,7 @@ export class UsernameGlobalProvider {
   public CurrentUser;
   public UsersData: {username: string, fullname: string, email: string, password: string, isAdmin: boolean, picture: string};
   public FullUsers:{username: string, fullname: string, email: string, password: string, isAdmin: boolean, picture: string}[]= [];
-  public CurrentUserIndex;
+  public CurrentUserIndex = 0;
 
   constructor(public storage: Storage) {
     console.log('usernameglobal')
@@ -32,7 +32,7 @@ export class UsernameGlobalProvider {
   }
   
   public getUserImage(){
-    return this.defaultImage;
+    return this.FullUsers[this.CurrentUserIndex].picture;
   }
 
 
