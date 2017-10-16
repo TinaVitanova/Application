@@ -4,6 +4,8 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 import { Validator } from '../../validators/FormValidator';
+import { Events } from 'ionic-angular';
+
 
 @IonicPage()
 @Component({
@@ -16,13 +18,15 @@ export class MyProfilePage {
   public todo = {
     newusername:this.UserGlobal.getMyGlobalVar(),
     newpassword:this.UserGlobal.getMyGlobalPass(),
-    newemail:this.UserGlobal.getMyGlobalEmail() 
+    newemail:this.UserGlobal.getMyGlobalEmail(),
   };
+
+  //public newpicture = this.UserGlobal.getUserImage();
   ChangeUserForm: FormGroup;
-  base64textString:any;
+  base64textString = this.UserGlobal.getUserImage();
   loaded: boolean = false;
   imageLoaded: boolean = false;
-  imageSrc: String = '';
+  public imageSrc: String = "data:image/png;base64," + this.UserGlobal.getUserImage();
 
 
   Change(){
@@ -49,6 +53,7 @@ export class MyProfilePage {
           handler: data => {
             if (data.password == "ok") {
               console.log('yup')
+              this.events.publish('image:added', this.base64textString);
               this.UserGlobal.ChangeUser(this.todo,this.base64textString);
             } else {
               console.log('nope')
@@ -65,12 +70,12 @@ export class MyProfilePage {
     //console.log(this.todo)      
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public formBuilder: FormBuilder, public EventData: EventDataProvider) {
+  constructor(public navCtrl: NavController, public events:Events, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public formBuilder: FormBuilder, public EventData: EventDataProvider) {
     this.ChangeUserForm = formBuilder.group({
       newusername: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'), new Validator(UserGlobal, EventData).isNewUsernameValid,Validators.required])],
       newemail: ['',Validators.compose([Validators.pattern('[a-z]+\@[a-z]+\.com'), new Validator(UserGlobal, EventData).isEmailValid,Validators.required])],
       newpassword: ['', Validators.compose([Validators.required])],
-  });
+    });
   }
 
   ionViewDidLoad() {
@@ -93,8 +98,8 @@ export class MyProfilePage {
       }
       
       //proveruva golemina na slika 
-      if (file.size > 500000){
-        alert('max image size 500kb '); 
+      if (file.size > 7000000){
+        alert('max image size 7Mb '); 
         return;
       }
 

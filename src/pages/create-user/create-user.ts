@@ -66,7 +66,7 @@ export class CreateUserPage {
     this.CreateUserForm = formBuilder.group({
       username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required])],
       fullname: ['', Validators.compose([Validators.required,Validators.maxLength(30)])],
-      email: ['',Validators.compose([Validators.required,Validators.pattern('[a-z]+\@[a-z]+\.[a-z]+')])],
+      email: ['',Validators.compose([Validators.required,Validators.pattern('[a-z]+\@[a-z]+\.com')])],
       password: ['',Validators.compose([Validators.required])],
       isAdmin:[''],
   });
