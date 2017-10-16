@@ -15,13 +15,15 @@ export class MakeRoomPage {
  
     name;
     capacity;
-    description
+    description;
 
   showRoom;
   MakeRoomForm: FormGroup;
   submitAttempt: boolean = false;
 
   CreateRoom(){
+    if (!this.description)
+    this.description = "No Description";
     this.EventData.SendRoomData(this.name, this.capacity, this.description);
     let alert = this.alertCtrl.create({
       title: 'You have created the room: ',

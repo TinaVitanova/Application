@@ -14,7 +14,7 @@
 
     <ion-item>
         <ion-label>Day</ion-label>
-         <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" formControlName="day" [class.invalid]="!ReserveEventForm.controls.day.valid && ReserveEventForm.controls.day.dirty && submitAttempt" [(ngModel)]="day" [max]="maxDate" [min]="minDate"></ion-datetime> 
+         <ion-datetime displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY" formControlName="day" [class.invalid]="!ReserveEventForm.controls.day.valid && ReserveEventForm.controls.day.dirty && submitAttempt" [(ngModel)]="day" [max]="maxDate" [min]="minDate"></ion-datetime> 
     </ion-item>
     <ion-item>
         <ion-label>Start</ion-label>

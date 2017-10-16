@@ -11,7 +11,7 @@ import { Validator } from '../../validators/FormValidator';
   templateUrl: 'my-profile.html',
 })
 export class MyProfilePage {
-  
+  public SubmitAttempt = false;
   Username=this.UserGlobal.getMyGlobalVar();
   public todo = {
     newusername:this.UserGlobal.getMyGlobalVar(),
@@ -26,6 +26,7 @@ export class MyProfilePage {
 
 
   Change(){
+    this.SubmitAttempt=true;
     let alert = this.alertCtrl.create({
       title: 'Change',
       inputs: [
@@ -67,7 +68,7 @@ export class MyProfilePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public formBuilder: FormBuilder, public EventData: EventDataProvider) {
     this.ChangeUserForm = formBuilder.group({
       newusername: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'), new Validator(UserGlobal, EventData).isNewUsernameValid,Validators.required])],
-      newemail: ['',Validators.compose([Validators.pattern('[a-z]+\@[a-z]+\.[a-z]+'), new Validator(UserGlobal, EventData).isEmailValid,Validators.required])],
+      newemail: ['',Validators.compose([Validators.pattern('[a-z]+\@[a-z]+\.com'), new Validator(UserGlobal, EventData).isEmailValid,Validators.required])],
       newpassword: ['', Validators.compose([Validators.required])],
   });
   }
