@@ -40,5 +40,5 @@
         </ion-select>
     </ion-item>
 
-    <button id="add-event" ion-button full icon-left [disabled]="!ReserveEventForm.valid" (click)="save()">ADD EVENT</button>
+    <button id="add-event" ion-button full icon-left [disabled]="!ReserveEventForm.valid || !RoomSelected" (click)="save()">ADD EVENT</button>
 </ion-content>

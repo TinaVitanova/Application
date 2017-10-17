@@ -24,13 +24,14 @@ export class ReserveEventPage {
   public roomName;
   public allDay: boolean=false;
   public BlurEndTimeFlag;
+  public RoomSelected = false;
   public BlurStartTimeFlag;
   public FlagStartEndTime = false;
   public minDate = moment().utc().format('YYYY-MM-DD').toString();
   public maxDate = moment().utc().add(30,'y').format('YYYY').toString();
   public AllEvents = this.EventData.getEvents();
-  public ListOfRooms=this.EventData.getRoomData();
-   
+  public FullListOfRooms = this.EventData.getRoomData();
+  public ListOfRooms=JSON.parse(JSON.stringify(this.FullListOfRooms));
   showRoom = this.EventData.getShowRoom();
 
 
@@ -47,6 +48,7 @@ export class ReserveEventPage {
   }
   SelectedRoom(r){
     this.roomName = r.name;
+    this.RoomSelected = true;
   }
   
   ionViewDidLoad() {
@@ -81,28 +83,41 @@ export class ReserveEventPage {
     return true;
   }
   findRoom(){
+    var notTrue=true;
     for(var i=0;i<this.AllEvents.length;i++){
       var roomCheck = this.AllEvents[i].room;
       var roomNameCheck = this.EventData.getRoomName(i);
       var CheckEventStartTimeAllDay = moment(this.AllEvents[i].startTime).format("DD MM YYYY");
       var CheckEventStartTimeAllTime = moment(this.AllEvents[i].startTime).format("HH:mm");
       var CheckStartTimeAllDay = moment(this.day).format("DD MM YYYY");
-      for(var j=0;j<this.ListOfRooms.length;i++){
-        if(roomNameCheck == this.ListOfRooms[j].name){
-          if(CheckEventStartTimeAllDay == CheckStartTimeAllDay){
-            if(CheckEventStartTimeAllTime == this.startTime){
-          this.ListOfRooms.splice(j,1);
-        }
-        else break; 
+      
+        if(CheckEventStartTimeAllDay == CheckStartTimeAllDay){
+          console.log('prv if  ')
+          if(CheckEventStartTimeAllTime == this.startTime){
+            console.log('vtor if  ')
+        this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+            return item.name!=roomNameCheck;
+        });
+          notTrue=false;
+          break;
       }
-      else break;
-    }
-     else break;
-        
-  
+      else {
+        console.log('else na sreden if')
+        notTrue=true;
       }
     }
-
+     else {
+       console.log('else na prv if')
+       notTrue=true;
+      }
+    
+      if(notTrue==true){
+        console.log('if so vrakjanje na sobi i list of rooms: '+ this.ListOfRooms)
+        this.ListOfRooms=JSON.parse(JSON.stringify(this.EventData.getRoomData()))
+        console.log(this.EventData.getRoomData()+ '  ova e od event data a ova e od list of rooms: '+ this.ListOfRooms)
+      }
+    }
+    
 
     this.isReserved=true;
 
@@ -136,12 +151,13 @@ export class ReserveEventPage {
             var endDate = moment(this.endTime,"hh:mm").toDate();
             var startTimeEvent = new Date(this.day.getFullYear(), this.day.getMonth(), this.day.getDate(), startDate.getHours(), startDate.getMinutes());
             var endTimeEvent = new Date(this.day.getFullYear(), this.day.getMonth(), this.day.getDate(), endDate.getHours(), endDate.getMinutes());
-            for (var i=0; i<this.ListOfRooms.length; i++){
-              if(this.ListOfRooms[i].name == this.roomName)
-                this.room = this.ListOfRooms[i];
+            for (var i=0; i<this.FullListOfRooms.length; i++){
+              if(this.FullListOfRooms[i].name == this.roomName)
+                this.room = this.FullListOfRooms[i];
                 console.log('vo reserve event sobata: ' + this.room)
             }
             this.EventData.setEvent(this.title, startTimeEvent, endTimeEvent, this.allDay, this.room);
+            this.isReserved=false;
               if (this.flag == true)
                 this.navCtrl.pop();
                 else
