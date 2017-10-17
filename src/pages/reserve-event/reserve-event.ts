@@ -16,6 +16,7 @@ export class ReserveEventPage {
   ReserveEventForm: FormGroup;
   isReserved: boolean;
   flag;
+  flagForWarning=false;
   public title;
   public endTime;
   public startTime;
@@ -24,7 +25,7 @@ export class ReserveEventPage {
   public roomName;
   public allDay: boolean=false;
   public BlurEndTimeFlag;
-  public RoomSelected = false;
+  public FlagRoomSelected = false;
   public BlurStartTimeFlag;
   public FlagStartEndTime = false;
   public minDate = moment().utc().format('YYYY-MM-DD').toString();
@@ -48,7 +49,7 @@ export class ReserveEventPage {
   }
   SelectedRoom(r){
     this.roomName = r.name;
-    this.RoomSelected = true;
+    this.FlagRoomSelected = true;
   }
   
   ionViewDidLoad() {
@@ -89,40 +90,91 @@ export class ReserveEventPage {
       var roomNameCheck = this.EventData.getRoomName(i);
       var CheckEventStartTimeAllDay = moment(this.AllEvents[i].startTime).format("DD MM YYYY");
       var CheckEventStartTimeAllTime = moment(this.AllEvents[i].startTime).format("HH:mm");
+      var CheckEventStartTimeHours = moment(this.AllEvents[i].startTime).format("HH");
+      var CheckEventStartTimeMinutes = moment(this.AllEvents[i].startTime).format("mm");
+      var CheckEventEndTimeMinutes = moment(this.AllEvents[i].endTime).format("mm");
+      var CheckEventEndTimeHours = moment(this.AllEvents[i].endTime).format("HH");
       var CheckStartTimeAllDay = moment(this.day).format("DD MM YYYY");
-      
+      var startTimeHoursMinutes = this.startTime.split(':');
+      var endTimeHoursMinutes = this.endTime.split(':');
         if(CheckEventStartTimeAllDay == CheckStartTimeAllDay){
-          console.log('prv if  ')
-          if(CheckEventStartTimeAllTime == this.startTime){
-            console.log('vtor if  ')
-        this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-            return item.name!=roomNameCheck;
-        });
-          notTrue=false;
-          break;
-      }
-      else {
-        console.log('else na sreden if')
-        notTrue=true;
-      }
+          console.log('CheckEventStartTimeAllDay == CheckStartTimeAllDay');
+          if(CheckEventStartTimeHours == startTimeHoursMinutes[0]){
+            console.log('CheckEventStartTimeHours == startTimeHoursMinutes[0]');
+            if(CheckEventStartTimeMinutes == startTimeHoursMinutes[1]){
+              console.log('CheckEventStartTimeMinutes == startTimeHoursMinutes[1]');
+              this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+                return item.name!=roomNameCheck;
+              });
+            }
+            else if(CheckEventStartTimeMinutes > startTimeHoursMinutes[1]){
+              console.log('CheckEventStartTimeMinutes > startTimeHoursMinutes[1]')
+              notTrue=true;
+              break;
+            }
+            else if (CheckEventStartTimeMinutes < startTimeHoursMinutes[1]){
+              console.log('CheckEventStartTimeMinutes < startTimeHoursMinutes[1]')
+              this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+                return item.name!=roomNameCheck;
+              });
+            }
+          }
+          else if(CheckEventStartTimeHours > startTimeHoursMinutes[0]){
+            console.log('CheckEventStartTimeHours > startTimeHoursMinutes[0]')
+            if (CheckEventStartTimeHours == endTimeHoursMinutes[0]){
+              console.log('CheckEventStartTimeHours == endTimeHoursMinutes[0]')
+              if(CheckEventStartTimeMinutes == endTimeHoursMinutes[1]){
+                console.log('CheckEventStartTimeMinutes == endTimeHoursMinutes[1]')
+                this.flagForWarning=true;
+                notTrue=true;
+                break;
+              }
+              else if (CheckEventStartTimeMinutes > endTimeHoursMinutes[1]){
+                console.log('CheckEventStartTimeMinutes > endTimeHoursMinutes[1]')
+                notTrue=true;
+                break;
+              }
+              else if (CheckEventStartTimeMinutes < endTimeHoursMinutes[1]){
+                console.log('CheckEventStartTimeMinutes < endTimeHoursMinutes[1]')
+                this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+                  return item.name!=roomNameCheck;
+                });
+              }
+            }
+            else if(CheckEventStartTimeHours > endTimeHoursMinutes[0]){
+              notTrue=true;
+              break;
+            }
+            else if(CheckEventStartTimeHours < endTimeHoursMinutes[0]){
+              this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+                return item.name!=roomNameCheck;
+              });
+            }
+          }
+          else if (CheckEventStartTimeHours < startTimeHoursMinutes[0]){
+            if (CheckEventEndTimeHours == startTimeHoursMinutes[0]){
+              this.flagForWarning=true;
+              notTrue=true;
+              break;
+            }
+            else if (CheckEventEndTimeHours > startTimeHoursMinutes[0]){
+              this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+                return item.name!=roomNameCheck;
+              });
+            }
+            else if(CheckEventEndTimeHours < startTimeHoursMinutes[0]){
+              notTrue=true;
+              break;
+            }
+          }    
     }
-     else {
-       console.log('else na prv if')
-       notTrue=true;
-      }
-    
-      if(notTrue==true){
-        console.log('if so vrakjanje na sobi i list of rooms: '+ this.ListOfRooms)
-        this.ListOfRooms=JSON.parse(JSON.stringify(this.EventData.getRoomData()))
-        console.log(this.EventData.getRoomData()+ '  ova e od event data a ova e od list of rooms: '+ this.ListOfRooms)
-      }
+    if(notTrue==true){
+      console.log('if so vrakjanje na sobi i list of rooms: '+ this.ListOfRooms)
+      this.ListOfRooms=JSON.parse(JSON.stringify(this.EventData.getRoomData()))
+      console.log(this.EventData.getRoomData()+ '  ova e od event data a ova e od list of rooms: '+ this.ListOfRooms)
     }
-    
-
+  }
     this.isReserved=true;
-
-
-
   }
   save(){
     this.flag = this.EventData.getFlagisCalendarPage();
@@ -167,6 +219,7 @@ export class ReserveEventPage {
          ]
      });
      alert.present();
+     this.FlagRoomSelected=false;
   }
   ionViewWillEnter(){
 
