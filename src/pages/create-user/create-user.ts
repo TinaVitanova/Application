@@ -55,6 +55,7 @@ export class CreateUserPage {
           this.submitAttempt = true;
           this.new.picture = this.UserGlobal.getDefaultImage();
           this.UserGlobal.addNewUser(this.new);
+          this.CreateUserForm.reset();
         }
       }
      ]

@@ -24,25 +24,38 @@ export class MakeRoomPage {
   CreateRoom(){
     if (!this.description)
     this.description = "No Description";
-    this.EventData.SendRoomData(this.name, this.capacity, this.description);
+    
     let alert = this.alertCtrl.create({
       title: 'You have created the room: ',
       subTitle: 'Room name: ' + this.name + '<br>Room capacity: ' + this.capacity + '<br>Description: ' + this.description,
-     buttons:['OK']
+     buttons:[
+        {
+      text: 'Cancel',
+      role: 'cancel',
+      },
+      {
+      text: 'Confirm',
+      role: 'confirm',
+        handler: data => {
+          this.showRoom = true;
+          this.EventData.SendRoomData(this.name, this.capacity, this.description);
+          this.EventData.setShowRoom(this.showRoom);
+          this.MakeRoomForm.reset();
+        }
+      }
+    ]
    });
    alert.present();
-   this.showRoom = true;
-   this.EventData.setShowRoom(this.showRoom);
-
    }
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public formBuilder: FormBuilder, public UserGlobal: UsernameGlobalProvider) {
     this.MakeRoomForm = formBuilder.group({
       RoomName: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z0-9]*'),Validators.required,new Validator(UserGlobal, EventData).isRoomValid])],
-      Capacity: ['',Validators.compose([Validators.required])],
+      Capacity: ['',Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
       Description: ['',Validators.compose([Validators.maxLength(300)])]
   });
+  
   }
 
   ionViewDidLoad() {
