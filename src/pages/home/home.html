@@ -18,7 +18,7 @@
             </ion-item>
         </ion-list> 
     </form>
-    <p text-center [hidden]="!flagIncorectLogin">Incorect username or password!</p>
+    <p text-center class="invalid" [hidden]="!flagIncorectLogin">Incorect username or password!</p>
     <ion-buttons text-center>
         <button class="login-btn" (click)="LoginNav()">LOGIN</button>
     </ion-buttons>
