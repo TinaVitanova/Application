@@ -86,18 +86,18 @@ export class MyProfilePage {
   }
 
   InputChange(e) {
-    this.presentLoading();
-      var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    
+    if(e.target.files.length != 0){
+      this.presentLoading();
+      var file = e.target.files[0];
       var pattern = /image-*/;
       var reader = new FileReader();
-  
-      //proveruva dali e prikachena slika
+
       if (!file.type.match(pattern)) {
           alert('invalid format'); 
           return;
       }
-      
-      //proveruva golemina na slika 
+ 
       if (file.size > 7000000){
         alert('max image size 7Mb '); 
         return;
@@ -107,6 +107,7 @@ export class MyProfilePage {
       //pretvori vo base64 format
       reader.onload = this.ReaderLoaded.bind(this);
       reader.readAsBinaryString(file);
+    }
   }
  
   ReaderLoaded(e) {
