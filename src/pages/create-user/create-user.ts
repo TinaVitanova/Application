@@ -37,18 +37,21 @@ export class CreateUserPage {
   CreateNewUser(){
    // this.UserGlobal.SendUserData(this.new.fullname, this.new.username, this.new.email, this.new.password, this.isAdmin);
     let alert = this.alertCtrl.create({
-      title: 'You have created the user: ',
-      subTitle: 'Fullname: ' + this.new.fullname + 
-                '<br>Username: ' + this.new.username + 
-                '<br>Email: ' + this.new.email + 
-                '<br>Password: ' + this.new.password,   
+      cssClass: 'alert-style',
+      title: '<p class="alert-title"><b>USER CREATED:</b><br /></p><hr />',
+      subTitle: '<div class="alert-message"><b>FULLNAME:</b> ' + this.new.fullname + 
+                '<br><b>USERNAME:</b> ' + this.new.username + 
+                '<br><b>EMAIL:</b> ' + this.new.email + 
+                '<br><b>PASSWORD:</b> ' + this.new.password + '</div>',   
      buttons:[
       {
-        text: 'Cancel',
+        cssClass: 'alert-btn',
+        text: 'CANCEL',
         role: 'cancel',
       },
       {
-        text: 'Confirm',
+        cssClass: 'alert-btn',
+        text: 'CONFIRM',
         role: 'confirm',
         handler: data => {
 

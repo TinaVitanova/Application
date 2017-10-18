@@ -34,18 +34,21 @@ export class ManageUsersPage {
 
   deleteUser(item){
     let alert = this.alertCtrl.create({
-      title: 'Are you sure?',
-      message: 'Delete the user: '+ item,
+      cssClass: 'alert-style',
+      title: '<p class="alert-title"><b>DELETE USER:</b><br /></p><hr />',
+      message: '<div class="alert-message"><b>Delete the user:</b> ' + item,
       buttons: [
         {
-          text: 'Cancel',
+          text: 'CANCEL',
+          cssClass: 'alert-btn',
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
           }
         },
         {
-          text: 'Delete',
+          text: 'DELETE',
+          cssClass: 'alert-btn',
           handler: () => {
             this.UserGlobal.setDeleteAccName(this.AllUsers.indexOf(item));
             this.initializeUsers();

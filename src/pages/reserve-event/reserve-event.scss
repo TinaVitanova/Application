@@ -47,6 +47,7 @@ page-reserve-event{
             background: map-get($colors, primary);
             @include basic-transition;
         }
-    }
+
 }
 
+}
