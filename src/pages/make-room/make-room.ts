@@ -15,13 +15,15 @@ export class MakeRoomPage {
  
     name;
     capacity;
-    description
+    description;
 
   showRoom;
   MakeRoomForm: FormGroup;
   submitAttempt: boolean = false;
 
   CreateRoom(){
+    if (!this.description)
+    this.description = "No Description";
     this.EventData.SendRoomData(this.name, this.capacity, this.description);
     let alert = this.alertCtrl.create({
       title: 'You have created the room: ',
@@ -37,7 +39,7 @@ export class MakeRoomPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public formBuilder: FormBuilder, public UserGlobal: UsernameGlobalProvider) {
     this.MakeRoomForm = formBuilder.group({
-      RoomName: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required,new Validator(UserGlobal, EventData).isRoomValid])],
+      RoomName: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z0-9]*'),Validators.required,new Validator(UserGlobal, EventData).isRoomValid])],
       Capacity: ['',Validators.compose([Validators.required])],
       Description: ['',Validators.compose([Validators.maxLength(300)])]
   });
