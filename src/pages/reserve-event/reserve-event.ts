@@ -89,7 +89,7 @@ export class ReserveEventPage {
       var roomCheck = this.AllEvents[i].room;
       var roomNameCheck = this.EventData.getRoomName(i);
       var CheckEventStartTimeAllDay = moment(this.AllEvents[i].startTime).format("DD MM YYYY");
-      var CheckEventStartTimeAllTime = moment(this.AllEvents[i].startTime).format("HH:mm");
+      //var CheckEventStartTimeAllTime = moment(this.AllEvents[i].startTime).format("HH:mm");
       var CheckEventStartTimeHours = moment(this.AllEvents[i].startTime).format("HH");
       var CheckEventStartTimeMinutes = moment(this.AllEvents[i].startTime).format("mm");
       var CheckEventEndTimeMinutes = moment(this.AllEvents[i].endTime).format("mm");
