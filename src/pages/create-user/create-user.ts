@@ -14,13 +14,13 @@ export class CreateUserPage {
   isAdmin: boolean = false;
   CreateUserForm: FormGroup;
   submitAttempt: boolean = false;
+  picture;
   new = {
     username:"",
     fullname:"",
     email:"",
     password:"",
     isAdmin:"",
-    picture:"",
   };
 
   logFormSignUp(){
@@ -35,7 +35,6 @@ export class CreateUserPage {
   }
 
   CreateNewUser(){
-   // this.UserGlobal.SendUserData(this.new.fullname, this.new.username, this.new.email, this.new.password, this.isAdmin);
     let alert = this.alertCtrl.create({
       cssClass: 'alert-style',
       title: '<p class="alert-title"><b>USER CREATED:</b><br /></p><hr />',
@@ -65,7 +64,6 @@ export class CreateUserPage {
    });
    alert.present();
   }
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder) {
     this.CreateUserForm = formBuilder.group({
       username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z0-9_.-]*'),Validators.required])],

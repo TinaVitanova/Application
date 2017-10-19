@@ -6,7 +6,7 @@ import { MakeRoomPage } from '../make-room/make-room';
 import { CreateUserPage } from '../create-user/create-user';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 import { EventDataProvider } from '../../providers/event-data/event-data';
-
+import * as moment from 'moment';
 @IonicPage()
 @Component({
   selector: 'page-dashboard',
@@ -17,7 +17,9 @@ export class DashboardPage {
   username;
   adminBtn = false;
   flagCalendar;
-
+  MyEvents=this.EventData.getEvents();
+  StartTime;
+  EndTime;
   MakeRoomNav(){
     this.navCtrl.push(MakeRoomPage)
   }
@@ -35,6 +37,16 @@ export class DashboardPage {
 
   CreateAccNav(){
     this.navCtrl.push(CreateUserPage, {param2: this.username})
+  }
+  IsDate(events){
+    let date = moment(events.startTime).format('DD MM YYYY');
+    let dateToday = moment().format('DD MM YYYY');
+    this.StartTime = moment(events.startTime).format('HH:mm');
+    this.EndTime = moment(events.endTime).format('HH:mm');
+    if (date == dateToday)
+      return true;
+    else
+       return false;
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {

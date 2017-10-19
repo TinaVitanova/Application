@@ -26,6 +26,7 @@ export class MakeRoomPage {
     this.description = "No Description";
     
     let alert = this.alertCtrl.create({
+
       cssClass: 'alert-style',
       title: '<p class="alert-title"><b>USER CREATED:</b><br /></p><hr />',
       subTitle: '<div class="alert-message"><b>ROOM NAME:</b> ' + this.name + 
