@@ -20,6 +20,7 @@ export class DashboardPage {
   MyEvents=this.EventData.getEvents();
   StartTime;
   EndTime;
+  FlagNextDay=false;
   MakeRoomNav(){
     this.navCtrl.push(MakeRoomPage)
   }
@@ -39,14 +40,22 @@ export class DashboardPage {
     this.navCtrl.push(CreateUserPage, {param2: this.username})
   }
   IsDate(events){
-    let date = moment(events.startTime).format('DD MM YYYY');
+    let dateStart = moment(events.startTime).format('DD MM YYYY');
+    let dateEnd = moment(events.endTime).format('DD MM YYYY');
     let dateToday = moment().format('DD MM YYYY');
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
-    if (date == dateToday)
-      return true;
+    if (dateStart == dateToday){
+      if (dateEnd!=dateStart){
+        this.FlagNextDay=true;
+      }
+      else{
+        this.FlagNextDay=false;
+    }
+    return true;
+  }
     else
-       return false;
+      return false;
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {

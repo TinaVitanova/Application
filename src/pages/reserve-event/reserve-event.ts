@@ -17,12 +17,17 @@ export class ReserveEventPage {
   isReserved: boolean;
   flag;
   flagForWarning=false;
+  flagTimeEqual=false;
+  flagIsNextDay=false;
   public title;
   public endTime;
   public startTime;
   public day;
   public room;
   public roomName;
+  public nextDay;
+  public dayFormat;
+  public ChangeEndTime=false;
   public allDay: boolean=false;
   public BlurEndTimeFlag;
   public FlagRoomSelected = false;
@@ -55,22 +60,44 @@ export class ReserveEventPage {
   ionViewDidLoad() {
     this.showRoom = this.EventData.getShowRoom();
     this.day = moment().toISOString();
+    this.dayFormat = moment(this.day).format('DD MM YYYY');
+    this.nextDay = moment(this.day).add(1,'days').format('DD MM YYYY');
     this.ListOfRooms=this.EventData.getRoomData();
+  }
+  OnBlurDay(){
+    this.nextDay =  moment(this.day).add(1,'days').format('DD MM YYYY');
+    this.dayFormat = moment(this.day).format('DD MM YYYY');
   }
   OnBlurEndTime(){
     this.BlurEndTimeFlag = true;
     if (this.BlurStartTimeFlag == true){
-    this.FlagStartEndTime = this.EventData.checkEndTime(this.endTime);
-    this.EventData.setFlagStartEndTime(this.FlagStartEndTime);
+      if(this.startTime == this.endTime)
+        this.flagTimeEqual=true;
+      else
+      this.flagTimeEqual=false;
     }
+    if (this.startTime > this.endTime)
+      this.flagIsNextDay=true;
+    else
+      this.flagIsNextDay=false;
   }
   OnBlurStartTime(){
     this.BlurStartTimeFlag = true;
     if (this.BlurEndTimeFlag == true){
-    this.FlagStartEndTime = this.EventData.checkStartTime(this.startTime);
-    this.EventData.setFlagStartEndTime(this.FlagStartEndTime);
-    }
-
+      if(this.startTime == this.endTime){
+        this.flagTimeEqual=true;
+      }
+      else
+      this.flagTimeEqual=false;
+      }
+      if (this.startTime > this.endTime)
+        this.flagIsNextDay=true;
+      else
+        this.flagIsNextDay=false;
+  }
+  NextDay(){
+    this.ChangeEndTime = true;
+    this.flagIsNextDay = false;
   }
 
   showRooms(){
@@ -204,7 +231,7 @@ export class ReserveEventPage {
       let alert = this.alertCtrl.create({
         cssClass: 'alert-style',
         title: '<p class="alert-title"><b>EVENT CREATED:</b><br />' + '<span>' +this.title + '</span></p><hr />',
-        message: '<div class="alert-message"><b>DATE:</b> '+date+'<br><b>FROM:</b> '+start+'<br/><b>TO:</b> '+end+'<br><b>ROOM:</b> '+ this.room + '</div>',
+        message: '<div class="alert-message"><b>DATE:</b> '+date+'<br><b>FROM:</b> '+start+'<br/><b>TO:</b> '+end+'<br><b>ROOM:</b> '+ this.roomName + '</div>',
         buttons:[
           {
             text: 'CANCEL',
@@ -223,11 +250,15 @@ export class ReserveEventPage {
             var startDate = moment(this.startTime,"hh:mm").toDate();
             var endDate = moment(this.endTime,"hh:mm").toDate();
             var startTimeEvent = new Date(this.day.getFullYear(), this.day.getMonth(), this.day.getDate(), startDate.getHours(), startDate.getMinutes());
-            var endTimeEvent = new Date(this.day.getFullYear(), this.day.getMonth(), this.day.getDate(), endDate.getHours(), endDate.getMinutes());
+            if (!this.ChangeEndTime){
+              var endTimeEvent = new Date(this.day.getFullYear(), this.day.getMonth(), this.day.getDate(), endDate.getHours(), endDate.getMinutes());
+            }
+            else{
+              var endTimeEvent = new Date(this.day.getFullYear(), this.day.getMonth(), this.day.getDate()+1, endDate.getHours(), endDate.getMinutes());
+            }
             for (var i=0; i<this.FullListOfRooms.length; i++){
               if(this.FullListOfRooms[i].name == this.roomName)
                 this.room = this.FullListOfRooms[i];
-                console.log('vo reserve event sobata: ' + this.room)
             }
             this.EventData.setEvent(this.title, startTimeEvent, endTimeEvent, this.allDay, this.room);
             this.isReserved=false;
