@@ -111,7 +111,6 @@ export class ReserveEventPage {
             else if(CheckEventStartTimeMinutes > startTimeHoursMinutes[1]){
               console.log('CheckEventStartTimeMinutes > startTimeHoursMinutes[1]')
               notTrue=false;
-              break;
             }
             else if (CheckEventStartTimeMinutes < startTimeHoursMinutes[1]){
               console.log('CheckEventStartTimeMinutes < startTimeHoursMinutes[1]')
@@ -128,13 +127,11 @@ export class ReserveEventPage {
               if(CheckEventStartTimeMinutes == endTimeHoursMinutes[1]){
                 console.log('CheckEventStartTimeMinutes == endTimeHoursMinutes[1]')
                 this.flagForWarning=true;
-                notTrue=false;
-                break;
+                notTrue=true;
               }
               else if (CheckEventStartTimeMinutes > endTimeHoursMinutes[1]){
                 console.log('CheckEventStartTimeMinutes > endTimeHoursMinutes[1]')
-                notTrue=false;
-                break;
+                notTrue=true;
               }
               else if (CheckEventStartTimeMinutes < endTimeHoursMinutes[1]){
                 console.log('CheckEventStartTimeMinutes < endTimeHoursMinutes[1]')
@@ -146,8 +143,7 @@ export class ReserveEventPage {
             }
             else if(CheckEventStartTimeHours > endTimeHoursMinutes[0]){
               console.log('CheckEventStartTimeHours > endTimeHoursMinutes[0]')
-              notTrue=false;
-              break;
+              notTrue=true;
             }
             else if(CheckEventStartTimeHours < endTimeHoursMinutes[0]){
               console.log('CheckEventStartTimeHours < endTimeHoursMinutes[0]')
@@ -160,10 +156,23 @@ export class ReserveEventPage {
           else if (CheckEventStartTimeHours < startTimeHoursMinutes[0]){
             console.log('CheckEventStartTimeHours < startTimeHoursMinutes[0]')
             if (CheckEventEndTimeHours == startTimeHoursMinutes[0]){
-              console.log('CheckEventEndTimeHours == startTimeHoursMinutes[0]')
-              this.flagForWarning=true;
-              notTrue=false;
-              break;
+              if(CheckEventEndTimeMinutes == startTimeHoursMinutes[1]){
+                console.log('CheckEventEndTimeMinutes == startTimeHoursMinutes[1]')
+                this.flagForWarning=true;
+                notTrue=true;
+              }
+              else if (CheckEventEndTimeMinutes < startTimeHoursMinutes[1]){
+                console.log('CheckEventEndTimeMinutes < startTimeHoursMinutes[1]')
+                notTrue=false;
+                this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+                  return item.name!=roomNameCheck;
+                });
+              }
+              else if (CheckEventEndTimeMinutes > startTimeHoursMinutes[1]){
+                console.log('CheckEventEndTimeMinutes > startTimeHoursMinutes[1]')
+                this.flagForWarning=true;
+                notTrue=false;
+              }
             }
             else if (CheckEventEndTimeHours > startTimeHoursMinutes[0]){
               console.log('CheckEventEndTimeHours > startTimeHoursMinutes[0]')
@@ -175,7 +184,6 @@ export class ReserveEventPage {
             else if(CheckEventEndTimeHours < startTimeHoursMinutes[0]){
               console.log('CheckEventEndTimeHours < startTimeHoursMinutes[0]')
               notTrue=false;
-              break;
             }
           }    
     }
@@ -224,7 +232,7 @@ export class ReserveEventPage {
               if (this.flag == true)
                 this.navCtrl.pop();
                 else
-                this.ionViewWillEnter();
+                this.resetForm();
             }
           }
          ]
@@ -232,8 +240,9 @@ export class ReserveEventPage {
      alert.present();
      this.FlagRoomSelected=false;
   }
-  ionViewWillEnter(){
-
+  resetForm(){
+    this.ReserveEventForm.reset();
+    this.day = moment().toISOString();
   }
 
 }

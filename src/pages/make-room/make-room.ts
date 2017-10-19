@@ -28,7 +28,20 @@ export class MakeRoomPage {
     let alert = this.alertCtrl.create({
       title: 'You have created the room: ',
       subTitle: 'Room name: ' + this.name + '<br>Room capacity: ' + this.capacity + '<br>Description: ' + this.description,
-     buttons:['OK']
+      buttons:[
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+        {
+          text: 'Confirm',
+          role: 'confirm',
+          handler: data => {
+            this.MakeRoomForm.reset();
+          
+          }
+        }
+       ]
    });
    alert.present();
    this.showRoom = true;

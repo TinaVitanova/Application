@@ -43,20 +43,16 @@ export class MyProfilePage {
         {
           text: 'Cancel',
           role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
         },
         {
           text: 'Change',
           handler: data => {
             this.SubmitAttempt=true;
             if (data.password == "ok") {
-              console.log('yup')
               this.events.publish('image:added', this.base64textString);
               this.UserGlobal.ChangeUser(this.todo,this.base64textString);
+              this.resetForm();
             } else {
-              console.log('nope')
               return false;
             }
           }
@@ -64,6 +60,11 @@ export class MyProfilePage {
       ]
     });
     alert.present();
+  }
+  resetForm(){
+    this.todo.newusername = this.UserGlobal.getMyGlobalVar();
+    this.todo.newpassword = this.UserGlobal.getMyGlobalPass();
+    this.todo.newemail = this.UserGlobal.getMyGlobalEmail();
   }
  
   logForm(){
