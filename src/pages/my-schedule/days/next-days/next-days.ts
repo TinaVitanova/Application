@@ -9,7 +9,6 @@ import * as moment from 'moment';
 })
 export class NextDaysPage {
   MyEvents=this.EventData.getEvents();
-  today= new Date();
   StartTime;
   EndTime;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
@@ -22,7 +21,7 @@ export class NextDaysPage {
     let otherDays = moment().add(5,'days').format('DD MM YYYY');
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
-    if (date == nextDay || date == dateToday && date<=otherDays)
+    if (date == nextDay || date == dateToday || date>otherDays)
       return false;
     else
        return true;

@@ -32,6 +32,16 @@ export class EventDataProvider {
     return this.ShowRoom;
   }
 
+  public getRoomName(i){
+    var roomName;
+    for (var j=0; j<this.AllEvents.length; j++){
+      for (var k=0; k<this.FullRooms.length; k++){
+      if(this.AllEvents[j].room == this.FullRooms[k] && this.AllEvents[i]==this.AllEvents[j])
+      roomName = this.FullRooms[k].name;
+    }}
+    return roomName;
+  }
+
   public setFlagIsCalendarPage(value){
     this.flag=value;
   }
@@ -43,6 +53,8 @@ export class EventDataProvider {
   public SendRoomData(value:string, value1:string, value2: string){
 
     this.RoomsData = {name: value, capacity: value1, description: value2};
+    
+    console.log('full rooms od provider  ' + this.RoomsData);
     this.FullRooms.push(this.RoomsData);
   }
 
@@ -52,7 +64,7 @@ export class EventDataProvider {
   }
 
   public setEvent(value1,value2,value3,value4,value5){
-    this.Eventdata = {title: value1, startTime: value2, endTime: value3, allDay: value4, room: value5};
+    this.Eventdata = {title: value1 +" Room: "+  value5.name, startTime: value2, endTime: value3, allDay: value4, room: value5};
     this.AllEvents.push(this.Eventdata);
   }
 

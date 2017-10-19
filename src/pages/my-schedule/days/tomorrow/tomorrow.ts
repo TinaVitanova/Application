@@ -10,7 +10,6 @@ import * as moment from 'moment';
 })
 export class TomorrowPage {
   MyEvents=this.EventData.getEvents();
-  today= new Date();
   StartTime;
   EndTime;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {

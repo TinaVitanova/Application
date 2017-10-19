@@ -12,7 +12,7 @@ export class UsernameGlobalProvider {
   public CurrentUser;
   public UsersData: {username: string, fullname: string, email: string, password: string, isAdmin: boolean, picture: string};
   public FullUsers:{username: string, fullname: string, email: string, password: string, isAdmin: boolean, picture: string}[]= [];
-  public CurrentUserIndex;
+  public CurrentUserIndex = 0;
 
   constructor(public storage: Storage) {
     console.log('usernameglobal')
@@ -32,7 +32,7 @@ export class UsernameGlobalProvider {
   }
   
   public getUserImage(){
-    return this.defaultImage;
+    return this.FullUsers[this.CurrentUserIndex].picture;
   }
 
 
@@ -46,8 +46,9 @@ export class UsernameGlobalProvider {
     this.FullUsers.splice(value,1);
   }
 
-  public addNewUser(value) {
-    this.FullUsers.push(value);
+  public addNewUser(value,value1) {
+   this.UsersData = {username: value.username, fullname: value.fullname, email: value.email, password: value.password, isAdmin: value.isAdmin, picture: value1 };
+   this.FullUsers.push(this.UsersData);
   }
   
   public ChangeUser(value,value1){

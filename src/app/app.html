@@ -12,7 +12,7 @@
     <ion-content class="background">
         <ion-list>
             <ion-avatar item-start>
-                <img class="avatar" src={{userImage}}>
+                <img class="avatar" [src]="userImage">
             </ion-avatar>
             <ion-item class="sm-list">
                 <button menuClose ion-item *ngFor="let p of pages1" (click)="openPage(p)">
