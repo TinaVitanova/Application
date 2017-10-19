@@ -235,7 +235,6 @@ export class ReserveEventPage {
                 this.navCtrl.pop();
                 else
                 this.resetForm()
-                this.ionViewWillEnter();
             },
             cssClass: 'alert-btn'
           }
