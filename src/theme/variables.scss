@@ -145,6 +145,38 @@ $toolbar-ios-title-font-weight: 500;
   }
 }
 
+//schedule style
+
+@mixin schedule-list{
+    ion-list button{
+        padding-left: none;
+    }
+
+    ion-row{
+        height: 80%;
+    }
+
+    .event-time{
+        background: map-get($colors, primary);
+        color: white;
+        font-weight: bold;
+        border-radius:5px;
+        text-align: left;
+        font-size: 90%;
+    }
+
+    .event-title{
+        background: white;
+        color: map-get($colors, primary);
+        font-weight: bold;
+        padding-bottom: 2%;
+        border-bottom: 1px solid map-get($colors, primary);
+        margin-left:1%;
+        overflow-x: hidden;
+        width: 90%;
+    }
+}
+
 // pickers style
 
 .picker-ios .picker-button,
@@ -212,9 +244,9 @@ $picker-ios-toolbar-height: 60px;
 
 //default input
 
-$text-input-md-highlight-color-invalid:  map-get($colors, danger);
+$text-input-md-highlight-color-invalid:  none;
 $text-input-md-highlight-color-valid:  none;
-$text-input-md-show-invalid-highlight:  map-get($colors, danger);
+$text-input-md-show-invalid-highlight: none;
 $text-input-md-highlight-color:  none;
 $text-input-md-show-valid-highlight:  none;
 $label-md-text-color:	none;
@@ -246,6 +278,7 @@ $picker-md-toolbar-background-color:  color($colors, bg-gray);
 
 $input-wp-border-color:none;
 $text-input-wp-highlight-color-valid: none;
+$text-input-wp-highlight-color-invalid: none;
 $text-input-wp-highlight-color:  none;
 $label-wp-text-color:	none;
 $label-wp-text-color-focused: none;

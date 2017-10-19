@@ -98,9 +98,18 @@ export class CalendarPage {
     let end = moment(event.endTime).format('HH:mm');
  
     let alert = this.alertCtrl.create({
-       title: 'Event: ' + event.title,
-       message: 'On: '+date+'<br>From: '+start+'<br>To: '+ end +'<br> Room:</div>',
-      buttons:['OK']
+      cssClass: 'alert-style',
+      title: '<p class="alert-title"><b>EVENT CREATED:</b><br />' + '<span>' +event.title + '</span></p><hr />',
+      message: '<div class="alert-message"><b>DATE:</b> '+date+'<br><b>FROM:</b> '+start+'<br/><b>TO:</b> '+end+'<br><b>ROOM:</b></div>',
+      buttons:[
+       {
+         cssClass: 'alert-btn',
+         text: 'CANCEL',      
+       },
+       {
+         cssClass: 'alert-btn',
+         text: 'CONFIRM'
+       }]
     });
     alert.present();
     console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
