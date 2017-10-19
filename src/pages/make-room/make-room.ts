@@ -30,7 +30,7 @@ export class MakeRoomPage {
       title: '<p class="alert-title"><b>USER CREATED:</b><br /></p><hr />',
       subTitle: '<div class="alert-message"><b>ROOM NAME:</b> ' + this.name + 
       '<br><b>ROOM CAPACITY:</b> ' + this.capacity + 
-      '<br><b>ROOM DESCRIPTION:</b> ' + this.description + '</div>',  
+      '<br><b>DESCRIPTION:</b> ' + this.description + '</div>',  
      buttons:[
         {
       cssClass: 'alert-btn',
