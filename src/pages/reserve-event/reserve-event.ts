@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, NavParams, MenuController } from 'ionic-angular';
 import * as moment from 'moment';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 import { EventDataProvider } from '../../providers/event-data/event-data';
@@ -36,7 +36,7 @@ export class ReserveEventPage {
   showRoom = this.EventData.getShowRoom();
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder, public menuCtrl: MenuController) {
     this.ReserveEventForm = formBuilder.group({
       title: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z0-9]*'),Validators.required])],
       day: ['',Validators.compose([Validators.required])],
@@ -246,6 +246,11 @@ export class ReserveEventPage {
   resetForm(){
     this.ReserveEventForm.reset();
     this.day = moment().toISOString();
+  }
+
+  ionViewDidEnter(){
+    this.menuCtrl.enable(false, "userMenu");
+    this.menuCtrl.enable(false, "adminMenu");
   }
 
 }

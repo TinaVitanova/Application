@@ -50,19 +50,21 @@ export class DashboardPage {
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
- 
     this.username=this.UserGlobal.getMyGlobalVar();
+  }
+  
+  ionViewDidEnter(){
+    this.username=this.UserGlobal.getMyGlobalVar();
+  }
+
+  ionViewWillEnter(){
     if(this.username=="admin" || this.username=="superadmin"){
       this.adminBtn=true;
       this.menuCtrl.enable(true, "adminMenu");
     }
     else{
     this.menuCtrl.enable(true, "userMenu");
-    } 
+    }
   }
-  ionViewDidEnter(){
-    this.username=this.UserGlobal.getMyGlobalVar();
-  }
-  ionViewDidLoad() {
-  }
+  
 }
