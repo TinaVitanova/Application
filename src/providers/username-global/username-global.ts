@@ -46,8 +46,9 @@ export class UsernameGlobalProvider {
     this.FullUsers.splice(value,1);
   }
 
-  public addNewUser(value) {
-    this.FullUsers.push(value);
+  public addNewUser(value,value1) {
+   this.UsersData = {username: value.username, fullname: value.fullname, email: value.email, password: value.password, isAdmin: value.isAdmin, picture: value1 };
+   this.FullUsers.push(this.UsersData);
   }
   
   public ChangeUser(value,value1){
