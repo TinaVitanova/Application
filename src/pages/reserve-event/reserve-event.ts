@@ -183,18 +183,20 @@ export class ReserveEventPage {
       let start = this.startTime;
       let end = this.endTime;
       let alert = this.alertCtrl.create({
-        title: 'You have created an event: ' + this.title,
-        message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+ this.roomName + '</div>',
+        cssClass: 'alert-style',
+        title: '<p class="alert-title"><b>EVENT CREATED:</b><br />' + '<span>' +this.title + '</span></p><hr />',
+        message: '<div class="alert-message"><b>DATE:</b> '+date+'<br><b>FROM:</b> '+start+'<br/><b>TO:</b> '+end+'<br><b>ROOM:</b> '+ this.room + '</div>',
         buttons:[
           {
-            text: 'Cancel',
+            text: 'CANCEL',
             role: 'cancel',
             handler: data => {
               console.log('Cancel clicked');
-            }
+            },
+            cssClass: 'alert-btn'
           },
           {
-            text: 'Reserve',
+            text: 'RESERVE',
             role: 'confirm',
             handler: data => {
               
@@ -214,7 +216,8 @@ export class ReserveEventPage {
                 this.navCtrl.pop();
                 else
                 this.ionViewWillEnter();
-            }
+            },
+            cssClass: 'alert-btn'
           }
          ]
      });

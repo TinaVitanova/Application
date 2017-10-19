@@ -26,15 +26,20 @@ export class MakeRoomPage {
     this.description = "No Description";
     
     let alert = this.alertCtrl.create({
-      title: 'You have created the room: ',
-      subTitle: 'Room name: ' + this.name + '<br>Room capacity: ' + this.capacity + '<br>Description: ' + this.description,
+      cssClass: 'alert-style',
+      title: '<p class="alert-title"><b>USER CREATED:</b><br /></p><hr />',
+      subTitle: '<div class="alert-message"><b>ROOM NAME:</b> ' + this.name + 
+      '<br><b>ROOM CAPACITY:</b> ' + this.capacity + 
+      '<br><b>ROOM DESCRIPTION:</b> ' + this.description + '</div>',  
      buttons:[
         {
-      text: 'Cancel',
+      cssClass: 'alert-btn',
+      text: 'CANCEL',
       role: 'cancel',
       },
       {
-      text: 'Confirm',
+      cssClass: 'alert-btn',
+      text: 'CONFIRM',
       role: 'confirm',
         handler: data => {
           this.showRoom = true;

@@ -551,5 +551,48 @@ ion-list .sm-list {
     }
 }
 
-// ********
-// side manu style end
+  // ********
+  // side manu style end
+
+  // *****************
+  // alerts style
+
+  .alert-style{  
+    padding-bottom: 20px!important;  
+    div{
+      color: map-get($colors, secondary);
+
+      hr{ 
+        border-bottom: 2px solid map-get($colors, secondary-hover);
+        width:80%;
+        position: relative;
+        left: 2%;
+      }
+
+      .alert-title{ 
+        text-align: center;
+        span{
+          color: map-get($colors, secondary-light);
+        }
+  
+      } 
+      .alert-message{
+        color: map-get($colors, secondary-light);
+        line-height: 1.6em;
+        padding-bottom: 2%!important;
+      }
+    }
+  }
+
+  .alert-btn{
+    color: map-get($colors, secondary-hover)!important;
+    border:none!important;
+    margin-bottom: 10%!important;
+    right: 15%;
+    &:hover,
+    &:active{
+        @include basic-transition;
+        color: map-get($colors, primary)!important;
+    }
+}
+
