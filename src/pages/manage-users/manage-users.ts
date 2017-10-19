@@ -22,7 +22,6 @@ export class ManageUsersPage {
   initializeUsers(){
     this.singleArray=[];
         for (var _i = 0; _i < this.AllUsers.length; _i++) {
-          console.log(this.AllUsers[_i].picture + '    initialize users slikata')
           this.singleArray.push({
                                username: this.AllUsers[_i].username,
                                email: this.AllUsers[_i].email,

@@ -14,7 +14,7 @@
 
             <ion-item>
                 <ion-label floating>Room Capacity</ion-label>
-                <ion-input type="number" formControlName="Capacity" min=0 [class.invalid]="!MakeRoomForm.controls.Capacity.valid && MakeRoomForm.controls.Capacity.dirty && submitAttempt" [(ngModel)]="capacity" name="capacity"></ion-input>
+                <ion-input type="number" formControlName="Capacity" min=1 max=20 [class.invalid]="!MakeRoomForm.controls.Capacity.valid && MakeRoomForm.controls.Capacity.dirty && submitAttempt" [(ngModel)]="capacity" name="capacity"></ion-input>
             </ion-item>
 
             <ion-item>

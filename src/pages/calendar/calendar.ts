@@ -14,7 +14,7 @@ export class CalendarPage {
   viewTitle: string;
   selectedDay = new Date();
   flagCalendar;
-  ListOfRooms = [];
+  ListOfRooms;
   showRoom = this.EventData.getShowRoom();
   
   calendar = {
@@ -30,10 +30,9 @@ export class CalendarPage {
   onViewTitleChanged(title) {
       this.viewTitle = title;
   }
-  loadRoomEvents(room){
-    var room= room;
+  loadRoomEvents(r){
     setTimeout(()=>{
-      this.eventSource = this.showRoomEvents(room);
+      this.eventSource = this.showRoomEvents(r);
         })
   }
 
@@ -59,19 +58,19 @@ export class CalendarPage {
   onRangeChanged(ev) {
     console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
-  showRoomEvents(room){
+  showRoomEvents(r){
     var allEvents = this.EventData.getEvents();
-    var events = [];
+    var eventsRoom = [];
   for (var i=0; i<allEvents.length; i++){
-    if(allEvents[i].room == room){
-    events.push({
+    if(allEvents[i].room == r){
+    eventsRoom.push({
           title: allEvents[i].title,
           startTime: allEvents[i].startTime,
           endTime: allEvents[i].endTime,
           allday: allEvents[i].allDay
       });
     }}
-      return events;
+      return eventsRoom;
   }
   createEvent (){
       var allEvents = this.EventData.getEvents();
@@ -84,7 +83,6 @@ export class CalendarPage {
             allday: allEvents[i].allDay
         });
       }
-    //    this.EventData.setEvents(events);
         return events;
 
     }

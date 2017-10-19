@@ -24,8 +24,8 @@ export class HomePage {
     LoginNav(){
       this.submitAttempt = true;
       this.UsernamesList = this.UserGlobal.getUsernames();
-      this.UserGlobal.setMyGlobalVar(this.login.username);
       if (this.loginForm.valid){
+      this.UserGlobal.setMyGlobalVar(this.login.username);
         this.navCtrl.setRoot(DashboardPage);  
       }
       else 
