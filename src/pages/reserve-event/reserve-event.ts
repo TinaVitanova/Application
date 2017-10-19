@@ -38,7 +38,7 @@ export class ReserveEventPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder) {
     this.ReserveEventForm = formBuilder.group({
-      title: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required])],
+      title: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z0-9]*'),Validators.required])],
       day: ['',Validators.compose([Validators.required])],
       startTime: ['',Validators.compose([Validators.required, new Validator(UserGlobal, EventData).isTimeDifferent])],
       endTime: ['',Validators.compose([Validators.required, new Validator(UserGlobal, EventData).isTimeDifferent])]
@@ -89,7 +89,7 @@ export class ReserveEventPage {
       var roomCheck = this.AllEvents[i].room;
       var roomNameCheck = this.EventData.getRoomName(i);
       var CheckEventStartTimeAllDay = moment(this.AllEvents[i].startTime).format("DD MM YYYY");
-      var CheckEventStartTimeAllTime = moment(this.AllEvents[i].startTime).format("HH:mm");
+      //var CheckEventStartTimeAllTime = moment(this.AllEvents[i].startTime).format("HH:mm");
       var CheckEventStartTimeHours = moment(this.AllEvents[i].startTime).format("HH");
       var CheckEventStartTimeMinutes = moment(this.AllEvents[i].startTime).format("mm");
       var CheckEventEndTimeMinutes = moment(this.AllEvents[i].endTime).format("mm");
@@ -202,18 +202,20 @@ export class ReserveEventPage {
       let start = this.startTime;
       let end = this.endTime;
       let alert = this.alertCtrl.create({
-        title: 'You have created an event: ' + this.title,
-        message: 'On: '+date+'<br>From: '+start+'<br>To: '+end+'<br> Room:'+ this.roomName + '</div>',
+        cssClass: 'alert-style',
+        title: '<p class="alert-title"><b>EVENT CREATED:</b><br />' + '<span>' +this.title + '</span></p><hr />',
+        message: '<div class="alert-message"><b>DATE:</b> '+date+'<br><b>FROM:</b> '+start+'<br/><b>TO:</b> '+end+'<br><b>ROOM:</b> '+ this.room + '</div>',
         buttons:[
           {
-            text: 'Cancel',
+            text: 'CANCEL',
             role: 'cancel',
             handler: data => {
               console.log('Cancel clicked');
-            }
+            },
+            cssClass: 'alert-btn'
           },
           {
-            text: 'Reserve',
+            text: 'RESERVE',
             role: 'confirm',
             handler: data => {
               
@@ -232,8 +234,10 @@ export class ReserveEventPage {
               if (this.flag == true)
                 this.navCtrl.pop();
                 else
-                this.resetForm();
-            }
+                this.resetForm()
+                this.ionViewWillEnter();
+            },
+            cssClass: 'alert-btn'
           }
          ]
      });

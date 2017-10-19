@@ -36,33 +36,33 @@ export class CreateUserPage {
 
   CreateNewUser(){
     let alert = this.alertCtrl.create({
-      title: 'You have created the user: ',
-      subTitle: 'Fullname: ' + this.new.fullname + 
-                '<br>Username: ' + this.new.username + 
-                '<br>Email: ' + this.new.email + 
-                '<br>Password: ' + this.new.password,   
+      cssClass: 'alert-style',
+      title: '<p class="alert-title"><b>USER CREATED:</b><br /></p><hr />',
+      subTitle: '<div class="alert-message"><b>FULLNAME:</b> ' + this.new.fullname + 
+                '<br><b>USERNAME:</b> ' + this.new.username + 
+                '<br><b>EMAIL:</b> ' + this.new.email + 
+                '<br><b>PASSWORD:</b> ' + this.new.password + '</div>',   
      buttons:[
       {
-        text: 'Cancel',
+        cssClass: 'alert-btn',
+        text: 'CANCEL',
         role: 'cancel',
       },
       {
-        text: 'Confirm',
+        cssClass: 'alert-btn',
+        text: 'CONFIRM',
         role: 'confirm',
         handler: data => {
 
           this.submitAttempt = true;
-          this.picture = this.UserGlobal.getDefaultImage();
-          this.UserGlobal.addNewUser(this.new,this.picture);
-          this.resetForm();
+          this.new.picture = this.UserGlobal.getDefaultImage();
+          this.UserGlobal.addNewUser(this.new);
+          this.CreateUserForm.reset();
         }
       }
      ]
    });
    alert.present();
-  }
-  resetForm(){
-    this.CreateUserForm.reset();
   }
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder) {
     this.CreateUserForm = formBuilder.group({

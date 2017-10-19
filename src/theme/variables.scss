@@ -49,8 +49,10 @@ $colors: (
   primary-hover: #53D7E9,
   secondary:  #6280B7,
   secondary-hover: #7194C6,
+  secondary-light: rgb(142, 169, 214),
   bg-gray: #f7f7f7,
   text-color: #ACACAC,
+  danger: #ffb699,
   light:      #f4f4f4,
   dark:       #292929,
   make-room : (
@@ -143,8 +145,28 @@ $toolbar-ios-title-font-weight: 500;
   }
 }
 
-//input style
+// pickers style
 
+.picker-ios .picker-button,
+.picker-ios .picker-button.activated,
+.picker-md .picker-button,
+.picker-md .picker-button.activated
+.picker-wp .picker-button,
+.picker-wp .picker-button.activated{
+  text-transform: uppercase;
+  font-size: 110%;
+  &:hover,
+  &:active{
+    color: map-get($colors, secondary);
+    @include basic-transition;
+  }
+}
+
+
+.picker-columns{
+  top: 5%;
+  background-color: colors($colors, bg-gray);
+}
 
 
 // App iOS Variables
@@ -160,6 +182,12 @@ $searchbar-ios-input-text-color: white;
 $searchbar-ios-input-placeholder-color: white;
 $searchbar-ios-input-background-color: map-get($colors, secondary);
 $searchbar-ios-toolbar-input-background: transparent;
+
+//pickers
+
+$picker-ios-option-text-color: color($colors, secondary);
+$picker-ios-toolbar-background-color:  color($colors, bg-gray);
+$picker-ios-toolbar-height: 60px;
 
 
 // App Material Design Variables
@@ -204,6 +232,11 @@ $searchbar-md-input-border-radius: 5px;
 $searchbar-md-input-clear-icon-color: white;
 $searchbar-ios-input-clear-icon-color: white;
 
+//pickers
+
+$picker-md-toolbar-height: 60px;
+$picker-md-option-text-color: color($colors, secondary);
+$picker-md-toolbar-background-color:  color($colors, bg-gray);
 
 // App Windows Variables
 // --------------------------------------------------
@@ -229,6 +262,12 @@ $searchbar-wp-input-background-color: map-get($colors, secondary);
 $searchbar-wp-input-border-radius: 5px;
 $searchbar-wp-input-clear-icon-color: white;
 $searchbar-wp-input-line-height: 3.5rem;
+
+//pickers
+
+$picker-wp-toolbar-height: 60px;
+$picker-wp-option-text-color: color($colors, secondary);
+$picker-wp-toolbar-background-color:  color($colors, bg-gray);
 
 // App Theme
 // --------------------------------------------------

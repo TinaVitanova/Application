@@ -121,7 +121,7 @@ export class MyProfilePage {
   presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
-      duration: 1200
+      duration: 800
     });
     loader.present();
   }
