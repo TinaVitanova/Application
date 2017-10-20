@@ -16,6 +16,7 @@ export class HomePage {
     UsernamesList = [];
     flagIncorectLogin = false;
     submitAttempt: boolean = false;
+
     public login = {
       username:"",
       password:"",
@@ -31,6 +32,7 @@ export class HomePage {
       else 
         this.flagIncorectLogin = true;
     }
+    
     forgotPassword(){
       
     }
