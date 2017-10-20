@@ -15,7 +15,6 @@ export class UsernameGlobalProvider {
   public CurrentUserIndex = 0;
 
   constructor(public storage: Storage) {
-    console.log('usernameglobal')
     for (var i=0; i<3; i++){
     this.UsersData = {username: this.Usernames[i], fullname: this.Fullnames[i], email: this.Emails[i], password: this.Passwords[i], isAdmin: this.IsAdmin[i], picture: this.defaultImage };
     this.FullUsers.push(this.UsersData);

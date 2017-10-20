@@ -26,7 +26,7 @@ export class MyProfilePage {
   ChangeUserForm: FormGroup;
   loaded: boolean = false;
   imageLoaded: boolean = false;
-  
+  public showPassword: boolean = false;
 
   flagCorrectUsername:boolean=false;
   flagCorrectEmail:boolean=false;
@@ -143,33 +143,18 @@ export class MyProfilePage {
     }
   }
 
-  // togglePassword(input: any): void {
-  //   input.type = input.type === 'password' ?  'text'  : 'password';
-  //   if(input.type = input.type =='text'){
-  //     this.showPassword == true;
-  //   }else{
-  //     this.showPassword == false;
-  //   }
-    
-  //  }
-
-
-  //=============================smeni go da ne bide so query
-   public showPassword: boolean = false;
-  
-  public togglePassword(input:any): void {
-    let currentType:string = document.getElementById('password').querySelector('.text-input').getAttribute('type');
-  
-    if (currentType === 'password') {
-      
-      document.getElementById('password').querySelector('.text-input').setAttribute('type', 'text');
-    } else {
+  //show/hide password
+  togglePassword(input: any): void {
+    input.type;
+    if(input.type =='password'){
+      this.showPassword = true;
+      input.type = 'text';
+    }else{
       this.showPassword = false;
-      document.getElementById('password').querySelector('.text-input').setAttribute('type', 'password');
+      input.type = 'password';
     }
-  }
-  //=============================smeni go da ne bide so query
- 
+   }
+
   ReaderLoaded(e) {
     var binaryString = e.target.result;
     this.base64textString = btoa(binaryString);
