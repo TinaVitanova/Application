@@ -30,6 +30,9 @@ export class CalendarPage {
   onViewTitleChanged(title) {
       this.viewTitle = title;
   }
+  nextMonth(){
+    this.calendar.currentDate=moment(this.calendar.currentDate).add(1,'months').toDate();
+  }
   loadRoomEvents(r){
     setTimeout(()=>{
       this.eventSource = this.showRoomEvents(r);

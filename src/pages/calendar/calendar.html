@@ -26,7 +26,8 @@
             </span>
         </ion-select>
     </ion-item>
-    <ion-title text-center> {{ viewTitle }}</ion-title>
+    <ion-title text-center> {{ viewTitle }}<ion-icon name="arrow-forward" (click)="nextMonth()"></ion-icon></ion-title>
+    
     <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate" (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30" (onRangeChanged)="onRangeChanged($event)"
         class="calendar">
     </calendar>

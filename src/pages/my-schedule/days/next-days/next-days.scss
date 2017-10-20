@@ -1,3 +1,31 @@
 page-next-days {
+    ion-list button{
+        padding-left: none;
+    }
+
+    ion-row{
+        height: 80%;
+    }
+
+    .event-time{
+        background: map-get($colors, primary);
+        color: white;
+        font-weight: bold;
+        border-radius:5px;
+        text-align: left;
+        font-size: 90%;
+    }
+
+    .event-title{
+        background: white;
+        color: map-get($colors, primary);
+        font-weight: bold;
+        padding-bottom: 2%;
+        border-bottom: 1px solid map-get($colors, primary);
+        margin-left:1%;
+        overflow-x: hidden;
+        width: 90%;
+    }
+
 
 }
