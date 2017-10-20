@@ -107,11 +107,15 @@ export class CalendarPage {
     });
     alert.present();
     console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
-}
+  }
 
-ionViewDidEnter(){
-  this.loadEvents();
-}
+  ionViewDidEnter(){
+    this.loadEvents();
+
+    this.menuCtrl.enable(false, "userMenu");
+    this.menuCtrl.enable(false, "adminMenu");
+  }
+
   ionViewDidLoad(){    
     this.ListOfRooms = this.EventData.getRoomData();
     this.showRoom = this.EventData.getShowRoom();

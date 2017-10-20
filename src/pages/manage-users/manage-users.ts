@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 
 
@@ -15,7 +15,7 @@ export class ManageUsersPage {
 
   imageLoaded: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController, public menuCtrl: MenuController) {
     this.initializeUsers();
   }
 
@@ -77,7 +77,9 @@ export class ManageUsersPage {
     }
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter(){
+    this.menuCtrl.enable(false, "userMenu");
+    this.menuCtrl.enable(false, "adminMenu");
   }
 
 }
