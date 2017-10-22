@@ -26,7 +26,9 @@ export class HomePage {
       this.UsernamesList = this.UserGlobal.getUsernames();
       if (this.loginForm.valid){
       this.UserGlobal.setMyGlobalVar(this.login.username);
-        this.navCtrl.setRoot(DashboardPage);  
+      this.UserGlobal.setIsLoggedIn(true);
+      this.UserGlobal.setUserLoggedIn(this.login.username);
+        this.navCtrl.setRoot(DashboardPage); 
       }
       else 
         this.flagIncorectLogin = true;
@@ -45,4 +47,11 @@ export class HomePage {
     this.menuCtrl.enable(false, "adminMenu");
 
   }
+  ionViewWillLoad(){
+    if(this.UserGlobal.getIsLoggedIn()){
+      var username = this.UserGlobal.getUserLoggedIn();
+      this.UserGlobal.setMyGlobalVar(username);
+      this.navCtrl.setRoot(DashboardPage)
+    }
+    }
 }

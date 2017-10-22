@@ -40,8 +40,6 @@ export class CalendarPage {
   }
 
   onTimeSelected(ev) {
-    console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-        (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
   }
     addEvent(){
       this.flagCalendar = true;  
@@ -59,7 +57,6 @@ export class CalendarPage {
       return date < current;
   };
   onRangeChanged(ev) {
-    console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
   showRoomEvents(r){
     var allEvents = this.EventData.getEvents();
@@ -96,17 +93,17 @@ export class CalendarPage {
       })
   }
   onEventSelected(event) {
-   let date = moment(event.startTime).format('Do MMMM YYYY');
+   let datestart = moment(event.startTime).format('Do MMMM YYYY');
+   let dateend = moment(event.startTime).format('Do MMMM YYYY');
    let start = moment(event.startTime).format('HH:mm');
     let end = moment(event.endTime).format('HH:mm');
  
     let alert = this.alertCtrl.create({
        title: 'Event: ' + event.title,
-       message: 'On: '+date+'<br>From: '+start+'<br>To: '+ end +'<br> Room:</div>',
+       message: 'From: '+datestart+'<br>At: '+start+'<br>Untill: '+ dateend +'<br>At: '+ end +'<br> Room:</div>',
       buttons:['OK']
     });
     alert.present();
-    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
   }
 
   ionViewDidEnter(){
