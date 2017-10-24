@@ -38,8 +38,8 @@
     <ion-item [hidden]="shouldHide() || flagTimeEqual" id="choose-room">
         <ion-label>
             <ion-icon color="secondary" name="cube"></ion-icon> &nbsp; CHOOSE ROOM</ion-label>
-        <ion-select [(ngModel)]="rooms">
-            <label *ngIf="!showRoom">No Room Created</label>
+        <ion-select class="choose-room-opt" [(ngModel)]="rooms">
+            <label *ngIf="!showRoom">NO ROOM CREATED</label>
             <span *ngIf="showRoom">
                         <ion-option (ionSelect)="SelectedRoom(r)" *ngFor="let r of ListOfRooms">{{r.name}}</ion-option>
             </span>

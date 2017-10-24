@@ -22,10 +22,9 @@ page-my-profile {
             color: map-get($colors, text-color);
         }
  
-        .list-ios  .item-block:last-child,
-        .list-md .item-block:last-child,
-        .list-wp .item-block:last-child{
+        #new-pass{
             border-bottom: 2px solid map-get($colors, primary);
+            width:100%!important;
         }
 
         ion-label{
