@@ -7,16 +7,23 @@
             <ion-item class="custom-input">
                 <ion-label floating text-center>
                     <ion-icon ios="ios-person" md="md-person"></ion-icon> &nbsp; Username </ion-label>
-                <ion-input text-center type="text" formControlName="username" [class.invalid]="!loginForm.controls.username.valid && loginForm.controls.username.dirty && submitAttempt" [(ngModel)]="login.username" name="username"></ion-input>
+                <ion-input text-center type="text" formControlName="username" (ionBlur)="onBlur()" [class.invalid]="!loginForm.controls.username.valid && loginForm.controls.username.dirty && submitAttempt" [(ngModel)]="login.username" name="username"></ion-input>
             </ion-item>
+            <p text-center class="invalid" [hidden]="!flagIncorrectUsername">Incorect username!</p>
             <ion-item class="custom-input">
                 <ion-label floating text-center>
                     <ion-icon ios="ios-lock" md="md-lock"></ion-icon> &nbsp; Password </ion-label>
-                <ion-input text-center style="border:none;" type="password" formControlName="password" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty && submitAttempt" [(ngModel)]="login.password" name="password"></ion-input>
+                <ion-input #input text-center type="{{ !showPassword ? 'password' : 'text' }}" formControlName="password" (ionBlur)="onBlur()" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty && submitAttempt" [(ngModel)]="login.password"
+                    name="password"></ion-input>
+                <!-- <button style="font-size:120%" ion-button clear class="password__btn__toggle" item-right (click)="togglePassword(input)" [hidden]="showPassword"> <ion-icon id="password__icon" name="eye"> </ion-icon> </button>
+                <button style="font-size:120%" ion-button clear class="password__btn__toggle" item-right (click)="togglePassword(input)" [hidden]="!showPassword"> <ion-icon id="password__icon" name="eye-off"> </ion-icon> </button> -->
+                <p text-center class="invalid" [hidden]="!flagIncorrectPassword">Incorect password!</p>
             </ion-item>
+            <input type="checkbox" id="show-password" (click)="togglePassword(input)">
+            <label for="show-password" style="color:white;">Show password</label>
+
         </ion-list>
     </form>
-    <p text-center class="invalid" [hidden]="!flagIncorectLogin">Incorect username or password!</p>
     <ion-buttons text-center>
         <button class="login-btn" (click)="LoginNav()">LOGIN</button>
         <button ion-button clear style="color:white;" (click)="forgotPassword()">Forgot password?</button>
