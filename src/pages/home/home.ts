@@ -1,5 +1,6 @@
+import { ForgotPasswordPage } from './../forgot-password/forgot-password';
 import { Component } from '@angular/core';
-import { NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, MenuController, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
@@ -36,50 +37,11 @@ export class HomePage {
     }
     
     forgotPassword(){
-      let alert = this.alertCtrl.create({
-        title: 'RESET PASSWORD',
-        subTitle: 'Please enter your email address and we will send you an email to reset your password.',
-        inputs: [
-          {
-            name: 'Email',
-            placeholder: 'Email',
-            type: 'email'
-          }
-        ],
-        buttons: [
-          {
-            text: 'Cancel',
-            role: 'cancel',
-          },
-          {
-            text: 'Reset',
-            handler: data => {
-              var pattern = /^\w+([\.-]?\ w+)*@\w+([\.-]?\w+)*\.com/;
-              
-              if(data.Email != ""){
-                if(data.Email.match(pattern)){    
-                  console.log("ovoj email go vnesuvam vo forgot " + data.Email); 
-                  this.message = '';
-                  //send to backend
-                  return true;
-                }else{
-                  console.log("grshen pattern na email");
-                  this.message = 'Invalid email!';
-                  return false;
-                }
-              }else{
-                console.log("nema niso vneseno")
-                return false;
-              }
-            }
-          }
-        ],
-        message:this.message
-      });
-      alert.present();
+      let myModal = this.modalCtrl.create(ForgotPasswordPage);
+      myModal.present();
     }
 
-  constructor(public formBuilder: FormBuilder,public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public EventData: EventDataProvider, private menuCtrl: MenuController) {
+  constructor(public modalCtrl: ModalController, public formBuilder: FormBuilder, public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public EventData: EventDataProvider, private menuCtrl: MenuController) {
     this.loginForm = formBuilder.group({
       username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required,new Validator(UserGlobal, EventData).isValidUsername])],
       password: ['',Validators.compose([Validators.required,new Validator(UserGlobal, EventData).isValidPassword])],
