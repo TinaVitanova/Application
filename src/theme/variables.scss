@@ -106,13 +106,48 @@ $toolbar-ios-title-font-weight: 500;
   transition: all 250ms;
 }
 
+//login page style
 
-// @mixin white-shadow{
-//   box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
-//   -webkit-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
-//   -moz-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
-//   -ms-box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24);
-// }
+@mixin home-style{
+      .invalid{
+        color:map-get($colors, secondary-hover);
+      }
+   
+      ion-content{
+        @include gradient-bg;
+      }
+
+      ion-input .text-input{
+        color: white;
+        border-bottom: 1px solid white;
+        padding: 5% 0%;
+      }
+ 
+     form{
+ 
+       .list-ios .item-block .item-inner,
+       ion-item .item-md .item-input,
+       ion-item .item-ios .item-input,
+       .item-block{
+         color: white;
+         border-top: none;
+       }
+       
+       .list-ios .item-block,
+       .list-md .item-block,
+       .list-wp .item-block{
+         margin-left: 20%;
+         border-bottom: none;
+         border-top: none;
+       }
+ 
+       .item-input .label-md{
+         color: white;
+       }
+ 
+     }
+  
+}
 
 //button style
 
@@ -128,6 +163,19 @@ $toolbar-ios-title-font-weight: 500;
         border: 2px solid white;
         @include basic-transition;
 }
+}
+
+@mixin home-btn{
+  background: white;
+  border-radius: 3px;
+  color: map-get($colors, primary);
+  letter-spacing: 1px;
+
+  &:hover,
+  &:active{
+    color: map-get($colors, secondary);
+    @include basic-transition;
+  }
 }
 
 @mixin create-btn{
