@@ -25,23 +25,10 @@ export class TomorrowPage {
     let dateEnd = moment(events.endTime).format('DD MM YYYY');
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
-    if (dateStart == nextDay){
-      if (dateEnd!=dateStart){
-        this.FlagNextDay=true;
-      }
-      else{
-        this.FlagNextDay=false;
-    }
-    this.FlagEventYesterday=true;
-    return true;
-  }
-  else if(dateEnd==nextDay){
-    this.FlagEventYesterday=false;
-    return true;
-  }
-  else return false;
-
-  
+    if (dateStart <= nextDay && nextDay <= dateEnd)
+      return true;
+    else
+      return false;
     
   }
   AlertForEvent(events){

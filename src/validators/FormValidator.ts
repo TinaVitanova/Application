@@ -30,14 +30,6 @@ export class Validator {
         return null;
     }
 
-    isTimeDifferent(control: FormControl): any{
-        if (Validator.eventProvider.getFlagStartEndTime())
-        return {
-            "The start and end Time can't be the same": true
-        }
-          return null;
-    }
-
     isRoomValid(control: FormControl): any{
         if (Validator.eventProvider.checkRoomName(control.value))
         return {

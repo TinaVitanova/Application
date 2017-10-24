@@ -39,13 +39,9 @@
             </ion-row>
         </ion-grid>
     </ion-buttons>
-    <div *ngFor="let events of MyEvents" [hidden]="!IsDate(events)">
-    <div [hidden]="FlagNextDay">
-        {{events.title}} - {{StartTime}}-{{EndTime}}
-
-    </div>
-    <div  [hidden]="!FlagNextDay">
-            {{events.title}} - {{StartTime}}-{{EndTime}}(next day)
+    <div *ngFor="let events of MyEvents">
+    <div  [hidden]="!IsDate(events)">
+            {{events.title}} - {{StartTime}}-{{EndTime}}
     </div>
     </div>
 </ion-content>

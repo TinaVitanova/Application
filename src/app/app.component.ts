@@ -41,6 +41,7 @@ export class MyApp {
   }
 
   LogOut(){
+    this.UserGlobal.setIsLoggedIn(false);
     this.nav.setRoot(HomePage);
   }
 
