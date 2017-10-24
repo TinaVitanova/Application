@@ -12,23 +12,23 @@ export class TodayPage {
   MyEvents=this.EventData.getEvents();
   StartTime;
   EndTime;
+  FlagNextDay;
+  FlagEventYesterday=true;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
   }
 
   ionViewDidLoad() {
   }
   IsDateToday(events){
-    let date = moment(events.startTime).format('DD MM YYYY');
+    let dateStart = moment(events.startTime).format('DD MM YYYY');
     let dateToday = moment().format('DD MM YYYY');
-
-    this.StartTime = moment(events.startTime).format('HH:mm');
-    this.EndTime = moment(events.endTime).format('HH:mm');
-    if (date == dateToday){
+    let dateEnd = moment(events.endTime).format('DD MM YYYY');
+    this.StartTime = moment(events.startTime).format('DD MM YYYY HH:mm');
+    this.EndTime = moment(events.endTime).format('DD MM YYYY HH:mm');
+    if (dateStart <= dateToday && dateToday <= dateEnd)
       return true;
-    }
-    else{
-       return false;
-     }
+    else
+      return false;
   }
 
 

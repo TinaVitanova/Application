@@ -12,23 +12,23 @@ export class TomorrowPage {
   MyEvents=this.EventData.getEvents();
   StartTime;
   EndTime;
+  FlagEventYesterday=true;
+  FlagNextDay;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
   }
 
   ionViewDidLoad() {
   }
   IsDateTomorrow(events){
-    let date = moment(events.startTime).format('DD MM YYYY');
     let nextDay =  moment().add(1,'days').format('DD MM YYYY');
-
+    let dateStart = moment(events.startTime).format('DD MM YYYY');
+    let dateEnd = moment(events.endTime).format('DD MM YYYY');
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
-    if (date == nextDay){
+    if (dateStart <= nextDay && nextDay <= dateEnd)
       return true;
-    }
-    else{
-       return false;
-     }
+    else
+      return false;
     
   }
   AlertForEvent(events){

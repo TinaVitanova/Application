@@ -30,6 +30,12 @@ export class CalendarPage {
   onViewTitleChanged(title) {
       this.viewTitle = title;
   }
+  previousMonth(){
+    this.calendar.currentDate=moment(this.calendar.currentDate).add(-1,'months').toDate();
+  }
+  nextMonth(){
+    this.calendar.currentDate=moment(this.calendar.currentDate).add(1,'months').toDate();
+  }
   loadRoomEvents(r){
     setTimeout(()=>{
       this.eventSource = this.showRoomEvents(r);
@@ -37,8 +43,6 @@ export class CalendarPage {
   }
 
   onTimeSelected(ev) {
-    console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-        (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
   }
     addEvent(){
       this.flagCalendar = true;  
@@ -56,7 +60,6 @@ export class CalendarPage {
       return date < current;
   };
   onRangeChanged(ev) {
-    console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
   showRoomEvents(r){
     var allEvents = this.EventData.getEvents();
@@ -93,15 +96,16 @@ export class CalendarPage {
       })
   }
   onEventSelected(event) {
-   let date = moment(event.startTime).format('Do MMMM YYYY');
+   let datestart = moment(event.startTime).format('Do MMMM YYYY');
+   let dateend = moment(event.startTime).format('Do MMMM YYYY');
    let start = moment(event.startTime).format('HH:mm');
     let end = moment(event.endTime).format('HH:mm');
  
     let alert = this.alertCtrl.create({
       cssClass: 'alert-style',
-      title: '<p class="alert-title"><b>EVENT CREATED:</b><br />' + '<span>' +event.title + '</span></p><hr />',
-      message: '<div class="alert-message"><b>DATE:</b> '+date+'<br><b>FROM:</b> '+start+'<br/><b>TO:</b> '+end+'<br><b>ROOM:</b></div>',
-      buttons:[
+       title: '<p class="alert-title"><b>Event:</b><br />' + '<span>' + event.title + '</span></p><hr />',
+       message: '<div class="alert-message"><b>From:</b> '+datestart+'<br>At: '+start+'<br><b>Untill:</b> '+ dateend +'<br><b>At:</b> '+ end +'<br><b>Room:</b> </div>',
+       buttons:[
        {
          cssClass: 'alert-btn',
          text: 'CANCEL',      
@@ -112,12 +116,15 @@ export class CalendarPage {
        }]
     });
     alert.present();
-    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
-}
+  }
 
-ionViewDidEnter(){
-  this.loadEvents();
-}
+  ionViewDidEnter(){
+    this.loadEvents();
+
+    this.menuCtrl.enable(false, "userMenu");
+    this.menuCtrl.enable(false, "adminMenu");
+  }
+
   ionViewDidLoad(){    
     this.ListOfRooms = this.EventData.getRoomData();
     this.showRoom = this.EventData.getShowRoom();

@@ -10,16 +10,33 @@ export class UsernameGlobalProvider {
   public IsAdmin = [false,true,true];
   public userIndex:any;
   public CurrentUser;
+  public IsLoggedIn;
+  public UserLoggedIn;
   public UsersData: {username: string, fullname: string, email: string, password: string, isAdmin: boolean, picture: string};
   public FullUsers:{username: string, fullname: string, email: string, password: string, isAdmin: boolean, picture: string}[]= [];
   public CurrentUserIndex = 0;
 
   constructor(public storage: Storage) {
-    console.log('usernameglobal')
     for (var i=0; i<3; i++){
     this.UsersData = {username: this.Usernames[i], fullname: this.Fullnames[i], email: this.Emails[i], password: this.Passwords[i], isAdmin: this.IsAdmin[i], picture: this.defaultImage };
     this.FullUsers.push(this.UsersData);
     }
+  }
+  public setIsLoggedIn(value){
+    this.storage.set(this.IsLoggedIn,value);
+  }
+  public setUserLoggedIn(value){
+    this.storage.set(this.UserLoggedIn,value);
+  }
+  public getUserLoggedIn(){
+    this.storage.get(this.UserLoggedIn).then((value) =>{
+      return this.UserLoggedIn
+    })
+  }
+  public getIsLoggedIn(){
+    this.storage.get(this.IsLoggedIn).then((value) =>{
+      return this.IsLoggedIn
+    })
   }
 
   public setMyGlobalVar(value:any) {

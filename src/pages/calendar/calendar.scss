@@ -1,7 +1,6 @@
 page-calendar {
-
-    #add-event{
-        width:130%;
+    #add-event {
+        width: 130%;
         position: relative;
         right: 30%;
         background: white;
@@ -9,158 +8,132 @@ page-calendar {
         border: 2px solid map-get($colors, secondary);
         box-shadow: 0 0 0 2px white;
         line-height: 5%;
-
         &:hover,
-        &:active{
+        &:active {
             background: map-get($colors, secondary);
-            ion-icon{
+            ion-icon {
                 color: white;
             }
             @include basic-transition;
         }
-
-        ion-icon{
+        ion-icon {
             font-size: 120%;
-            border-radius: 50%;        
+            border-radius: 50%;
             color: map-get($colors, secondary);
             font-weight: 600;
         }
     }
-
     // choose room style
-
-    .choose-room{
+    .choose-room {
         @include button-style;
         margin: 7% 0%;
     }
-
-    div .select-ios .select-icon .select-icon-inner, 
-    div .select-md .select-icon .select-icon-inner, {
-        color: map-get($colors, secondary);        
+    div .select-ios .select-icon .select-icon-inner,
+    div .select-md .select-icon .select-icon-inner,
+    {
+        color: map-get($colors, secondary);
     }
-
     //calendar style
-
-    ion-title{
-        .toolbar-title{
-            color: map-get($colors, primary);
-            border:2px solid map-get($colors, primary);
-            border-radius:5px;
-            border-bottom: none;
-            padding: 5% 0%;
-            margin: 0px;
+    #title {
+        color: map-get($colors, primary);
+        border: 2px solid map-get($colors, primary);
+        border-radius: 5px;
+        border-bottom: none;
+        padding: 1% 4%;
+        margin: 0px;
+        .toolbar-title {
+            color: map-get($colors, secondary);
         }
     }
-    
-    .table-bordered[_ngcontent-c1]{
+    .table-bordered[_ngcontent-c1] {
         border: 2px solid map-get($colors, primary);
         // padding-bottom: 10px!important;
     }
-
-    table[_ngcontent-c1]{
+    table[_ngcontent-c1] {
         // padding: 10px 0px!important;
-        thead[_ngcontent-c1]{
+        thead[_ngcontent-c1] {
             background: map-get($colors, primary);
             color: white;
             border: none;
             text-transform: uppercase;
             font-size: 97%;
             line-height: 1.7em;
-
-            th[_ngcontent-c1]{
-                border:none!important;
+            th[_ngcontent-c1] {
+                border: none!important;
             }
         }
-
-        td[_ngcontent-c1]{
-            border:none!important;
+        td[_ngcontent-c1] {
+            border: none!important;
         }
-
-        tr[_ngcontent-c1]{
+        tr[_ngcontent-c1] {
             margin: 2%!important;
         }
-
-        tbody[_ngcontent-c1]{
+        tbody[_ngcontent-c1] {
             padding: 10px;
             line-height: 1.5em;
         }
     }
-
-    .monthview-datetable[_ngcontent-c1]{
+    .monthview-datetable[_ngcontent-c1] {
         color: map-get($colors, primary);
         box-shadow: none;
-
     }
-
-    .text-muted[_ngcontent-c1]{
+    .text-muted[_ngcontent-c1] {
         color: rgba(36, 198, 220, .5);
     }
-
     // .ng-reflect-ng-class{
     //     background: black;
     // }
-
-    .monthview-datetable[_ngcontent-c1] td:hover{
+    .monthview-datetable[_ngcontent-c1] td:hover {
         background: rgba(36, 198, 220, .5);
         border-radius: 50%!important;
         color: white;
         @include basic-transition;
     }
-
-    .monthview-current[_ngcontent-c1]{
-        background: rgba(36, 198, 220, .9);;
+    .monthview-current[_ngcontent-c1] {
+        background: rgba(36, 198, 220, .9);
+        ;
         border-radius: 50%!important;
         color: white;
     }
-
-    .monthview-selected[_ngcontent-c1]{
+    .monthview-selected[_ngcontent-c1] {
         background: map-get($colors, secondary);
         border-radius: 50%!important;
         color: white;
     }
-
-    .monthview-primary-with-event[_ngcontent-c1]{
+    .monthview-primary-with-event[_ngcontent-c1] {
         background: #FF7E7E;
     }
-
-    small[_ngcontent-c1]{
-        text-overflow:ellipsis;
+    small[_ngcontent-c1] {
+        text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
     }
-
     //events modification
-
-    .event-detail-container[_ngcontent-c0]{
+    .event-detail-container[_ngcontent-c0] {
         background: map-get($colors, text-color);
         border-radius: 7px;
-        border:none!important;
+        border: none!important;
         text-transform: uppercase;
         font-weight: normal;
-
     }
-
-    ion-list[_ngcontent-c0]{
+    ion-list[_ngcontent-c0] {
         border: 2px solid map-get($colors, secondary);
         margin-top: 8%;
-        
-        .item-ios, .item-md{
+        .item-ios,
+        .item-md {
             background: rgba(white, 0.45);
             color: rgba(77, 150, 165, 0.8);
             text-transform: uppercase;
-            
-            .no-events-label{
+            .no-events-label {
                 color: map-get($colors, text-color);
                 letter-spacing: 1px;
             }
         }
-
-        .item-block:last-child, .list-ios  .item-wrapper:last-child .item-block{
-            border-top:none;
-            border-bottom:none;
+        .item-block:last-child,
+        .list-ios .item-wrapper:last-child .item-block {
+            border-top: none;
+            border-bottom: none;
             border: 1px solid rgba(white, 0.7);
         }
     }
 }
-
-

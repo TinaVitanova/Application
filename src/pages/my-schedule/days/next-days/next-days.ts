@@ -11,20 +11,24 @@ export class NextDaysPage {
   MyEvents=this.EventData.getEvents();
   StartTime;
   EndTime;
+  FlagNextDay;
+  FlagEventYesterday=true;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
   }
 
   IsDate(events){
     let date = moment(events.startTime).format('DD MM YYYY');
     let nextDay =  moment().add(1,'days').format('DD MM YYYY');
+    let dateStart = moment(events.startTime).format('DD MM YYYY');
+    let dateEnd = moment(events.endTime).format('DD MM YYYY');
     let dateToday = moment().format('DD MM YYYY');
     let otherDays = moment().add(5,'days').format('DD MM YYYY');
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
-    if (date == nextDay || date == dateToday || date>otherDays)
-      return false;
+    if ((dateStart < nextDay && otherDays <= dateEnd)||(dateStart > nextDay && dateStart < otherDays)||(dateEnd > nextDay && dateEnd < otherDays))
+      return true;
     else
-       return true;
+      return false;
   }
   AlertForEvent(events){
     let date = moment(events.startTime).format('Do MMMM YYYY');

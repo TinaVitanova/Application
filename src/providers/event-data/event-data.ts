@@ -51,10 +51,7 @@ export class EventDataProvider {
   }
 
   public SendRoomData(value:string, value1:string, value2: string){
-
     this.RoomsData = {name: value, capacity: value1, description: value2};
-    
-    console.log('full rooms od provider  ' + this.RoomsData);
     this.FullRooms.push(this.RoomsData);
   }
 
@@ -70,24 +67,5 @@ export class EventDataProvider {
 
   public getEvents(){
     return this.AllEvents;
-  } 
-  public checkStartTime(value){
-    var checkStartTime = value;
-    if (checkStartTime == this.checkEndTime)
-    return true;
-    else return false;
-
-  }
-  public checkEndTime(value){
-    var checkEndTime = value;
-    if (this.checkStartTime == checkEndTime)
-    return true;
-    else return false;
-  }
-  public setFlagStartEndTime(value){
-    this.FlagStartEndTime = value;
-  }
-  public getFlagStartEndTime(){
-    return this.FlagStartEndTime;
   }
 }

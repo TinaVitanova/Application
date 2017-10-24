@@ -26,7 +26,6 @@ export class MyApp {
     events.subscribe('image:added',(image) => {
       this.userImage = "data:image/png;base64," + image;
     })
-    console.log('app component')
     // used for an example of ngFor and navigation
     this.pages1 = [
       { title: 'My Profile', component: MyProfilePage },
@@ -42,6 +41,7 @@ export class MyApp {
   }
 
   LogOut(){
+    this.UserGlobal.setIsLoggedIn(false);
     this.nav.setRoot(HomePage);
   }
 
