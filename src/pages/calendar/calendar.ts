@@ -103,7 +103,7 @@ export class CalendarPage {
  
     let alert = this.alertCtrl.create({
       cssClass: 'alert-style',
-       title: '<p class="alert-title"><b>Event:</b><br />'' + '<span>' +event.title + '</span></p><hr />,
+       title: '<p class="alert-title"><b>Event:</b><br />' + '<span>' + event.title + '</span></p><hr />',
        message: '<div class="alert-message"><b>From:</b> '+datestart+'<br>At: '+start+'<br><b>Untill:</b> '+ dateend +'<br><b>At:</b> '+ end +'<br><b>Room:</b> </div>',
        buttons:[
        {
