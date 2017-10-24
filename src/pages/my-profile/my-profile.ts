@@ -153,7 +153,7 @@ export class MyProfilePage {
       this.showPassword = false;
       input.type = 'password';
     }
-   }
+  }
 
   ReaderLoaded(e) {
     var binaryString = e.target.result;
