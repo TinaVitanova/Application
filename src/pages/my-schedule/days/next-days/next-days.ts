@@ -25,21 +25,10 @@ export class NextDaysPage {
     let otherDays = moment().add(5,'days').format('DD MM YYYY');
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
-    if (date == nextDay || date == dateToday || date>otherDays){
-    if (dateEnd!=dateStart){
-      this.FlagNextDay=true;
-    }
-    else{
-      this.FlagNextDay=false;
-  }
-  this.FlagEventYesterday=true;
-  return true;
-}
-  else if(dateEnd==dateToday){
-    this.FlagEventYesterday=false;
-    return true;
-  }
-  else return false;
+    if ((dateStart < nextDay && otherDays <= dateEnd)||(dateStart > nextDay && dateStart < otherDays)||(dateEnd > nextDay && dateEnd < otherDays))
+      return true;
+    else
+      return false;
   }
   AlertForEvent(events){
     let date = moment(events.startTime).format('Do MMMM YYYY');

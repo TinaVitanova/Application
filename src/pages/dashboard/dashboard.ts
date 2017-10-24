@@ -43,17 +43,10 @@ export class DashboardPage {
     let dateStart = moment(events.startTime).format('DD MM YYYY');
     let dateEnd = moment(events.endTime).format('DD MM YYYY');
     let dateToday = moment().format('DD MM YYYY');
-    this.StartTime = moment(events.startTime).format('HH:mm');
-    this.EndTime = moment(events.endTime).format('HH:mm');
-    if (dateStart == dateToday){
-      if (dateEnd!=dateStart){
-        this.FlagNextDay=true;
-      }
-      else{
-        this.FlagNextDay=false;
-    }
-    return true;
-  }
+    this.StartTime = moment(events.startTime).format('DD MM YYYY HH:mm');
+    this.EndTime = moment(events.endTime).format('DD MM YYYY HH:mm');
+    if (dateStart <= dateToday && dateToday <= dateEnd)
+      return true;
     else
       return false;
   }

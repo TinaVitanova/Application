@@ -67,24 +67,5 @@ export class EventDataProvider {
 
   public getEvents(){
     return this.AllEvents;
-  } 
-  public checkStartTime(value){
-    var checkStartTime = value;
-    if (checkStartTime == this.checkEndTime)
-    return true;
-    else return false;
-
-  }
-  public checkEndTime(value){
-    var checkEndTime = value;
-    if (this.checkStartTime == checkEndTime)
-    return true;
-    else return false;
-  }
-  public setFlagStartEndTime(value){
-    this.FlagStartEndTime = value;
-  }
-  public getFlagStartEndTime(){
-    return this.FlagStartEndTime;
   }
 }
