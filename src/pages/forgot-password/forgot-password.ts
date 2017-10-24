@@ -44,6 +44,7 @@ export class ForgotPasswordPage {
     if(this.ForgotPasswordForm.valid){
       this.flagIncorrectEmail = false;
       this.SubmitAttempt=true;
+      //prati na backend
     }
   }
 

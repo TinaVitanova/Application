@@ -35,8 +35,8 @@
             <ion-item>
                 <ion-label floating>New Password</ion-label>
                 <ion-input #input id="password" type="{{ !showPassword ? 'password' : 'text' }}" formControlName="newpassword" (ionBlur)="onBlur()" [class.invalid]="!ChangeUserForm.controls.newpassword.valid && SubmitAttempt" [(ngModel)]="todo.newpassword" name="newpassword"></ion-input>
-                <button style="font-size:120%" ion-button clear class="password__btn__toggle" item-right (click)="togglePassword(input)" [hidden]="showPassword && todo.newpassword"> <ion-icon id="password__icon" name="eye"> </ion-icon> </button>
-                <button style="font-size:120%" ion-button clear class="password__btn__toggle" item-right (click)="togglePassword(input)" [hidden]="!showPassword && todo.newpassword"> <ion-icon id="password__icon" name="eye-off"> </ion-icon> </button>
+                <button style="font-size:120%" ion-button clear class="password__btn__toggle" item-right (click)="togglePassword(input)" [hidden]="showPassword"> <ion-icon id="password__icon" name="eye"> </ion-icon> </button>
+                <button style="font-size:120%" ion-button clear class="password__btn__toggle" item-right (click)="togglePassword(input)" [hidden]="!showPassword"> <ion-icon id="password__icon" name="eye-off"> </ion-icon> </button>
             </ion-item>
             <p text-center class="invalid" [hidden]="!flagIncorrectPassword">Incorrect password or already exists!</p>
         </ion-list>
