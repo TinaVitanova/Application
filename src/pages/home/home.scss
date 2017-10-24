@@ -82,10 +82,12 @@ page-home {
       }
     }
 
-    .md button:hover,
-    .md button:active{
-      @include basic-transition;
-      @include shadow-2dp;
+    .password-eye{
+      color: rgba(white, .85);
+      background: transparent;
+      position: absolute;
+      left: 77%;
+      margin-top:3%;
     }
   
   }

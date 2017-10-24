@@ -15,12 +15,12 @@
                     <ion-icon ios="ios-lock" md="md-lock"></ion-icon> &nbsp; Password </ion-label>
                 <ion-input #input text-center type="{{ !showPassword ? 'password' : 'text' }}" formControlName="password" (ionBlur)="onBlur()" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty && submitAttempt" [(ngModel)]="login.password"
                     name="password"></ion-input>
-                <!-- <button style="font-size:120%" ion-button clear class="password__btn__toggle" item-right (click)="togglePassword(input)" [hidden]="showPassword"> <ion-icon id="password__icon" name="eye"> </ion-icon> </button>
-                <button style="font-size:120%" ion-button clear class="password__btn__toggle" item-right (click)="togglePassword(input)" [hidden]="!showPassword"> <ion-icon id="password__icon" name="eye-off"> </ion-icon> </button> -->
+                 <button class="password-eye" ion-button clear  item-right (click)="togglePassword(input)" [hidden]="showPassword"> <ion-icon  name="eye"> </ion-icon> </button>
+                <button class="password-eye" ion-button clear item-right (click)="togglePassword(input)" [hidden]="!showPassword"> <ion-icon name="eye-off"> </ion-icon> </button> 
                 <p text-center class="invalid" [hidden]="!flagIncorrectPassword">Incorect password!</p>
             </ion-item>
-            <input type="checkbox" id="show-password" (click)="togglePassword(input)">
-            <label for="show-password" style="color:white;">Show password</label>
+            <!-- <input type="checkbox" id="show-password" (click)="togglePassword(input)">
+            <label for="show-password" style="color:white;">Show password</label> -->
 
         </ion-list>
     </form>
