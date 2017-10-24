@@ -17,16 +17,18 @@
         <ion-label>CHOOSE A ROOM</ion-label>
         <ion-select [(ngModel)]="rooms" name="rooms">
             <ion-option value="all" [selected]="all == rooms" (ionSelect)="loadEvents()">All Rooms</ion-option>
-            <!-- <ion-option value="room1" (ionSelect)="loadEvents()">Room1</ion-option>
-            <ion-option value="room2" (ionSelect)="loadEvents()">Room2</ion-option>
-            <ion-option value="room3" (ionSelect)="loadEvents()">Room3</ion-option>
-            <ion-option value="room4" (ionSelect)="loadEvents()">Room4</ion-option> -->
             <span *ngIf="showRoom">
                 <ion-option *ngFor="let r of ListOfRooms" (ionSelect)="loadRoomEvents(r)">{{r.name}}</ion-option>
             </span>
         </ion-select>
     </ion-item>
-    <ion-title text-center> {{ viewTitle }}</ion-title>
+
+    <ion-item id="title">
+        <ion-icon item-start name="arrow-dropleft" (click)="previousMonth()"></ion-icon>
+        <ion-title text-center>{{ viewTitle }}</ion-title>
+        <ion-icon item-end name="arrow-dropright" (click)="nextMonth()"></ion-icon>
+    </ion-item>
+
     <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate" (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30" (onRangeChanged)="onRangeChanged($event)"
         class="calendar">
     </calendar>

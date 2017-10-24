@@ -30,6 +30,12 @@ export class CalendarPage {
   onViewTitleChanged(title) {
       this.viewTitle = title;
   }
+  previousMonth(){
+    this.calendar.currentDate=moment(this.calendar.currentDate).add(-1,'months').toDate();
+  }
+  nextMonth(){
+    this.calendar.currentDate=moment(this.calendar.currentDate).add(1,'months').toDate();
+  }
   loadRoomEvents(r){
     setTimeout(()=>{
       this.eventSource = this.showRoomEvents(r);
@@ -113,11 +119,15 @@ export class CalendarPage {
     });
     alert.present();
     console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
-}
+  }
 
-ionViewDidEnter(){
-  this.loadEvents();
-}
+  ionViewDidEnter(){
+    this.loadEvents();
+
+    this.menuCtrl.enable(false, "userMenu");
+    this.menuCtrl.enable(false, "adminMenu");
+  }
+
   ionViewDidLoad(){    
     this.ListOfRooms = this.EventData.getRoomData();
     this.showRoom = this.EventData.getShowRoom();

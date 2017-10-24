@@ -22,6 +22,7 @@ import { ManageUsersPage } from '../pages/manage-users/manage-users';
 import { UsernameGlobalProvider } from '../providers/username-global/username-global';
 import { EventDataProvider } from '../providers/event-data/event-data';
 import { ReserveEventPage } from '../pages/reserve-event/reserve-event';
+import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ReserveEventPage } from '../pages/reserve-event/reserve-event';
     TodayPage,
     TomorrowPage,
     NextDaysPage,
+    ForgotPasswordPage,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +63,7 @@ import { ReserveEventPage } from '../pages/reserve-event/reserve-event';
     TodayPage,
     TomorrowPage,
     NextDaysPage,
+    ForgotPasswordPage
   ],
   providers: [
     StatusBar,

@@ -14,7 +14,7 @@
 
     <ion-item>
         <ion-label>Day</ion-label>
-         <ion-datetime displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY" formControlName="day" [class.invalid]="!ReserveEventForm.controls.day.valid && ReserveEventForm.controls.day.dirty && submitAttempt" [(ngModel)]="day" [max]="maxDate" [min]="minDate"></ion-datetime> 
+         <ion-datetime displayFormat="DD-MM-YYYY" (ionChange)="OnBlurDay()" pickerFormat="DD-MM-YYYY" formControlName="day" [class.invalid]="!ReserveEventForm.controls.day.valid && ReserveEventForm.controls.day.dirty && submitAttempt" [(ngModel)]="day" [max]="maxDate" [min]="minDate"></ion-datetime> 
     </ion-item>
     <ion-item>
         <ion-label>Start</ion-label>
@@ -24,12 +24,18 @@
         <ion-label>End</ion-label>
         <ion-datetime displayFormat="HH:mm" (ionChange)="OnBlurEndTime()" pickerFormat="HH:mm" minuteValues="0,15,30,45" formControlName="endTime" [class.invalid]="!ReserveEventForm.controls.endTime.valid && ReserveEventForm.controls.endTime.dirty && submitAttempt" [(ngModel)]="endTime"></ion-datetime>
     </ion-item>
+    
 </form>
+<p text-center [hidden]="!flagTimeEqual">Start time can not be equal to end time</p>
+<p text-center [hidden]="!flagIsNextDay">Would you like to add this event from {{dayFormat}} untill {{nextDay}}</p>
+<ion-buttons text-center >
+    <button large ion-button [hidden]="!flagIsNextDay" (click)="NextDay()" >Next Day</button>
+</ion-buttons>
     <ion-buttons text-center id="find-room">
-        <button style="margin-top:4%;" large ion-button [disabled]="!ReserveEventForm.valid" (click)="findRoom()">FIND</button>
+        <button style="margin-top:4%;" large ion-button [disabled]="!ReserveEventForm.valid || flagTimeEqual" (click)="findRoom()">FIND</button>
     </ion-buttons>
 
-    <ion-item [hidden]="shouldHide()" id="choose-room">
+    <ion-item [hidden]="shouldHide() || flagTimeEqual" id="choose-room">
         <ion-label>
             <ion-icon color="secondary" name="cube"></ion-icon> &nbsp; CHOOSE ROOM</ion-label>
         <ion-select class="choose-room-opt" [(ngModel)]="rooms">
