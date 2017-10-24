@@ -22,19 +22,19 @@
         <ion-list text-center>
             <ion-item>
                 <ion-label floating>New Username</ion-label>
-                <ion-input type="text" formControlName="newusername" (ionBlur)="onFocus()" [class.invalid]="!ChangeUserForm.controls.newusername.valid && SubmitAttempt" [(ngModel)]="todo.newusername" name="username"></ion-input>
+                <ion-input type="text" formControlName="newusername" (ionBlur)="onBlur()" [class.invalid]="!ChangeUserForm.controls.newusername.valid && SubmitAttempt" [(ngModel)]="todo.newusername" name="username"></ion-input>
             </ion-item>
             <p text-center class="invalid" [hidden]="!flagIncorrectUsername">Incorrect username or already exists!</p>
 
             <ion-item>
                 <ion-label floating>New Email</ion-label>
-                <ion-input type="email" formControlName="newemail" (ionBlur)="onFocus()" [class.invalid]="!ChangeUserForm.controls.newemail.valid && SubmitAttempt" [(ngModel)]="todo.newemail" name="newemail"></ion-input>
+                <ion-input type="email" formControlName="newemail" (ionBlur)="onBlur()" [class.invalid]="!ChangeUserForm.controls.newemail.valid && SubmitAttempt" [(ngModel)]="todo.newemail" name="newemail"></ion-input>
             </ion-item>
             <p text-center class="invalid" [hidden]="!flagIncorrectEmail">Incorrect email or already exists!</p>
 
             <ion-item>
                 <ion-label floating>New Password</ion-label>
-                <ion-input #input id="password" type="{{ !showPassword ? 'password' : 'text' }}" formControlName="newpassword" (ionBlur)="onFocus()" [class.invalid]="!ChangeUserForm.controls.newpassword.valid && SubmitAttempt" [(ngModel)]="todo.newpassword" name="newpassword"></ion-input>
+                <ion-input #input id="password" type="{{ !showPassword ? 'password' : 'text' }}" formControlName="newpassword" (ionBlur)="onBlur()" [class.invalid]="!ChangeUserForm.controls.newpassword.valid && SubmitAttempt" [(ngModel)]="todo.newpassword" name="newpassword"></ion-input>
                 <button style="font-size:120%" ion-button clear class="password__btn__toggle" item-right (click)="togglePassword(input)" [hidden]="showPassword && todo.newpassword"> <ion-icon id="password__icon" name="eye"> </ion-icon> </button>
                 <button style="font-size:120%" ion-button clear class="password__btn__toggle" item-right (click)="togglePassword(input)" [hidden]="!showPassword && todo.newpassword"> <ion-icon id="password__icon" name="eye-off"> </ion-icon> </button>
             </ion-item>

@@ -594,5 +594,13 @@ ion-list .sm-list {
         @include basic-transition;
         color: map-get($colors, primary)!important;
     }
+
+     .alert-ios .alert-wrapper{
+                color: pink!important;
+            }
+
+            .alert-ios .alert-sub-title{
+                color:pink!important;
+            }
 }
 

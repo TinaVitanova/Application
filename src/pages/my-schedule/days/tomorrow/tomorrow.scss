@@ -27,4 +27,6 @@ page-tomorrow {
         width: 90%;
     }
 
+    @include schedule-list;
+
 }

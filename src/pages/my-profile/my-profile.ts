@@ -35,7 +35,7 @@ export class MyProfilePage {
   flagIncorrectEmail:boolean = false;
   flagIncorrectPassword:boolean = false;
   
-  onFocus(){
+  onBlur(){
     if(!this.ChangeUserForm.valid){
       if(!this.ChangeUserForm.controls.newusername.valid){
         this.flagIncorrectUsername = true; 

@@ -1,5 +1,6 @@
+import { ForgotPasswordPage } from './../forgot-password/forgot-password';
 import { Component } from '@angular/core';
-import { NavController, NavParams, MenuController } from 'ionic-angular';
+import { NavController, NavParams, MenuController, ModalController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
@@ -16,6 +17,9 @@ export class HomePage {
     UsernamesList = [];
     flagIncorectLogin = false;
     submitAttempt: boolean = false;
+
+    message:string="";
+
     public login = {
       username:"",
       password:"",
@@ -33,14 +37,17 @@ export class HomePage {
       else 
         this.flagIncorectLogin = true;
     }
+    
     forgotPassword(){
-      
+      let myModal = this.modalCtrl.create(ForgotPasswordPage);
+      myModal.present();
     }
 
-  constructor(public formBuilder: FormBuilder, public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public EventData: EventDataProvider, private menuCtrl: MenuController) {
+  constructor(public modalCtrl: ModalController, public formBuilder: FormBuilder, public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public EventData: EventDataProvider, private menuCtrl: MenuController) {
     this.loginForm = formBuilder.group({
       username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z]*'),Validators.required,new Validator(UserGlobal, EventData).isValidUsername])],
       password: ['',Validators.compose([Validators.required,new Validator(UserGlobal, EventData).isValidPassword])],
+      
   });
     
     this.menuCtrl.enable(false, "userMenu");

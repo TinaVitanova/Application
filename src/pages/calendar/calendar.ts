@@ -30,6 +30,9 @@ export class CalendarPage {
   onViewTitleChanged(title) {
       this.viewTitle = title;
   }
+  previousMonth(){
+    this.calendar.currentDate=moment(this.calendar.currentDate).add(-1,'months').toDate();
+  }
   nextMonth(){
     this.calendar.currentDate=moment(this.calendar.currentDate).add(1,'months').toDate();
   }
@@ -99,9 +102,18 @@ export class CalendarPage {
     let end = moment(event.endTime).format('HH:mm');
  
     let alert = this.alertCtrl.create({
-       title: 'Event: ' + event.title,
-       message: 'From: '+datestart+'<br>At: '+start+'<br>Untill: '+ dateend +'<br>At: '+ end +'<br> Room:</div>',
-      buttons:['OK']
+      cssClass: 'alert-style',
+       title: '<p class="alert-title"><b>Event:</b><br />'' + '<span>' +event.title + '</span></p><hr />,
+       message: '<div class="alert-message"><b>From:</b> '+datestart+'<br>At: '+start+'<br><b>Untill:</b> '+ dateend +'<br><b>At:</b> '+ end +'<br><b>Room:</b> </div>',
+       buttons:[
+       {
+         cssClass: 'alert-btn',
+         text: 'CANCEL',      
+       },
+       {
+         cssClass: 'alert-btn',
+         text: 'CONFIRM'
+       }]
     });
     alert.present();
   }
