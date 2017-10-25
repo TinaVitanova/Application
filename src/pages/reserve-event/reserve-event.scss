@@ -7,11 +7,25 @@ page-reserve-event{
             margin-bottom: 1.5%;
             color: map-get($colors, text-color);
         }
-
+       
         ion-label{
             color: map-get($colors, primary);
         }
 
+        .time-label{       
+            background: map-get($colors, primary);
+            color: white;
+            font-size: 110%;
+            border-radius: 5px;
+            padding: 4% 0%;
+        }
+
+        .time-input{
+            width: 95%;
+            border-bottom: 2px solid map-get($colors, primary);
+            color: map-get($colors, text-color);
+            font-size: 130%;
+        }
         .select-ios .select-icon .select-icon-inner,
         .select-md .select-icon .select-icon-inner,
         .select-wp .select-icon .select-icon-inner{
