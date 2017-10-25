@@ -25,14 +25,14 @@
             <ion-item>
                 <ion-label floating>
                     <ion-icon name="person-add"></ion-icon> &nbsp; Username</ion-label>
-                <ion-input type="text" formControlName="username" (blur)="onFocus()" [class.invalid]="!CreateUserForm.controls.username.valid && CreateUserForm.controls.username.dirty && submitAttempt" [(ngModel)]="new.username" name="username"></ion-input>
+                <ion-input type="text" formControlName="username" (blur)="onFocus()" [class.invalid]="!CreateUserForm.controls.username.valid && CreateUserForm.controls.username.dirty && submitAttempt" [(ngModel)]="user.userName" name="username"></ion-input>
             </ion-item>
             <p text-center class="invalid" [hidden]="!flagIncorrectUsername">This username already exists or you have inserted an invalid character!</p>
 
             <ion-item>
                 <ion-label floating>
                     <ion-icon name="mail"></ion-icon> &nbsp; E-mail</ion-label>
-                <ion-input type="mail" formControlName="email" (blur)="onFocus()" [class.invalid]="!CreateUserForm.controls.email.valid && CreateUserForm.controls.email.dirty && submitAttempt" [(ngModel)]="new.email" name="email"></ion-input>
+                <ion-input type="mail" formControlName="email" (blur)="onFocus()" [class.invalid]="!CreateUserForm.controls.email.valid && CreateUserForm.controls.email.dirty && submitAttempt" [(ngModel)]="user.email" name="email"></ion-input>
             </ion-item>
             <p text-center class="invalid" [hidden]="!flagIncorrectEmail">This email already exists or you have inserted invalid email!</p>
 

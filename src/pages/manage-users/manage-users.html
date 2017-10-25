@@ -23,5 +23,9 @@
             </button>
         </ion-item>
 
+        <ion-item *ngFor="let user of users">
+            <h2>{{user.userName}}</h2>
+            <p>{{user.email}}</p>
+        </ion-item>
     </ion-list>
 </ion-content>

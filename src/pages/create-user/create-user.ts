@@ -5,6 +5,7 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 import { Validator } from '../../validators/FormValidator';
+import { ApiProvider } from '../../providers/api-provider/api-provider';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,7 @@ export class CreateUserPage {
   CreateUserForm: FormGroup;
   submitAttempt: boolean = false;
   picture;
-
+  user = {email:'',userName:''};
   new = {
     username:"",
     fullname:"",
@@ -31,6 +32,23 @@ export class CreateUserPage {
   flagIncorrectUsername:boolean = false;
   flagIncorrectFullname:boolean=false;
   flagIncorrectEmail:boolean = false;
+  
+  constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder, private menuCtrl: MenuController) {
+    this.CreateUserForm = formBuilder.group({
+      username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/^[a-zA-Z][\w.-]*[a-zA-Z0-9]+$/),Validators.required])],
+      fullname: ['', Validators.compose([Validators.required,Validators.maxLength(30),Validators.pattern(/[a-zA-Z]+( [a-zA-Z]*)/)])],
+      email: ['',Validators.compose([Validators.required,Validators.pattern(/^\w+([\.-]?\ w+)*@\w+([\.-]?\w+)*\.com/)])],
+      isAdmin:[''],
+  });
+    this.username = navParams.get('param2');
+  }
+  saveUser() {
+    this.apiProvider.saveUser(this.user).then((result) => {
+      console.log(result);
+    }, (err) => {
+      console.log(err);
+    });
+  }
 
   onFocus(){
     if(!this.CreateUserForm.valid){
@@ -79,13 +97,13 @@ export class CreateUserPage {
       this.flagIncorrectFullname = false;
       this.flagIncorrectUsername = false;
       this.flagIncorrectEmail = false;
-
+      
       let alert = this.alertCtrl.create({
         cssClass: 'alert-style',
         title: '<p class="alert-title"><b>USER CREATED:</b><br /></p><hr />',
         subTitle: '<div class="alert-message"><b>FULLNAME:</b> ' + this.new.fullname + 
-                  '<br><b>USERNAME:</b> ' + this.new.username + 
-                  '<br><b>EMAIL:</b> ' + this.new.email + '</div>',   
+                  '<br><b>USERNAME:</b> ' + this.user.userName + 
+                  '<br><b>EMAIL:</b> ' + this.user.email + '</div>',   
        buttons:[
         {
           cssClass: 'alert-btn',
@@ -99,7 +117,8 @@ export class CreateUserPage {
           handler: data => {
             this.submitAttempt = true;
             this.picture = this.UserGlobal.getDefaultImage();
-            this.UserGlobal.addNewUser(this.new,this.picture);
+            this.UserGlobal.addNewUser(this.user,this.picture);
+            this.saveUser();
             this.resetForm();
           }
         }
@@ -111,15 +130,6 @@ export class CreateUserPage {
 
   resetForm(){
     this.CreateUserForm.reset();
-  }
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder, private menuCtrl: MenuController) {
-    this.CreateUserForm = formBuilder.group({
-      username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/^[a-zA-Z][\w.-]*[a-zA-Z0-9]+$/),Validators.required])],
-      fullname: ['', Validators.compose([Validators.required,Validators.maxLength(30),Validators.pattern(/[a-zA-Z]+( [a-zA-Z]*)/)])],
-      email: ['',Validators.compose([Validators.required,Validators.pattern(/^\w+([\.-]?\ w+)*@\w+([\.-]?\w+)*\.com/)])],
-      isAdmin:[''],
-  });
-    this.username = navParams.get('param2');
   }
 
   ionViewDidEnter(){

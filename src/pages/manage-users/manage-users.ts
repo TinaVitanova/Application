@@ -1,3 +1,4 @@
+import { ApiProvider } from '../../providers/api-provider/api-provider';
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
@@ -15,8 +16,19 @@ export class ManageUsersPage {
 
   imageLoaded: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController, public menuCtrl: MenuController) {
+  users: any;
+  
+
+  getUser() {
+    this.apiProvider.getUser()
+    .then(data => {
+      this.users = data;
+    });
+  }
+
+  constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController, public menuCtrl: MenuController) {
     this.initializeUsers();
+    this.getUser();
   }
 
   initializeUsers(){
