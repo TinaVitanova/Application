@@ -9,7 +9,7 @@
                     <ion-icon ios="ios-person" md="md-person"></ion-icon> &nbsp; Username </ion-label>
                 <ion-input text-center type="text" formControlName="username" (ionBlur)="onBlur()" [class.invalid]="!loginForm.controls.username.valid && loginForm.controls.username.dirty && submitAttempt" [(ngModel)]="login.username" name="username"></ion-input>
             </ion-item>
-            <p text-center class="invalid" [hidden]="!flagIncorrectUsername">Incorect username!</p>
+            <p text-center class="invalid-style" [hidden]="!flagIncorrectUsername">Incorect username!</p>
             <ion-item class="custom-input">
                 <ion-label floating text-center>
                     <ion-icon ios="ios-lock" md="md-lock"></ion-icon> &nbsp; Password </ion-label>
@@ -17,7 +17,7 @@
                     name="password"></ion-input>
                  <button class="password-eye" ion-button clear  item-right (click)="togglePassword(input)" [hidden]="showPassword"> <ion-icon  name="eye"> </ion-icon> </button>
                 <button class="password-eye" ion-button clear item-right (click)="togglePassword(input)" [hidden]="!showPassword"> <ion-icon name="eye-off"> </ion-icon> </button> 
-                <p text-center class="invalid" [hidden]="!flagIncorrectPassword">Incorect password!</p>
+                <p text-center class="invalid-style" [hidden]="!flagIncorrectPassword">Incorect password!</p>
             </ion-item>
         </ion-list>
     </form>

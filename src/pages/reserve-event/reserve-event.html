@@ -36,10 +36,10 @@
         </ion-row>
     </ion-grid>    
 </form>
-<p class="invalid" text-center [hidden]="!flagTimeEqual">Start time can not be equal to end time.</p>
-<p class="invalid" text-center [hidden]="!flagIsNextDay">Start time must be before end time.</p>
-<p class="invalid" text-center [hidden]="!flagLowEndDate">Start date must be before end date.</p>
-<p class="invalid" text-center [hidden]="!FillOutForm">Please fill out the form correctly.</p>
+<p class="invalid-style" text-center [hidden]="!flagTimeEqual">Start time can not be equal to end time.</p>
+<p class="invalid-style" text-center [hidden]="!flagIsNextDay">Start time must be before end time.</p>
+<p class="invalid-style" text-center [hidden]="!flagLowEndDate">Start date must be before end date.</p>
+<p class="invalid-style" text-center [hidden]="!FillOutForm">Please fill out the form correctly.</p>
     <ion-buttons text-center id="find-room">
         <button style="margin-top:4%;" large ion-button (click)="findRoom()">FIND</button>
     </ion-buttons>
