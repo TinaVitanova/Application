@@ -52,7 +52,7 @@ $colors: (
   secondary-light: rgb(142, 169, 214),
   bg-gray: #f7f7f7,
   text-color: #ACACAC,
-  danger: #ffb699,
+  danger: #fd8f8f,
   light:      #f4f4f4,
   dark:       #292929,
   make-room : (
@@ -73,26 +73,28 @@ button{
 
 //invalid value style
 
-.invalid{
-  color:map-get($colors, secondary-hover);
-  font-size: 100%;
-  font-weight: bold;
-  animation: invalid-animation 1s ease-in 0.25s 1;
-  -webkit-animation: invalid-animation 1s ease-in 0.25s 1;
-  -moz-animation: invalid-animation 1s ease-in 0.25s 1;
-  -ms-animation: invalid-animation 1s ease-in 0.25s 1; 
+.invalid-style{
+  color:map-get($colors, danger);
+  font-size: 105%;
+  font-weight: norma;
+  animation: invalid-animation .4s ease-in 0.15s 1;
+  -webkit-animation: invalid-animation .4s ease-in 0.15s 1;
+  -moz-animation: invalid-animation .4s ease-in 0.15s 1;
+  -ms-animation: invalid-animation .4s ease-in 0.15s 1; 
 }
 
 @keyframes invalid-animation{
    
-  0%{
-    font-size: 100%;
+  0% {
+    transform: rotate(-7deg);
   }
-  50%{
-    font-size: 110%;
+  
+  33% {
+    transform: rotate(7deg);
   }
-  100%{
-    font-size:100;
+  
+  66% {
+    transform: rotate(-7deg);
   }
 
 }
@@ -232,21 +234,24 @@ $toolbar-ios-title-font-weight: 500;
         color: white;
         font-weight: bold;
         border-radius:5px;
-        text-align: left;
-        font-size: 90%;
+        text-align: center;
+        font-size: 100%;
+        padding: 2% 0%;
     }
 
     .event-title{
         background: white;
-        color: map-get($colors, primary);
-        font-weight: bold;
-        padding-bottom: 2%;
-        border-bottom: 1px solid map-get($colors, primary);
+        color: map-get($colors, text-color);
+        font-weight: normal;
+        padding: 3%;
+        font-size: 95%;
+        border: 2px solid map-get($colors, primary);
+        border-radius: 5px;
         margin-left:1%;
         overflow-x: hidden;
-        width: 90%;
     }
 }
+
 
 // pickers style
 

@@ -40,4 +40,33 @@ page-dashboard {
             @include basic-transition;
         }
     }
+
+    .upcoming-events{
+        background: map-get($colors, bg-gray );
+        border: 1px solid map-get($colors, secondary);
+        margin-top: 5%;
+        padding: 3.5%;
+        margin: none!important;
+        overflow-y: scroll;
+
+        ion-title .toolbar-title{
+            font-size: 115%;
+            color: map-get($colors, secondary);
+            text-align:left;
+            letter-spacing: .3px;
+        }
+
+        hr{
+            width:95%;
+            border-bottom: 1px solid map-get($colors, secondary-light);
+        }
+    }
+
+    .schedule-list{
+        @include schedule-list;
+        ion-icon{
+            background: transparent;
+            color: white;
+        }
+    }
 }

@@ -10,12 +10,14 @@
 <ion-content no-padding>
     <ion-list>
         <button menuClose ion-item *ngFor="let events of MyEvents" [hidden]="!IsDateToday(events)" (click)="AlertForEvent(events)">
-           <ion-grid>
-               <ion-row>
-                   <ion-col class="event-time" col-4>{{StartTime}}-{{EndTime}}</ion-col>
-                   <ion-col class="event-title" col-8>{{events.title}}</ion-col>
-               </ion-row>
-           </ion-grid> 
-        </button>
+            <ion-grid>
+                <ion-row>
+                    <ion-col class="event-time" col-6><ion-icon name="time"></ion-icon> {{StartTime}}-{{EndTime}}</ion-col>
+                </ion-row>
+                <ion-row>
+                        <ion-col class="event-title">{{events.title}}</ion-col>
+                </ion-row>
+            </ion-grid>
+        </button> 
     </ion-list>
 </ion-content>
