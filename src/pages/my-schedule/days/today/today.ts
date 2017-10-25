@@ -23,8 +23,8 @@ export class TodayPage {
     let dateStart = moment(events.startTime).format('DD MM YYYY');
     let dateToday = moment().format('DD MM YYYY');
     let dateEnd = moment(events.endTime).format('DD MM YYYY');
-    this.StartTime = moment(events.startTime).format('DD MM YYYY HH:mm');
-    this.EndTime = moment(events.endTime).format('DD MM YYYY HH:mm');
+    this.StartTime = moment(events.startTime).format('HH:mm');
+    this.EndTime = moment(events.endTime).format('HH:mm');
     if (dateStart <= dateToday && dateToday <= dateEnd)
       return true;
     else

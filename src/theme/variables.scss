@@ -232,21 +232,24 @@ $toolbar-ios-title-font-weight: 500;
         color: white;
         font-weight: bold;
         border-radius:5px;
-        text-align: left;
-        font-size: 90%;
+        text-align: center;
+        font-size: 105%;
+        padding: 3% 0%;
     }
 
     .event-title{
         background: white;
-        color: map-get($colors, primary);
-        font-weight: bold;
-        padding-bottom: 2%;
-        border-bottom: 1px solid map-get($colors, primary);
+        color: map-get($colors, text-color);
+        font-weight: normal;
+        padding: 4%;
+        font-size: 95%;
+        border: 2px solid map-get($colors, primary);
+        border-radius: 5px;
         margin-left:1%;
         overflow-x: hidden;
-        width: 90%;
     }
 }
+
 
 // pickers style
 
