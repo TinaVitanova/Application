@@ -71,6 +71,32 @@ button{
   cursor: pointer;
 }
 
+//invalid value style
+
+.invalid{
+  color:map-get($colors, secondary-hover);
+  font-size: 100%;
+  font-weight: bold;
+  animation: invalid-animation 1s ease-in 0.25s 1;
+  -webkit-animation: invalid-animation 1s ease-in 0.25s 1;
+  -moz-animation: invalid-animation 1s ease-in 0.25s 1;
+  -ms-animation: invalid-animation 1s ease-in 0.25s 1; 
+}
+
+@keyframes invalid-animation{
+   
+  0%{
+    font-size: 100%;
+  }
+  50%{
+    font-size: 110%;
+  }
+  100%{
+    font-size:100;
+  }
+
+}
+
 $toolbar-ios-title-font-weight: 500;
 
 .toolbar-title{
@@ -109,9 +135,6 @@ $toolbar-ios-title-font-weight: 500;
 //login page style
 
 @mixin home-style{
-      .invalid{
-        color:map-get($colors, secondary-hover);
-      }
    
       ion-content{
         @include gradient-bg;
