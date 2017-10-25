@@ -52,7 +52,7 @@ $colors: (
   secondary-light: rgb(142, 169, 214),
   bg-gray: #f7f7f7,
   text-color: #ACACAC,
-  danger: #ff6868,
+  danger: rgb(255, 92, 92),
   light:      #f4f4f4,
   dark:       #292929,
   make-room : (
@@ -77,10 +77,10 @@ button{
   color:map-get($colors, danger);
   font-size: 105%;
   font-weight: norma;
-  animation: invalid-animation .4s ease-in 0.15s 1;
-  -webkit-animation: invalid-animation .4s ease-in 0.15s 1;
-  -moz-animation: invalid-animation .4s ease-in 0.15s 1;
-  -ms-animation: invalid-animation .4s ease-in 0.15s 1; 
+  animation: invalid-animation .4s linear 0.15s 1;
+  -webkit-animation: invalid-animation .4s linear 0.15s 1;
+  -moz-animation: invalid-animation .4s linear 0.15s 1;
+  -ms-animation: invalid-animation .4s linear 0.15s 1; 
 }
 
 @keyframes invalid-animation{
@@ -89,11 +89,11 @@ button{
     transform: rotate(-7deg);
   }
   
-  33% {
+  35% {
     transform: rotate(7deg);
   }
   
-  66% {
+  70% {
     transform: rotate(-7deg);
   }
 
@@ -174,7 +174,7 @@ $toolbar-ios-title-font-weight: 500;
   
 }
 
-//button style
+//button styles
 
 @mixin button-style{
     border-radius: 7px;
