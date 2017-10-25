@@ -452,10 +452,14 @@ export class ReserveEventPage {
       let dateend = moment(this.endday).format('Do MMMM YYYY');
       let start = this.startTime;
       let end = this.endTime;
-      let alert = this.alertCtrl.create({
+      let trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>'; 
+      if(datestart == dateend){
+        trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>';
+      }
+     let alert = this.alertCtrl.create({
         cssClass: 'alert-style',
         title: '<p class="alert-title"><b>EVENT CREATED:</b><br />' + '<span>' +this.title + '</span></p><hr />',
-        message: '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>AT:</b> '+start+'<br/><b>UNTILL:</b> '+dateend+'<br><b>AT:</b> '+end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>',
+        message : trueDay,
         buttons:[
           {
             text: 'CANCEL',
