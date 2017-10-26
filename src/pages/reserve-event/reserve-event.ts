@@ -21,12 +21,12 @@ export class ReserveEventPage {
   flagIsNextDay=false;
   flagLowEndDate=false;
   flagAllDay: boolean=false;
-  flagAll=false;
+  flagTitle=false;
   showAvailableRooms=false;
   public FillOutForm=false;
   public title;
-  public endTime;
-  public startTime;
+  public endTime="07:00";
+  public startTime="08:00";
   public startday;
   public endday;
   public room;
@@ -46,7 +46,7 @@ export class ReserveEventPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder, public menuCtrl: MenuController) {
     this.ReserveEventForm = formBuilder.group({
-      title: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9][\w]+\s?[\w]+$/),Validators.required])],
+      title: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9][\w]+\s?[\w]+$/),Validators.required, new Validator(UserGlobal, EventData).isEventTitleValid])],
       startday: ['',Validators.required],
       endday: ['',Validators.required],
       startTime: ['',Validators.required],
@@ -76,76 +76,84 @@ export class ReserveEventPage {
     this.ListOfRooms=this.EventData.getRoomData();
   }
 
+  onBlurTitle(){
+    this.FillOutForm=false;
+    if(this.ReserveEventForm.controls.title.valid){
+      this.flagTitle=false;
+    }
+    else{
+       this.flagTitle=true;
+      this.showAvailableRooms=false;
+    }
+  }
+
   OnBlurStartDay(){
+    this.FillOutForm=false;
     if(this.endday<=this.startday)
     this.endday=this.startday;
     if (this.BlurStartTimeFlag == true && this.BlurEndTimeFlag == true){
     if (this.startTime > this.endTime && this.startday==this.endday){
     this.flagIsNextDay=true;
-    this.flagAll=true;
+    this.showAvailableRooms=false;
     }
   else{
     this.flagIsNextDay=false;
-    this.flagAll=false;
   }
     }
   }
   OnBlurEndDay(){
+    this.FillOutForm=false;
     if (this.BlurStartTimeFlag == true && this.BlurEndTimeFlag == true){
     if (this.startTime > this.endTime && this.startday==this.endday){
     this.flagIsNextDay=true;
-    this.flagAll=true;
+    this.showAvailableRooms=false;
     }
   else{
     this.flagIsNextDay=false;
-    this.flagAll=false;
     }}
     if(this.endday<this.startday){
-    this.flagLowEndDate=true
-    this.flagAll=true;
+    this.flagLowEndDate=true;
+    this.showAvailableRooms=false;
     }
     else{
     this.flagLowEndDate=false;
-    this.flagAll=false;
   }}
   OnBlurEndTime(){
+    this.FillOutForm=false;
     this.BlurEndTimeFlag = true;
     if (this.BlurStartTimeFlag == true){
       if(this.startTime == this.endTime){
         this.flagTimeEqual=true;
-        this.flagAll=true;
+        this.showAvailableRooms=false;
       }
       else{
       this.flagTimeEqual=false;
-      this.flagAll=false;
     }}
     if (this.startTime > this.endTime && this.startday==this.endday){
       this.flagIsNextDay=true;
-      this.flagAll=true;
+      this.showAvailableRooms=false;
     }
     else{
       this.flagIsNextDay=false;
-      this.flagAll=false;
     }
   }
   OnBlurStartTime(){
+    this.FillOutForm=false;
     this.BlurStartTimeFlag = true;
     if (this.BlurEndTimeFlag == true){
       if(this.startTime == this.endTime){
         this.flagTimeEqual=true;
-        this.flagAll=true;
+        this.showAvailableRooms=false;
       }
       else{
       this.flagTimeEqual=false;
-      this.flagAll=false;
       }}
       if (this.startTime > this.endTime && this.startday==this.endday){
         this.flagIsNextDay=true;
-        this.flagAll=true;
+        this.showAvailableRooms=false;
       }
       else{
         this.flagIsNextDay=false;
-        this.flagAll=false;
       }
   }
 
@@ -162,13 +170,20 @@ export class ReserveEventPage {
 
   findRoom(){
     if(this.flagAllDay){
-      this.FillOutForm=false;
-      this.showAvailableRooms=true;
+      if(this.ReserveEventForm.controls.title.valid)
+        this.FillOutForm=false;
+      else
+        this.FillOutForm=true;
     }
-    else if(!this.ReserveEventForm.valid && !(this.flagForWarning && this.flagIsNextDay && this.flagLowEndDate)){
+    else if(this.ReserveEventForm.valid){
+      if(this.flagForWarning==false && this.flagIsNextDay==false && this.flagLowEndDate==false){
           this.FillOutForm=false;
-          this.showAvailableRooms=true;
+      }
+      else if (this.flagForWarning==true || this.flagIsNextDay==true || this.flagLowEndDate==true){
+        this.FillOutForm=true;
+      }
     }
+    else this.FillOutForm=true;
     
 
     if(this.FillOutForm==true){
@@ -475,10 +490,8 @@ export class ReserveEventPage {
             handler: data => {
               if(this.flagAllDay){
                 this.startday = new Date(this.startday);
-                this.endday= new Date(this.endday);
-                var startDate = moment({hour:0o0 , minute:0o0}).toDate();
-                var startTimeEvent = new Date(this.startday.getFullYear(), this.startday.getMonth(), this.startday.getDate(), startDate.getHours(), startDate.getMinutes());
-                var endTimeEvent = new Date(this.endday.getFullYear(), this.endday.getMonth(), this.endday.getDate()+1, startDate.getHours(), startDate.getMinutes());
+                var startTimeEvent = new Date(Date.UTC(this.startday.getUTCFullYear(), this.startday.getUTCMonth(), this.startday.getUTCDate()));
+                var endTimeEvent = new Date(Date.UTC(this.startday.getUTCFullYear(), this.startday.getUTCMonth(), this.startday.getUTCDate()+1));
                 for (var i=0; i<this.FullListOfRooms.length; i++){
                   if(this.FullListOfRooms[i].name == this.roomName)
                     this.room = this.FullListOfRooms[i];

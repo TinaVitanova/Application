@@ -83,7 +83,7 @@ export class CalendarPage {
             title: allEvents[i].title,
             startTime: allEvents[i].startTime,
             endTime: allEvents[i].endTime,
-            allday: allEvents[i].allDay
+            allDay: allEvents[i].allDay
         });
       }
         return events;

@@ -39,16 +39,22 @@
             </ion-row>
         </ion-grid>
     </ion-buttons>
-    <div class="upcoming-events" *ngFor="let events of MyEvents">
-        <ion-title text-left>UPCOMING EVENTS</ion-title>
+    
+        
+        <div class="upcoming-events" *ngFor="let events of MyEvents">
+                <ion-title text-left>UPCOMING EVENTS</ion-title>
         <hr />
         <ion-grid class="schedule-list" [hidden]="!IsDate(events)">
-            <ion-row>
-                <ion-col class="event-time" col-11><ion-icon name="time"></ion-icon> {{StartTime}}-{{EndTime}}</ion-col>
-            </ion-row>
-            <ion-row>
-                    <ion-col class="event-title">{{events.title}}</ion-col>
-            </ion-row>
+                <ion-row [hidden]="!allDayEvent">
+                        <ion-col class="event-time" col-11><ion-icon name="time"></ion-icon> ALL DAY</ion-col>
+                </ion-row>
+                
+                <ion-row [hidden]="allDayEvent">
+                    <ion-col class="event-time" col-11><ion-icon name="time"></ion-icon> {{StartTime}}-{{EndTime}}</ion-col>
+                </ion-row>
+                <ion-row>
+                            <ion-col class="event-title">{{events.title}}</ion-col>
+                </ion-row>
         </ion-grid>
     </div>
 </ion-content>

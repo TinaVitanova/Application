@@ -17,6 +17,7 @@ export class DashboardPage {
   username;
   adminBtn = false;
   flagCalendar;
+  allDayEvent = false;
   MyEvents=this.EventData.getEvents();
   StartTime;
   EndTime;
@@ -45,8 +46,19 @@ export class DashboardPage {
     let dateToday = moment().format('DD MM YYYY');
     this.StartTime = moment(events.startTime).format('DD MM YYYY HH:mm');
     this.EndTime = moment(events.endTime).format('DD MM YYYY HH:mm');
-    if (dateStart <= dateToday && dateToday <= dateEnd)
+    if (dateStart <= dateToday && dateToday <= dateEnd){
+    if(events.allDay==true){
+      if(dateEnd!=dateToday){
+        this.allDayEvent=true;
+        return true;
+      }
+      else{
+        return false;
+      }
+    }else {
+      this.allDayEvent=false;
       return true;
+  }}
     else
       return false;
   }

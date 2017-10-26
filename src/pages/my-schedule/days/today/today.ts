@@ -12,6 +12,7 @@ export class TodayPage {
   MyEvents=this.EventData.getEvents();
   StartTime;
   EndTime;
+  allDayEvent=false;
   FlagNextDay;
   FlagEventYesterday=true;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
@@ -25,10 +26,21 @@ export class TodayPage {
     let dateEnd = moment(events.endTime).format('DD MM YYYY');
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
-    if (dateStart <= dateToday && dateToday <= dateEnd)
-      return true;
-    else
-      return false;
+    if (dateStart <= dateToday && dateToday <= dateEnd){
+      if(events.allDay==true){
+        if(dateEnd!=dateToday){
+          this.allDayEvent=true;
+          return true;
+        }
+        else{
+          return false;
+        }
+      }else {
+        this.allDayEvent=false;
+        return true;
+    }}
+      else
+        return false;
   }
 
 

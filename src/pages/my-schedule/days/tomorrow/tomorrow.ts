@@ -12,6 +12,7 @@ export class TomorrowPage {
   MyEvents=this.EventData.getEvents();
   StartTime;
   EndTime;
+  allDayEvent=false;
   FlagEventYesterday=true;
   FlagNextDay;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
@@ -25,10 +26,21 @@ export class TomorrowPage {
     let dateEnd = moment(events.endTime).format('DD MM YYYY');
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
-    if (dateStart <= nextDay && nextDay <= dateEnd)
-      return true;
-    else
-      return false;
+    if (dateStart <= nextDay && nextDay <= dateEnd){
+      if(events.allDay==true){
+        if(dateEnd!=nextDay){
+          this.allDayEvent=true;
+          return true;
+        }
+        else{
+          return false;
+        }
+      }else {
+        this.allDayEvent=false;
+        return true;
+    }}
+      else
+        return false;
     
   }
   AlertForEvent(events){
