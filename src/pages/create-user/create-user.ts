@@ -18,7 +18,6 @@ export class CreateUserPage {
   CreateUserForm: FormGroup;
   submitAttempt: boolean = false;
   picture;
-  user = {email:'',userName:''};
   new = {
     username:"",
     fullname:"",
@@ -26,6 +25,9 @@ export class CreateUserPage {
     isAdmin:"",
   };
 
+  user = {email:'',userName:''};
+  
+  
   flagCorrectUsername:boolean=false;
   flagCorrectFullname:boolean=false;
   flagCorrectEmail:boolean=false;
@@ -42,6 +44,7 @@ export class CreateUserPage {
   });
     this.username = navParams.get('param2');
   }
+
   saveUser() {
     this.apiProvider.saveUser(this.user).then((result) => {
       console.log(result);
@@ -101,9 +104,10 @@ export class CreateUserPage {
       let alert = this.alertCtrl.create({
         cssClass: 'alert-style',
         title: '<p class="alert-title"><b>USER CREATED:</b><br /></p><hr />',
-        subTitle: '<div class="alert-message"><b>FULLNAME:</b> ' + this.new.fullname + 
-                  '<br><b>USERNAME:</b> ' + this.user.userName + 
-                  '<br><b>EMAIL:</b> ' + this.user.email + '</div>',   
+        subTitle: '<div class="alert-message"><b>FULLNAME:</b> ' + this.new.fullname +
+                  '<br><b>USERNAME:</b> ' + this.new.username + 
+                  '<br><b>EMAIL:</b> ' + this.new.email 
+                  + '</div>',   
        buttons:[
         {
           cssClass: 'alert-btn',

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ApiProvider{
     apiUrl = 'http://10.10.20.177:8080';
-    data;
-   
+    data:any;
+    
     constructor(public http:Http){
         
     }
@@ -27,12 +27,16 @@ export class ApiProvider{
     }
 
     saveUser(data) {
-        return new Promise((resolve, reject) => {
-            this.http.post(this.apiUrl+'/user/getall', JSON.stringify(data))
+        //let body = JSON.stringify({});
+        let headers = new Headers({ 'Accept':'application/json',
+         'Content-Type':'application/json'});
+        
+        return new Promise((resolve) => {
+            this.http.post(this.apiUrl+'/user/add', JSON.stringify(data), { headers: headers })
             .subscribe(res => {
                 resolve(res);
             }, (err) => {
-                reject(err);
+                console.log(err);
             });
         });
     }
