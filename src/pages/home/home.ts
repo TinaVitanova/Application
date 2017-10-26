@@ -15,10 +15,15 @@ import { Validator } from '../../validators/FormValidator';
 export class HomePage {
     loginForm: FormGroup;
     UsernamesList = [];
-    flagIncorectLogin = false;
     submitAttempt: boolean = false;
-
+    flagCorrectUsername:boolean=false;
+    flagCorrectPassword:boolean=false;
+    flagIncorrectUsername:boolean = false;
+    flagIncorrectPassword:boolean = false;
     message:string="";
+    public showPassword: boolean = false;
+    public empty: boolean = true;
+    
 
     public login = {
       username:"",
@@ -29,13 +34,13 @@ export class HomePage {
       this.submitAttempt = true;
       this.UsernamesList = this.UserGlobal.getUsernames();
       if (this.loginForm.valid){
+      this.flagIncorrectUsername = false;
+      this.flagIncorrectPassword = false;
       this.UserGlobal.setMyGlobalVar(this.login.username);
       this.UserGlobal.setIsLoggedIn(true);
       this.UserGlobal.setUserLoggedIn(this.login.username);
         this.navCtrl.setRoot(DashboardPage); 
       }
-      else 
-        this.flagIncorectLogin = true;
     }
     
     forgotPassword(){
@@ -60,5 +65,39 @@ export class HomePage {
       this.UserGlobal.setMyGlobalVar(username);
       this.navCtrl.setRoot(DashboardPage)
     }
+  }
+
+  onBlur(){
+    if(!this.loginForm.valid){
+      if(!this.loginForm.controls.username.valid){
+        this.flagIncorrectUsername = true; 
+        this.flagCorrectUsername=false;
+      }
+      else{
+      this.flagIncorrectUsername = false; 
+        this.flagCorrectUsername=true;
+      }
+  
+      if(!this.loginForm.controls.password.valid){
+        this.flagIncorrectPassword = true;
+        this.flagCorrectPassword=false;
+    
+      }else{
+        this.flagIncorrectPassword = false;
+        this.flagCorrectPassword=true;
+      }
     }
+  }
+
+  //show/hide password
+  togglePassword(input: any): void {
+    input.type;
+    if(input.type =='password'){
+      this.showPassword = true;
+      input.type = 'text';
+    }else{
+      this.showPassword = false;
+      input.type = 'password';
+    }
+  }
 }

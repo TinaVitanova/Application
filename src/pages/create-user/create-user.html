@@ -20,27 +20,27 @@
                     <ion-icon name="person"></ion-icon> &nbsp; Full Name</ion-label>
                 <ion-input type="text" formControlName="fullname" (blur)="onFocus()" [class.invalid]="!CreateUserForm.controls.fullname.valid && CreateUserForm.controls.fullname.dirty && submitAttempt" [(ngModel)]="new.fullname" name="fullname"></ion-input>
             </ion-item>
-            <p text-center class="invalid" [hidden]="!flagIncorrectFullname">This name already exists or you have inserted an invalid character!</p>
+            <p text-center class="invalid-style" [hidden]="!flagIncorrectFullname">This name already exists or you have inserted an invalid character!</p>
 
             <ion-item>
                 <ion-label floating>
                     <ion-icon name="person-add"></ion-icon> &nbsp; Username</ion-label>
                 <ion-input type="text" formControlName="username" (blur)="onFocus()" [class.invalid]="!CreateUserForm.controls.username.valid && CreateUserForm.controls.username.dirty && submitAttempt" [(ngModel)]="new.username" name="username"></ion-input>
             </ion-item>
-            <p text-center class="invalid" [hidden]="!flagIncorrectUsername">This username already exists or you have inserted an invalid character!</p>
+            <p text-center class="invalid-style" [hidden]="!flagIncorrectUsername">This username already exists or you have inserted an invalid character!</p>
 
             <ion-item>
                 <ion-label floating>
                     <ion-icon name="mail"></ion-icon> &nbsp; E-mail</ion-label>
                 <ion-input type="mail" formControlName="email" (blur)="onFocus()" [class.invalid]="!CreateUserForm.controls.email.valid && CreateUserForm.controls.email.dirty && submitAttempt" [(ngModel)]="new.email" name="email"></ion-input>
             </ion-item>
-            <p text-center class="invalid" [hidden]="!flagIncorrectEmail">This email already exists or you have inserted invalid email!</p>
+            <p text-center class="invalid-style" [hidden]="!flagIncorrectEmail">This email already exists or you have inserted invalid email!</p>
 
-            <ion-item>
+            <!-- <ion-item>
                 <ion-label floating>
                     <ion-icon name="lock"></ion-icon> &nbsp; Password</ion-label>
                 <ion-input type="password" formControlName="password" [class.invalid]="!CreateUserForm.controls.password.valid && CreateUserForm.controls.password.dirty && submitAttempt" [(ngModel)]="new.password" name="password"></ion-input>
-            </ion-item>
+            </ion-item> -->
 
             <ion-item [hidden]="shouldHide()">
 

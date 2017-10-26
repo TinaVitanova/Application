@@ -1,80 +1,44 @@
 
 page-home {
 
-    .input-cover { position: static!important; }
+  .input-cover { position: static!important; }
 
-    .invalid{
-      color:map-get($colors, secondary-hover);
-    }
- 
-    ion-content{
-      @include gradient-bg;
-    }
+  @include home-style;
 
-    img{
+  img{
+    width: 60%;
+    margin-top:10%;
+  }
+
+  form{
+
+    .custom-input{
       width: 60%;
-      margin-top:10%;
+      border-top: none;
+      background: none;
+      color: white;
+
+      .item.item-input span{width:auto;}
+      .item.item-input input{width:60%;  margin-top: none;}
+      
     }
 
-    ion-input .text-input{
-       color: white;
-       border-bottom: 1px solid white;
-       padding: 5% 0%;
-     }
-
-    form{
-
-      .list-ios .item-block .item-inner,
-      ion-item .item-md .item-input,
-      ion-item .item-ios .item-input,
-      .item-block{
-        color: white;
-        border-top: none;
-      }
-
-      .list-ios .item-block,
-      .list-md .item-block,
-      .list-wp .item-block{
-        margin-left: 20%;
-        border-bottom: none;
-        border-top: none;
-      }
-
-      .item-input .label-md{
-        color: white;
-      }
-
-      .custom-input{
-        width: 60%;
-        border-top: none;
-        background: none;
-        color: white;
-
-        .item.item-input span{width:auto;}
-        .item.item-input input{width:60%;  margin-top: none;}
-        
-      }
-    }
+  }
     
     .login-btn{
-      background: white;
-      border-radius: 3px;
-      color: map-get($colors, primary);
+
+      @include home-btn;
+
       width: 55%;
       padding: 5% 0%;
       font-size: 120%;
-      letter-spacing: 1px;
 
-      &:hover,
-      &:active{
-        color: map-get($colors, secondary);
-        @include basic-transition;
-      }
     }
     
     p a{
-      color: rgba(white, .75);
+      color: rgba(white, .8);
       text-decoration: none;
+      cursor: pointer;
 
       &:hover{
         @include basic-transition;
@@ -82,10 +46,19 @@ page-home {
       }
     }
 
-    .md button:hover,
-    .md button:active{
-      @include basic-transition;
-      @include shadow-2dp;
+    .password-eye{
+      color: rgba(white, .85);
+      background: transparent;
+      position: absolute;
+      left: 77%;
+      margin-top:3%;
+
+      // .icon-wp{
+      //   position: absolute;
+      //   bottom: 40px;
+      //   color: white;
+      //   z-index: 20;
+      // }
     }
   
   }

@@ -534,7 +534,7 @@ ion-list .sm-list {
 
 .logout-btn {
     text-align: center;
-    margin-top: 20%;
+    margin-top: 12%;
     width: 110%;
     position: relative;
     left: -10%;
@@ -577,17 +577,18 @@ ion-list .sm-list {
   
       } 
       .alert-message{
-        color: map-get($colors, secondary-light);
+        color: map-get($colors, secondary-hover);
         line-height: 1.6em;
         padding-bottom: 2%!important;
       }
     }
   }
 
+
   .alert-btn{
     color: map-get($colors, secondary-hover)!important;
     border:none!important;
-    margin-bottom: 10%!important;
+    margin-bottom: 2.5%!important;
     right: 15%;
     &:hover,
     &:active{
@@ -595,12 +596,5 @@ ion-list .sm-list {
         color: map-get($colors, primary)!important;
     }
 
-     .alert-ios .alert-wrapper{
-                color: pink!important;
-            }
-
-            .alert-ios .alert-sub-title{
-                color:pink!important;
-            }
 }
 

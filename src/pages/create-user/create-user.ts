@@ -22,7 +22,6 @@ export class CreateUserPage {
     username:"",
     fullname:"",
     email:"",
-    password:"",
     isAdmin:"",
   };
 
@@ -86,8 +85,7 @@ export class CreateUserPage {
         title: '<p class="alert-title"><b>USER CREATED:</b><br /></p><hr />',
         subTitle: '<div class="alert-message"><b>FULLNAME:</b> ' + this.new.fullname + 
                   '<br><b>USERNAME:</b> ' + this.new.username + 
-                  '<br><b>EMAIL:</b> ' + this.new.email + 
-                  '<br><b>PASSWORD:</b> ' + this.new.password + '</div>',   
+                  '<br><b>EMAIL:</b> ' + this.new.email + '</div>',   
        buttons:[
         {
           cssClass: 'alert-btn',
@@ -119,7 +117,6 @@ export class CreateUserPage {
       username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/^[a-zA-Z][\w.-]*[a-zA-Z0-9]+$/),Validators.required])],
       fullname: ['', Validators.compose([Validators.required,Validators.maxLength(30),Validators.pattern(/[a-zA-Z]+( [a-zA-Z]*)/)])],
       email: ['',Validators.compose([Validators.required,Validators.pattern(/^\w+([\.-]?\ w+)*@\w+([\.-]?\w+)*\.com/)])],
-      password: ['',Validators.compose([Validators.required])],
       isAdmin:[''],
   });
     this.username = navParams.get('param2');
