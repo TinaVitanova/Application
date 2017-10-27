@@ -18,11 +18,6 @@ export class CreateUserPage {
   CreateUserForm: FormGroup;
   submitAttempt: boolean = false;
   picture;
-  new = {
-    username:"",
-    email:"",
-    isAdmin:"",
-  };
 
   user = {email:'',userName:''};
   
@@ -35,7 +30,7 @@ export class CreateUserPage {
   constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder, private menuCtrl: MenuController) {
     this.CreateUserForm = formBuilder.group({
       username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/^[a-zA-Z][\w.-]*[a-zA-Z0-9]+$/),Validators.required])],
-      email: ['',Validators.compose([Validators.required,Validators.pattern(/^\w+([\.-]?\ w+)*@\w+([\.-]?\w+)*\.com/)])],
+      email: ['',Validators.compose([Validators.required,Validators.pattern(/^\w+([\.-]?\ w+)*@\w+([\.-]?\w+)*\.[a-z]{2,3}/)])],
       isAdmin:[''],
   });
     this.username = navParams.get('param2');
@@ -47,12 +42,21 @@ export class CreateUserPage {
     // }, (err) => {
     //   console.log(err);
     // });
+
+
+    // if(this.isAdmin==true){
+    //   this.user.role=1;
+    // }
+    // else
+    // this.user.role=0;
+
+    
     this.apiProvider.saveUser(this.user);
   }
 
   
   onBlurUsername(){
-    if(!this.new.username){
+    if(!this.user.userName){
       this.flagCorrectUsername = false;
     }
     else{
@@ -69,7 +73,7 @@ export class CreateUserPage {
 }
   }
   onBlurEmail(){
-    if(!this.new.email){
+    if(!this.user.email){
       this.flagIncorrectEmail = false;
     }
     else{
@@ -86,9 +90,6 @@ export class CreateUserPage {
 }
   }
 
-  logFormSignUp(){
-    console.log(this.new)
-  }
 
   shouldHide(){
     if(this.username=="superadmin")

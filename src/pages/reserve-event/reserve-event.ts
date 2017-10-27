@@ -25,8 +25,8 @@ export class ReserveEventPage {
   showAvailableRooms=false;
   public FillOutForm=false;
   public title;
-  public endTime;
-  public startTime;
+  public endTime="08:00";
+  public startTime="07:00";
   public startday;
   public endday;
   public room;
@@ -176,8 +176,10 @@ export class ReserveEventPage {
         this.FillOutForm=true;
     }
     else if(this.ReserveEventForm.valid){
-      if(this.flagForWarning==false){
+      if(this.flagTimeEqual==false){
+        this.FillOutForm=false;
         if(this.flagIsNextDay==false){
+          this.FillOutForm=false;
           if(this.flagLowEndDate==false){
             this.FillOutForm=false;
           }
@@ -540,6 +542,8 @@ export class ReserveEventPage {
     this.ReserveEventForm.reset();
     this.startday = moment().toISOString();
     this.endday= moment().toISOString();
+    this.endTime="08:00";
+    this.startTime="07:00";
   }
 
   ionViewDidEnter(){
