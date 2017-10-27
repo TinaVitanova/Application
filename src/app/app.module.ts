@@ -1,3 +1,4 @@
+import { ApiProvider} from '../providers/api-provider/api-provider';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -6,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { NgCalendarModule } from 'ionic2-calendar';
 import { IonicStorageModule } from '@ionic/storage';
 import { Validator } from '../validators/FormValidator';
+import { HttpModule } from '@angular/http';
 
 import { TodayPage } from '../pages/my-schedule/days/today/today';
 import { TomorrowPage } from '../pages/my-schedule/days/tomorrow/tomorrow';
@@ -44,6 +46,7 @@ import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
   imports: [
     BrowserModule,
     NgCalendarModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
 
@@ -71,7 +74,8 @@ import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UsernameGlobalProvider,
     EventDataProvider,
-    Validator
+    Validator,
+    ApiProvider
   ]
 })
 export class AppModule {}
