@@ -490,13 +490,13 @@ export class ReserveEventPage {
             handler: data => {
               if(this.flagAllDay){
                 this.startday = new Date(this.startday);
-                var startTimeEvent = new Date(Date.UTC(this.startday.getUTCFullYear(), this.startday.getUTCMonth(), this.startday.getUTCDate()));
-                var endTimeEvent = new Date(Date.UTC(this.startday.getUTCFullYear(), this.startday.getUTCMonth(), this.startday.getUTCDate()+1));
+                var startTimeEventAllDay = new Date(Date.UTC(this.startday.getUTCFullYear(), this.startday.getUTCMonth(), this.startday.getUTCDate()));
+                var endTimeEventAllDay = new Date(Date.UTC(this.startday.getUTCFullYear(), this.startday.getUTCMonth(), this.startday.getUTCDate()+1));
                 for (var i=0; i<this.FullListOfRooms.length; i++){
                   if(this.FullListOfRooms[i].name == this.roomName)
                     this.room = this.FullListOfRooms[i];
                 }
-                this.EventData.setEvent(this.title, startTimeEvent, endTimeEvent, true, this.room);
+                this.EventData.setEvent(this.title, startTimeEventAllDay, endTimeEventAllDay, true, this.room);
                 this.isReserved=false;
                   if (this.flag == true)
                     this.navCtrl.pop();
@@ -510,9 +510,9 @@ export class ReserveEventPage {
             var endDate = moment(this.endTime,"hh:mm").toDate();
             var startTimeEvent = new Date(this.startday.getFullYear(), this.startday.getMonth(), this.startday.getDate(), startDate.getHours(), startDate.getMinutes());
             var endTimeEvent = new Date(this.endday.getFullYear(), this.endday.getMonth(), this.endday.getDate(), endDate.getHours(), endDate.getMinutes());
-            for (var i=0; i<this.FullListOfRooms.length; i++){
-              if(this.FullListOfRooms[i].name == this.roomName)
-                this.room = this.FullListOfRooms[i];
+            for (var j=0; j<this.FullListOfRooms.length; j++){
+              if(this.FullListOfRooms[j].name == this.roomName)
+                this.room = this.FullListOfRooms[j];
             }
             this.EventData.setEvent(this.title, startTimeEvent, endTimeEvent, false, this.room);
             this.isReserved=false;
