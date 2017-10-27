@@ -15,7 +15,6 @@ export class ForgotPasswordPage {
   newemail: string;
   public SubmitAttempt = false;
   flagIncorrectEmail:boolean = false;
-  flagCorrectEmail:boolean=false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public formBuilder: FormBuilder, public UserGlobal: UsernameGlobalProvider, public EventData: EventDataProvider) {
     this.ForgotPasswordForm = formBuilder.group({
@@ -28,15 +27,17 @@ export class ForgotPasswordPage {
   }
 
   onBlur(){
+    if(!this.newemail){
+      this.flagIncorrectEmail = false;
+    }
+    else{
     if(!this.ForgotPasswordForm.valid){
       if(!this.ForgotPasswordForm.controls.newemail.valid){
         this.flagIncorrectEmail = true;
-        this.flagCorrectEmail=false;
-    
       }else{
         this.flagIncorrectEmail = false;
-        this.flagCorrectEmail=true;
       }
+    }
     }
   }
 

@@ -25,8 +25,8 @@ export class ReserveEventPage {
   showAvailableRooms=false;
   public FillOutForm=false;
   public title;
-  public endTime="07:00";
-  public startTime="08:00";
+  public endTime;
+  public startTime;
   public startday;
   public endday;
   public room;

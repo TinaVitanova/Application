@@ -16,37 +16,40 @@ export class MakeRoomPage {
   name;
   capacity;
   description;
-  
-  flagCorrectName:boolean=false;
-  flagCorrectCapacity:boolean=false;
   flagIncorrectRoomName:boolean = false;
   flagIncorrectRoomCapacity:boolean = false;
   MakeRoomForm: FormGroup;
   submitAttempt: boolean = false;
   
   onBlurRoomName(){
+    if(!this.name){
+      this.flagIncorrectRoomName = false; 
+    }
+    else{
     if(!this.MakeRoomForm.valid){
       if(!this.MakeRoomForm.controls.RoomName.valid){
         this.flagIncorrectRoomName = true; 
-        this.flagCorrectName=false;
       }
       else{
       this.flagIncorrectRoomName = false; 
-        this.flagCorrectName=true;
       }   
     }
   }
+  }
   onBlurCapacity(){
+    if(!this.capacity){
+      this.flagIncorrectRoomCapacity = false;
+    }
+    else{
     if(!this.MakeRoomForm.valid){
     if(!this.MakeRoomForm.controls.Capacity.valid){
       this.flagIncorrectRoomCapacity = true;
-      this.flagCorrectCapacity=false;
   
     }else{
       this.flagIncorrectRoomCapacity = false;
-      this.flagCorrectCapacity=true;
     }
   }
+}
   }
 
   CreateRoom(){
