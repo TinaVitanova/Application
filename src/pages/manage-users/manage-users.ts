@@ -23,7 +23,9 @@ export class ManageUsersPage {
     this.apiProvider.getUser()
     .then(data => {
       this.users = data;
+      console.log(this.users);
     });
+    
   }
 
   constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController, public menuCtrl: MenuController) {
