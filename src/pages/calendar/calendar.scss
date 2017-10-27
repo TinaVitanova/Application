@@ -23,7 +23,9 @@ page-calendar {
             font-weight: 600;
         }
     }
+
     // choose room style
+
     .choose-room {
         @include button-style;
         margin: 7% 0%;
@@ -33,7 +35,9 @@ page-calendar {
     {
         color: map-get($colors, secondary);
     }
+
     //calendar style
+
     #title {
         color: map-get($colors, primary);
         border: 2px solid map-get($colors, primary);
@@ -44,13 +48,14 @@ page-calendar {
         .toolbar-title {
             color: map-get($colors, secondary);
         }
+        div .toolbar-title-md{
+            font-size:1.7rem!important;
+        }
     }
     .table-bordered[_ngcontent-c1] {
         border: 2px solid map-get($colors, primary);
-        // padding-bottom: 10px!important;
     }
     table[_ngcontent-c1] {
-        // padding: 10px 0px!important;
         thead[_ngcontent-c1] {
             background: map-get($colors, primary);
             color: white;
@@ -109,9 +114,11 @@ page-calendar {
         overflow: hidden;
         white-space: nowrap;
     }
+
     //events modification
+
     .event-detail-container[_ngcontent-c0] {
-        background: map-get($colors, text-color);
+        background: map-get($colors, light);
         border-radius: 7px;
         border: none!important;
         text-transform: uppercase;
@@ -126,7 +133,7 @@ page-calendar {
             color: rgba(77, 150, 165, 0.8);
             text-transform: uppercase;
             .no-events-label {
-                color: map-get($colors, text-color);
+                color: #dddddd;
                 letter-spacing: 1px;
             }
         }

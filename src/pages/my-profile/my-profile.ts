@@ -73,21 +73,23 @@ export class MyProfilePage {
       this.flagIncorrectEmail = false;
 
       let alert = this.alertCtrl.create({
-        title: 'Change',
+        cssClass: 'alert-style',
+        title: '<p class="alert-title"><b>CHANGE</b></p><hr />',
         inputs: [
           {
             name: 'password',
             placeholder: 'Password',
-            type: 'password'
+            type: 'password',
           }
         ],
         buttons: [
           {
-            text: 'Cancel',
+            text: 'CANCEL',
             role: 'cancel',
+            cssClass: 'alert-btn'
           },
           {
-            text: 'Change',
+            text: 'CHANGE',
             handler: data => {
               this.SubmitAttempt=true;
               if (data.password == "ok") {
