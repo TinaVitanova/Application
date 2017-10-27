@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ApiProvider{
-    apiUrl = 'http://10.10.20.76:8080';
+    apiUrl = 'http://10.10.20.177:8080';
     data:any;
     
     constructor(public http:Http){
@@ -49,9 +49,9 @@ export class ApiProvider{
         });
          console.log(JSON.stringify(data))
         return new Promise(resolve => {
-            this.http.post(this.apiUrl+'/user/add', data , { headers: headers })
+            this.http.post(this.apiUrl+'/user/add', JSON.stringify(data) , { headers: headers })
             .subscribe(res => {
-                console.log(JSON.stringify(data))
+                console.log(res)
                 resolve(res);
             }, (err) => {
                 console.log(JSON.stringify(data))
