@@ -39,7 +39,7 @@ export class CreateUserPage {
     this.CreateUserForm = formBuilder.group({
       username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/^[a-zA-Z][\w.-]*[a-zA-Z0-9]+$/),Validators.required])],
       fullname: ['', Validators.compose([Validators.required,Validators.maxLength(30),Validators.pattern(/[a-zA-Z]+( [a-zA-Z]*)/)])],
-      email: ['',Validators.compose([Validators.required,Validators.pattern(/^\w+([\.-]?\ w+)*@\w+([\.-]?\w+)*\.com/)])],
+      email: ['',Validators.compose([Validators.required,Validators.pattern(/^\w+([\.-]?\ w+)*@\w+([\.-]?\w+)*\.[a-z]{2,3}/)])],
       isAdmin:[''],
   });
     this.username = navParams.get('param2');
@@ -53,7 +53,11 @@ export class CreateUserPage {
     });
   }
 
-  onFocus(){
+  onBlur(){
+    if(!this.new.fullname){
+      this.flagIncorrectFullname = false;
+    }
+    else{
     if(!this.CreateUserForm.valid){
       if(!this.CreateUserForm.controls.fullname.valid){
         this.flagIncorrectFullname = true;
@@ -63,25 +67,42 @@ export class CreateUserPage {
         this.flagIncorrectFullname = false;
         this.flagCorrectFullname=true;
       }
-  
-      if(!this.CreateUserForm.controls.username.valid){
-        this.flagIncorrectUsername = true; 
-        this.flagCorrectUsername=false;
-      }
-      else{
-      this.flagIncorrectUsername = false; 
-        this.flagCorrectUsername=true;
-      }
-  
-      if(!this.CreateUserForm.controls.email.valid){
-        this.flagIncorrectEmail = true;
-        this.flagCorrectEmail=false;
-    
-      }else{
-        this.flagIncorrectEmail = false;
-        this.flagCorrectEmail=true;
-      }
     }
+  }
+  }
+  onBlurUsername(){
+    if(!this.new.username){
+      this.flagCorrectUsername = false;
+    }
+    else{
+    if(!this.CreateUserForm.valid){
+    if(!this.CreateUserForm.controls.username.valid){
+      this.flagIncorrectUsername = true; 
+      this.flagCorrectUsername=false;
+    }
+    else{
+    this.flagIncorrectUsername = false; 
+      this.flagCorrectUsername=true;
+    }
+  }
+}
+  }
+  onBlurEmail(){
+    if(!this.new.email){
+      this.flagIncorrectEmail = false;
+    }
+    else{
+    if(!this.CreateUserForm.valid){
+    if(!this.CreateUserForm.controls.email.valid){
+      this.flagIncorrectEmail = true;
+      this.flagCorrectEmail=false;
+  
+    }else{
+      this.flagIncorrectEmail = false;
+      this.flagCorrectEmail=true;
+    }
+  }
+}
   }
 
   logFormSignUp(){
