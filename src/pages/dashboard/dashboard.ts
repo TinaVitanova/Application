@@ -16,6 +16,7 @@ export class DashboardPage {
   calendarpage=CalendarPage;
   username;
   adminBtn = false;
+  showEvents = false;
   flagCalendar;
   MyEvents=this.EventData.getEvents();
   StartTime;
@@ -40,6 +41,7 @@ export class DashboardPage {
     this.navCtrl.push(CreateUserPage, {param2: this.username})
   }
   IsDate(events){
+    this.showEvents = true;
     let dateStart = moment(events.startTime).format('DD MM YYYY');
     let dateEnd = moment(events.endTime).format('DD MM YYYY');
     let dateToday = moment().format('DD MM YYYY');
