@@ -100,11 +100,10 @@ export class CalendarPage {
    let dateend = moment(event.startTime).format('Do MMMM YYYY');
    let start = moment(event.startTime).format('HH:mm');
     let end = moment(event.endTime).format('HH:mm');
- 
     let alert = this.alertCtrl.create({
       cssClass: 'alert-style',
-       title: '<p class="alert-title"><b>Event:</b><br />' + '<span>' + event.title + '</span></p><hr />',
-       message: '<div class="alert-message"><b>From:</b> '+datestart+'<br>At: '+start+'<br><b>Untill:</b> '+ dateend +'<br><b>At:</b> '+ end +'<br><b>Room:</b> </div>',
+       title: '<p class="alert-title"><b>EVENT:</b><br />' + '<span>' + event.title + '</span></p><hr />',
+       message: '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'</div>' ,
        buttons:[
        {
          cssClass: 'alert-btn',
