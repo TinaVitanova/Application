@@ -8,7 +8,6 @@ import { NgCalendarModule } from 'ionic2-calendar';
 import { IonicStorageModule } from '@ionic/storage';
 import { Validator } from '../validators/FormValidator';
 import { HttpModule } from '@angular/http';
-
 import { TodayPage } from '../pages/my-schedule/days/today/today';
 import { TomorrowPage } from '../pages/my-schedule/days/tomorrow/tomorrow';
 import { NextDaysPage } from '../pages/my-schedule/days/next-days/next-days';

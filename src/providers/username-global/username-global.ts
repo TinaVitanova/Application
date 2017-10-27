@@ -23,19 +23,21 @@ export class UsernameGlobalProvider {
     }
   }
   public setIsLoggedIn(value){
-    this.storage.set(this.IsLoggedIn,value);
+    this.storage.set("IsLoggedIn",value);
+    console.log(this.storage);
   }
   public setUserLoggedIn(value){
-    this.storage.set(this.UserLoggedIn,value);
+    this.storage.set("UserLoggedIn",value);
+    console.log(this.storage);
   }
   public getUserLoggedIn(){
-    this.storage.get(this.UserLoggedIn).then((value) =>{
-      return this.UserLoggedIn
+    this.storage.get("UserLoggedIn").then((value) =>{
+      return value
     })
   }
   public getIsLoggedIn(){
-    this.storage.get(this.IsLoggedIn).then((value) =>{
-      return this.IsLoggedIn
+    this.storage.get("IsLoggedIn").then((value) =>{
+      return value
     })
   }
 

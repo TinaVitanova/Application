@@ -176,12 +176,19 @@ export class ReserveEventPage {
         this.FillOutForm=true;
     }
     else if(this.ReserveEventForm.valid){
-      if(this.flagForWarning==false && this.flagIsNextDay==false && this.flagLowEndDate==false){
-          this.FillOutForm=false;
-      }
-      else if (this.flagForWarning==true || this.flagIsNextDay==true || this.flagLowEndDate==true){
+      if(this.flagForWarning==false){
+        if(this.flagIsNextDay==false){
+          if(this.flagLowEndDate==false){
+            this.FillOutForm=false;
+          }
+          else
+          this.FillOutForm=true;
+        }
+        else
         this.FillOutForm=true;
       }
+      else
+        this.FillOutForm=true;
     }
     else this.FillOutForm=true;
     
