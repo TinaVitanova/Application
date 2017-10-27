@@ -13,17 +13,11 @@
 </ion-header>
 
 <ion-content padding class="background">
-    <form (ngSubmit)="logFormSignUp()" [formGroup]="CreateUserForm">
+    <form (ngSubmit)="logFormSignUp()" [formGroup]="CreateUserForm" method="post">
         <ion-list>
             <ion-item>
                 <ion-label floating>
-                    <ion-icon name="person"></ion-icon> &nbsp; Full Name</ion-label>
-                <ion-input type="text" formControlName="fullname" (blur)="onBlur()" [class.invalid]="!CreateUserForm.controls.fullname.valid && CreateUserForm.controls.fullname.dirty && submitAttempt" [(ngModel)]="new.fullname" name="fullname"></ion-input>
-            </ion-item>
-            <p text-center class="invalid-style" [hidden]="!flagIncorrectFullname">This name already exists or you have inserted an invalid character!</p>
 
-            <ion-item>
-                <ion-label floating>
                     <ion-icon name="person-add"></ion-icon> &nbsp; Username</ion-label>
                 <ion-input type="text" formControlName="username" (blur)="onBlurUsername()" [class.invalid]="!CreateUserForm.controls.username.valid && CreateUserForm.controls.username.dirty && submitAttempt" [(ngModel)]="user.userName" name="username"></ion-input>
             </ion-item>

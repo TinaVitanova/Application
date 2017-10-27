@@ -20,7 +20,6 @@ export class CreateUserPage {
   picture;
   new = {
     username:"",
-    fullname:"",
     email:"",
     isAdmin:"",
   };
@@ -29,47 +28,29 @@ export class CreateUserPage {
   
   
   flagCorrectUsername:boolean=false;
-  flagCorrectFullname:boolean=false;
   flagCorrectEmail:boolean=false;
   flagIncorrectUsername:boolean = false;
-  flagIncorrectFullname:boolean=false;
   flagIncorrectEmail:boolean = false;
   
   constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder, private menuCtrl: MenuController) {
     this.CreateUserForm = formBuilder.group({
       username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/^[a-zA-Z][\w.-]*[a-zA-Z0-9]+$/),Validators.required])],
-      fullname: ['', Validators.compose([Validators.required,Validators.maxLength(30),Validators.pattern(/[a-zA-Z]+( [a-zA-Z]*)/)])],
-      email: ['',Validators.compose([Validators.required,Validators.pattern(/^\w+([\.-]?\ w+)*@\w+([\.-]?\w+)*\.[a-z]{2,3}/)])],
+      email: ['',Validators.compose([Validators.required,Validators.pattern(/^\w+([\.-]?\ w+)*@\w+([\.-]?\w+)*\.com/)])],
       isAdmin:[''],
   });
     this.username = navParams.get('param2');
   }
 
   saveUser() {
-    this.apiProvider.saveUser(this.user).then((result) => {
-      console.log(result);
-    }, (err) => {
-      console.log(err);
-    });
+    // this.apiProvider.saveUser(this.user).then((result) => {
+    //   console.log(result);
+    // }, (err) => {
+    //   console.log(err);
+    // });
+    this.apiProvider.saveUser(this.user);
   }
 
-  onBlur(){
-    if(!this.new.fullname){
-      this.flagIncorrectFullname = false;
-    }
-    else{
-    if(!this.CreateUserForm.valid){
-      if(!this.CreateUserForm.controls.fullname.valid){
-        this.flagIncorrectFullname = true;
-        this.flagCorrectFullname=false;
-    
-      }else{
-        this.flagIncorrectFullname = false;
-        this.flagCorrectFullname=true;
-      }
-    }
-  }
-  }
+  
   onBlurUsername(){
     if(!this.new.username){
       this.flagCorrectUsername = false;
@@ -118,16 +99,14 @@ export class CreateUserPage {
 
   CreateNewUser(){
     if(this.CreateUserForm.valid){
-      this.flagIncorrectFullname = false;
       this.flagIncorrectUsername = false;
       this.flagIncorrectEmail = false;
       
       let alert = this.alertCtrl.create({
         cssClass: 'alert-style',
         title: '<p class="alert-title"><b>USER CREATED:</b><br /></p><hr />',
-        subTitle: '<div class="alert-message"><b>FULLNAME:</b> ' + this.new.fullname +
-                  '<br><b>USERNAME:</b> ' + this.new.username + 
-                  '<br><b>EMAIL:</b> ' + this.new.email 
+        subTitle: '<div class="alert-message"><b>USERNAME:</b> ' + this.user.userName + 
+                  '<br><b>EMAIL:</b> ' + this.user.email 
                   + '</div>',   
        buttons:[
         {
@@ -140,10 +119,11 @@ export class CreateUserPage {
           text: 'CONFIRM',
           role: 'confirm',
           handler: data => {
+            this.saveUser();
             this.submitAttempt = true;
             this.picture = this.UserGlobal.getDefaultImage();
             this.UserGlobal.addNewUser(this.user,this.picture);
-            this.saveUser();
+            
             this.resetForm();
           }
         }

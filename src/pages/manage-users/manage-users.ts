@@ -23,6 +23,7 @@ export class ManageUsersPage {
     this.apiProvider.getUser()
     .then(data => {
       this.users = data;
+      console.log(this.users);
     });
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class ApiProvider{
     constructor(public http:Http){
         
     }
-    
+
     getUser() {
         if (this.data) {
             return Promise.resolve(this.data);
@@ -27,16 +27,35 @@ export class ApiProvider{
         });
     }
 
-    saveUser(data) {
-        //let body = JSON.stringify({});
-        let headers = new Headers({ 'Accept':'application/json',
-         'Content-Type':'application/json'});
+    // saveUser(data) {
+    //     let headers = new Headers({ 'Accept':'application/json',
+    //      'Content-Type':'application/json'});
         
-        return new Promise((resolve) => {
-            this.http.post(this.apiUrl+'/user/add', JSON.stringify(data), { headers: headers })
+    //      var requestoptions = new RequestOptions({
+    //         method: RequestMethod.Post,
+    //         url: this.apiUrl + '/user/add',
+    //         headers: headers,
+    //         body: JSON.stringify(data)
+    //     })
+
+    //     return this.http.post(this.apiUrl+'/user/add', JSON.stringify(data), { headers: headers });
+
+    // }
+
+    saveUser(data) {
+        let headers = new Headers({ 
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*'
+        });
+         console.log(JSON.stringify(data))
+        return new Promise(resolve => {
+            this.http.post(this.apiUrl+'/user/add', JSON.stringify(data) , { headers: headers })
             .subscribe(res => {
+                console.log(res)
                 resolve(res);
             }, (err) => {
+                console.log(JSON.stringify(data))
                 console.log(err);
             });
         });
