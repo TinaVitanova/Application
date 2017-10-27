@@ -16,8 +16,6 @@ export class HomePage {
     loginForm: FormGroup;
     UsernamesList = [];
     submitAttempt: boolean = false;
-    flagCorrectUsername:boolean=false;
-    flagCorrectPassword:boolean=false;
     flagIncorrectUsername:boolean = false;
     flagIncorrectPassword:boolean = false;
     message:string="";
@@ -67,26 +65,35 @@ export class HomePage {
     }
   }
 
-  onBlur(){
+  onBlurUsername(){
+    if(!this.login.username){
+      this.flagIncorrectUsername = false; 
+    }
+    else{
     if(!this.loginForm.valid){
       if(!this.loginForm.controls.username.valid){
         this.flagIncorrectUsername = true; 
-        this.flagCorrectUsername=false;
       }
       else{
       this.flagIncorrectUsername = false; 
-        this.flagCorrectUsername=true;
-      }
-  
-      if(!this.loginForm.controls.password.valid){
-        this.flagIncorrectPassword = true;
-        this.flagCorrectPassword=false;
-    
-      }else{
-        this.flagIncorrectPassword = false;
-        this.flagCorrectPassword=true;
       }
     }
+  }
+  }
+  onBlurPassword(){
+    if(!this.login.password){
+      this.flagIncorrectPassword=false;
+    }
+    else{
+    if(!this.loginForm.valid){
+    if(!this.loginForm.controls.password.valid){
+      this.flagIncorrectPassword = true;
+  
+    }else{
+      this.flagIncorrectPassword = false;
+    }
+  }
+}
   }
 
   //show/hide password

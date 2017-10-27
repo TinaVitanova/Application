@@ -12,21 +12,33 @@ export class NextDaysPage {
   StartTime;
   EndTime;
   FlagNextDay;
+  allDayEvent=false;
   FlagEventYesterday=true;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
   }
 
   IsDate(events){
     let date = moment(events.startTime).format('DD MM YYYY');
-    let nextDay =  moment().add(1,'days').format('DD MM YYYY');
+    let nextDay =  moment().add(2,'days').format('DD MM YYYY');
     let dateStart = moment(events.startTime).format('DD MM YYYY');
     let dateEnd = moment(events.endTime).format('DD MM YYYY');
     let dateToday = moment().format('DD MM YYYY');
     let otherDays = moment().add(5,'days').format('DD MM YYYY');
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
-    if ((dateStart < nextDay && otherDays <= dateEnd)||(dateStart > nextDay && dateStart < otherDays)||(dateEnd > nextDay && dateEnd < otherDays))
+    if ((dateStart <= nextDay && otherDays <= dateEnd)||(dateStart >= nextDay && dateStart < otherDays)||(dateEnd >= nextDay && dateEnd < otherDays)){
+    if(events.allDay==true){
+      if(dateEnd!=nextDay){
+        this.allDayEvent=true;
+        return true;
+      }
+      else{
+        return false;
+      }
+    }else {
+      this.allDayEvent=false;
       return true;
+  }}
     else
       return false;
   }

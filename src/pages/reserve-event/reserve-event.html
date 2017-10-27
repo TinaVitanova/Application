@@ -8,45 +8,49 @@
 <ion-content padding>
     <form [formGroup]="ReserveEventForm">
     <ion-item>
-        <ion-label>Title</ion-label>
-        <ion-input text-right type="text" placeholder="Title" formControlName="title" [class.invalid]="!ReserveEventForm.controls.title.valid && ReserveEventForm.controls.title.dirty && submitAttempt" [(ngModel)]="title"></ion-input>
+        <ion-label>TITLE</ion-label>
+        <ion-input text-right type="text" placeholder="Example" (blur)="onBlurTitle()" formControlName="title" [class.invalid]="!ReserveEventForm.controls.title.valid && ReserveEventForm.controls.title.dirty && submitAttempt" [(ngModel)]="title"></ion-input>
     </ion-item>
+    <p class="invalid-style" text-center [hidden]="!flagTitle">Invalid Title</p>
     <ion-item>
-        <ion-label>All Day</ion-label>
+        <ion-label>ALL DAY</ion-label>
         <ion-toggle (ionChange)="OnTapAllDay($event)"></ion-toggle>
     </ion-item>
     <ion-item>
-        <ion-label>Start Day</ion-label>
+        <ion-label>START DAY</ion-label>
          <ion-datetime displayFormat="DD-MM-YYYY" (ionChange)="OnBlurStartDay()" pickerFormat="DD-MM-YYYY" formControlName="startday" [class.invalid]="!ReserveEventForm.controls.startday.valid && ReserveEventForm.controls.startday.dirty && submitAttempt" [(ngModel)]="startday" [max]="maxDate" [min]="minDate"></ion-datetime> 
     </ion-item>
     <ion-item [hidden]="flagAllDay">
-        <ion-label>Start</ion-label>
-        <ion-datetime displayFormat="HH:mm" (ionChange)="OnBlurStartTime()" pickerFormat="HH:mm" minuteValues="0,15,30,45" formControlName="startTime" [class.invalid]="!ReserveEventForm.controls.startTime.valid && ReserveEventForm.controls.startTime.dirty && submitAttempt" [(ngModel)]="startTime"></ion-datetime>
-    </ion-item>
-    <ion-item [hidden]="flagAllDay">
-        <ion-label>End Day</ion-label>
+        <ion-label>END DAY</ion-label>
          <ion-datetime displayFormat="DD-MM-YYYY" (ionChange)="OnBlurEndDay()" pickerFormat="DD-MM-YYYY" formControlName="endday" [class.invalid]="!ReserveEventForm.controls.endday.valid && ReserveEventForm.controls.endday.dirty && submitAttempt" [(ngModel)]="endday" [max]="maxDate" [min]="minDate"></ion-datetime> 
     </ion-item>
-    <ion-item [hidden]="flagAllDay">
-        <ion-label>End</ion-label>
-        <ion-datetime displayFormat="HH:mm" (ionChange)="OnBlurEndTime()" pickerFormat="HH:mm" minuteValues="0,15,30,45" formControlName="endTime" [class.invalid]="!ReserveEventForm.controls.endTime.valid && ReserveEventForm.controls.endTime.dirty && submitAttempt" [(ngModel)]="endTime"></ion-datetime>
-    </ion-item>
-    
-</form>
-<p text-center [hidden]="!flagTimeEqual">Start time can not be equal to end time</p>
-<p text-center [hidden]="!flagIsNextDay">Start time must be before end time</p>
-<p text-center [hidden]="!flagLowEndDate">Start date must be before end date</p>
-<p text-center [hidden]="!FillOutForm">Please fill out the form correctly</p>
+    <p class="invalid-style" text-center [hidden]="!flagLowEndDate">Start date must be before end date.</p>
+    <ion-grid [hidden]="flagAllDay" text-center>
+        <ion-row>
+            <ion-col col-6>
+                <ion-label class="time-label">START TIME </ion-label>
+                <ion-datetime class="time-input" displayFormat="HH:mm" (ionChange)="OnBlurStartTime()" pickerFormat="HH:mm" minuteValues="0,15,30,45" formControlName="startTime" [class.invalid]="!ReserveEventForm.controls.startTime.valid && ReserveEventForm.controls.startTime.dirty && submitAttempt" [(ngModel)]="startTime"></ion-datetime>             
+            </ion-col>
+            <ion-col col-6>
+                <ion-label class="time-label">END TIME</ion-label>
+                <ion-datetime class="time-input" displayFormat="HH:mm" (ionChange)="OnBlurEndTime()" pickerFormat="HH:mm" minuteValues="0,15,30,45" formControlName="endTime" [class.invalid]="!ReserveEventForm.controls.endTime.valid && ReserveEventForm.controls.endTime.dirty && submitAttempt" [(ngModel)]="endTime"></ion-datetime>           
+            </ion-col>
+        </ion-row>
+    </ion-grid>    
+    </form>
+    <p class="invalid-style" text-center [hidden]="!flagTimeEqual">Start time can not be equal to end time.</p>
+    <p class="invalid-style" text-center [hidden]="!flagIsNextDay">Start time must be before end time.</p>
+    <p class="invalid-style" text-center [hidden]="!FillOutForm">Please fill out the form correctly.</p>
     <ion-buttons text-center id="find-room">
-        <button style="margin-top:4%;" large ion-button (click)="findRoom()">Available Rooms</button>
+        <button style="margin-top:4%;" large ion-button (click)="findRoom()">FIND</button>
     </ion-buttons>
 
     <ion-item [hidden]="!showAvailableRooms" id="choose-room">
         <ion-label>
-            <ion-icon color="secondary" name="cube"></ion-icon> &nbsp; CHOOSE ROOM</ion-label>
+            <ion-icon color="secondary" name="cube"></ion-icon> &nbsp; AVAILABLE ROOMS</ion-label>
         <ion-select class="choose-room-opt" [(ngModel)]="rooms">
-            <label *ngIf="!showRoom">NO ROOM CREATED</label>
-            <span *ngIf="showRoom">
+            <ion-label *ngIf="!showRooms()">NO ROOM CREATED</ion-label>
+            <span *ngIf="showRooms()">
                         <ion-option (ionSelect)="SelectedRoom(r)" *ngFor="let r of ListOfRooms">{{r.name}}</ion-option>
             </span>
         </ion-select>

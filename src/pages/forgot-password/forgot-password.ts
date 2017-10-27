@@ -15,11 +15,11 @@ export class ForgotPasswordPage {
   newemail: string;
   public SubmitAttempt = false;
   flagIncorrectEmail:boolean = false;
-  flagCorrectEmail:boolean=false;
+  warning=false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public formBuilder: FormBuilder, public UserGlobal: UsernameGlobalProvider, public EventData: EventDataProvider) {
     this.ForgotPasswordForm = formBuilder.group({
-    newemail: ['',Validators.compose([Validators.pattern('[a-z0-9]+\@[a-z]+\.com'),Validators.required, new Validator(UserGlobal, EventData).isGlobalEmailValid])]
+    newemail: ['',Validators.compose([Validators.pattern(/[a-z0-9]+\@[a-z]+\.[a-z]{2,3}/),Validators.required, new Validator(UserGlobal, EventData).isGlobalEmailValid])]
   });
   }
 
@@ -28,15 +28,17 @@ export class ForgotPasswordPage {
   }
 
   onBlur(){
+    if(!this.newemail){
+      this.flagIncorrectEmail = false;
+    }
+    else{
     if(!this.ForgotPasswordForm.valid){
       if(!this.ForgotPasswordForm.controls.newemail.valid){
         this.flagIncorrectEmail = true;
-        this.flagCorrectEmail=false;
-    
       }else{
         this.flagIncorrectEmail = false;
-        this.flagCorrectEmail=true;
       }
+    }
     }
   }
 
@@ -45,6 +47,10 @@ export class ForgotPasswordPage {
       this.flagIncorrectEmail = false;
       this.SubmitAttempt=true;
       //prati na backend
+    }
+    if(this.SubmitAttempt=true){
+      //ako uspealo so backend
+      this.warning=true;
     }
   }
 

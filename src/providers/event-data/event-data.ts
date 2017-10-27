@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
-import * as moment from 'moment';
-
 @Injectable()
 export class EventDataProvider {
   public flag;

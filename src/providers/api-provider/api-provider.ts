@@ -22,6 +22,7 @@ export class ApiProvider{
             .subscribe(data => {
                 this.data = data;
                 resolve(this.data);
+                console.log(this.data);
             });
         });
     }

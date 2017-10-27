@@ -1,9 +1,9 @@
 <ion-header>
     <ion-navbar color="secondary">
         <ion-buttons end>
-            <!--     <button ion-button (click)="changeMode('month')">M</button>
+            <!--<button ion-button (click)="changeMode('month')">M</button>
             <button ion-button (click)="changeMode('week')">W</button>
-            <button ion-button (click)="changeMode('day')">D</button> -->
+            <button ion-button (click)="changeMode('day')">D</button>-->
 
             <button id="add-event" ion-button (click)="addEvent()">
                     <ion-icon name="add"></ion-icon>
@@ -17,16 +17,16 @@
         <ion-label>CHOOSE A ROOM</ion-label>
         <ion-select [(ngModel)]="rooms" name="rooms">
             <ion-option value="all" [selected]="all == rooms" (ionSelect)="loadEvents()">All Rooms</ion-option>
-            <span *ngIf="showRoom">
+            <span *ngIf="showRooms()">
                 <ion-option *ngFor="let r of ListOfRooms" (ionSelect)="loadRoomEvents(r)">{{r.name}}</ion-option>
             </span>
         </ion-select>
     </ion-item>
 
     <ion-item id="title">
-        <ion-icon item-start name="arrow-dropleft-circle" (click)="previousMonth()"></ion-icon>
+        <ion-icon item-start style="cursor:pointer" name="arrow-dropleft-circle" (click)="previousMonth()"></ion-icon>
         <ion-title text-center>{{ viewTitle }}</ion-title>
-        <ion-icon item-end name="arrow-dropright-circle" (click)="nextMonth()"></ion-icon>
+        <ion-icon item-end style="cursor:pointer"  name="arrow-dropright-circle" (click)="nextMonth()"></ion-icon>
     </ion-item>
 
     <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate" (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30" (onRangeChanged)="onRangeChanged($event)"

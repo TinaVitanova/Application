@@ -54,9 +54,6 @@ export class ManageUsersPage {
           text: 'CANCEL',
           cssClass: 'alert-btn',
           role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
         },
         {
           text: 'DELETE',

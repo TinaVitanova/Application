@@ -106,8 +106,8 @@ export class MyProfilePage {
 
   constructor(public navCtrl: NavController, public events:Events, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public formBuilder: FormBuilder, public EventData: EventDataProvider, private menuCtrl: MenuController) {
     this.ChangeUserForm = formBuilder.group({
-      newusername: ['', Validators.compose([Validators.maxLength(15),Validators.pattern('[a-zA-Z0-9]*'),Validators.required, new Validator(UserGlobal, EventData).isNewUsernameValid])],
-      newemail: ['',Validators.compose([Validators.pattern('[a-z0-9]+\@[a-z]+\.com'),Validators.required, new Validator(UserGlobal, EventData).isNewEmailValid])],
+    newusername: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9]*/),Validators.required, new Validator(UserGlobal, EventData).isNewUsernameValid])],
+      newemail: ['',Validators.compose([Validators.pattern(/[a-z0-9]+\@[a-z]+\.[a-z]{2,3}/),Validators.required, new Validator(UserGlobal, EventData).isNewEmailValid])],
       newpassword: ['', Validators.compose([Validators.required])],
     });
 

@@ -24,13 +24,13 @@
                 <ion-label floating>New Username</ion-label>
                 <ion-input type="text" formControlName="newusername" (ionBlur)="onBlur()" [class.invalid]="!ChangeUserForm.controls.newusername.valid && SubmitAttempt" [(ngModel)]="todo.newusername" name="username"></ion-input>
             </ion-item>
-            <p text-center class="invalid" [hidden]="!flagIncorrectUsername">Incorrect username or already exists!</p>
+            <p text-center class="invalid-style" [hidden]="!flagIncorrectUsername">Incorrect username or already exists!</p>
 
             <ion-item>
                 <ion-label floating>New Email</ion-label>
                 <ion-input type="email" formControlName="newemail" (ionBlur)="onBlur()" [class.invalid]="!ChangeUserForm.controls.newemail.valid && SubmitAttempt" [(ngModel)]="todo.newemail" name="newemail"></ion-input>
             </ion-item>
-            <p text-center class="invalid" [hidden]="!flagIncorrectEmail">Incorrect email or already exists!</p>
+            <p text-center class="invalid-style" [hidden]="!flagIncorrectEmail">Incorrect email or already exists!</p>
 
             <ion-item>
                 <ion-label floating>New Password</ion-label>
@@ -38,7 +38,7 @@
                 <button style="font-size:120%" ion-button clear class="password__btn__toggle" item-right (click)="togglePassword(input)" [hidden]="showPassword"> <ion-icon id="password__icon" name="eye"> </ion-icon> </button>
                 <button style="font-size:120%" ion-button clear class="password__btn__toggle" item-right (click)="togglePassword(input)" [hidden]="!showPassword"> <ion-icon id="password__icon" name="eye-off"> </ion-icon> </button>
             </ion-item>
-            <p text-center class="invalid" [hidden]="!flagIncorrectPassword">Incorrect password or already exists!</p>
+            <p text-center class="invalid-style" [hidden]="!flagIncorrectPassword">Incorrect password or already exists!</p>
         </ion-list>
     </form>
     <ion-buttons text-center>

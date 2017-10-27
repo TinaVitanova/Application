@@ -50,26 +50,40 @@ export class CreateUserPage {
     this.apiProvider.saveUser(this.user);
   }
 
-  onFocus(){
-    if(!this.CreateUserForm.valid){
-      if(!this.CreateUserForm.controls.username.valid){
-        this.flagIncorrectUsername = true; 
-        this.flagCorrectUsername=false;
-      }
-      else{
-      this.flagIncorrectUsername = false; 
-        this.flagCorrectUsername=true;
-      }
   
-      if(!this.CreateUserForm.controls.email.valid){
-        this.flagIncorrectEmail = true;
-        this.flagCorrectEmail=false;
-    
-      }else{
-        this.flagIncorrectEmail = false;
-        this.flagCorrectEmail=true;
-      }
+  onBlurUsername(){
+    if(!this.new.username){
+      this.flagCorrectUsername = false;
     }
+    else{
+    if(!this.CreateUserForm.valid){
+    if(!this.CreateUserForm.controls.username.valid){
+      this.flagIncorrectUsername = true; 
+      this.flagCorrectUsername=false;
+    }
+    else{
+    this.flagIncorrectUsername = false; 
+      this.flagCorrectUsername=true;
+    }
+  }
+}
+  }
+  onBlurEmail(){
+    if(!this.new.email){
+      this.flagIncorrectEmail = false;
+    }
+    else{
+    if(!this.CreateUserForm.valid){
+    if(!this.CreateUserForm.controls.email.valid){
+      this.flagIncorrectEmail = true;
+      this.flagCorrectEmail=false;
+  
+    }else{
+      this.flagIncorrectEmail = false;
+      this.flagCorrectEmail=true;
+    }
+  }
+}
   }
 
   logFormSignUp(){
