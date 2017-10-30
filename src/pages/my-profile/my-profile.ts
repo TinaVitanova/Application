@@ -74,11 +74,11 @@ export class MyProfilePage {
 
       let alert = this.alertCtrl.create({
         cssClass: 'alert-style',
-        title: '<p class="alert-title"><b>CHANGE</b></p><hr />',
+        title: '<p class="alert-title"><b>SAVE CHANGES</b></p><hr />',
         inputs: [
           {
             name: 'password',
-            placeholder: 'Password',
+            placeholder: 'Current Password',
             type: 'password',
           }
         ],
@@ -89,7 +89,7 @@ export class MyProfilePage {
             cssClass: 'alert-btn'
           },
           {
-            text: 'CHANGE',
+            text: 'SAVE',
             handler: data => {
               this.SubmitAttempt=true;
               if (data.password == "ok") {
