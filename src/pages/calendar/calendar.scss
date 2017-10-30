@@ -127,7 +127,7 @@ page-calendar {
         margin-top: 8%;
         .item-ios,
         .item-md {
-            background: rgba(white, 0.45);
+            background: map-get($colors, primary);
             color: rgba(77, 150, 165, 0.8);
             text-transform: uppercase;
             .no-events-label {
@@ -145,11 +145,12 @@ page-calendar {
     }
 
     .monthview-eventdetail-timecolumn[_ngcontent-c0]{
-        color: map-get($colors, primary);
+        color: white;
         font-size: 95%;
+        font-weight: bold;
     }
 
     .event-detail[_ngcontent-c0]{
-        color: map-get($colors, secondary-light);
+        color:rgba(white, .7);
     }
 }
