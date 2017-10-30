@@ -61,7 +61,7 @@ export class EventDataProvider {
   }
 
   public setEvent(value1,value2,value3,value4,value5){
-    this.Eventdata = {title: value1 +" Room: "+  value5.name, startTime: value2, endTime: value3, allDay: value4, room: value5};
+    this.Eventdata = {title: value1, startTime: value2, endTime: value3, allDay: value4, room: value5};
     this.AllEvents.push(this.Eventdata);
   }
 

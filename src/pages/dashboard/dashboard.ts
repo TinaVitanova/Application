@@ -50,7 +50,8 @@ export class DashboardPage {
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
     this.StartDate = moment(events.startTime).format('DD.MM');
-    this.EndDate = moment(events.endTime).format('DD.MM');
+    this.EndDate = moment(events.endTime).format('-DD.MM');
+
     if (dateStart <= dateToday && dateToday <= dateEnd)
       return true;
     else

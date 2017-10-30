@@ -229,6 +229,16 @@ $toolbar-ios-title-font-weight: 500;
         height: 80%;
     }
 
+    ion-grid .item .item-block .item-ios{
+      height:85%!important;
+    }
+
+    ion-grid hr{
+      border-bottom: 1px solid map-get($colors, light);
+      width: 100%;
+      margin-top: 5%;
+    }
+
     .event-time, .event-date{
         background: map-get($colors, primary);
         color: white;
@@ -237,22 +247,30 @@ $toolbar-ios-title-font-weight: 500;
         text-align: center;
         font-size: 100%;
         padding: 2% 0%;
+
+        ion-icon{
+          bottom: 7%;
+        }
     }
 
     .event-date{
-      background:#81DAE4;
+      background:#6DD2DD;
     }
 
     .event-title{
         background: white;
         color: map-get($colors, text-color);
-        font-weight: normal;
+        font-weight: bold;
         padding: 3%;
         font-size: 95%;
         border: 2px solid map-get($colors, primary);
         border-radius: 5px;
         margin-left:1%;
         overflow-x: hidden;
+
+        span{
+          color: rgba(black, .6);
+        }
     }
 }
 
