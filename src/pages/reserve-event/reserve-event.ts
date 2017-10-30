@@ -79,6 +79,11 @@ export class ReserveEventPage {
   }
 
   onBlurTitle(){
+    if(!this.flagTitle){
+      this.flagTitle=false;
+      this.FillOutForm=false;
+    }
+    else{
     this.FillOutForm=false;
     if(this.ReserveEventForm.controls.title.valid){
       this.flagTitle=false;
@@ -87,6 +92,7 @@ export class ReserveEventPage {
        this.flagTitle=true;
       this.showAvailableRooms=false;
     }
+  }
   }
 
   OnBlurStartDay(){
@@ -557,6 +563,7 @@ export class ReserveEventPage {
     this.endday= moment().toISOString();
     this.endTime="08:00";
     this.startTime="07:00";
+    this.showAvailableRooms=false;
   }
   ionViewWillEnter(){
     // this.IsChangeEvent=this.EventData.getIsChangeEvent();
