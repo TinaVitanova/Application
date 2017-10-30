@@ -52,6 +52,8 @@ export class EventDataProvider {
   //   return this.IsChangeEvent;
   // }
 
+
+  
   public getRoomName(i){
     var roomName;
     for (var j=0; j<this.AllEvents.length; j++){

@@ -2,6 +2,7 @@ import { NavController, NavParams, AlertController, MenuController } from 'ionic
 import { Component } from '@angular/core';
 import { ReserveEventPage } from '../reserve-event/reserve-event';
 import { EventDataProvider } from '../../providers/event-data/event-data';
+import { ApiProvider } from '../../providers/api-provider/api-provider';
 
 import * as moment from 'moment';
 
@@ -16,6 +17,7 @@ export class CalendarPage {
   flagCalendar;
   ListOfRooms;
   roomName;
+  reservations;
   showRoom = this.EventData.getShowRoom();
   
   calendar = {
@@ -25,8 +27,12 @@ export class CalendarPage {
   showRooms(){
     return this.showRoom;
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
-    this.loadEvents();
+  constructor(public navCtrl: NavController, public navParams: NavParams, private apiProvider:ApiProvider, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
+    this.loadEvents();this.apiProvider.getReservations()
+    .then(data => {
+      this.reservations = data;
+      console.log (this.reservations)
+    });
     }
   onViewTitleChanged(title) {
       this.viewTitle = title;
@@ -79,12 +85,15 @@ export class CalendarPage {
   createEvent (){
       var allEvents = this.EventData.getEvents();
       var events = [];
-    for (var i=0; i<allEvents.length; i++){
+    for (var i=0; i<this.reservations.length; i++){
+      let start = new Date(this.reservations[i].meetStarts)
+      let end = new Date(this.reservations[i].meetEnds)
+
       events.push({
-            title: allEvents[i].title + " Room: " + this.EventData.getRoomName(i),
-            startTime: allEvents[i].startTime,
-            endTime: allEvents[i].endTime,
-            allDay: allEvents[i].allDay
+            title: this.reservations[i].title, //+ " Room: " + this.EventData.getRoomName(i),
+            startTime: start,
+            endTime: end,
+            allDay: false
         });
       }
         return events;

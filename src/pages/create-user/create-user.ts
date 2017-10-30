@@ -18,8 +18,10 @@ export class CreateUserPage {
   CreateUserForm: FormGroup;
   submitAttempt: boolean = false;
   picture;
+  email: string;
+  userName:string;
 
-  user = {email:'',userName:''};
+  user : {email:string, userName:string,role_id:string};
   
   
   flagCorrectUsername:boolean=false;
@@ -42,21 +44,18 @@ export class CreateUserPage {
     // }, (err) => {
     //   console.log(err);
     // });
-
-
-    // if(this.isAdmin==true){
-    //   this.user.role=1;
-    // }
-    // else
-    // this.user.role=0;
-
-    
+    if(this.isAdmin==true){
+      this.user={email:this.email,userName:this.userName,role_id:"0"}
+    }
+    else{
+    this.user={email:this.email,userName:this.userName,role_id:"1"}
+    }
     this.apiProvider.saveUser(this.user);
   }
 
   
   onBlurUsername(){
-    if(!this.user.userName){
+    if(!this.userName){
       this.flagCorrectUsername = false;
     }
     else{
@@ -73,7 +72,7 @@ export class CreateUserPage {
 }
   }
   onBlurEmail(){
-    if(!this.user.email){
+    if(!this.email){
       this.flagIncorrectEmail = false;
     }
     else{
@@ -106,8 +105,8 @@ export class CreateUserPage {
       let alert = this.alertCtrl.create({
         cssClass: 'alert-style',
         title: '<p class="alert-title"><b>USER CREATED:</b><br /></p><hr />',
-        subTitle: '<div class="alert-message"><b>USERNAME:</b> ' + this.user.userName + 
-                  '<br><b>EMAIL:</b> ' + this.user.email 
+        subTitle: '<div class="alert-message"><b>USERNAME:</b> ' + this.userName + 
+                  '<br><b>EMAIL:</b> ' + this.email 
                   + '</div>',   
        buttons:[
         {

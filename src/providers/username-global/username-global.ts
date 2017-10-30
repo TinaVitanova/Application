@@ -16,8 +16,6 @@ export class UsernameGlobalProvider {
   public FullUsers:{username: string,  email: string, password: string, isAdmin: boolean, picture: string}[]= [];
   public CurrentUserIndex = 0;
 
-  public drn;
-
   constructor(public storage: Storage, private apiProvider: ApiProvider) {
     for (var i=0; i<3; i++){
     this.UsersData = {username: this.Usernames[i], email: this.Emails[i], password: this.Passwords[i], isAdmin: this.IsAdmin[i], picture: this.defaultImage };

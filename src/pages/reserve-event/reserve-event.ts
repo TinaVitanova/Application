@@ -5,6 +5,7 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 import { EventDataProvider } from '../../providers/event-data/event-data';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Validator } from '../../validators/FormValidator';
+import { ApiProvider } from '../../providers/api-provider/api-provider';
 
 @IonicPage()
 @Component({
@@ -43,10 +44,11 @@ export class ReserveEventPage {
   public AllEvents = this.EventData.getEvents();
   public FullListOfRooms = this.EventData.getRoomData();
   public ListOfRooms=JSON.parse(JSON.stringify(this.FullListOfRooms));
+  reservation: {meetStarts:number,meetEnds:number,reservationTitle:string,room:Object,user:Object};
   showRoom = this.EventData.getShowRoom();
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder, public menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider:ApiProvider, public alertCtrl: AlertController, public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder, public menuCtrl: MenuController) {
     this.ReserveEventForm = formBuilder.group({
       title: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9][\w]+\s?[\w]+$/),Validators.required, new Validator(UserGlobal, EventData).isEventTitleValid])],
       startday: ['',Validators.required],
@@ -131,8 +133,11 @@ export class ReserveEventPage {
     this.BlurEndTimeFlag = true;
     if (this.BlurStartTimeFlag == true){
       if(this.startTime == this.endTime){
+        if(this.startday==this.endday){
         this.flagTimeEqual=true;
         this.showAvailableRooms=false;
+        }
+        else this.flagTimeEqual=false;
       }
       else{
       this.flagTimeEqual=false;
@@ -150,8 +155,11 @@ export class ReserveEventPage {
     this.BlurStartTimeFlag = true;
     if (this.BlurEndTimeFlag == true){
       if(this.startTime == this.endTime){
+        if(this.startday==this.endday){
         this.flagTimeEqual=true;
         this.showAvailableRooms=false;
+        }
+        else this.flagTimeEqual=false;
       }
       else{
       this.flagTimeEqual=false;
@@ -512,11 +520,14 @@ export class ReserveEventPage {
                 this.startday = new Date(this.startday);
                 var startTimeEventAllDay = new Date(Date.UTC(this.startday.getUTCFullYear(), this.startday.getUTCMonth(), this.startday.getUTCDate()));
                 var endTimeEventAllDay = new Date(Date.UTC(this.startday.getUTCFullYear(), this.startday.getUTCMonth(), this.startday.getUTCDate()+1));
+                console.log(endTimeEventAllDay.getTime()- 3600 * 1000 + ' ova e end time' + startTimeEventAllDay.getTime() + ' start time')
                 for (var i=0; i<this.FullListOfRooms.length; i++){
                   if(this.FullListOfRooms[i].name == this.roomName)
                     this.room = this.FullListOfRooms[i];
                 }
                 this.EventData.setEvent(this.title, startTimeEventAllDay, endTimeEventAllDay, true, this.room);
+                this.reservation={meetStarts: startTimeEventAllDay.getTime()- 3600 * 1000,meetEnds: endTimeEventAllDay.getTime()- 3600 * 1000,reservationTitle:this.title,room:null,user:null}
+                this.apiProvider.addReservation(this.reservation);
                 this.isReserved=false;
                 // if (this.IsChangeEvent==true){
                 //   this.navCtrl.pop()
@@ -534,11 +545,14 @@ export class ReserveEventPage {
             var endDate = moment(this.endTime,"hh:mm").toDate();
             var startTimeEvent = new Date(this.startday.getFullYear(), this.startday.getMonth(), this.startday.getDate(), startDate.getHours(), startDate.getMinutes());
             var endTimeEvent = new Date(this.endday.getFullYear(), this.endday.getMonth(), this.endday.getDate(), endDate.getHours(), endDate.getMinutes());
+            console.log(endTimeEvent.getTime() + ' ova e end time' + startTimeEvent.getTime() + ' start time')
             for (var j=0; j<this.FullListOfRooms.length; j++){
               if(this.FullListOfRooms[j].name == this.roomName)
                 this.room = this.FullListOfRooms[j];
             }
             this.EventData.setEvent(this.title, startTimeEvent, endTimeEvent, false, this.room);
+            this.reservation={meetStarts: startTimeEvent.getTime(),meetEnds: endTimeEvent.getTime(),reservationTitle:this.title,room:null,user:null}
+            this.apiProvider.addReservation(this.reservation);
             // this.isReserved=false;
             // if (this.IsChangeEvent==true){
             //   this.navCtrl.pop()
