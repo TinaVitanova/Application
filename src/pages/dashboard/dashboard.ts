@@ -57,7 +57,7 @@ export class DashboardPage {
     //Sobata ime i event title
 
     let eventTitle = events.title;
-    let eventRoomName = events.room.name;
+    // let eventRoomName = events.room.name;
 
     if (dateStart <= dateToday && dateToday <= dateEnd){
     if(events.allDay==true){

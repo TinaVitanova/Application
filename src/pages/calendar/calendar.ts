@@ -28,7 +28,8 @@ export class CalendarPage {
     return this.showRoom;
   }
   constructor(public navCtrl: NavController, public navParams: NavParams, private apiProvider:ApiProvider, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
-    this.loadEvents();this.apiProvider.getReservations()
+    this.loadEvents();
+    this.apiProvider.getReservations()
     .then(data => {
       this.reservations = data;
       console.log (this.reservations)
@@ -83,14 +84,13 @@ export class CalendarPage {
       return eventsRoom;
   }
   createEvent (){
-      var allEvents = this.EventData.getEvents();
       var events = [];
     for (var i=0; i<this.reservations.length; i++){
       let start = new Date(this.reservations[i].meetStarts)
       let end = new Date(this.reservations[i].meetEnds)
 
       events.push({
-            title: this.reservations[i].title, //+ " Room: " + this.EventData.getRoomName(i),
+            title: this.reservations[i].reservationTitle, //+ " Room: " + this.EventData.getRoomName(i),
             startTime: start,
             endTime: end,
             allDay: false

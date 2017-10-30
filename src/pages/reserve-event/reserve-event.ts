@@ -525,7 +525,6 @@ export class ReserveEventPage {
                   if(this.FullListOfRooms[i].name == this.roomName)
                     this.room = this.FullListOfRooms[i];
                 }
-                this.EventData.setEvent(this.title, startTimeEventAllDay, endTimeEventAllDay, true, this.room);
                 this.reservation={meetStarts: startTimeEventAllDay.getTime()- 3600 * 1000,meetEnds: endTimeEventAllDay.getTime()- 3600 * 1000,reservationTitle:this.title,room:null,user:null}
                 this.apiProvider.addReservation(this.reservation);
                 this.isReserved=false;
@@ -550,7 +549,6 @@ export class ReserveEventPage {
               if(this.FullListOfRooms[j].name == this.roomName)
                 this.room = this.FullListOfRooms[j];
             }
-            this.EventData.setEvent(this.title, startTimeEvent, endTimeEvent, false, this.room);
             this.reservation={meetStarts: startTimeEvent.getTime(),meetEnds: endTimeEvent.getTime(),reservationTitle:this.title,room:null,user:null}
             this.apiProvider.addReservation(this.reservation);
             // this.isReserved=false;

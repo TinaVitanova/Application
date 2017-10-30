@@ -40,7 +40,7 @@ export class TomorrowPage {
     //Sobata ime i event title
 
     let eventTitle = events.title;
-    let eventRoomName = events.room.name;
+    // let eventRoomName = events.room.name;
 
     
     if (dateStart <= nextDay && nextDay <= dateEnd){

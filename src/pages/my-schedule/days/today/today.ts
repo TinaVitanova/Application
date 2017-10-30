@@ -41,7 +41,7 @@ export class TodayPage {
     //Sobata ime i event title
 
     let eventTitle = events.title;
-    let eventRoomName = events.room.name;
+    // let eventRoomName = events.room.name;
 
     
     if (dateStart <= dateToday && dateToday <= dateEnd){
@@ -70,7 +70,7 @@ export class TodayPage {
      var allEvents = this.EventData.getEvents();
      for(var i=0; i<allEvents.length;i++){
        if (events.title==allEvents[i].title){
-         this.roomName=this.EventData.getRoomName(i);
+         this.roomName="aaa"//this.EventData.getRoomName(i);
        }
      }
      var trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>'; 
