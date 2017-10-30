@@ -1,3 +1,67 @@
-page-reserve-event {
+page-reserve-event{ 
+
+        .item-ios, .item-md, .item-wp{
+            border-bottom: 2px solid map-get($colors, primary);
+            width: 90%;
+            margin-left: 4.5%;
+            margin-bottom: 1.5%;
+            color: map-get($colors, text-color);
+        }
+       
+        ion-label{
+            color: map-get($colors, primary);
+        }
+
+        .time-label{       
+            background: map-get($colors, primary);
+            color: white;
+            font-size: 110%;
+            border-radius: 5px;
+            padding: 4% 0%;
+        }
+
+        .time-input{
+            width: 95%;
+            border-bottom: 2px solid map-get($colors, primary);
+            color: map-get($colors, text-color);
+            font-size: 130%;
+        }
+        .select-ios .select-icon .select-icon-inner,
+        .select-md .select-icon .select-icon-inner,
+        .select-wp .select-icon .select-icon-inner{
+            color: map-get($colors, secondary);
+        }
+
+        #find-room{
+            margin:10% 0% 5% 0%;
+            button{
+            width: 55%;
+            @include button-style;
+        }
+    }
+
+    ion-icon{
+        font-size: 120%;
+    }
+
+    #add-event{
+        margin-top: 12%;
+        background: map-get($colors, secondary);
+        font-weight: 600;
+        font-size: 130%;
+        letter-spacing: 1.5px;
+        width: 110%;
+        height: 10.5%;
+        position: relative;
+        left: -5%;
+        border-radius: 5px;
+
+        &:hover,
+        &:active{
+            background: map-get($colors, primary);
+            @include basic-transition;
+        }
+
+}
 
 }

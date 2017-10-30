@@ -1,40 +1,29 @@
-<!--
-  Generated template for the MakeRoomPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-    <ion-navbar>
+<ion-header no-border>
+    <ion-navbar color="make-room">
         <ion-title>Create a Room</ion-title>
     </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
-
-    <form (ngSubmit)="logForm()">
+<ion-content no-padding class="background">
+    <form (ngSubmit)="logForm()" [formGroup]="MakeRoomForm">
         <ion-list>
             <ion-item>
                 <ion-label floating>Room Name</ion-label>
-                <ion-input type="text" [(ngModel)]="room.name" name="roomname"></ion-input>
+                <ion-input type="text" formControlName="RoomName" (blur)="onBlurRoomName()" [class.invalid]="!MakeRoomForm.controls.RoomName.valid && MakeRoomForm.controls.RoomName.dirty && submitAttempt" [(ngModel)]="name" name="name"></ion-input>
             </ion-item>
-
+            <p text-center class="invalid-style" [hidden]="!flagIncorrectRoomName">This room already exists or you have inserted an invalid character!</p>
             <ion-item>
                 <ion-label floating>Room Capacity</ion-label>
-                <ion-input type="number" [(ngModel)]="room.capacity" name="capacity"></ion-input>
+                <ion-input type="number" formControlName="Capacity" min=1 max=30 (blur)="onBlurCapacity()" [class.invalid]="!MakeRoomForm.controls.Capacity.valid && MakeRoomForm.controls.Capacity.dirty && submitAttempt" [(ngModel)]="capacity" name="capacity"></ion-input>
             </ion-item>
-
+            <p text-center [hidden]="!flagIncorrectRoomCapacity">Maximum room capacity is 30!</p>
             <ion-item>
-                <ion-label floating>Short Description of the Room</ion-label>
-                <ion-textarea [(ngModel)]="room.description" name="description"></ion-textarea>
+                <ion-label floating> &nbsp; Short Description...</ion-label>
+                <ion-textarea formControlName="Description" [class.invalid]="!MakeRoomForm.controls.Description.valid && MakeRoomForm.controls.Description.dirty && submitAttempt" [(ngModel)]="description" name="description"></ion-textarea>
             </ion-item>
-
         </ion-list>
     </form>
     <ion-buttons text-center>
-        <button ion-button round outline (click)="CreateRoom()">Create this Room</button>
+        <button id="create-room" large ion-button round outline (click)="CreateRoom()">Create this Room</button>
     </ion-buttons>
 </ion-content>

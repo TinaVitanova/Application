@@ -1,23 +1,31 @@
 <ion-header>
 
-    <ion-navbar>
+    <ion-navbar color="secondary">
         <ion-title>Manage Users</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
     <ion-searchbar (ionInput)="getUsers($event)"></ion-searchbar>
     <ion-list>
+
+        <ion-item *ngFor="let item of singleArray">
+            <ion-avatar item-start class="uploader">
+                <img src={{item.picture}} (load)="ImageLoad()" [class.loaded]="imageLoaded">
+            </ion-avatar>
+
+            <h2>{{item.username}}</h2>
+            <p>{{item.email}}</p>
+            <button ion-button clear icon-only item-end (click)="deleteUser(item)">
+                <ion-icon name="trash"></ion-icon>
+            </button>
+        </ion-item>
+
         <ion-item *ngFor="let user of users">
-            <ion-label item-start> {{user}}
-
-            </ion-label>
-            <button ion-button clear icon-only item-end>
-                    <ion-icon name="trash"></ion-icon>
-                </button>
-
+            <h2>{{user.userName}}</h2>
+            <p>{{user.email}}</p>
         </ion-item>
     </ion-list>
 </ion-content>

@@ -1,47 +1,35 @@
-<!--
-  Generated template for the CalendarPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-    <ion-navbar>
-        <ion-title> {{ viewTitle }}</ion-title>
+    <ion-navbar color="secondary">
         <ion-buttons end>
-
-     <!--       <button ion-button (click)="changeMode('month')">M</button>
+            <!--<button ion-button (click)="changeMode('month')">M</button>
             <button ion-button (click)="changeMode('week')">W</button>
-            <button ion-button (click)="changeMode('day')">D</button> -->
+            <button ion-button (click)="changeMode('day')">D</button>-->
 
-            <button ion-button icon-only (click)="addEvent()">
+            <button id="add-event" ion-button (click)="addEvent()">
                     <ion-icon name="add"></ion-icon>
                 </button>
         </ion-buttons>
     </ion-navbar>
-
 </ion-header>
 
 <ion-content class="has-header">
     <ion-item class="choose-room">
         <ion-label>CHOOSE A ROOM</ion-label>
-        <ion-select [(ngModel)]="rooms">
+        <ion-select [(ngModel)]="rooms" name="rooms">
             <ion-option value="all" [selected]="all == rooms" (ionSelect)="loadEvents()">All Rooms</ion-option>
-            <ion-option value="room1" (ionSelect)="loadEvents()">Room1</ion-option>
-            <ion-option value="room2" (ionSelect)="loadEvents()">Room2</ion-option>
-            <ion-option value="room3" (ionSelect)="loadEvents()">Room3</ion-option>
-            <ion-option value="room4" (ionSelect)="loadEvents()">Room4</ion-option>
+            <span *ngIf="showRooms()">
+                <ion-option *ngFor="let r of ListOfRooms" (ionSelect)="loadRoomEvents(r)">{{r.name}}</ion-option>
+            </span>
         </ion-select>
     </ion-item>
-    <calendar  
-    [eventSource]="eventSource" 
-    [calendarMode]="calendar.mode" 
-    [currentDate]="calendar.currentDate" 
-    (onEventSelected)="onEventSelected($event)" 
-    (onTitleChanged)="onViewTitleChanged($event)"
-    (onTimeSelected)="onTimeSelected($event)" 
-    step="30" 
-    (onRangeChanged)="onRangeChanged($event)" 
-    class="calendar">
+
+    <ion-item id="title">
+        <ion-icon item-start style="cursor:pointer" name="arrow-dropleft-circle" (click)="previousMonth()"></ion-icon>
+        <ion-title text-center>{{ viewTitle }}</ion-title>
+        <ion-icon item-end style="cursor:pointer"  name="arrow-dropright-circle" (click)="nextMonth()"></ion-icon>
+    </ion-item>
+
+    <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate" (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30" (onRangeChanged)="onRangeChanged($event)"
+        class="calendar">
     </calendar>
 </ion-content>

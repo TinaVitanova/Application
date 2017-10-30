@@ -2,6 +2,7 @@ import { NavController, NavParams, AlertController, MenuController } from 'ionic
 import { Component } from '@angular/core';
 import { ReserveEventPage } from '../reserve-event/reserve-event';
 import { EventDataProvider } from '../../providers/event-data/event-data';
+
 import * as moment from 'moment';
 
 @Component({
@@ -12,23 +13,40 @@ export class CalendarPage {
   eventSource = [];
   viewTitle: string;
   selectedDay = new Date();
-
+  flagCalendar;
+  ListOfRooms;
+  showRoom = this.EventData.getShowRoom();
+  
   calendar = {
       mode: 'month',
       currentDate: this.selectedDay
   }; 
+  showRooms(){
+    return this.showRoom;
+  }
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
     this.loadEvents();
     }
   onViewTitleChanged(title) {
       this.viewTitle = title;
   }
+  previousMonth(){
+    this.calendar.currentDate=moment(this.calendar.currentDate).add(-1,'months').toDate();
+  }
+  nextMonth(){
+    this.calendar.currentDate=moment(this.calendar.currentDate).add(1,'months').toDate();
+  }
+  loadRoomEvents(r){
+    setTimeout(()=>{
+      this.eventSource = this.showRoomEvents(r);
+        })
+  }
 
   onTimeSelected(ev) {
-    console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-        (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
   }
     addEvent(){
+      this.flagCalendar = true;  
+      this.EventData.setFlagIsCalendarPage(this.flagCalendar);
     this.navCtrl.push(ReserveEventPage);
   }
 
@@ -42,49 +60,74 @@ export class CalendarPage {
       return date < current;
   };
   onRangeChanged(ev) {
-    console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
-
-  
+  showRoomEvents(r){
+    var allEvents = this.EventData.getEvents();
+    var eventsRoom = [];
+  for (var i=0; i<allEvents.length; i++){
+    if(allEvents[i].room == r){
+    eventsRoom.push({
+          title: allEvents[i].title,
+          startTime: allEvents[i].startTime,
+          endTime: allEvents[i].endTime,
+          allday: allEvents[i].allDay
+      });
+    }}
+      return eventsRoom;
+  }
   createEvent (){
-     var startDate = new Date(this.EventData.getStartTime());
-      var endDate = new Date(this.EventData.getEndTime());
+      var allEvents = this.EventData.getEvents();
       var events = [];
-      var startTime = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours(), startDate.getMinutes());
-      var endTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(), endDate.getHours(), endDate.getMinutes());
-console.log(startTime + '   ova e moj start time   '+ endTime + '  ova e moj end time  ')
-      
+    for (var i=0; i<allEvents.length; i++){
       events.push({
-            title: this.EventData.getTitle(),
-            startTime: startTime,
-            endTime: endTime,
-            allday: false
+            title: allEvents[i].title,
+            startTime: allEvents[i].startTime,
+            endTime: allEvents[i].endTime,
+            allDay: allEvents[i].allDay
         });
+      }
         return events;
+
     }
     
   loadEvents(){
       setTimeout(()=>{
     this.eventSource = this.createEvent();
-    console.log('load event ' + this.eventSource);
       })
-}
-
-onEventSelected(event) {
-   let start = moment(event.startTime).format('LLLL');
-    let end = moment(event.endTime).format('LLLL');
-
+  }
+  onEventSelected(event) {
+   let datestart = moment(event.startTime).format('Do MMMM YYYY');
+   let dateend = moment(event.startTime).format('Do MMMM YYYY');
+   let start = moment(event.startTime).format('HH:mm');
+    let end = moment(event.endTime).format('HH:mm');
+ 
     let alert = this.alertCtrl.create({
-       title: 'Event: ' + event.title,
-       message: 'From: '+start+'<br>To: '+end+'<br> Room:'+'</div>',
-      buttons:['OK']
+      cssClass: 'alert-style',
+       title: '<p class="alert-title"><b>Event:</b><br />' + '<span>' + event.title + '</span></p><hr />',
+       message: '<div class="alert-message"><b>From:</b> '+datestart+'<br>At: '+start+'<br><b>Untill:</b> '+ dateend +'<br><b>At:</b> '+ end +'<br><b>Room:</b> </div>',
+       buttons:[
+       {
+         cssClass: 'alert-btn',
+         text: 'CANCEL',      
+       },
+       {
+         cssClass: 'alert-btn',
+         text: 'CONFIRM'
+       }]
     });
     alert.present();
-    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
-}
+  }
 
+  ionViewDidEnter(){
+    this.loadEvents();
 
-  ionViewDidLoad(){      
+    this.menuCtrl.enable(false, "userMenu");
+    this.menuCtrl.enable(false, "adminMenu");
+  }
+
+  ionViewDidLoad(){    
+    this.ListOfRooms = this.EventData.getRoomData();
+    this.showRoom = this.EventData.getShowRoom();
   }
 
 }

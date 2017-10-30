@@ -1,0 +1,42 @@
+page-create-user {
+
+    .input-cover { position: static!important; }
+
+    ion-title{
+        .toolbar-title .toolbat-title-md{
+            text-transform: uppercase;
+            color: map-get($colors, secondary);
+        }
+    }
+
+    ion-label{
+        text-transform: uppercase;
+    }
+
+    .background, .background .pane, .background .item, .background .item-complex .item-content{
+        background-color: map-get($colors, secondary);
+        color: white;
+        margin-top: 2%;
+    }
+
+    .item-ios, .item-md, .item-wp{
+        border-bottom: 2px solid white;
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    #create-user{
+        border: none;
+        background: #fff;
+        color: map-get($colors, secondary);
+        margin-top: 10%; 
+        @include create-btn;    
+    }
+
+    #create-admin{
+        border-bottom: none;
+        font-size: 90%;
+        margin-top: 5%;
+    }
+
+}

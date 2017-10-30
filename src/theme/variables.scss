@@ -16,7 +16,6 @@ $app-direction: ltr;
 
 @import "ionic.globals";
 
-
 ::-webkit-scrollbar {
   display: none;
 }
@@ -46,69 +45,85 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #92D1E4,
-  secondary:  #588AA0,
-  secondary-light: #96BFD1,
-  gradient-green:     #77E6CF,
+  primary:    #24C6DC,
+  primary-hover: #53D7E9,
+  secondary:  #6280B7,
+  secondary-hover: #7194C6,
+  secondary-light: rgb(142, 169, 214),
+  bg-gray: #f7f7f7,
+  text-color: #ACACAC,
+  danger: #fd8f8f,
   light:      #f4f4f4,
-  dark:       #292929
+  dark:       #292929,
+  make-room : (
+    base: #fff,
+    contrast: #24c6dc,
+  ),
+  create-users : (
+    base: #fff,
+    contrast: #6280B7,
+  )
+
 );
 
 
-// toolbar
-$toolbar-background: white;
-ion-title{
-  .toolbar-title,
-  .toolbar-title-ios,
-  .toolbar-title-md{
-    color: rgba(black, .25);
+button{
+  cursor: pointer;
+}
+
+//invalid value style
+
+.invalid-style{
+  color:map-get($colors, danger);
+  font-size: 105%;
+  font-weight: norma;
+  animation: invalid-animation .4s ease-in 0.15s 1;
+  -webkit-animation: invalid-animation .4s ease-in 0.15s 1;
+  -moz-animation: invalid-animation .4s ease-in 0.15s 1;
+  -ms-animation: invalid-animation .4s ease-in 0.15s 1; 
+}
+
+@keyframes invalid-animation{
+   
+  0% {
+    transform: rotate(-7deg);
   }
-  .toolbar-title-md{
-    font-size:120%; 
+  
+  33% {
+    transform: rotate(7deg);
   }
+  
+  66% {
+    transform: rotate(-7deg);
+  }
+
 }
 
-// default highlight of input fields overwritten
-$text-input-md-highlight-color-invalid:  map-get($colors, danger);
-$text-input-md-highlight-color-valid:  map-get($colors, secondary-light);
-$text-input-md-show-invalid-highlight:  map-get($colors, danger);
-$text-input-md-highlight-color:  map-get($colors, secondary-light);
-$text-input-md-show-valid-highlight:  map-get($colors, secondary-light);
-$label-md-text-color-focused: map-get($colors, secondary-light);
-$label-md-margin-top: 5px;
-$label-md-margin-bottom: 5px;
-$label-ios-margin-bottom: 5px;
-$label-ios-margin-top: 5px;
+$toolbar-ios-title-font-weight: 500;
 
-//custom gradients
-
-@mixin gradient-main{
-  background-color: #74ebd5;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #ACB6E5, #74ebd5);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #ACB6E5, #74ebd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.toolbar-title{
+  text-transform: uppercase;
+  text-align: center;
 }
 
-@mixin gradient-home{
-  background: rgba(201, 214, 255, 0.3);  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, rgba(216, 231, 231, 0.5), rgba(183, 243, 253, 0.5));  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, rgba(216, 231, 231, 0.5), rgba(183, 243, 253, 0.5)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.toolbar-title-md,
+.toolbar-title-wp{
+  margin-right: 15%;
 }
-// background: #085078;  /* fallback for old browsers */
-// background: -webkit-linear-gradient(to right, #85D8CE, #085078);  /* Chrome 10-25, Safari 5.1-6 */
-// background: linear-gradient(to right, #85D8CE, #085078); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+
+//custom gradient
 
 @mixin gradient-bg{
-  background: #C9D6FF;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: rgba(181,244,255,1);
+  background: -moz-linear-gradient(top, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(181,244,255,1)), color-stop(50%, rgba(45,209,227,1)), color-stop(99%, rgba(98,230,245,1)), color-stop(100%, rgba(98,230,245,1)));
+  background: -webkit-linear-gradient(top, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
+  background: -o-linear-gradient(top, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
+  background: -ms-linear-gradient(top, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
+  background: linear-gradient(to bottom, rgba(181,244,255,1) 0%, rgba(45,209,227,1) 50%, rgba(98,230,245,1) 99%, rgba(98,230,245,1) 100%);
 }
 
-@mixin gradient-cal{
-   background-color: #77E6CF;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #BCC6EC, #8AF5DE);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #BCC6EC, #8AF5DE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
 
 //basic transitions
 
@@ -119,22 +134,180 @@ $label-ios-margin-top: 5px;
   transition: all 250ms;
 }
 
+//login page style
+
+@mixin home-style{
+   
+      ion-content{
+        @include gradient-bg;
+      }
+
+      ion-input .text-input{
+        color: white;
+        border-bottom: 1px solid white;
+        padding: 5% 0%;
+      }
+ 
+     form{
+ 
+       .list-ios .item-block .item-inner,
+       ion-item .item-md .item-input,
+       ion-item .item-ios .item-input,
+       .item-block{
+         color: white;
+         border-top: none;
+       }
+       
+       .list-ios .item-block,
+       .list-md .item-block,
+       .list-wp .item-block{
+         margin-left: 20%;
+         border-bottom: none;
+         border-top: none;
+       }
+ 
+       .item-input .label-md{
+         color: white;
+       }
+ 
+     }
+  
+}
+
+//button style
+
+@mixin button-style{
+    border-radius: 7px;
+    border: 2px solid map-get($colors, secondary);
+    color: map-get($colors, secondary);
+    background: white;
+    &:hover,
+    &:active{
+        background: map-get($colors, secondary);
+        color: white;
+        border: 2px solid white;
+        @include basic-transition;
+}
+}
+
+@mixin home-btn{
+  background: white;
+  border-radius: 3px;
+  color: map-get($colors, primary);
+  letter-spacing: 1px;
+
+  &:hover,
+  &:active{
+    color: map-get($colors, secondary);
+    @include basic-transition;
+  }
+}
+
+@mixin create-btn{
+  width: 80%;
+  font-size: 130%;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  &:hover,
+  &:active{
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      @include basic-transition;
+  }
+}
+
+//schedule style
+
+@mixin schedule-list{
+    ion-list button{
+        padding-left: none;
+    }
+
+    ion-row{
+        height: 80%;
+    }
+
+    .event-time{
+        background: map-get($colors, primary);
+        color: white;
+        font-weight: bold;
+        border-radius:5px;
+        text-align: center;
+        font-size: 100%;
+        padding: 2% 0%;
+    }
+
+    .event-title{
+        background: white;
+        color: map-get($colors, text-color);
+        font-weight: normal;
+        padding: 3%;
+        font-size: 95%;
+        border: 2px solid map-get($colors, primary);
+        border-radius: 5px;
+        margin-left:1%;
+        overflow-x: hidden;
+    }
+}
+
+
+// pickers style
+
+.picker-ios .picker-button,
+.picker-ios .picker-button.activated,
+.picker-md .picker-button,
+.picker-md .picker-button.activated
+.picker-wp .picker-button,
+.picker-wp .picker-button.activated{
+  text-transform: uppercase;
+  font-size: 110%;
+  &:hover,
+  &:active{
+    color: map-get($colors, secondary);
+    @include basic-transition;
+  }
+}
+
+
+.picker-columns{
+  top: 5%;
+  background-color: colors($colors, bg-gray);
+}
+
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+
+$list-ios-border-color: transparent;
+
+$searchbar-ios-background-color: map-get($colors, secondary);
+$searchbar-ios-border-color: transparent;
+$searchbar-ios-input-search-icon-color: white;
+$searchbar-ios-input-text-color: white;
+$searchbar-ios-input-placeholder-color: white;
+$searchbar-ios-input-background-color: map-get($colors, secondary);
+$searchbar-ios-toolbar-input-background: transparent;
+
+//pickers
+
+$picker-ios-option-text-color: color($colors, secondary);
+$picker-ios-toolbar-background-color:  color($colors, bg-gray);
+$picker-ios-toolbar-height: 60px;
+
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+
+
 @mixin shadow-2dp{
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.2);
-
-  -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.2);
-
-  -ms-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.2);
-
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  -ms-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 @mixin shadow-8dp{
@@ -145,27 +318,65 @@ $label-ios-margin-top: 5px;
   
 }
 
-// App iOS Variables
-// --------------------------------------------------
-// iOS only Sass variables can go here
+//default input
 
+$text-input-md-highlight-color-invalid:  none;
+$text-input-md-highlight-color-valid:  none;
+$text-input-md-show-invalid-highlight: none;
+$text-input-md-highlight-color:  none;
+$text-input-md-show-valid-highlight:  none;
+$label-md-text-color:	none;
+$label-md-text-color-focused: none;
+$list-md-border-color: transparent;
 
+//search input
 
+$searchbar-md-background-color: transparent;
+$searchbar-md-input-search-icon-color: white;
+$searchbar-md-input-placeholder-color: white;
+$searchbar-md-input-text-color:	white;
+$searchbar-md-input-background-color: map-get($colors, secondary);
+$searchbar-md-input-border-radius: 5px;
+$searchbar-md-input-clear-icon-color: white;
+$searchbar-ios-input-clear-icon-color: white;
 
-// App Material Design Variables
-// --------------------------------------------------
-// Material Design only Sass variables can go here
+//pickers
 
-
-
+$picker-md-toolbar-height: 60px;
+$picker-md-option-text-color: color($colors, secondary);
+$picker-md-toolbar-background-color:  color($colors, bg-gray);
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
 
+//default input
 
-//material shadows
+$input-wp-border-color:none;
+$text-input-wp-highlight-color-valid: none;
+$text-input-wp-highlight-color-invalid: none;
+$text-input-wp-highlight-color:  none;
+$label-wp-text-color:	none;
+$label-wp-text-color-focused: none;
 
+//search input
+
+$searchbar-wp-background-color: transparent;
+$searchbar-wp-border-color: white;
+$searchbar-wp-border-color-focused: white;
+$searchbar-wp-input-search-icon-color: white;
+$searchbar-wp-input-placeholder-color: white;
+$searchbar-wp-input-text-color: white;
+$searchbar-wp-input-background-color: map-get($colors, secondary);
+$searchbar-wp-input-border-radius: 5px;
+$searchbar-wp-input-clear-icon-color: white;
+$searchbar-wp-input-line-height: 3.5rem;
+
+//pickers
+
+$picker-wp-toolbar-height: 60px;
+$picker-wp-option-text-color: color($colors, secondary);
+$picker-wp-toolbar-background-color:  color($colors, bg-gray);
 
 // App Theme
 // --------------------------------------------------

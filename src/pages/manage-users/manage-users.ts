@@ -1,51 +1,95 @@
+import { ApiProvider } from '../../providers/api-provider/api-provider';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 
 
 @Component({
   selector: 'page-manage-users',
   templateUrl: 'manage-users.html',
+  
 })
 export class ManageUsersPage {
-  users;
-  username=this.UserGlobal.getMyGlobalVar();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider) {
+  singleArray;
+  public AllUsers = this.UserGlobal.getFullUsers();
+
+  imageLoaded: boolean = false;
+
+  users: any;
+  
+
+  getUser() {
+    this.apiProvider.getUser()
+    .then(data => {
+      this.users = data;
+      console.log(this.users);
+    });
+  }
+
+  constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController, public menuCtrl: MenuController) {
     this.initializeUsers();
+    this.getUser();
   }
 
   initializeUsers(){
-    this.users=[
-      this.username,//samo toj user shto e momentalno logiran
-      'user1',
-      'user2',
-      'user3',
-      'user4',
-      'user5',
-      'user6',
-      'user7'
-    ];
+    this.singleArray=[];
+        for (var _i = 0; _i < this.AllUsers.length; _i++) {
+          this.singleArray.push({
+                               username: this.AllUsers[_i].username,
+                               email: this.AllUsers[_i].email,
+                               picture: "data:image/png;base64," + this.AllUsers[_i].picture
+                              });                                                        
+      }
+      
   }
 
+  deleteUser(item){
+    let alert = this.alertCtrl.create({
+      cssClass: 'alert-style',
+      title: '<p class="alert-title"><b>DELETE USER:</b><br /></p><hr />',
+      message: '<div class="alert-message"><b>Delete the user:</b> ' + item,
+      buttons: [
+        {
+          text: 'CANCEL',
+          cssClass: 'alert-btn',
+          role: 'cancel',
+        },
+        {
+          text: 'DELETE',
+          cssClass: 'alert-btn',
+          handler: () => {
+            this.UserGlobal.setDeleteAccName(this.AllUsers.indexOf(item));
+            this.initializeUsers();
+          }
+        }
+      ]
+   });
+   alert.present();
+
+  }
+
+  ImageLoad() {
+    this.imageLoaded = true;
+  }
 
   getUsers(ev){
     //reset users back to all of users
     this.initializeUsers();
-    
     //set val to the value of the ev target
-    var val = ev.target.value;
+    var val1 = ev.target.value;
 
-    //if the value is an empty strign don't filter the items 
-    if( val && val.trim() != ''){
-      this.users = this.users.filter((user)=>{
-        return (user.toLowerCase().indexOf(val.toLowerCase()) > -1);       
+    //if the value is an empty string don't filter the items 
+    if( val1 && val1.trim() != ''){
+      this.singleArray = this.singleArray.filter((item:any) => {
+        return (item.username.toLowerCase().indexOf(val1.toLowerCase()) > -1);      
       })
     }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ManageUsersPage');
+  ionViewDidEnter(){
+    this.menuCtrl.enable(false, "userMenu");
+    this.menuCtrl.enable(false, "adminMenu");
   }
 
 }

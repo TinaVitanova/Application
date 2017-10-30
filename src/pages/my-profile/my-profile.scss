@@ -1,3 +1,108 @@
 page-my-profile {
 
+    form{
+        margin-top:5%;
+    }
+
+    .input-cover { position: static!important; }
+
+    ion-title{
+        text-transform: uppercase;
+    }
+
+    ion-list{
+        width: 90%;
+        color: map-get($colors, primary);
+
+        .item-ios, .item-md, .item-wp{
+            border-bottom: 2px solid map-get($colors, primary);
+            width: 80%;
+            height: 90%;
+            margin-left: 15%;
+            color: map-get($colors, text-color);
+        }
+ 
+        #new-pass{
+            border-bottom: 2px solid map-get($colors, primary);
+            width:100%!important;
+        }
+
+        ion-label{
+            color: map-get($colors, primary);
+        }
+    }
+
+    #change-info{
+        border-radius: 5px;
+        width: 50%;
+        background: map-get($colors, primary);
+        color: white;
+        &:hover,
+        &:active{
+            background: map-get($colors, secondary);
+            border: transparent;
+            color: white;
+            @include basic-transition;
+        }
+    }
+      
+    .uploader input {
+        display: none;
+    }
+    .uploader {
+        -webkit-align-items: center;
+        align-items: center;
+        border: 2px solid map-get($colors, primary);
+        border-radius: 50%;
+        cursor: pointer;
+        display: -webkit-flex;
+        display: flex;
+        width: 150px;
+        height: 150px;
+        -webkit-justify-content: center;
+        justify-content: center;
+        position: relative;
+        margin-bottom: 2%;
+        left: 30%;
+        top: 15%;
+    }
+    .uploader img,
+    .uploader .icon {
+        pointer-events: none;
+        width: 100%;
+        height: 100%;
+    }
+    .uploader,
+    .uploader .icon {
+        -webkit-transition: all 100ms ease-in;
+        -moz-transition: all 100ms ease-in;
+        -ms-transition: all 100ms ease-in;
+        -o-transition: all 100ms ease-in;
+        transition: all 100ms ease-in;
+    }
+    .uploader .icon {
+        color:map-get($colors, primary);
+        font-size: 5.5em;
+
+    }
+    .uploader img {
+        left: 50%;
+        opacity: 0;
+        max-height: 100%;
+        max-width: 100%;
+        position: absolute;
+        top: 50%;
+        border-radius: 100%;
+        @include basic-transition;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        z-index: -1;
+    }
+    .uploader img.loaded {
+        opacity: 1;
+        z-index: 3;
+    }
 }
