@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 import { Validator } from '../../validators/FormValidator';
 import { Events } from 'ionic-angular';
-
+import { ApiProvider } from '../../providers/api-provider/api-provider';
 
 @IonicPage()
 @Component({
@@ -34,6 +34,16 @@ export class MyProfilePage {
   flagIncorrectUsername:boolean = false;
   flagIncorrectEmail:boolean = false;
   flagIncorrectPassword:boolean = false;
+
+  user = {email:'',userName:'',passwprd:''};
+
+  constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public events:Events, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public formBuilder: FormBuilder, public EventData: EventDataProvider, private menuCtrl: MenuController) {
+    this.ChangeUserForm = formBuilder.group({
+    newusername: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9]*/),Validators.required, new Validator(UserGlobal, EventData).isNewUsernameValid])],
+      newemail: ['',Validators.compose([Validators.pattern(/[a-z0-9]+\@[a-z]+\.[a-z]{2,3}/),Validators.required, new Validator(UserGlobal, EventData).isNewEmailValid])],
+      newpassword: ['', Validators.compose([Validators.required])],
+    });
+  }
   
   onBlur(){
     if(!this.ChangeUserForm.valid){
@@ -64,6 +74,10 @@ export class MyProfilePage {
         this.flagCorrectPassword=true;
       }
     }
+  }
+
+  editUser() {
+    this.apiProvider.editUser(this.user);
   }
 
   Change(){
@@ -104,15 +118,7 @@ export class MyProfilePage {
     }
   }
 
-  constructor(public navCtrl: NavController, public events:Events, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public formBuilder: FormBuilder, public EventData: EventDataProvider, private menuCtrl: MenuController) {
-    this.ChangeUserForm = formBuilder.group({
-    newusername: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9]*/),Validators.required, new Validator(UserGlobal, EventData).isNewUsernameValid])],
-      newemail: ['',Validators.compose([Validators.pattern(/[a-z0-9]+\@[a-z]+\.[a-z]{2,3}/),Validators.required, new Validator(UserGlobal, EventData).isNewEmailValid])],
-      newpassword: ['', Validators.compose([Validators.required])],
-    });
-
-
-  }
+  
 
   ImageLoad() {
     this.imageLoaded = true;

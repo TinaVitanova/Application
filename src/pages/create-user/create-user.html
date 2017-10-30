@@ -36,15 +36,15 @@
                 <ion-input type="password" formControlName="password" [class.invalid]="!CreateUserForm.controls.password.valid && CreateUserForm.controls.password.dirty && submitAttempt" [(ngModel)]="new.password" name="password"></ion-input>
             </ion-item> -->
 
-            <ion-item [hidden]="shouldHide()">
-
-                <ion-label>Create Admin</ion-label>
-                <ion-checkbox formControlName="isAdmin" [(ngModel)]="isAdmin" name=checked></ion-checkbox>
-            </ion-item>
-
         </ion-list>
 
     </form>
+    <ion-item>
+        <ion-label>Role</ion-label>
+        <ion-select [(ngModel)]="role" name="role">
+            <ion-option *ngFor="let r of roleName" (ionSelect)="addRole(r)">{{r}}</ion-option>
+        </ion-select>
+    </ion-item>
     <ion-buttons text-center>
         <button id="create-user" large ion-button round outline (click)="CreateNewUser()">Create User</button>
     </ion-buttons>

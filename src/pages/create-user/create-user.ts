@@ -18,9 +18,12 @@ export class CreateUserPage {
   CreateUserForm: FormGroup;
   submitAttempt: boolean = false;
   picture;
-
-  user = {email:'',userName:''};
+  role;
+  roles:{roleId:number,category:number}[]=[];
+  user = {email:'',userName:'',role:{}};
   
+
+  roleName:string[]=[];
   
   flagCorrectUsername:boolean=false;
   flagCorrectEmail:boolean=false;
@@ -36,24 +39,38 @@ export class CreateUserPage {
     this.username = navParams.get('param2');
   }
 
-  saveUser() {
-    // this.apiProvider.saveUser(this.user).then((result) => {
-    //   console.log(result);
-    // }, (err) => {
-    //   console.log(err);
-    // });
-
-
-    // if(this.isAdmin==true){
-    //   this.user.role=1;
-    // }
-    // else
-    // this.user.role=0;
-
-    
-    this.apiProvider.saveUser(this.user);
+  addRole(role){
+    this.role=role
   }
 
+  addUser() {
+      if(this.role == "superadmin"){
+        this.user={email:this.user.email,userName:this.user.userName,role:this.roles[0]}
+      }else if(this.role == "admin"){
+        this.user={email:this.user.email,userName:this.user.userName,role:this.roles[1]}
+      }else if(this.role == "user"){
+        this.user={email:this.user.email,userName:this.user.userName,role:this.roles[2]}
+      }
+    this.apiProvider.addUser(this.user);
+  }
+
+  getRole(){
+    this.apiProvider.getRole()
+    .then(data => {
+      this.roles = data;
+    });
+
+    for(var i=0; i<this.roles.length; i++){
+      if(this.roles[i].category == 0){
+        this.roleName[i] = "superadmin";
+      }else if(this.roles[i].category==1){
+        this.roleName[i] = "admin";
+      }else if(this.roles[i].category==2){
+        this.roleName[i] = "user";
+      }
+      console.log(this.roleName)
+    }
+  }
   
   onBlurUsername(){
     if(!this.user.userName){
@@ -120,11 +137,10 @@ export class CreateUserPage {
           text: 'CONFIRM',
           role: 'confirm',
           handler: data => {
-            this.saveUser();
+            this.addUser();
             this.submitAttempt = true;
             this.picture = this.UserGlobal.getDefaultImage();
             this.UserGlobal.addNewUser(this.user,this.picture);
-            
             this.resetForm();
           }
         }
@@ -141,5 +157,6 @@ export class CreateUserPage {
   ionViewDidEnter(){
     this.menuCtrl.enable(false, "userMenu");
     this.menuCtrl.enable(false, "adminMenu");
+    this.getRole()
   }
 }

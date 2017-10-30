@@ -22,18 +22,14 @@ export class ManageUsersPage {
     this.apiProvider.getUser()
     .then(data => {
       this.users = data;
-      
-      console.log(this.users + ' this.users u manage users');
     });
     for(var i = 0; i < this.users.length; i++){
-      console.log(this.users[i])
-    this.singleArray.push({
-            username: this.users[i].userName,
-            email: this.users[i].email,
-            picture: "data:image/png;base64," + this.UserGlobal.getDefaultImage()
-    });
-  }
-    console.log(this.singleArray + ' aaaaaaaaaaaaaa');
+      this.singleArray.push({
+              username: this.users[i].userName,
+              email: this.users[i].email,
+              picture: "data:image/png;base64," + this.UserGlobal.getDefaultImage()
+      });
+    }
   }
 
   constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController, public menuCtrl: MenuController) {
@@ -45,7 +41,7 @@ export class ManageUsersPage {
     this.singleArray=[];
         for (var _i = 0; _i < this.AllUsers.length; _i++) {
           this.singleArray.push({
-                               username: this.AllUsers[_i].username,
+                               username: this.AllUsers[_i].userName,
                                email: this.AllUsers[_i].email,
                                picture: "data:image/png;base64," + this.AllUsers[_i].picture
                               });                                                        
