@@ -23,10 +23,12 @@ export class UsernameGlobalProvider {
     this.UsersData = {username: this.Usernames[i], email: this.Emails[i], password: this.Passwords[i], isAdmin: this.IsAdmin[i], picture: this.defaultImage };
     this.FullUsers.push(this.UsersData);
     }
-
-
-    this.drn = this.apiProvider.getUser();
-    console.log(this.drn);
+    
+    // this.apiProvider.getUser()
+    // .then(data => {
+    //   this.users = data;
+    //   console.log(this.users);
+    // });
   }
 
   public setIsLoggedIn(value){

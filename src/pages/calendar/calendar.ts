@@ -80,7 +80,7 @@ export class CalendarPage {
       var events = [];
     for (var i=0; i<allEvents.length; i++){
       events.push({
-            title: allEvents[i].title,
+            title: allEvents[i].title + " Room: " + this.EventData.getRoomName(i),
             startTime: allEvents[i].startTime,
             endTime: allEvents[i].endTime,
             allDay: allEvents[i].allDay

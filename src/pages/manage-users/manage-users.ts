@@ -15,16 +15,25 @@ export class ManageUsersPage {
   public AllUsers = this.UserGlobal.getFullUsers();
 
   imageLoaded: boolean = false;
-
-  users: any;
+  users:{email:'',userName:''}[]=[];
   
 
   getUser() {
     this.apiProvider.getUser()
     .then(data => {
       this.users = data;
-      console.log(this.users);
+      
+      console.log(this.users + ' this.users u manage users');
     });
+    for(var i = 0; i < this.users.length; i++){
+      console.log(this.users[i])
+    this.singleArray.push({
+            username: this.users[i].userName,
+            email: this.users[i].email,
+            picture: "data:image/png;base64," + this.UserGlobal.getDefaultImage()
+    });
+  }
+    console.log(this.singleArray + ' aaaaaaaaaaaaaa');
   }
 
   constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController, public menuCtrl: MenuController) {
@@ -87,7 +96,12 @@ export class ManageUsersPage {
     }
   }
 
+  ionViewWillEnter(){
+    this.getUser();
+  }
   ionViewDidEnter(){
+    
+    this.getUser();
     this.menuCtrl.enable(false, "userMenu");
     this.menuCtrl.enable(false, "adminMenu");
   }
