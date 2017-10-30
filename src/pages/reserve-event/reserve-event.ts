@@ -16,6 +16,8 @@ export class ReserveEventPage {
   ReserveEventForm: FormGroup;
   isReserved: boolean;
   flag;
+  // IsChangeEvent;
+  // ChangeEvent;
   flagForWarning=false;
   flagTimeEqual=false;
   flagIsNextDay=false;
@@ -471,13 +473,16 @@ export class ReserveEventPage {
   }}
   save(){
     this.flag = this.EventData.getFlagisCalendarPage();
-
       let datestart = moment(this.startday).format('Do MMMM YYYY');
       let dateend = moment(this.endday).format('Do MMMM YYYY');
       let start = this.startTime;
       let end = this.endTime;
       let trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>'; 
       if(datestart == dateend){
+        if(this.flagAllDay){
+          trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>ALL DAY</b><br/><b>ROOM:</b> '+ this.roomName + '</div>';
+        }
+        else
         trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>';
       }
      let alert = this.alertCtrl.create({
@@ -507,7 +512,11 @@ export class ReserveEventPage {
                 }
                 this.EventData.setEvent(this.title, startTimeEventAllDay, endTimeEventAllDay, true, this.room);
                 this.isReserved=false;
-                  if (this.flag == true)
+                // if (this.IsChangeEvent==true){
+                //   this.navCtrl.pop()
+                // }
+                // else 
+                if (this.flag == true)
                     this.navCtrl.pop();
                     else
                     this.resetForm()
@@ -524,8 +533,12 @@ export class ReserveEventPage {
                 this.room = this.FullListOfRooms[j];
             }
             this.EventData.setEvent(this.title, startTimeEvent, endTimeEvent, false, this.room);
-            this.isReserved=false;
-              if (this.flag == true)
+            // this.isReserved=false;
+            // if (this.IsChangeEvent==true){
+            //   this.navCtrl.pop()
+            // }
+            // else 
+            if (this.flag == true)
                 this.navCtrl.pop();
                 else
                 this.resetForm()
@@ -544,6 +557,19 @@ export class ReserveEventPage {
     this.endday= moment().toISOString();
     this.endTime="08:00";
     this.startTime="07:00";
+  }
+  ionViewWillEnter(){
+    // this.IsChangeEvent=this.EventData.getIsChangeEvent();
+    // this.ChangeEvent=this.EventData.getChangeEvent();
+    // if(this.IsChangeEvent==true){
+    //   this.title=this.ChangeEvent.title;
+    //   this.allDay=this.ChangeEvent.allDay;
+    //   this.startday=this.ChangeEvent.startDate;
+    //   this.endday=this.ChangeEvent.endDate;
+    //   this.startTime=moment(this.ChangeEvent.startTime).format("HH:mm").toString();
+    //   this.endTime=moment(this.ChangeEvent.endTime).format("HH:mm").toString();
+    // }
+
   }
 
   ionViewDidEnter(){

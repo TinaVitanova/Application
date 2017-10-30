@@ -10,6 +10,8 @@ export class EventDataProvider {
   public FullRooms: {name: string, capacity: string, description: string}[]=[];
   public ShowRoom: boolean = false;
   public loadEvent;
+  public IsChangeEvent=false;
+  public changeEvent;
   public FlagStartEndTime;
   constructor(public storage: Storage) {
 
@@ -29,6 +31,26 @@ export class EventDataProvider {
   public getShowRoom(){
     return this.ShowRoom;
   }
+  public deleteEvent(event){
+    for (var i=0; i<this.AllEvents.length;i++){
+      if(event.title==this.AllEvents[i].title){
+        this.AllEvents.splice(i,1);
+        break;
+      }
+    }
+  }
+  // public setIsChangeEvent(value){
+  //   this.IsChangeEvent=value;
+  // }
+  // public setChangeEvent(value){
+  //   this.changeEvent=value;
+  // }
+  // public getChangeEvent(){
+  //   return this.changeEvent;
+  // }
+  // public getIsChangeEvent(){
+  //   return this.IsChangeEvent;
+  // }
 
   public getRoomName(i){
     var roomName;
@@ -59,7 +81,7 @@ export class EventDataProvider {
   }
 
   public setEvent(value1,value2,value3,value4,value5){
-    this.Eventdata = {title: value1 +" Room: "+  value5.name, startTime: value2, endTime: value3, allDay: value4, room: value5};
+    this.Eventdata = {title: value1, startTime: value2, endTime: value3, allDay: value4, room: value5};
     this.AllEvents.push(this.Eventdata);
   }
 

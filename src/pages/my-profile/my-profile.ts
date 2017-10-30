@@ -79,6 +79,11 @@ export class MyProfilePage {
             name: 'password',
             placeholder: 'Password',
             type: 'password'
+          },
+          {
+            name: 'password2',
+            placeholder: 'Retype Password',
+            type: 'password'
           }
         ],
         buttons: [
@@ -90,10 +95,13 @@ export class MyProfilePage {
             text: 'Change',
             handler: data => {
               this.SubmitAttempt=true;
-              if (data.password == "ok") {
+              if (data.password == data.password2) {
+                if(this.UserGlobal.checkPassword(data.password)){
                 this.events.publish('image:added', this.base64textString);
                 this.UserGlobal.ChangeUser(this.todo,this.base64textString);
-              }else {
+                }
+              }
+              else {
                 return false;
               }
             }

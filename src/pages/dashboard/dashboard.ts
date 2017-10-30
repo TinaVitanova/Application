@@ -69,6 +69,7 @@ export class DashboardPage {
   
   ionViewDidEnter(){
     this.username=this.UserGlobal.getMyGlobalVar();
+    // this.EventData.setIsChangeEvent(false);
   }
 
   ionViewWillEnter(){

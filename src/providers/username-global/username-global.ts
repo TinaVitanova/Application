@@ -136,7 +136,7 @@ public getMyGlobalEmail() {
   }
 
   checkPassword(value){
-    
+    return true;
   }
 
 
