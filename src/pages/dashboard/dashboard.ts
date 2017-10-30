@@ -21,6 +21,8 @@ export class DashboardPage {
   MyEvents=this.EventData.getEvents();
   StartTime;
   EndTime;
+  StartDate;
+  EndDate;
   FlagNextDay=false;
   MakeRoomNav(){
     this.navCtrl.push(MakeRoomPage)
@@ -45,8 +47,10 @@ export class DashboardPage {
     let dateStart = moment(events.startTime).format('DD MM YYYY');
     let dateEnd = moment(events.endTime).format('DD MM YYYY');
     let dateToday = moment().format('DD MM YYYY');
-    this.StartTime = moment(events.startTime).format('DD MM YYYY HH:mm');
-    this.EndTime = moment(events.endTime).format('DD MM YYYY HH:mm');
+    this.StartTime = moment(events.startTime).format('HH:mm');
+    this.EndTime = moment(events.endTime).format('HH:mm');
+    this.StartDate = moment(events.startTime).format('DD.MM');
+    this.EndDate = moment(events.endTime).format('DD.MM');
     if (dateStart <= dateToday && dateToday <= dateEnd)
       return true;
     else
