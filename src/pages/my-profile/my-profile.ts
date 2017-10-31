@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 import { Validator } from '../../validators/FormValidator';
 import { Events } from 'ionic-angular';
-
+import { ApiProvider } from '../../providers/api-provider/api-provider';
 
 @IonicPage()
 @Component({
@@ -19,8 +19,8 @@ export class MyProfilePage {
     newemail:this.UserGlobal.getMyGlobalEmail(),
   };
 
-  public imageSrc: String = "data:image/png;base64," + this.UserGlobal.getUserImage();
-  base64textString = this.UserGlobal.getUserImage();
+  //public imageSrc: String = "data:image/png;base64," + this.UserGlobal.getUserImage();
+  //base64textString = this.UserGlobal.getUserImage();
   Username=this.UserGlobal.getMyGlobalVar();
   public SubmitAttempt = false;
   ChangeUserForm: FormGroup;
@@ -34,6 +34,16 @@ export class MyProfilePage {
   flagIncorrectUsername:boolean = false;
   flagIncorrectEmail:boolean = false;
   flagIncorrectPassword:boolean = false;
+
+  user = {email:'',userName:'',passwprd:''};
+
+  constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public events:Events, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public formBuilder: FormBuilder, public EventData: EventDataProvider, private menuCtrl: MenuController) {
+    this.ChangeUserForm = formBuilder.group({
+    newusername: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9]*/),Validators.required, new Validator(UserGlobal, EventData).isNewUsernameValid])],
+      newemail: ['',Validators.compose([Validators.pattern(/[a-z0-9]+\@[a-z]+\.[a-z]{2,3}/),Validators.required, new Validator(UserGlobal, EventData).isNewEmailValid])],
+      newpassword: ['', Validators.compose([Validators.required])],
+    });
+  }
   
   onBlur(){
     if(!this.ChangeUserForm.valid){
@@ -64,6 +74,10 @@ export class MyProfilePage {
         this.flagCorrectPassword=true;
       }
     }
+  }
+
+  editUser() {
+    this.apiProvider.editUser(this.user);
   }
 
   Change(){
@@ -98,13 +112,12 @@ export class MyProfilePage {
             text: 'SAVE',
             handler: data => {
               this.SubmitAttempt=true;
-              if (data.password == data.password2) {
-                if(this.UserGlobal.checkPassword(data.password)){
-                this.events.publish('image:added', this.base64textString);
-                this.UserGlobal.ChangeUser(this.todo,this.base64textString);
-                }
-              }
-              else {
+
+              if (data.password == "ok") {
+                //this.events.publish('image:added', this.base64textString);
+                this.UserGlobal.ChangeUser(this.todo);
+              }else {
+
                 return false;
               }
             }
@@ -115,44 +128,36 @@ export class MyProfilePage {
     }
   }
 
-  constructor(public navCtrl: NavController, public events:Events, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public formBuilder: FormBuilder, public EventData: EventDataProvider, private menuCtrl: MenuController) {
-    this.ChangeUserForm = formBuilder.group({
-    newusername: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9]*/),Validators.required, new Validator(UserGlobal, EventData).isNewUsernameValid])],
-      newemail: ['',Validators.compose([Validators.pattern(/[a-z0-9]+\@[a-z]+\.[a-z]{2,3}/),Validators.required, new Validator(UserGlobal, EventData).isNewEmailValid])],
-      newpassword: ['', Validators.compose([Validators.required])],
-    });
-
-
-  }
+  
 
   ImageLoad() {
     this.imageLoaded = true;
   }
 
-  InputChange(e) {
+  // InputChange(e) {
     
-    if(e.target.files.length != 0){
-      this.presentLoading();
-      var file = e.target.files[0];
-      var pattern = /image-*/;
-      var reader = new FileReader();
+  //   if(e.target.files.length != 0){
+  //     this.presentLoading();
+  //     var file = e.target.files[0];
+  //     var pattern = /image-*/;
+  //     var reader = new FileReader();
 
-      if (!file.type.match(pattern)) {
-          alert('invalid format'); 
-          return;
-      }
+  //     if (!file.type.match(pattern)) {
+  //         alert('invalid format'); 
+  //         return;
+  //     }
  
-      if (file.size > 7000000){
-        alert('max image size 7Mb '); 
-        return;
-      }
+  //     if (file.size > 7000000){
+  //       alert('max image size 7Mb '); 
+  //       return;
+  //     }
 
-      this.loaded = false;
-      //pretvori vo base64 format
-      reader.onload = this.ReaderLoaded.bind(this);
-      reader.readAsBinaryString(file);
-    }
-  }
+  //     this.loaded = false;
+  //     //pretvori vo base64 format
+  //     reader.onload = this.ReaderLoaded.bind(this);
+  //     reader.readAsBinaryString(file);
+  //   }
+  // }
 
   //show/hide password
   togglePassword(input: any): void {
@@ -166,12 +171,12 @@ export class MyProfilePage {
     }
   }
 
-  ReaderLoaded(e) {
-    var binaryString = e.target.result;
-    this.base64textString = btoa(binaryString);
-    this.imageSrc = "data:image/png;base64," + this.base64textString;
-    this.loaded = true;  
-  }
+  // ReaderLoaded(e) {
+  //   var binaryString = e.target.result;
+  //   this.base64textString = btoa(binaryString);
+  //   this.imageSrc = "data:image/png;base64," + this.base64textString;
+  //   this.loaded = true;  
+  // }
 
   presentLoading() {
     let loader = this.loadingCtrl.create({

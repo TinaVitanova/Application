@@ -15,7 +15,7 @@ import { Events } from 'ionic-angular';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   splash = true;
-  userImage = "data:image/png;base64," + this.UserGlobal.getUserImage();
+  //userImage = "data:image/png;base64," + this.UserGlobal.getUserImage();
 
   rootPage:any = HomePage;
   pages1: Array<{title: string, component: any}>;
@@ -23,9 +23,9 @@ export class MyApp {
  
   constructor(public platform: Platform, public events: Events, public statusBar: StatusBar, public UserGlobal: UsernameGlobalProvider) {
     this.initializeApp();
-    events.subscribe('image:added',(image) => {
+   /* events.subscribe('image:added',(image) => {
       this.userImage = "data:image/png;base64," + image;
-    })
+    })*/
     // used for an example of ngFor and navigation
     this.pages1 = [
       { title: 'My Profile', component: MyProfilePage },

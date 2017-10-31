@@ -23,6 +23,10 @@
     z-index: 100000;
     width: 100%;
     background-color: white;
+
+    img{
+        width:35%;
+    }
 }
 
 .flb {
@@ -50,7 +54,6 @@
 #custom-overlay img {
     display: block;
     margin: 0 auto;
-    width: 50%;
     height: auto;
     animation: animation 3100ms linear infinite both;
     animation-delay: 1s;
@@ -68,6 +71,8 @@
 // animation start
 .animation-target {
     -webkit-animation: animation 2800ms linear infinite both;
+    -moz-animation: animation 2800ms linear infinite both;
+    -ms-animation: animation 2800ms linear infinite both;
     animation: animation 2800ms linear infinite both;
 }
 
@@ -596,4 +601,30 @@ ion-list .sm-list {
     }
 
 }
+
+@mixin no-animation{
+    -webkit-animation: none;
+    -moz-animation: none;
+    -ms-animation: none;
+    animation: none;
+}
+
+ // *******************
+    // TABLET DESIGN START
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        
+        #custom-overlay img{
+            width: 45%;
+            @include no-animation;
+        }
+
+        .animation-target {
+            @include no-animation;
+        }
+       
+     }
+
+    // *******************
+    // TABLET DESIGN END
 
