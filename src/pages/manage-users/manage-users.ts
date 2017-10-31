@@ -24,12 +24,14 @@ export class ManageUsersPage {
       this.users = data;
     });
     for(var i = 0; i < this.users.length; i++){
+
       this.singleArray.push({
               username: this.users[i].userName,
               email: this.users[i].email,
-              picture: "data:image/png;base64," + this.UserGlobal.getDefaultImage()
+//               picture: "data:image/png;base64," + this.UserGlobal.getDefaultImage()
       });
     }
+
   }
 
   constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController, public menuCtrl: MenuController) {

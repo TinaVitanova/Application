@@ -87,27 +87,37 @@ export class MyProfilePage {
       this.flagIncorrectEmail = false;
 
       let alert = this.alertCtrl.create({
-        title: 'Change',
+        cssClass: 'alert-style',
+        title: '<p class="alert-title"><b>SAVE CHANGES</b></p><hr />',
         inputs: [
           {
             name: 'password',
-            placeholder: 'Password',
+            placeholder: 'Current Password',
+            type: 'password',
+          },
+          {
+            name: 'password2',
+            placeholder: 'Retype Password',
             type: 'password'
+
           }
         ],
         buttons: [
           {
-            text: 'Cancel',
+            text: 'CANCEL',
             role: 'cancel',
+            cssClass: 'alert-btn'
           },
           {
-            text: 'Change',
+            text: 'SAVE',
             handler: data => {
               this.SubmitAttempt=true;
+
               if (data.password == "ok") {
                 //this.events.publish('image:added', this.base64textString);
                 this.UserGlobal.ChangeUser(this.todo);
               }else {
+
                 return false;
               }
             }

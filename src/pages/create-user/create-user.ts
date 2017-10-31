@@ -18,6 +18,7 @@ export class CreateUserPage {
   CreateUserForm: FormGroup;
   submitAttempt: boolean = false;
   picture;
+
   role;
   roles:{roleId:number,category:number}[]=[];
   user = {email:'',userName:'',role:{}};
@@ -38,6 +39,7 @@ export class CreateUserPage {
   });
     this.username = navParams.get('param2');
   }
+
 
   addRole(role){
     this.role=role
@@ -70,10 +72,10 @@ export class CreateUserPage {
       }
       console.log(this.roleName)
     }
-  }
+
   
   onBlurUsername(){
-    if(!this.user.userName){
+    if(!this.userName){
       this.flagCorrectUsername = false;
     }
     else{
@@ -90,7 +92,7 @@ export class CreateUserPage {
 }
   }
   onBlurEmail(){
-    if(!this.user.email){
+    if(!this.email){
       this.flagIncorrectEmail = false;
     }
     else{
@@ -123,8 +125,8 @@ export class CreateUserPage {
       let alert = this.alertCtrl.create({
         cssClass: 'alert-style',
         title: '<p class="alert-title"><b>USER CREATED:</b><br /></p><hr />',
-        subTitle: '<div class="alert-message"><b>USERNAME:</b> ' + this.user.userName + 
-                  '<br><b>EMAIL:</b> ' + this.user.email 
+        subTitle: '<div class="alert-message"><b>USERNAME:</b> ' + this.userName + 
+                  '<br><b>EMAIL:</b> ' + this.email 
                   + '</div>',   
        buttons:[
         {

@@ -16,11 +16,14 @@ export class DashboardPage {
   calendarpage=CalendarPage;
   username;
   adminBtn = false;
+  showEvents = false;
   flagCalendar;
   allDayEvent = false;
   MyEvents=this.EventData.getEvents();
   StartTime;
   EndTime;
+  StartDate;
+  EndDate;
   FlagNextDay=false;
   MakeRoomNav(){
     this.navCtrl.push(MakeRoomPage)
@@ -41,37 +44,47 @@ export class DashboardPage {
     this.navCtrl.push(CreateUserPage, {param2: this.username})
   }
   IsDate(events){
+    this.showEvents = true;
     let dateStart = moment(events.startTime).format('DD MM YYYY');
     let dateEnd = moment(events.endTime).format('DD MM YYYY');
     let dateToday = moment().format('DD MM YYYY');
-    this.StartTime = moment(events.startTime).format('DD MM YYYY HH:mm');
-    this.EndTime = moment(events.endTime).format('DD MM YYYY HH:mm');
 
-    //Podeleni start i end time vo saati minuti i datum
+    this.StartTime = moment(events.startTime).format('HH:mm');
+    this.EndTime = moment(events.endTime).format('HH:mm');
+    this.StartDate = moment(events.startTime).format('DD.MM');
+    this.EndDate = moment(events.endTime).format('-DD.MM');
 
-    let startTimeEventDate=moment(this.StartTime).format('DD MM YYYY');
-    let startTimeEventHoursMinutes=moment(this.StartTime).format('HH:mm');
-    let endTimeEventDate=moment(this.EndTime).format('DD MM YYYY');
-    let endTimeEventHoursMinutes=moment(this.EndTime).format('HH:mm');
+    if (dateStart <= dateToday && dateToday <= dateEnd)
 
-    //Sobata ime i event title
+//     this.StartTime = moment(events.startTime).format('DD MM YYYY HH:mm');
+//     this.EndTime = moment(events.endTime).format('DD MM YYYY HH:mm');
 
-    let eventTitle = events.title;
-    let eventRoomName = events.room.name;
+//     //Podeleni start i end time vo saati minuti i datum
 
-    if (dateStart <= dateToday && dateToday <= dateEnd){
-    if(events.allDay==true){
-      if(dateEnd!=dateToday){
-        this.allDayEvent=true;
-        return true;
-      }
-      else{
-        return false;
-      }
-    }else {
-      this.allDayEvent=false;
+//     let startTimeEventDate=moment(this.StartTime).format('DD MM YYYY');
+//     let startTimeEventHoursMinutes=moment(this.StartTime).format('HH:mm');
+//     let endTimeEventDate=moment(this.EndTime).format('DD MM YYYY');
+//     let endTimeEventHoursMinutes=moment(this.EndTime).format('HH:mm');
+
+//     //Sobata ime i event title
+
+//     let eventTitle = events.title;
+//     // let eventRoomName = events.room.name;
+
+//     if (dateStart <= dateToday && dateToday <= dateEnd){
+//     if(events.allDay==true){
+//       if(dateEnd!=dateToday){
+//         this.allDayEvent=true;
+//         return true;
+//       }
+//       else{
+//         return false;
+//       }
+//     }else {
+//       this.allDayEvent=false;
+
       return true;
-  }}
+ // }}
     else
       return false;
   }
@@ -82,6 +95,7 @@ export class DashboardPage {
   
   ionViewDidEnter(){
     this.username=this.UserGlobal.getMyGlobalVar();
+    // this.EventData.setIsChangeEvent(false);
   }
 
   ionViewWillEnter(){

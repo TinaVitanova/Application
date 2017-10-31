@@ -2,6 +2,7 @@ import { NavController, NavParams, AlertController, MenuController } from 'ionic
 import { Component } from '@angular/core';
 import { ReserveEventPage } from '../reserve-event/reserve-event';
 import { EventDataProvider } from '../../providers/event-data/event-data';
+import { ApiProvider } from '../../providers/api-provider/api-provider';
 
 import * as moment from 'moment';
 
@@ -15,6 +16,8 @@ export class CalendarPage {
   selectedDay = new Date();
   flagCalendar;
   ListOfRooms;
+  roomName;
+  reservations;
   showRoom = this.EventData.getShowRoom();
   
   calendar = {
@@ -24,8 +27,13 @@ export class CalendarPage {
   showRooms(){
     return this.showRoom;
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private apiProvider:ApiProvider, private alertCtrl: AlertController, public EventData: EventDataProvider, public menuCtrl: MenuController) {
     this.loadEvents();
+    this.apiProvider.getReservations()
+    .then(data => {
+      this.reservations = data;
+      console.log (this.reservations)
+    });
     }
   onViewTitleChanged(title) {
       this.viewTitle = title;
@@ -76,14 +84,16 @@ export class CalendarPage {
       return eventsRoom;
   }
   createEvent (){
-      var allEvents = this.EventData.getEvents();
       var events = [];
-    for (var i=0; i<allEvents.length; i++){
+    for (var i=0; i<this.reservations.length; i++){
+      let start = new Date(this.reservations[i].meetStarts)
+      let end = new Date(this.reservations[i].meetEnds)
+
       events.push({
-            title: allEvents[i].title + " Room: " + this.EventData.getRoomName(i),
-            startTime: allEvents[i].startTime,
-            endTime: allEvents[i].endTime,
-            allDay: allEvents[i].allDay
+            title: this.reservations[i].reservationTitle, //+ " Room: " + this.EventData.getRoomName(i),
+            startTime: start,
+            endTime: end,
+            allDay: false
         });
       }
         return events;
@@ -97,22 +107,36 @@ export class CalendarPage {
   }
   onEventSelected(event) {
    let datestart = moment(event.startTime).format('Do MMMM YYYY');
-   let dateend = moment(event.startTime).format('Do MMMM YYYY');
+   let dateend = moment(event.endTime).format('Do MMMM YYYY');
    let start = moment(event.startTime).format('HH:mm');
     let end = moment(event.endTime).format('HH:mm');
- 
     let alert = this.alertCtrl.create({
       cssClass: 'alert-style',
-       title: '<p class="alert-title"><b>Event:</b><br />' + '<span>' + event.title + '</span></p><hr />',
-       message: '<div class="alert-message"><b>From:</b> '+datestart+'<br>At: '+start+'<br><b>Untill:</b> '+ dateend +'<br><b>At:</b> '+ end +'<br><b>Room:</b> </div>',
+       title: '<p class="alert-title"><b>EVENT:</b><br />' + '<span>' + event.title + '</span></p><hr />',
+       message: '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'</div>' ,
+
+//     var allEvents = this.EventData.getEvents();
+//     for(var i=0; i<allEvents.length;i++){
+//       if (event.title==allEvents[i].title){
+//         this.roomName=this.EventData.getRoomName(i);
+//       }
+//     }
+//     let trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>'; 
+//     if(event.allDay){
+//       trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>ALL DAY</b><br/><b>ROOM:</b> '+ this.roomName + '</div>';
+//     }
+//     else if(datestart == dateend){
+//       trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>';
+//     }
+//     let alert = this.alertCtrl.create({
+//       cssClass: 'alert-style',
+//        title: '<p class="alert-title"><b>Event:</b><br />' + '<span>' + event.title + '</span></p><hr />',
+//        message: trueDay,
+
        buttons:[
        {
          cssClass: 'alert-btn',
-         text: 'CANCEL',      
-       },
-       {
-         cssClass: 'alert-btn',
-         text: 'CONFIRM'
+         text: 'OK'
        }]
     });
     alert.present();
