@@ -13,8 +13,14 @@ page-create-user {
         text-transform: uppercase;
     }
 
+    .select-ios .select-icon .select-icon-inner,
+    .select-md .select-icon .select-icon-inner,
+    .select-wp .select-icon .select-icon-inner{
+        color: white;
+    }
+
     .user-role{
-        margin-top:5%;
+        margin-top:7%;
     }
 
     .background, .background .pane, .background .item, .background .item-complex .item-content{
@@ -33,7 +39,7 @@ page-create-user {
         border: none;
         background: #fff;
         color: map-get($colors, secondary);
-        margin-top: 10%; 
+        margin-top: 15%; 
         @include create-btn;    
     }
 
