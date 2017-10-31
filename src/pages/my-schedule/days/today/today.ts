@@ -28,9 +28,6 @@ export class TodayPage {
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
 
-
-    //Podeleni start i end time vo saati minuti i datum
-
     let startTimeEventDate=moment(this.StartTime).format('DD MM YYYY');
     let startTimeEventHoursMinutes=moment(this.StartTime).format('HH:mm');
     let endTimeEventDate=moment(this.EndTime).format('DD MM YYYY');
@@ -38,10 +35,8 @@ export class TodayPage {
 
 
     
-    //Sobata ime i event title
 
     let eventTitle = events.title;
-    // let eventRoomName = events.room.name;
 
     
     if (dateStart <= dateToday && dateToday <= dateEnd){
