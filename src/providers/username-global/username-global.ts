@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { ApiProvider } from '../../providers/api-provider/api-provider';
 
 @Injectable()
 export class UsernameGlobalProvider {
   public Usernames = ['test','admin','superadmin'];
-  public Fullnames = ['Test 1', 'Admin 1', 'Superadmin 1'];
   public Emails = ['test@test.com', 'admin@admin.com','superadmin@superadmin.com'];
   public Passwords = ['pass', 'pass', 'pass'];
   public IsAdmin = [false,true,true];
@@ -12,30 +12,39 @@ export class UsernameGlobalProvider {
   public CurrentUser;
   public IsLoggedIn;
   public UserLoggedIn;
-  public UsersData: {username: string, fullname: string, email: string, password: string, isAdmin: boolean, picture: string};
-  public FullUsers:{username: string, fullname: string, email: string, password: string, isAdmin: boolean, picture: string}[]= [];
+  public UsersData: {username: string, email: string, password: string, isAdmin: boolean, picture: string};
+  public FullUsers:{username: string,  email: string, password: string, isAdmin: boolean, picture: string}[]= [];
   public CurrentUserIndex = 0;
 
-  constructor(public storage: Storage) {
+  constructor(public storage: Storage, private apiProvider: ApiProvider) {
     for (var i=0; i<3; i++){
-    this.UsersData = {username: this.Usernames[i], fullname: this.Fullnames[i], email: this.Emails[i], password: this.Passwords[i], isAdmin: this.IsAdmin[i], picture: this.defaultImage };
+    this.UsersData = {username: this.Usernames[i], email: this.Emails[i], password: this.Passwords[i], isAdmin: this.IsAdmin[i], picture: this.defaultImage };
     this.FullUsers.push(this.UsersData);
     }
+    
+    // this.apiProvider.getUser()
+    // .then(data => {
+    //   this.users = data;
+    //   console.log(this.users);
+    // });
   }
+
   public setIsLoggedIn(value){
-    this.storage.set(this.IsLoggedIn,value);
+    this.storage.set("IsLoggedIn",value);
+    console.log(this.storage);
   }
   public setUserLoggedIn(value){
-    this.storage.set(this.UserLoggedIn,value);
+    this.storage.set("UserLoggedIn",value);
+    console.log(this.storage);
   }
   public getUserLoggedIn(){
-    this.storage.get(this.UserLoggedIn).then((value) =>{
-      return this.UserLoggedIn
+    this.storage.get("UserLoggedIn").then((value) =>{
+      return value
     })
   }
   public getIsLoggedIn(){
-    this.storage.get(this.IsLoggedIn).then((value) =>{
-      return this.IsLoggedIn
+    this.storage.get("IsLoggedIn").then((value) =>{
+      return value
     })
   }
 
@@ -64,7 +73,7 @@ export class UsernameGlobalProvider {
   }
 
   public addNewUser(value,value1) {
-   this.UsersData = {username: value.username, fullname: value.fullname, email: value.email, password: value.password, isAdmin: value.isAdmin, picture: value1 };
+   this.UsersData = {username: value.username, email: value.email, password: value.password, isAdmin: value.isAdmin, picture: value1 };
    this.FullUsers.push(this.UsersData);
   }
   
@@ -125,7 +134,7 @@ public getMyGlobalEmail() {
   }
 
   checkPassword(value){
-    
+    return true;
   }
 
 

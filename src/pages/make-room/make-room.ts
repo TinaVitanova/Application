@@ -16,36 +16,40 @@ export class MakeRoomPage {
   name;
   capacity;
   description;
-  
-  flagCorrectName:boolean=false;
-  flagCorrectCapacity:boolean=false;
   flagIncorrectRoomName:boolean = false;
   flagIncorrectRoomCapacity:boolean = false;
-  
-  showRoom;
   MakeRoomForm: FormGroup;
   submitAttempt: boolean = false;
   
-  onFocus(){
+  onBlurRoomName(){
+    if(!this.name){
+      this.flagIncorrectRoomName = false; 
+    }
+    else{
     if(!this.MakeRoomForm.valid){
       if(!this.MakeRoomForm.controls.RoomName.valid){
         this.flagIncorrectRoomName = true; 
-        this.flagCorrectName=false;
       }
       else{
       this.flagIncorrectRoomName = false; 
-        this.flagCorrectName=true;
-      }
-  
-      if(!this.MakeRoomForm.controls.Capacity.valid){
-        this.flagIncorrectRoomCapacity = true;
-        this.flagCorrectCapacity=false;
-    
-      }else{
-        this.flagIncorrectRoomCapacity = false;
-        this.flagCorrectCapacity=true;
-      }
+      }   
     }
+  }
+  }
+  onBlurCapacity(){
+    if(!this.capacity){
+      this.flagIncorrectRoomCapacity = false;
+    }
+    else{
+    if(!this.MakeRoomForm.valid){
+    if(!this.MakeRoomForm.controls.Capacity.valid){
+      this.flagIncorrectRoomCapacity = true;
+  
+    }else{
+      this.flagIncorrectRoomCapacity = false;
+    }
+  }
+}
   }
 
   CreateRoom(){
@@ -74,9 +78,8 @@ export class MakeRoomPage {
         text: 'CONFIRM',
         role: 'confirm',
           handler: data => {
-            this.showRoom = true;
             this.EventData.SendRoomData(this.name, this.capacity, this.description);
-            this.EventData.setShowRoom(this.showRoom);
+            this.EventData.setShowRoom(true);
             this.MakeRoomForm.reset();
           }
         }
@@ -88,8 +91,8 @@ export class MakeRoomPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public formBuilder: FormBuilder, public UserGlobal: UsernameGlobalProvider, public menuCtrl: MenuController) {
     this.MakeRoomForm = formBuilder.group({
-      RoomName: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9][\w]+\s?[\w]+$/),Validators.required,new Validator(UserGlobal, EventData).isRoomValid])],
-      Capacity: ['',Validators.compose([Validators.required, Validators.pattern(/[\d]+/)])],
+      RoomName: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9]\s?[\w]+$/),Validators.required,new Validator(UserGlobal, EventData).isRoomValid])],
+      Capacity: ['',Validators.compose([Validators.required, Validators.pattern(/[\d]+/),Validators.required,new Validator(UserGlobal, EventData).isRoomCapacityValid])],
       Description: ['',Validators.compose([Validators.maxLength(300)])]
     });
   }

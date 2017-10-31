@@ -79,6 +79,17 @@ export class Validator {
         return null;
     }
 
+    isEventTitleValid(control: FormControl):any{
+        var events=Validator.eventProvider.getEvents();
+        for (var i=0;i<events.length;i++){
+            if(control.value == events[i].title)
+            return {
+                "That title already exists":true
+            }
+        }
+        return null;
+    }
+
     isRoomCapacityValid(control: FormControl):any{
         if(control.value <1 || control.value >30){
             return {

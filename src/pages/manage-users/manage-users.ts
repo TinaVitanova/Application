@@ -1,3 +1,4 @@
+import { ApiProvider } from '../../providers/api-provider/api-provider';
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
@@ -14,9 +15,26 @@ export class ManageUsersPage {
   public AllUsers = this.UserGlobal.getFullUsers();
 
   imageLoaded: boolean = false;
+  users:{email:'',userName:''}[]=[];
+  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController, public menuCtrl: MenuController) {
+  getUser() {
+    this.apiProvider.getUser()
+    .then(data => {
+      this.users = data;
+    });
+    for(var i = 0; i < this.users.length; i++){
+    this.singleArray.push({
+            username: this.users[i].userName,
+            email: this.users[i].email,
+            picture: "data:image/png;base64," + this.UserGlobal.getDefaultImage()
+    });
+  }
+  }
+
+  constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController, public menuCtrl: MenuController) {
     this.initializeUsers();
+    this.getUser();
   }
 
   initializeUsers(){
@@ -41,9 +59,6 @@ export class ManageUsersPage {
           text: 'CANCEL',
           cssClass: 'alert-btn',
           role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
         },
         {
           text: 'DELETE',
@@ -77,7 +92,12 @@ export class ManageUsersPage {
     }
   }
 
+  ionViewWillEnter(){
+    this.getUser();
+  }
   ionViewDidEnter(){
+    
+    this.getUser();
     this.menuCtrl.enable(false, "userMenu");
     this.menuCtrl.enable(false, "adminMenu");
   }
