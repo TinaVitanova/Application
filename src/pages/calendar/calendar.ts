@@ -110,23 +110,29 @@ export class CalendarPage {
    let dateend = moment(event.endTime).format('Do MMMM YYYY');
    let start = moment(event.startTime).format('HH:mm');
     let end = moment(event.endTime).format('HH:mm');
-    var allEvents = this.EventData.getEvents();
-    for(var i=0; i<allEvents.length;i++){
-      if (event.title==allEvents[i].title){
-        this.roomName=this.EventData.getRoomName(i);
-      }
-    }
-    let trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>'; 
-    if(event.allDay){
-      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>ALL DAY</b><br/><b>ROOM:</b> '+ this.roomName + '</div>';
-    }
-    else if(datestart == dateend){
-      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>';
-    }
     let alert = this.alertCtrl.create({
       cssClass: 'alert-style',
-       title: '<p class="alert-title"><b>Event:</b><br />' + '<span>' + event.title + '</span></p><hr />',
-       message: trueDay,
+       title: '<p class="alert-title"><b>EVENT:</b><br />' + '<span>' + event.title + '</span></p><hr />',
+       message: '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'</div>' ,
+
+//     var allEvents = this.EventData.getEvents();
+//     for(var i=0; i<allEvents.length;i++){
+//       if (event.title==allEvents[i].title){
+//         this.roomName=this.EventData.getRoomName(i);
+//       }
+//     }
+//     let trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>'; 
+//     if(event.allDay){
+//       trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>ALL DAY</b><br/><b>ROOM:</b> '+ this.roomName + '</div>';
+//     }
+//     else if(datestart == dateend){
+//       trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>';
+//     }
+//     let alert = this.alertCtrl.create({
+//       cssClass: 'alert-style',
+//        title: '<p class="alert-title"><b>Event:</b><br />' + '<span>' + event.title + '</span></p><hr />',
+//        message: trueDay,
+
        buttons:[
        {
          cssClass: 'alert-btn',

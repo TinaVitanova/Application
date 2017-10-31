@@ -85,6 +85,7 @@ export class EventDataProvider {
   }
 
   public setEvent(value1,value2,value3,value4,value5){
+
  this.apiProvider.getReservations()
     .then(data => {
       this.reservations = data;
