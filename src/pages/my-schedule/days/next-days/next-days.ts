@@ -92,15 +92,16 @@ export class NextDaysPage {
               this.EventData.deleteEvent(events);
             }
           },
-          // {
-          //   cssClass:'alert-btn',
-          //   text:'Change',
-          //   handler: data =>{
-          //     this.EventData.setChangeEvent(events);
-          //     this.EventData.setIsChangeEvent(true);
-          //     this.navCtrl.push(ReserveEventPage);
-          //   }
-          // },
+          {
+            cssClass:'alert-btn',
+            text:'Change',
+            handler: data =>{
+              this.EventData.setChangeEvent(events);
+              this.EventData.setIndexOfChangeEvent(this.MyEvents.indexOf(events));
+              this.EventData.setIsChangeEvent(true);
+              this.navCtrl.push(ReserveEventPage);
+            }
+          },
         {
           cssClass: 'alert-btn',
           text: 'OK'

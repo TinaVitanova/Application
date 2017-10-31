@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 
+import { ApiProvider } from '../../providers/api-provider/api-provider';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Validator } from '../../validators/FormValidator';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
@@ -12,7 +13,7 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
   templateUrl: 'make-room.html',
 })
 export class MakeRoomPage {
- 
+  roomNew: {capacity:number,roomName:string,desc:string};
   name;
   capacity;
   description;
@@ -78,8 +79,10 @@ export class MakeRoomPage {
         text: 'CONFIRM',
         role: 'confirm',
           handler: data => {
-            this.EventData.SendRoomData(this.name, this.capacity, this.description);
-            this.EventData.setShowRoom(true);
+            this.roomNew={capacity:this.capacity,roomName:this.name,desc:this.description}
+            console.log(this.roomNew)
+            this.apiProvider.addRoom(this.roomNew);
+            //this.EventData.SendRoomData(this.name, this.capacity, this.description);
             this.MakeRoomForm.reset();
           }
         }
@@ -89,7 +92,7 @@ export class MakeRoomPage {
     }
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public formBuilder: FormBuilder, public UserGlobal: UsernameGlobalProvider, public menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiProvider, public alertCtrl: AlertController, public EventData: EventDataProvider, public formBuilder: FormBuilder, public UserGlobal: UsernameGlobalProvider, public menuCtrl: MenuController) {
     this.MakeRoomForm = formBuilder.group({
       RoomName: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9]\s?[\w]+$/),Validators.required,new Validator(UserGlobal, EventData).isRoomValid])],
       Capacity: ['',Validators.compose([Validators.required, Validators.pattern(/[\d]+/),Validators.required,new Validator(UserGlobal, EventData).isRoomCapacityValid])],

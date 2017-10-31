@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 export class ApiProvider{
     apiUrl = 'http://10.10.20.177:8080';
     data:any;
+    dataRooms:any;
     
     constructor(public http:Http){
         
@@ -42,6 +43,7 @@ export class ApiProvider{
     }
 
     addReservation(reservation){
+        console.log(reservation)
         let headers = new Headers({ 
             'Accept':'application/json',
             'Content-Type':'application/json',
@@ -49,6 +51,23 @@ export class ApiProvider{
         });
         return new Promise(resolve => {
             this.http.post(this.apiUrl+'/reservation/add', JSON.stringify(reservation) , { headers: headers })
+            .subscribe(res => {
+                console.log(res)
+                resolve(res);
+            }, (err) => {
+                console.log(err);
+            });
+        });
+    }
+
+    updateReservation(reservation){
+        let headers = new Headers({ 
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*'
+        });
+        return new Promise(resolve => {
+            this.http.put(this.apiUrl+'/reservation/update', JSON.stringify(reservation) , { headers: headers })
             .subscribe(res => {
                 console.log(res)
                 resolve(res);
@@ -93,16 +112,16 @@ export class ApiProvider{
     }
 
     getRooms(){
-        if (this.data) {
-            return Promise.resolve(this.data);
+        if (this.dataRooms) {
+            return Promise.resolve(this.dataRooms);
         }
         
         return new Promise(resolve => {
             this.http.get(this.apiUrl+'/room/getall')
             .map(res => res.json())
-            .subscribe(data => {
-                this.data = data;
-                resolve(this.data);
+            .subscribe(dataRooms => {
+                this.dataRooms = dataRooms;
+                resolve(this.dataRooms);
             });
         });
     }

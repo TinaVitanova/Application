@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EventDataProvider } from '../../../../providers/event-data/event-data';
+import { ReserveEventPage } from '../../../reserve-event/reserve-event';
 import * as moment from 'moment';
 
 @IonicPage()
@@ -90,6 +91,16 @@ if(events.allDay){
             text: 'Delete',
             handler: data => {
               this.EventData.deleteEvent(events);
+            }
+          },
+          {
+            cssClass:'alert-btn',
+            text:'Change',
+            handler: data =>{
+              this.EventData.setChangeEvent(events);
+              this.EventData.setIndexOfChangeEvent(this.MyEvents.indexOf(events));
+              this.EventData.setIsChangeEvent(true);
+              this.navCtrl.push(ReserveEventPage);
             }
           },
         {

@@ -6,7 +6,6 @@ import { MakeRoomPage } from '../make-room/make-room';
 import { CreateUserPage } from '../create-user/create-user';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 import { EventDataProvider } from '../../providers/event-data/event-data';
-import { ApiProvider } from '../../providers/api-provider/api-provider';
 import * as moment from 'moment';
 @IonicPage()
 @Component({
@@ -20,9 +19,7 @@ export class DashboardPage {
   showEvents = false;
   flagCalendar;
   allDayEvent = false;
-  MyEvents=[];
-  Eventdata : {title: string, startTime: number, endTime: number, allDay: boolean, room: Object};
-  reservations;
+  MyEvents;
   StartTime;
   EndTime;
   StartDate;
@@ -56,12 +53,9 @@ export class DashboardPage {
     this.EndTime = moment(events.endTime).format('HH:mm');
     this.StartDate = moment(events.startTime).format('DD.MM');
     this.EndDate = moment(events.endTime).format('-DD.MM');
-    if(events.allDay){
-      dateEnd=moment(events.endTime).add(-1,"days").format('DD MM YYYY');
-    }
-
+    
     if (dateStart <= dateToday && dateToday <= dateEnd){
-    if(events.allDay==true){
+    if(this.StartTime=="00:00" && this.EndTime=="00:00"){
       if(dateEnd!=dateToday){
         this.allDayEvent=true;
         return true;
@@ -78,26 +72,18 @@ export class DashboardPage {
       return false;
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiProvider, public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
     this.username=this.UserGlobal.getMyGlobalVar();
   }
   
   ionViewDidEnter(){
     this.username=this.UserGlobal.getMyGlobalVar();
-    // this.EventData.setIsChangeEvent(false);
-    this.MyEvents=[];
-    this.apiProvider.getReservations()
-    .then(data => {
-      this.reservations = data;
-      for(var i=0;i<this.reservations.length;i++){
-        this.Eventdata = {title: this.reservations[i].reservationTitle, startTime: this.reservations[i].meetStarts, endTime: this.reservations[i].meetEnds, allDay: this.reservations[i].allDay, room: this.reservations[i].room};
-        this.MyEvents.push(this.Eventdata);
-      }
-    });
+     this.EventData.setIsChangeEvent(false);
   }
 
   ionViewWillEnter(){
-    
+    console.log('aloooooooooooo')
+    this.MyEvents=this.EventData.getEvents();
     if(this.username=="admin" || this.username=="superadmin"){
       this.adminBtn=true;
       this.menuCtrl.enable(true, "adminMenu");

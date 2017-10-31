@@ -9,7 +9,7 @@
     <form [formGroup]="ReserveEventForm">
     <ion-item>
         <ion-label>TITLE</ion-label>
-        <ion-input text-right type="text" placeholder="Example" (blur)="onBlurTitle()" formControlName="title" [class.invalid]="!ReserveEventForm.controls.title.valid && ReserveEventForm.controls.title.dirty && submitAttempt" [(ngModel)]="title"></ion-input>
+        <ion-input text-right type="text" placeholder="Example" (ionBlur)="onBlurTitle()" formControlName="title" [class.invalid]="!ReserveEventForm.controls.title.valid && ReserveEventForm.controls.title.dirty && submitAttempt" [(ngModel)]="title"></ion-input>
     </ion-item>
     <p class="invalid-style" text-center [hidden]="!flagTitle">Invalid Title</p>
     <ion-item>
@@ -51,7 +51,7 @@
         <ion-select class="choose-room-opt" [(ngModel)]="rooms">
             <ion-label *ngIf="!showRooms()">NO ROOM CREATED</ion-label>
             <span *ngIf="showRooms()">
-                        <ion-option (ionSelect)="SelectedRoom(r)" *ngFor="let r of ListOfRooms">{{r.name}}</ion-option>
+                        <ion-option (ionSelect)="SelectedRoom(r)" *ngFor="let r of FullListOfRooms">{{r.name}}</ion-option>
             </span>
         </ion-select>
     </ion-item>
