@@ -41,9 +41,12 @@ export class NextDaysPage {
     //Sobata ime i event title
 
     let eventTitle = events.title;
-    // let eventRoomName = events.room.name;
 
-    if ((dateStart <= otherDays && nextDay <= dateEnd)){
+
+    if(events.allDay){
+      dateEnd=moment(events.endTime).add(-1,"days").format('DD MM YYYY');
+    }
+    if (dateStart <= otherDays && nextDay <= dateEnd){
     if(events.allDay==true){
       if(dateEnd!=nextDay){
         this.allDayEvent=true;
