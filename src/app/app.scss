@@ -23,6 +23,10 @@
     z-index: 100000;
     width: 100%;
     background-color: white;
+
+    img{
+        width:35%;
+    }
 }
 
 .flb {
@@ -596,4 +600,18 @@ ion-list .sm-list {
     }
 
 }
+
+ // *******************
+    // TABLET DESIGN START
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        
+        #custom-overlay img{
+            width: 60%;
+        }
+       
+     }
+
+    // *******************
+    // TABLET DESIGN END
 

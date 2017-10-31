@@ -84,7 +84,7 @@ export class DashboardPage {
 //       this.allDayEvent=false;
 
       return true;
-  }}
+ // }}
     else
       return false;
   }
