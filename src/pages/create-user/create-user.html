@@ -40,7 +40,7 @@
 
     </form>
     <ion-item>
-        <ion-label>Role</ion-label>
+        <ion-label class="user-role"><ion-icon name="contact"></ion-icon> &nbsp; Role</ion-label>
         <ion-select [(ngModel)]="role" name="role">
             <ion-option *ngFor="let r of roleName" (ionSelect)="addRole(r)">{{r}}</ion-option>
         </ion-select>

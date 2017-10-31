@@ -13,6 +13,10 @@ page-create-user {
         text-transform: uppercase;
     }
 
+    .user-role{
+        margin-top:5%;
+    }
+
     .background, .background .pane, .background .item, .background .item-complex .item-content{
         background-color: map-get($colors, secondary);
         color: white;
@@ -40,3 +44,28 @@ page-create-user {
     }
 
 }
+
+// *******************
+// TABLET DESIGN START
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    page-create-user {
+    
+        .item-ios, .item-md, .item-wp{
+            border-bottom: 4px solid white;
+            font-size: 220%;
+            margin-top:10%!important;
+        }
+
+        #create-user{
+            font-size: 250%!important;
+            margin-top: 20%!important;
+        }
+
+    }
+
+}
+
+// *******************
+// TABLET DESIGN END

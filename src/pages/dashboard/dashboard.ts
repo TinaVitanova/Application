@@ -73,7 +73,7 @@ export class DashboardPage {
       this.allDayEvent=false;
 
       return true;
- // }}
+ }}
     else
       return false;
   }
@@ -98,7 +98,7 @@ export class DashboardPage {
 
   ionViewWillEnter(){
     
-    if(this.username=="admin" || this.username=="superadmin"){
+    if(this.username=="admin" || this.username=="kris"){
       this.adminBtn=true;
       this.menuCtrl.enable(true, "adminMenu");
     }

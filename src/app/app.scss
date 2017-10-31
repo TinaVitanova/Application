@@ -602,13 +602,6 @@ ion-list .sm-list {
 
 }
 
-@mixin no-animation{
-    -webkit-animation: none;
-    -moz-animation: none;
-    -ms-animation: none;
-    animation: none;
-}
-
  // *******************
     // TABLET DESIGN START
 
@@ -616,14 +609,66 @@ ion-list .sm-list {
         
         #custom-overlay img{
             width: 45%;
-            @include no-animation;
+            animation: pulse 3100ms ease-in-out;
+            -webkit-animation: pulse 3100ms ease-in-out;
+            -moz-animation: pulse 3100ms ease-in-out;
+            -ms-animation: pulse 3100ms ease-in-out;
         }
 
-        .animation-target {
-            @include no-animation;
+        .animation-target, .flb {
+            -webkit-animation: none;
+            -moz-animation: none;
+            -ms-animation: none;
+            animation: none;
         }
-       
-     }
+
+        .menu-inner{
+            width: 500px;
+        }
+
+        .avatar {
+            width: 250px;
+            height: 250px;
+            margin: 20% 25% 10% 25%;
+            border-radius: 50%;
+        }
+
+        ion-list .sm-list {
+            width: 85%;
+            .item .item-inner {
+                border-bottom: 4px solid white;
+                padding: 2% 0% 3% 0%;
+                text-align: center;
+                margin: 5% 0% 0% 15%;
+                font-size:180%;
+                &:hover,
+                &:active,
+                &:focus {
+                    color: map-get($colors, secondary);
+                    border-bottom: 4px solid map-get($colors, secondary);
+                    @include basic-transition;
+                }
+            }
+        }
+
+        .notifications{
+            border-bottom: 4px solid white;
+            margin: 5% 0% 0% 17%;
+            width: 65%;
+            ion-label{
+                font-size:180%;
+            }
+        }
+
+                
+        .logout-btn {
+            margin-top: 50%;
+            font-size: 250%;
+        }
+
+
+            
+    }
 
     // *******************
     // TABLET DESIGN END
