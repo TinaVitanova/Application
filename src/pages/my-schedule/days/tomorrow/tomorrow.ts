@@ -41,7 +41,9 @@ export class TomorrowPage {
 
     let eventTitle = events.title;
     // let eventRoomName = events.room.name;
-
+if(events.allDay){
+      dateEnd=moment(events.endTime).add(-1,"days").format('DD MM YYYY');
+    }
     
     if (dateStart <= nextDay && nextDay <= dateEnd){
       if(events.allDay==true){

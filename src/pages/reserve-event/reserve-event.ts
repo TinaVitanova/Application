@@ -215,274 +215,275 @@ export class ReserveEventPage {
       this.showAvailableRooms=false;
     }
     else{
-      this.showAvailableRooms=true;
-    var notTrue=true;
-    for(var i=0;i<this.AllEvents.length;i++){
-      var roomCheck = this.AllEvents[i].room;
-      var roomNameCheck = this.EventData.getRoomName(i);
-      var CheckEventStartTimeAllDay = moment(this.AllEvents[i].startTime).format("DD MM YYYY");
-      var CheckEventEndTimeAllDay = moment(this.AllEvents[i].endTime).format("DD MM YYYY");
-      var CheckEventStartTimeHours = moment(this.AllEvents[i].startTime).format("HH");
-      var CheckEventStartTimeMinutes = moment(this.AllEvents[i].startTime).format("mm");
-      var CheckEventEndTimeMinutes = moment(this.AllEvents[i].endTime).format("mm");
-      var CheckEventEndTimeHours = moment(this.AllEvents[i].endTime).format("HH");
-      var CheckStartTimeAllDay = moment(this.startday).format("DD MM YYYY");
-      if(this.flagAllDay==true){
-        if(CheckEventStartTimeAllDay<=CheckStartTimeAllDay && CheckEventEndTimeAllDay>=CheckStartTimeAllDay){
-          notTrue=false;
-          this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-            return item.name!=roomNameCheck;
-          });
-        }
-        else{
-          notTrue=true;
-        }
-      }
-      else{
-      var startTimeHoursMinutes = this.startTime.split(':');
-      var endTimeHoursMinutes = this.endTime.split(':');
-        if(CheckEventStartTimeAllDay == CheckStartTimeAllDay && CheckEventEndTimeAllDay==CheckEventStartTimeAllDay){
-          //ima event za 1 den na denta koga rezerviram
-          if(startTimeHoursMinutes[0]!=endTimeHoursMinutes[0]){
-            //mojata rezervacija e na dva dena
-            if(CheckEventStartTimeHours == startTimeHoursMinutes[0]){
-              //proveruva dali pochnuvaat vo ist saat
-              if(CheckEventStartTimeMinutes >= startTimeHoursMinutes[1]){
-                notTrue=false;
-                this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-                  return item.name!=roomNameCheck;
-                });
-              }
-              else if (CheckEventStartTimeMinutes < startTimeHoursMinutes[1]){
-                if(CheckEventEndTimeHours==startTimeHoursMinutes[0]){
-                  if(CheckEventEndTimeMinutes==startTimeHoursMinutes[1])
-                  this.flagForWarning=true;
-                  notTrue=true;
-                  }
-                  else if (CheckEventEndTimeMinutes>startTimeHoursMinutes[1]){
-                    notTrue=false;
-                    this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-                      return item.name!=roomNameCheck;
-                    });
-                  }
-                  else if(CheckEventEndTimeMinutes<startTimeHoursMinutes[1]){
-                    notTrue=true;
-                  }}
-              else if (CheckEventEndTimeHours>startTimeHoursMinutes[0]){
-                  notTrue=false;
-                  this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-                  return item.name!=roomNameCheck;
-                  });
-              }
-              }
-            else if(CheckEventStartTimeHours > startTimeHoursMinutes[0]){
-              notTrue=false;
-              this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-              return item.name!=roomNameCheck;
-              });
-            }
-            else if (CheckEventStartTimeHours < startTimeHoursMinutes[0]){
-              if (CheckEventEndTimeHours == startTimeHoursMinutes[0]){
-                if(CheckEventEndTimeMinutes == startTimeHoursMinutes[1]){
-                  this.flagForWarning=true;
-                  notTrue=true;
-                }
-                else if (CheckEventEndTimeMinutes < startTimeHoursMinutes[1]){
-                  this.flagForWarning=true;
-                  notTrue=true;
-                }
-                else if (CheckEventEndTimeMinutes > startTimeHoursMinutes[1]){
-                  notTrue=false;
-                  this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-                  return item.name!=roomNameCheck;
-                  });
-                }
-              }
-              else if (CheckEventEndTimeHours > startTimeHoursMinutes[0]){
-                notTrue=false;
-                this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-                  return item.name!=roomNameCheck;
-                });
-              }
-              else if(CheckEventEndTimeHours < startTimeHoursMinutes[0]){
-                notTrue=true;
-              }
-            }    
-          }
-          else if(CheckEventStartTimeHours == startTimeHoursMinutes[0]){
-            //mojata rez e samo 1 den
-            //pochnuvaat vo ist saat
-            if(CheckEventStartTimeMinutes == startTimeHoursMinutes[1]){
-              notTrue=false;
-              this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-                return item.name!=roomNameCheck;
-              });
-            }
-            else if(CheckEventStartTimeMinutes > startTimeHoursMinutes[1]){
-              if(CheckEventStartTimeHours==endTimeHoursMinutes[0]){
-                if(CheckEventStartTimeMinutes==endTimeHoursMinutes[0]){
-                  this.flagForWarning=true;
-                  notTrue=true;
-                }
-                else if(CheckEventStartTimeMinutes>endTimeHoursMinutes[0]){
-                  notTrue=true;
-                }
-                else if (CheckEventStartTimeMinutes<endTimeHoursMinutes[0]){
-                  notTrue=false;
-                  this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-                    return item.name!=roomNameCheck;
-                  });
-                }
-              }
-            }
-            else if (CheckEventStartTimeMinutes < startTimeHoursMinutes[1]){
-              if(CheckEventEndTimeHours==startTimeHoursMinutes[0]){
-                if(CheckEventEndTimeMinutes==startTimeHoursMinutes[0]){
-                  this.flagForWarning=true;
-                  notTrue=true;
-                }
-                else if(CheckEventEndTimeMinutes>startTimeHoursMinutes[0]){
-                  notTrue=false;
-                  this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-                    return item.name!=roomNameCheck;
-                  });
-                }
-                else if (CheckEventEndTimeMinutes<startTimeHoursMinutes[0]){
-                  notTrue=true;
-                }
-              }
-            }
-          }
-          else if(CheckEventStartTimeHours > startTimeHoursMinutes[0]){
-            //1 den i mojot event pochnuva porano so saat
-            if (CheckEventStartTimeHours == endTimeHoursMinutes[0]){
-              //mojot event zavrshuva so isti start na dr event (saat)
-              if(CheckEventStartTimeMinutes == endTimeHoursMinutes[1]){
-                this.flagForWarning=true;
-                notTrue=true;
-              }
-              else if (CheckEventStartTimeMinutes > endTimeHoursMinutes[1]){
-                notTrue=true;
-              }
-              else if (CheckEventStartTimeMinutes < endTimeHoursMinutes[1]){
-                notTrue=false;
-                this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-                  return item.name!=roomNameCheck;
-                });
-              }
-            }
-            else if(CheckEventStartTimeHours > endTimeHoursMinutes[0]){
-              notTrue=true;
-            }
-            else if(CheckEventStartTimeHours < endTimeHoursMinutes[0]){
-              notTrue=false;
-              this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-                return item.name!=roomNameCheck;
-              });
-            }
-          }
-          else if (CheckEventStartTimeHours < startTimeHoursMinutes[0]){
-            //1 den i mojot event pochnuva pokasno so saat
-            if (CheckEventEndTimeHours == startTimeHoursMinutes[0]){
-              if(CheckEventEndTimeMinutes == startTimeHoursMinutes[1]){
-                this.flagForWarning=true;
-                notTrue=true;
-              }
-              else if (CheckEventEndTimeMinutes < startTimeHoursMinutes[1]){
-                this.flagForWarning=true;
-                notTrue=true;
-              }
-              else if (CheckEventEndTimeMinutes > startTimeHoursMinutes[1]){
-                notTrue=false;
-                this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-                  return item.name!=roomNameCheck;
-                });
-              }
-            }
-            else if (CheckEventEndTimeHours > startTimeHoursMinutes[0]){
-              notTrue=false;
-              this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-                return item.name!=roomNameCheck;
-              });
-            }
-            else if(CheckEventEndTimeHours < startTimeHoursMinutes[0]){
-              notTrue=true;
-            }
-          }    
-    }
-    else if(CheckEventEndTimeAllDay==CheckStartTimeAllDay){
-      //ima event shto zavrshuva na denta koga rezerviram
-      if(CheckEventEndTimeHours==startTimeHoursMinutes[0]){
-        if(CheckEventEndTimeMinutes == startTimeHoursMinutes[1]){
-          this.flagForWarning=true;
-          notTrue=true;
-        }
-        else if(CheckEventEndTimeMinutes > startTimeHoursMinutes[1]){
-          notTrue=false;
-          this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-            return item.name!=roomNameCheck;
-          });
-        }
-        else if (CheckEventEndTimeMinutes < startTimeHoursMinutes[1]){
-          notTrue=true;
-        }
-      }
-      else if(CheckEventEndTimeHours > startTimeHoursMinutes[0]){
-        notTrue=false;
-        this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-          return item.name!=roomNameCheck;
-        });
-      }
-      else if (CheckEventEndTimeHours < startTimeHoursMinutes[0]){
-        notTrue=true;
-      }
-    }
-    else if(CheckEventEndTimeAllDay!=CheckEventStartTimeAllDay && CheckEventStartTimeAllDay==CheckStartTimeAllDay){
-      //ima event shto pochnuva na den na mojot event a zavrshuva sl den
-      if(CheckEventStartTimeHours<=startTimeHoursMinutes[0]){
-        notTrue=false;
-        this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-          return item.name!=roomNameCheck;
-        });
-      }
-      else if(CheckEventStartTimeHours>startTimeHoursMinutes[0]){
-        if (CheckEventStartTimeHours==endTimeHoursMinutes[1]){
-          if(CheckEventStartTimeMinutes==endTimeHoursMinutes[1]){
-            this.flagForWarning=true;
-            notTrue=true;
-          }
-          else if(CheckEventStartTimeMinutes<endTimeHoursMinutes[1]){
-            notTrue=false;
-            this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-              return item.name!=roomNameCheck;
-            });
-          }
-          else if (CheckEventStartTimeMinutes>endTimeHoursMinutes[1]){
-            notTrue=true;
-          }
-        }
-        else if (CheckEventStartTimeHours<endTimeHoursMinutes[1]){
-          notTrue=false;
-          this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-            return item.name!=roomNameCheck;
-          });
-        }
-        else if (CheckEventStartTimeHours>endTimeHoursMinutes[1]){
-          notTrue=true;
-        }
-      }
-      else if (CheckEventStartTimeHours<startTimeHoursMinutes[0]){
-        notTrue=false;
-        this.ListOfRooms=this.ListOfRooms.filter((item) =>{
-          return item.name!=roomNameCheck;
-        });
-      }
-    }
-  }
-    if(notTrue==true){
-      this.ListOfRooms=JSON.parse(JSON.stringify(this.EventData.getRoomData()))
-    }
-  }
+
+       this.showAvailableRooms=true;
+  //   var notTrue=true;
+  //   for(var i=0;i<this.AllEvents.length;i++){
+  //     var roomCheck = this.AllEvents[i].room;
+  //     var roomNameCheck = this.EventData.getRoomName(i);
+  //     var CheckEventStartTimeAllDay = moment(this.AllEvents[i].startTime).format("DD MM YYYY");
+  //     var CheckEventEndTimeAllDay = moment(this.AllEvents[i].endTime).format("DD MM YYYY");
+  //     var CheckEventStartTimeHours = moment(this.AllEvents[i].startTime).format("HH");
+  //     var CheckEventStartTimeMinutes = moment(this.AllEvents[i].startTime).format("mm");
+  //     var CheckEventEndTimeMinutes = moment(this.AllEvents[i].endTime).format("mm");
+  //     var CheckEventEndTimeHours = moment(this.AllEvents[i].endTime).format("HH");
+  //     var CheckStartTimeAllDay = moment(this.startday).format("DD MM YYYY");
+  //     if(this.flagAllDay==true){
+  //       if(CheckEventStartTimeAllDay<=CheckStartTimeAllDay && CheckEventEndTimeAllDay>=CheckStartTimeAllDay){
+  //         notTrue=false;
+  //         this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //           return item.name!=roomNameCheck;
+  //         });
+  //       }
+  //       else{
+  //         notTrue=true;
+  //       }
+  //     }
+  //     else{
+  //     var startTimeHoursMinutes = this.startTime.split(':');
+  //     var endTimeHoursMinutes = this.endTime.split(':');
+  //       if(CheckEventStartTimeAllDay == CheckStartTimeAllDay && CheckEventEndTimeAllDay==CheckEventStartTimeAllDay){
+  //         //ima event za 1 den na denta koga rezerviram
+  //         if(startTimeHoursMinutes[0]!=endTimeHoursMinutes[0]){
+  //           //mojata rezervacija e na dva dena
+  //           if(CheckEventStartTimeHours == startTimeHoursMinutes[0]){
+  //             //proveruva dali pochnuvaat vo ist saat
+  //             if(CheckEventStartTimeMinutes >= startTimeHoursMinutes[1]){
+  //               notTrue=false;
+  //               this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //                 return item.name!=roomNameCheck;
+  //               });
+  //             }
+  //             else if (CheckEventStartTimeMinutes < startTimeHoursMinutes[1]){
+  //               if(CheckEventEndTimeHours==startTimeHoursMinutes[0]){
+  //                 if(CheckEventEndTimeMinutes==startTimeHoursMinutes[1])
+  //                 this.flagForWarning=true;
+  //                 notTrue=true;
+  //                 }
+  //                 else if (CheckEventEndTimeMinutes>startTimeHoursMinutes[1]){
+  //                   notTrue=false;
+  //                   this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //                     return item.name!=roomNameCheck;
+  //                   });
+  //                 }
+  //                 else if(CheckEventEndTimeMinutes<startTimeHoursMinutes[1]){
+  //                   notTrue=true;
+  //                 }}
+  //             else if (CheckEventEndTimeHours>startTimeHoursMinutes[0]){
+  //                 notTrue=false;
+  //                 this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //                 return item.name!=roomNameCheck;
+  //                 });
+  //             }
+  //             }
+  //           else if(CheckEventStartTimeHours > startTimeHoursMinutes[0]){
+  //             notTrue=false;
+  //             this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //             return item.name!=roomNameCheck;
+  //             });
+  //           }
+  //           else if (CheckEventStartTimeHours < startTimeHoursMinutes[0]){
+  //             if (CheckEventEndTimeHours == startTimeHoursMinutes[0]){
+  //               if(CheckEventEndTimeMinutes == startTimeHoursMinutes[1]){
+  //                 this.flagForWarning=true;
+  //                 notTrue=true;
+  //               }
+  //               else if (CheckEventEndTimeMinutes < startTimeHoursMinutes[1]){
+  //                 this.flagForWarning=true;
+  //                 notTrue=true;
+  //               }
+  //               else if (CheckEventEndTimeMinutes > startTimeHoursMinutes[1]){
+  //                 notTrue=false;
+  //                 this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //                 return item.name!=roomNameCheck;
+  //                 });
+  //               }
+  //             }
+  //             else if (CheckEventEndTimeHours > startTimeHoursMinutes[0]){
+  //               notTrue=false;
+  //               this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //                 return item.name!=roomNameCheck;
+  //               });
+  //             }
+  //             else if(CheckEventEndTimeHours < startTimeHoursMinutes[0]){
+  //               notTrue=true;
+  //             }
+  //           }    
+  //         }
+  //         else if(CheckEventStartTimeHours == startTimeHoursMinutes[0]){
+  //           //mojata rez e samo 1 den
+  //           //pochnuvaat vo ist saat
+  //           if(CheckEventStartTimeMinutes == startTimeHoursMinutes[1]){
+  //             notTrue=false;
+  //             this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //               return item.name!=roomNameCheck;
+  //             });
+  //           }
+  //           else if(CheckEventStartTimeMinutes > startTimeHoursMinutes[1]){
+  //             if(CheckEventStartTimeHours==endTimeHoursMinutes[0]){
+  //               if(CheckEventStartTimeMinutes==endTimeHoursMinutes[0]){
+  //                 this.flagForWarning=true;
+  //                 notTrue=true;
+  //               }
+  //               else if(CheckEventStartTimeMinutes>endTimeHoursMinutes[0]){
+  //                 notTrue=true;
+  //               }
+  //               else if (CheckEventStartTimeMinutes<endTimeHoursMinutes[0]){
+  //                 notTrue=false;
+  //                 this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //                   return item.name!=roomNameCheck;
+  //                 });
+  //               }
+  //             }
+  //           }
+  //           else if (CheckEventStartTimeMinutes < startTimeHoursMinutes[1]){
+  //             if(CheckEventEndTimeHours==startTimeHoursMinutes[0]){
+  //               if(CheckEventEndTimeMinutes==startTimeHoursMinutes[0]){
+  //                 this.flagForWarning=true;
+  //                 notTrue=true;
+  //               }
+  //               else if(CheckEventEndTimeMinutes>startTimeHoursMinutes[0]){
+  //                 notTrue=false;
+  //                 this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //                   return item.name!=roomNameCheck;
+  //                 });
+  //               }
+  //               else if (CheckEventEndTimeMinutes<startTimeHoursMinutes[0]){
+  //                 notTrue=true;
+  //               }
+  //             }
+  //           }
+  //         }
+  //         else if(CheckEventStartTimeHours > startTimeHoursMinutes[0]){
+  //           //1 den i mojot event pochnuva porano so saat
+  //           if (CheckEventStartTimeHours == endTimeHoursMinutes[0]){
+  //             //mojot event zavrshuva so isti start na dr event (saat)
+  //             if(CheckEventStartTimeMinutes == endTimeHoursMinutes[1]){
+  //               this.flagForWarning=true;
+  //               notTrue=true;
+  //             }
+  //             else if (CheckEventStartTimeMinutes > endTimeHoursMinutes[1]){
+  //               notTrue=true;
+  //             }
+  //             else if (CheckEventStartTimeMinutes < endTimeHoursMinutes[1]){
+  //               notTrue=false;
+  //               this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //                 return item.name!=roomNameCheck;
+  //               });
+  //             }
+  //           }
+  //           else if(CheckEventStartTimeHours > endTimeHoursMinutes[0]){
+  //             notTrue=true;
+  //           }
+  //           else if(CheckEventStartTimeHours < endTimeHoursMinutes[0]){
+  //             notTrue=false;
+  //             this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //               return item.name!=roomNameCheck;
+  //             });
+  //           }
+  //         }
+  //         else if (CheckEventStartTimeHours < startTimeHoursMinutes[0]){
+  //           //1 den i mojot event pochnuva pokasno so saat
+  //           if (CheckEventEndTimeHours == startTimeHoursMinutes[0]){
+  //             if(CheckEventEndTimeMinutes == startTimeHoursMinutes[1]){
+  //               this.flagForWarning=true;
+  //               notTrue=true;
+  //             }
+  //             else if (CheckEventEndTimeMinutes < startTimeHoursMinutes[1]){
+  //               this.flagForWarning=true;
+  //               notTrue=true;
+  //             }
+  //             else if (CheckEventEndTimeMinutes > startTimeHoursMinutes[1]){
+  //               notTrue=false;
+  //               this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //                 return item.name!=roomNameCheck;
+  //               });
+  //             }
+  //           }
+  //           else if (CheckEventEndTimeHours > startTimeHoursMinutes[0]){
+  //             notTrue=false;
+  //             this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //               return item.name!=roomNameCheck;
+  //             });
+  //           }
+  //           else if(CheckEventEndTimeHours < startTimeHoursMinutes[0]){
+  //             notTrue=true;
+  //           }
+  //         }    
+  //   }
+  //   else if(CheckEventEndTimeAllDay==CheckStartTimeAllDay){
+  //     //ima event shto zavrshuva na denta koga rezerviram
+  //     if(CheckEventEndTimeHours==startTimeHoursMinutes[0]){
+  //       if(CheckEventEndTimeMinutes == startTimeHoursMinutes[1]){
+  //         this.flagForWarning=true;
+  //         notTrue=true;
+  //       }
+  //       else if(CheckEventEndTimeMinutes > startTimeHoursMinutes[1]){
+  //         notTrue=false;
+  //         this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //           return item.name!=roomNameCheck;
+  //         });
+  //       }
+  //       else if (CheckEventEndTimeMinutes < startTimeHoursMinutes[1]){
+  //         notTrue=true;
+  //       }
+  //     }
+  //     else if(CheckEventEndTimeHours > startTimeHoursMinutes[0]){
+  //       notTrue=false;
+  //       this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //         return item.name!=roomNameCheck;
+  //       });
+  //     }
+  //     else if (CheckEventEndTimeHours < startTimeHoursMinutes[0]){
+  //       notTrue=true;
+  //     }
+  //   }
+  //   else if(CheckEventEndTimeAllDay!=CheckEventStartTimeAllDay && CheckEventStartTimeAllDay==CheckStartTimeAllDay){
+  //     //ima event shto pochnuva na den na mojot event a zavrshuva sl den
+  //     if(CheckEventStartTimeHours<=startTimeHoursMinutes[0]){
+  //       notTrue=false;
+  //       this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //         return item.name!=roomNameCheck;
+  //       });
+  //     }
+  //     else if(CheckEventStartTimeHours>startTimeHoursMinutes[0]){
+  //       if (CheckEventStartTimeHours==endTimeHoursMinutes[1]){
+  //         if(CheckEventStartTimeMinutes==endTimeHoursMinutes[1]){
+  //           this.flagForWarning=true;
+  //           notTrue=true;
+  //         }
+  //         else if(CheckEventStartTimeMinutes<endTimeHoursMinutes[1]){
+  //           notTrue=false;
+  //           this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //             return item.name!=roomNameCheck;
+  //           });
+  //         }
+  //         else if (CheckEventStartTimeMinutes>endTimeHoursMinutes[1]){
+  //           notTrue=true;
+  //         }
+  //       }
+  //       else if (CheckEventStartTimeHours<endTimeHoursMinutes[1]){
+  //         notTrue=false;
+  //         this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //           return item.name!=roomNameCheck;
+  //         });
+  //       }
+  //       else if (CheckEventStartTimeHours>endTimeHoursMinutes[1]){
+  //         notTrue=true;
+  //       }
+  //     }
+  //     else if (CheckEventStartTimeHours<startTimeHoursMinutes[0]){
+  //       notTrue=false;
+  //       this.ListOfRooms=this.ListOfRooms.filter((item) =>{
+  //         return item.name!=roomNameCheck;
+  //       });
+  //     }
+  //   }
+  // }
+  //   if(notTrue==true){
+  //     this.ListOfRooms=JSON.parse(JSON.stringify(this.EventData.getRoomData()))
+  //   }
+  // }
     this.isReserved=true;
   }}
   save(){
