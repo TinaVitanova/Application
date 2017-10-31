@@ -13,17 +13,14 @@ export class UsernameGlobalProvider {
   public CurrentUser;
   public IsLoggedIn;
   public UserLoggedIn;
-  public UsersData: {email:string,userName:string,password:string,log:boolean,role:number,picture:string};
-  public FullUsers:{email:string,userName:string,password:string,log:boolean,role:number,picture:string}[]= [];
+  public UsersData: {email:string,userName:string,password:string,log:boolean,role:number};
+  public FullUsers:{email:string,userName:string,password:string,log:boolean,role:number}[]= [];
   public CurrentUserIndex = 0;
 
   users;
 
   constructor(public storage: Storage, private apiProvider: ApiProvider) {
-    for (var i=0; i<3; i++){
-      this.UsersData = {email: this.Emails[i], userName: this.Usernames[i], password: this.Passwords[i], log: this.log[i], role: this.role[i], picture: this.defaultImage};
-      this.FullUsers.push(this.UsersData);
-    }
+    this.getFullUsers();
   }
 
   public setIsLoggedIn(value){
@@ -54,9 +51,9 @@ export class UsernameGlobalProvider {
     this.CurrentUser=this.FullUsers[this.CurrentUserIndex].userName;
   }
   
-  public getUserImage(){
-    return this.FullUsers[this.CurrentUserIndex].picture;
-  }
+  // public getUserImage(){
+  //   return this.FullUsers[this.CurrentUserIndex].picture;
+  // }
 
 
   public setEmail(value){
@@ -70,15 +67,15 @@ export class UsernameGlobalProvider {
   }
 
   public addNewUser(value,value1) {
-   this.UsersData = {userName: value.username, email: value.email, password: value.password, log: value.log, role: value.role, picture: value1 };
+   this.UsersData = {userName: value.username, email: value.email, password: value.password, log: value.log, role: value.role};
    this.FullUsers.push(this.UsersData);
   }
   
-  public ChangeUser(value,value1){
+  public ChangeUser(value){
     this.FullUsers[this.CurrentUserIndex].userName = value.newusername;
     this.FullUsers[this.CurrentUserIndex].password = value.newpassword;
     this.FullUsers[this.CurrentUserIndex].email = value.newemail;
-    this.FullUsers[this.CurrentUserIndex].picture = value1;
+    //this.FullUsers[this.CurrentUserIndex].picture = value1;
     this.CurrentUser=this.FullUsers[this.CurrentUserIndex].userName;
   }
 
@@ -87,7 +84,7 @@ export class UsernameGlobalProvider {
     .then(data => {
       this.users = data;
       for (var i=0; i<this.users.length; i++){
-        this.UsersData = {email: this.users[i].email, userName: this.users[i].userName, password: this.users[i].password, log: this.users[i].log, role: this.users[i].role, picture: this.defaultImage};
+        this.UsersData = {email: this.users[i].email, userName: this.users[i].userName, password: this.users[i].password, log: this.users[i].log, role: this.users[i].role};
         this.FullUsers.push(this.UsersData);
       }
     });

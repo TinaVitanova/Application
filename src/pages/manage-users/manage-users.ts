@@ -43,7 +43,7 @@ export class ManageUsersPage {
           this.singleArray.push({
                                username: this.AllUsers[_i].userName,
                                email: this.AllUsers[_i].email,
-                               picture: "data:image/png;base64," + this.AllUsers[_i].picture
+                               //picture: "data:image/png;base64," + this.AllUsers[_i].picture
                               });                                                        
       }
       

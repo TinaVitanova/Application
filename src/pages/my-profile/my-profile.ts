@@ -19,8 +19,8 @@ export class MyProfilePage {
     newemail:this.UserGlobal.getMyGlobalEmail(),
   };
 
-  public imageSrc: String = "data:image/png;base64," + this.UserGlobal.getUserImage();
-  base64textString = this.UserGlobal.getUserImage();
+  //public imageSrc: String = "data:image/png;base64," + this.UserGlobal.getUserImage();
+  //base64textString = this.UserGlobal.getUserImage();
   Username=this.UserGlobal.getMyGlobalVar();
   public SubmitAttempt = false;
   ChangeUserForm: FormGroup;
@@ -105,8 +105,8 @@ export class MyProfilePage {
             handler: data => {
               this.SubmitAttempt=true;
               if (data.password == "ok") {
-                this.events.publish('image:added', this.base64textString);
-                this.UserGlobal.ChangeUser(this.todo,this.base64textString);
+                //this.events.publish('image:added', this.base64textString);
+                this.UserGlobal.ChangeUser(this.todo);
               }else {
                 return false;
               }
@@ -124,30 +124,30 @@ export class MyProfilePage {
     this.imageLoaded = true;
   }
 
-  InputChange(e) {
+  // InputChange(e) {
     
-    if(e.target.files.length != 0){
-      this.presentLoading();
-      var file = e.target.files[0];
-      var pattern = /image-*/;
-      var reader = new FileReader();
+  //   if(e.target.files.length != 0){
+  //     this.presentLoading();
+  //     var file = e.target.files[0];
+  //     var pattern = /image-*/;
+  //     var reader = new FileReader();
 
-      if (!file.type.match(pattern)) {
-          alert('invalid format'); 
-          return;
-      }
+  //     if (!file.type.match(pattern)) {
+  //         alert('invalid format'); 
+  //         return;
+  //     }
  
-      if (file.size > 7000000){
-        alert('max image size 7Mb '); 
-        return;
-      }
+  //     if (file.size > 7000000){
+  //       alert('max image size 7Mb '); 
+  //       return;
+  //     }
 
-      this.loaded = false;
-      //pretvori vo base64 format
-      reader.onload = this.ReaderLoaded.bind(this);
-      reader.readAsBinaryString(file);
-    }
-  }
+  //     this.loaded = false;
+  //     //pretvori vo base64 format
+  //     reader.onload = this.ReaderLoaded.bind(this);
+  //     reader.readAsBinaryString(file);
+  //   }
+  // }
 
   //show/hide password
   togglePassword(input: any): void {
@@ -161,12 +161,12 @@ export class MyProfilePage {
     }
   }
 
-  ReaderLoaded(e) {
-    var binaryString = e.target.result;
-    this.base64textString = btoa(binaryString);
-    this.imageSrc = "data:image/png;base64," + this.base64textString;
-    this.loaded = true;  
-  }
+  // ReaderLoaded(e) {
+  //   var binaryString = e.target.result;
+  //   this.base64textString = btoa(binaryString);
+  //   this.imageSrc = "data:image/png;base64," + this.base64textString;
+  //   this.loaded = true;  
+  // }
 
   presentLoading() {
     let loader = this.loadingCtrl.create({
