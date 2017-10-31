@@ -62,3 +62,20 @@ page-home {
     }
   
   }
+
+  // *******************
+    // TABLET DESIGN START
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+
+      .list-ios .item-block .item-inner,
+      ion-item .item-md .item-input,
+      ion-item .item-ios .item-input,
+      .item-block{
+        font-size: 200%;
+
+    }
+
+    // *******************
+    // TABLET DESIGN END
+  }

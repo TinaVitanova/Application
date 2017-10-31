@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 import { Validator } from '../../validators/FormValidator';
 import { ApiProvider } from '../../providers/api-provider/api-provider';
-
+ 
 @IonicPage()
 @Component({
   selector: 'page-create-user',
@@ -18,19 +18,18 @@ export class CreateUserPage {
   CreateUserForm: FormGroup;
   submitAttempt: boolean = false;
   picture;
-
   role;
   roles:{roleId:number,category:number}[]=[];
   user = {email:'',userName:'',role:{}};
-  
-
+ 
+ 
   roleName:string[]=[];
-  
+ 
   flagCorrectUsername:boolean=false;
   flagCorrectEmail:boolean=false;
   flagIncorrectUsername:boolean = false;
   flagIncorrectEmail:boolean = false;
-  
+ 
   constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder, private menuCtrl: MenuController) {
     this.CreateUserForm = formBuilder.group({
       username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/^[a-zA-Z][\w.-]*[a-zA-Z0-9]+$/),Validators.required])],
@@ -39,12 +38,11 @@ export class CreateUserPage {
   });
     this.username = navParams.get('param2');
   }
-
-
+ 
   addRole(role){
     this.role=role
   }
-
+ 
   addUser() {
       if(this.role == "superadmin"){
         this.user={email:this.user.email,userName:this.user.userName,role:this.roles[0]}
@@ -55,13 +53,13 @@ export class CreateUserPage {
       }
     this.apiProvider.addUser(this.user);
   }
-
+ 
   getRole(){
     this.apiProvider.getRole()
     .then(data => {
       this.roles = data;
     });
-
+ 
     for(var i=0; i<this.roles.length; i++){
       if(this.roles[i].category == 0){
         this.roleName[i] = "superadmin";
@@ -72,27 +70,27 @@ export class CreateUserPage {
       }
       console.log(this.roleName)
     }
-
-  
+  }
+ 
   onBlurUsername(){
-    if(!this.userName){
+    if(!this.user.userName){
       this.flagCorrectUsername = false;
     }
     else{
     if(!this.CreateUserForm.valid){
     if(!this.CreateUserForm.controls.username.valid){
-      this.flagIncorrectUsername = true; 
+      this.flagIncorrectUsername = true;
       this.flagCorrectUsername=false;
     }
     else{
-    this.flagIncorrectUsername = false; 
+    this.flagIncorrectUsername = false;
       this.flagCorrectUsername=true;
     }
   }
 }
   }
   onBlurEmail(){
-    if(!this.email){
+    if(!this.user.email){
       this.flagIncorrectEmail = false;
     }
     else{
@@ -100,7 +98,7 @@ export class CreateUserPage {
     if(!this.CreateUserForm.controls.email.valid){
       this.flagIncorrectEmail = true;
       this.flagCorrectEmail=false;
-  
+ 
     }else{
       this.flagIncorrectEmail = false;
       this.flagCorrectEmail=true;
@@ -108,26 +106,26 @@ export class CreateUserPage {
   }
 }
   }
-
-
+ 
+ 
   shouldHide(){
     if(this.username=="superadmin")
     return false;
     else
     return true;
   }
-
+ 
   CreateNewUser(){
     if(this.CreateUserForm.valid){
       this.flagIncorrectUsername = false;
       this.flagIncorrectEmail = false;
-      
+     
       let alert = this.alertCtrl.create({
         cssClass: 'alert-style',
         title: '<p class="alert-title"><b>USER CREATED:</b><br /></p><hr />',
-        subTitle: '<div class="alert-message"><b>USERNAME:</b> ' + this.userName + 
-                  '<br><b>EMAIL:</b> ' + this.email 
-                  + '</div>',   
+        subTitle: '<div class="alert-message"><b>USERNAME:</b> ' + this.user.userName +
+                  '<br><b>EMAIL:</b> ' + this.user.email
+                  + '</div>',  
        buttons:[
         {
           cssClass: 'alert-btn',
@@ -151,11 +149,11 @@ export class CreateUserPage {
      alert.present();
     }
   }
-
+ 
   resetForm(){
     this.CreateUserForm.reset();
   }
-
+ 
   ionViewDidEnter(){
     this.menuCtrl.enable(false, "userMenu");
     this.menuCtrl.enable(false, "adminMenu");
