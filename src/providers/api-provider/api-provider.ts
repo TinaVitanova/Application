@@ -8,7 +8,7 @@ export class ApiProvider{
     data:any;
     
     constructor(public http:Http){
-        
+
     }
 
     getReservations(){
@@ -72,35 +72,51 @@ export class ApiProvider{
     //     });
     // }
 
-    // saveUser(data) {
-    //     let headers = new Headers({ 'Accept':'application/json',
-    //      'Content-Type':'application/json'});
+    getRole() {
+        if (this.data) {
+            return Promise.resolve(this.data);
+        }
         
-    //      var requestoptions = new RequestOptions({
-    //         method: RequestMethod.Post,
-    //         url: this.apiUrl + '/user/add',
-    //         headers: headers,
-    //         body: JSON.stringify(data)
-    //     })
+        return new Promise(resolve => {
+            this.http.get(this.apiUrl+'/role/role')
+            .map(res => res.json())
+            .subscribe(data => {
+                this.data = data;
+                resolve(this.data);
+            });
+        });
+    }
 
-    //     return this.http.post(this.apiUrl+'/user/add', JSON.stringify(data), { headers: headers });
-
-    // }
-
-    saveUser(data) {
+    addUser(data) {
         let headers = new Headers({ 
             'Accept':'application/json',
             'Content-Type':'application/json',
             'Access-Control-Allow-Origin': '*'
         });
-        data.role=parseInt(data.role)
+
+//         data.role=parseInt(data.role)
+
         return new Promise(resolve => {
             this.http.post(this.apiUrl+'/user/add', JSON.stringify(data) , { headers: headers })
             .subscribe(res => {
-                console.log(res)
                 resolve(res);
             }, (err) => {
-                console.log(JSON.stringify(data))
+                console.log(err);
+            });
+        });
+    }
+
+    editUser(data) {
+        let headers = new Headers({ 
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*'
+        });
+        return new Promise(resolve => {
+            this.http.put(this.apiUrl+'/user/update', JSON.stringify(data) , { headers: headers })
+            .subscribe(res => {
+                resolve(res);
+            }, (err) => {
                 console.log(err);
             });
         });
