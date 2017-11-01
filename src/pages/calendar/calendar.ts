@@ -70,9 +70,11 @@ export class CalendarPage {
   onRangeChanged(ev) {
   }
   showRoomEvents(r){
+    console.log("ova e show room events")
     var allEvents = this.EventData.getEvents();
     var eventsRoom = [];
   for (var i=0; i<allEvents.length; i++){
+    console.log(allEvents[i].room +"  ova se site a ova e kliknatata "+ r)
     if(allEvents[i].room == r){
     eventsRoom.push({
           title: allEvents[i].title,
@@ -89,7 +91,7 @@ export class CalendarPage {
       let start = new Date(this.reservations[i].meetStarts)
       let end = new Date(this.reservations[i].meetEnds)
       events.push({
-            title: this.reservations[i].reservationTitle, //+ " Room: " + this.EventData.getRoomName(i),
+            title: this.reservations[i].reservationTitle,
             startTime: start,
             endTime: end,
             allDay: false
@@ -111,19 +113,16 @@ export class CalendarPage {
     let end = moment(event.endTime).format('HH:mm');
 
     for(var i=0; i<this.reservations.length;i++){
-      console.log(event.title +" event title i toa so so sporeduva "+this.reservations[i].reservationTitle)
       if (event.title==this.reservations[i].reservationTitle){
         this.roomName=this.reservations[i].room;
-        console.log(this.roomName)
-        console.log("va gore e room name")
       }
     }
-    let trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>'; 
+    let trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName.roomName + '</div>'; 
     if(event.allDay){
-      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>ALL DAY</b><br/><b>ROOM:</b> '+ this.roomName + '</div>';
+      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>ALL DAY</b><br/><b>ROOM:</b> '+ this.roomName.roomName + '</div>';
     }
     else if(datestart == dateend){
-      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>';
+      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName.roomName + '</div>';
     }
     let alert = this.alertCtrl.create({
       cssClass: 'alert-style',

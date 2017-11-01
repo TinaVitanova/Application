@@ -7,22 +7,22 @@ export class ApiProvider{
     apiUrl = 'http://10.10.20.177:8080';
     data:any;
     dataRooms:any;
-    
+    dataReservations:any;
     constructor(public http:Http){
 
     }
 
     getReservations(){
-        if (this.data) {
-            return Promise.resolve(this.data);
+        if (this.dataReservations) {
+            return Promise.resolve(this.dataReservations);
         }
         
         return new Promise(resolve => {
             this.http.get(this.apiUrl+'/reservation/getall')
             .map(res => res.json())
-            .subscribe(data => {
-                this.data = data;
-                resolve(this.data);
+            .subscribe(dataReservations => {
+                this.dataReservations = dataReservations;
+                resolve(this.dataReservations);
             });
         });
     }

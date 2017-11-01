@@ -48,18 +48,6 @@ export class EventDataProvider {
      return this.IndexOfchangeEvent;
    }
 
-
-  
-  public getRoomName(i){
-    var roomName;
-    for (var j=0; j<this.AllEvents.length; j++){
-      for (var k=0; k<this.FullRooms.length; k++){
-      if(this.AllEvents[j].room == this.FullRooms[k] && this.AllEvents[i]==this.AllEvents[j])
-      roomName = this.FullRooms[k].name;
-    }}
-    return roomName;
-  }
-
   public setFlagIsCalendarPage(value){
     this.flag=value;
   }
@@ -127,6 +115,7 @@ export class EventDataProvider {
     this.AllEvents=[];
     this.apiProvider.getReservations()
     .then(data => {
+      console.log(data)
       this.reservations = data;
       for(var i=0;i<this.reservations.length;i++){
         this.Eventdata = {resId: this.reservations[i].resId, title: this.reservations[i].reservationTitle, startTime: this.reservations[i].meetStarts, endTime: this.reservations[i].meetEnds, allDay: this.reservations[i].allDay, room: this.reservations[i].room};

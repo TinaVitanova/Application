@@ -44,7 +44,6 @@ export class DashboardPage {
     this.navCtrl.push(CreateUserPage, {param2: this.username})
   }
   IsDate(events){
-    this.showEvents = true;
     let dateStart = moment(events.startTime).format('DD MM YYYY');
     let dateEnd = moment(events.endTime).format('DD MM YYYY');
     let dateToday = moment().format('DD MM YYYY');
@@ -58,6 +57,8 @@ export class DashboardPage {
     if(this.StartTime=="00:00" && this.EndTime=="00:00"){
       if(dateEnd!=dateToday){
         this.allDayEvent=true;
+        
+    this.showEvents = true;
         return true;
       }
       else{
@@ -66,8 +67,9 @@ export class DashboardPage {
     }else {
       this.allDayEvent=false;
 
+      this.showEvents = true;
       return true;
- // }}
+  }}
     else
       return false;
   }
@@ -84,6 +86,7 @@ export class DashboardPage {
   ionViewWillEnter(){
     console.log('aloooooooooooo')
     this.MyEvents=this.EventData.getEvents();
+    console.log(this.MyEvents)
     if(this.username=="admin" || this.username=="superadmin"){
       this.adminBtn=true;
       this.menuCtrl.enable(true, "adminMenu");

@@ -61,7 +61,7 @@ export class ReserveEventPage {
     this.flag = this.EventData.getFlagisCalendarPage();
   }
   SelectedRoom(r){
-    this.roomName = r.roomName;
+    this.roomName = r.name;
     this.FlagRoomSelected = true;
   }
   OnTapAllDay(value){
@@ -287,7 +287,7 @@ export class ReserveEventPage {
                 var endTimeEventAllDay = new Date(Date.UTC(this.startday.getUTCFullYear(), this.startday.getUTCMonth(), this.startday.getUTCDate()+1));
                 for (var i=0; i<this.FullListOfRooms.length; i++){
                   if(this.FullListOfRooms[i].name == this.roomName)
-                    this.room = {roomId: this.FullListOfRooms[j].roomId};
+                    this.room = {roomId: this.FullListOfRooms[i].roomId};
                 }
                 if (this.IsChangeEvent==true){
                   this.updateReservation={resId: this.ChangeEvent.resId, meetStarts: startTimeEvent.getTime(),meetEnds: endTimeEvent.getTime(),reservationTitle:this.title,room:this.room,user:null}
@@ -315,8 +315,10 @@ export class ReserveEventPage {
             var startTimeEvent = new Date(this.startday.getFullYear(), this.startday.getMonth(), this.startday.getDate(), startDate.getHours(), startDate.getMinutes());
             var endTimeEvent = new Date(this.endday.getFullYear(), this.endday.getMonth(), this.endday.getDate(), endDate.getHours(), endDate.getMinutes());
             for (var j=0; j<this.FullListOfRooms.length; j++){
+              console.log(this.FullListOfRooms[j].name +"  iminja na site sobi i imeto na mojata soba  "+ this.roomName)
               if(this.FullListOfRooms[j].name == this.roomName)
                 this.room = {roomId: this.FullListOfRooms[j].roomId};
+                console.log(this.room)
             }
             if (this.IsChangeEvent==true){
               this.updateReservation={resId: this.ChangeEvent.resId,meetStarts: startTimeEvent.getTime(),meetEnds: endTimeEvent.getTime(),reservationTitle:this.title,room:this.room,user:null}

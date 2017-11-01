@@ -66,10 +66,10 @@ export class TodayPage {
      let end = moment(events.endTime).format('HH:mm');
      var allEvents = this.EventData.getEvents();
      for(var i=0; i<allEvents.length;i++){
-       if (events.title==allEvents[i].title){
-         this.roomName="aaa"//this.EventData.getRoomName(i);
-       }
-     }
+      if (events.title==allEvents[i].title){
+        this.roomName=allEvents[i].room;
+      }
+    }
      var trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>'; 
      if(events.allDay){
       trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>ALL DAY</b><br/><b>ROOM:</b> '+ this.roomName + '</div>';
