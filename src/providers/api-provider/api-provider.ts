@@ -77,6 +77,23 @@ export class ApiProvider{
         });
     }
 
+    updateRoom(room){
+        let headers = new Headers({ 
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*'
+        });
+        return new Promise(resolve => {
+            this.http.put(this.apiUrl+'/room/update', JSON.stringify(room) , { headers: headers })
+            .subscribe(res => {
+                console.log(res)
+                resolve(res);
+            }, (err) => {
+                console.log(err);
+            });
+        });
+    }
+
     deleteReservation(reservation){
         let headers = new Headers({ 
             'Accept':'application/json',
