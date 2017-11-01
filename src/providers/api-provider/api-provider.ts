@@ -6,7 +6,8 @@ import 'rxjs/add/operator/map';
 export class ApiProvider{
     apiUrl = 'http://10.10.20.177:8080';
     data:any;
-    data1:any
+    data1:any;
+    user:any;
     
     constructor(public http:Http){
         
@@ -79,13 +80,13 @@ export class ApiProvider{
 
 
     getRole() {
-        if (this.data1) {
-            return Promise.resolve(this.data1);
+        // if (this.data1) {
+        //     return Promise.resolve(this.data1);
 
-        }
+        // }
         
         return new Promise(resolve => {
-            this.http.get(this.apiUrl+'/role/role')
+            this.http.get(this.apiUrl+'/role/getall')
             .map(res => res.json())
             .subscribe(data1 => {
                 this.data1 = data1;
@@ -95,9 +96,13 @@ export class ApiProvider{
     }
 
     getUser() {
-        if (this.data) {
-            return Promise.resolve(this.data);
-        }
+        // if (!this.usersLoaded) {
+        //     return Promise.resolve([{
+        //         userName: "",
+        //         email: "",
+        //         role: {}
+        //     }]);
+        // }
         
         return new Promise(resolve => {
             this.http.get(this.apiUrl+'/user/getall')
@@ -110,15 +115,15 @@ export class ApiProvider{
     }
     
 
-    addUser(data) {
+    addUser(user) {
         let headers = new Headers({ 
             'Accept':'application/json',
             'Content-Type':'application/json',
             'Access-Control-Allow-Origin': '*'
         });
-
+        console.log(user)
         return new Promise(resolve => {
-            this.http.post(this.apiUrl+'/user/add', JSON.stringify(data) , { headers: headers })
+            this.http.post(this.apiUrl+'/user/add', user, { headers: headers })
             .subscribe(res => {
                 resolve(res);
             }, (err) => {
