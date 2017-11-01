@@ -28,7 +28,7 @@ export class DashboardPage {
   EndDate;
   FlagNextDay=false;
 
-  constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
     this.username=this.UserGlobal.getMyGlobalVar();
     this.role=this.UserGlobal.getMyGlobalRole();
   }

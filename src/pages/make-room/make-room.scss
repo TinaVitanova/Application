@@ -42,6 +42,29 @@ page-make-room {
         padding-left: 10%;
     }
 
+    // manage rooms style
+
+    .manage-rooms{
+        background: transparent!important;
+        box-shadow: none!important;      
+        ion-card-header{
+            color: white;
+            text-align: center;
+            font-size: 140%;
+            border: 2px solid white;
+            border-radius: 3px;
+            width: 60%;
+            margin: 5% 0% 5% 22%;
+        }
+
+        ion-list{
+            color: white;
+            ion-item ion-icon, h2, p{
+                color: white;
+            }
+        }
+    }
+
 }
 
 // *******************

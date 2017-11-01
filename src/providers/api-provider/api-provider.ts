@@ -66,6 +66,23 @@ export class ApiProvider{
         });
     }
 
+    addRoom(room){
+        let headers = new Headers({ 
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*'
+        });
+        return new Promise(resolve => {
+            this.http.post(this.apiUrl+'/room/add', JSON.stringify(room) , { headers: headers })
+            .subscribe(res => {
+                console.log(res)
+                resolve(res);
+            }, (err) => {
+                console.log(err);
+            });
+        });
+    }
+
     updateReservation(reservation){
         let headers = new Headers({ 
             'Accept':'application/json',
@@ -137,7 +154,7 @@ export class ApiProvider{
             return Promise.resolve(this.data1);
         }
         return new Promise(resolve => {
-            this.http.get(this.apiUrl+'/role/role')
+            this.http.get(this.apiUrl+'/role/getall')
             .map(res => res.json())
               .subscribe(data1 => {
                 this.data1 = data1;
