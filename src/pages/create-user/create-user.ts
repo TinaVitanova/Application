@@ -63,11 +63,11 @@ export class CreateUserPage {
       this.roles = data1;
       for(var i=0; i<this.roles.length; i++){
         if(this.roles[i].category == 0){
-          this.roleName[i] = "superadmin";
+          this.roleName[i] = "SUPERADMIN";
         }else if(this.roles[i].category==1){
-          this.roleName[i] = "admin";
+          this.roleName[i] = "ADMIN";
         }else if(this.roles[i].category==2){
-          this.roleName[i] = "user";
+          this.roleName[i] = "USER";
         }
       }
 

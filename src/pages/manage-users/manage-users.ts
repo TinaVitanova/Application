@@ -46,7 +46,7 @@ export class ManageUsersPage {
     let alert = this.alertCtrl.create({
       cssClass: 'alert-style',
       title: '<p class="alert-title"><b>DELETE USER:</b><br /></p><hr />',
-      message: '<div class="alert-message"><b>Delete the user:</b> ' + item,
+      message: '<div class="alert-message"><b>Are you sure you want to delete this user:</b> ' + item.username,
       buttons: [
         {
           text: 'CANCEL',
