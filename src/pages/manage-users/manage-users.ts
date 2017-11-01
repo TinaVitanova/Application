@@ -15,10 +15,11 @@ export class ManageUsersPage {
   public AllUsers = this.UserGlobal.getFullUsers();
 
   imageLoaded: boolean = false;
-  users:{email:'',userName:''}[]=[];
+  users: any;
   
 
   getUser() {
+    this.users = [];
     this.apiProvider.getUser()
     .then(data => {
       this.users = data;
@@ -26,8 +27,7 @@ export class ManageUsersPage {
   }
 
   constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController, public menuCtrl: MenuController) {
-    
-    //this.getUser();
+
   }
 
   initializeUsers(){
@@ -57,9 +57,8 @@ export class ManageUsersPage {
           text: 'DELETE',
           cssClass: 'alert-btn',
           handler: () => {
-            console.log(this.singleArray.indexOf(item))
-            console.log(this.AllUsers[this.singleArray.indexOf(item)].userId)
            //let index = this.AllUsers[this.singleArray.indexOf(item)];
+           console.log(this.singleArray.indexOf(item));
             this.UserGlobal.setDeleteAccName(this.AllUsers[this.singleArray.indexOf(item)].userId);
             this.AllUsers.splice(this.singleArray.indexOf(item), 1);
             this.initializeUsers();

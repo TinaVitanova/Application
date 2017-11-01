@@ -83,10 +83,6 @@ export class DashboardPage {
     else
       return false;
   }
-
-
-
-
   
   ionViewDidEnter(){
     this.username=this.UserGlobal.getMyGlobalVar();
@@ -94,23 +90,19 @@ export class DashboardPage {
   }
 
   ionViewWillEnter(){
-
-    console.log('aloooooooooooo')
     this.MyEvents=this.EventData.getEvents();
-    console.log(this.MyEvents)
-    //if(this.username=="admin" || this.username=="superadmin"){
-
-
-    if(this.role.category==0 || this.role.category==1){
-
-
-      this.adminBtn=true;
-      this.menuCtrl.enable(true, "adminMenu");
+ 
+  if(this.role){
+      if(this.role.category==0 || this.role.category==1){
+  
+        this.adminBtn=true;
+        this.menuCtrl.enable(true, "adminMenu");
+      }
+      else if(this.role.category==2){
+      this.menuCtrl.enable(true, "userMenu");
+      }
+  
     }
-    else if(this.role.category==2){
-    this.menuCtrl.enable(true, "userMenu");
-    }
-
   }
   
 }
