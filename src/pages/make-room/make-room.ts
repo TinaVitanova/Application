@@ -12,7 +12,7 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
   templateUrl: 'make-room.html',
 })
 export class MakeRoomPage {
-  roomNew: {capacity:number,roomName:string,desc:string};
+  roomNew: {capacity:number,roomName:string,descript:string};
   name;
   capacity;
   description;
@@ -22,6 +22,7 @@ export class MakeRoomPage {
   flagIncorrectRoomCapacity:boolean = false;
   MakeRoomForm: FormGroup;
   submitAttempt: boolean = false;
+  roomUpdate:{roomId:number,roomName:string,capacity:number,descript:string};
   
   onBlurRoomName(){
     if(!this.name){
@@ -60,11 +61,65 @@ export class MakeRoomPage {
     this.showCard=false;
   }
   deleteRoom(room){
-    console.log(room)
-    console.log("aaaaaaaaa")
-    this.EventData.deleteRoom(room);
 
+    let alert = this.alertCtrl.create({
+      cssClass: 'alert-style',
+       title: '<p class="alert-title"><b>Room:</b><br />' + '<span>' + room.roomName + '</span></p><hr />',
+       buttons:[
+       {
+         cssClass: 'alert-btn',
+         text: 'Delete',
+         handler: data => {
+          this.EventData.deleteRoom(room);
+          this.ListOfRooms=this.EventData.getRooms();
+        }
+       },
+       {
+        cssClass: 'alert-btn',
+        text: 'Cancel',
+        role: 'cancel',
+      }
+      ]
+    });
+    alert.present();
   }
+  updateRoom(room){
+    
+        let alert = this.alertCtrl.create({
+          cssClass: 'alert-style',
+           title: '<p class="alert-title"><b>Room:</b><br />' + '<span>' + room.roomName + '</span></p><hr />',
+           inputs: [
+            {
+              name: 'roomName',
+              placeholder: room.roomName,
+              type: 'text',
+            },
+            {
+              name: 'capacity',
+              placeholder: room.capacity,
+              type: 'number',
+            },
+          ],
+           buttons:[
+           {
+             cssClass: 'alert-btn',
+             text: 'Update',
+             handler: data => {
+              this.roomUpdate={roomId: room.roomId,roomName:data.roomName,capacity:data.capacity,descript:room.descript};
+              this.apiProvider.updateRoom(this.roomUpdate);
+              this.ListOfRooms=this.EventData.getRooms();
+            }
+           },
+           {
+            cssClass: 'alert-btn',
+            text: 'Cancel',
+            role: 'cancel',
+          }
+          ]
+        });
+        alert.present();
+      }
+
 
   CreateRoom(){
     if(this.MakeRoomForm.valid){   
@@ -92,7 +147,7 @@ export class MakeRoomPage {
         text: 'CONFIRM',
         role: 'confirm',
           handler: data => {
-            this.roomNew={capacity:this.capacity,roomName:this.name,desc:this.description}
+            this.roomNew={capacity:this.capacity,roomName:this.name,descript:this.description}
             console.log(this.roomNew)
             this.apiProvider.addRoom(this.roomNew);
             //this.EventData.SendRoomData(this.name, this.capacity, this.description);

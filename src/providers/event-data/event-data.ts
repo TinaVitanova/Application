@@ -5,13 +5,13 @@ import { ApiProvider } from '../../providers/api-provider/api-provider';
 @Injectable()
 export class EventDataProvider {
   public flag;
-  public RoomsData: {roomId:number, roomName: string, capacity: string, desc: string};
+  public RoomsData: {roomId:number, roomName: string, capacity: string, descript: string};
   // public RoomsDataFinal: {name: string, capacity: string, description: string};
-  public Eventdata: {resId: number, title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object};
+  public Eventdata: {resId: number, title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object, user: Object};
   // public EventdataFinal: {title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object};
-  public AllEvents: {resId: number, title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object}[]=[];
+  public AllEvents: any;
   // public AllEventsFinal: {title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object}[]=[];
-  public FullRooms: {roomId: number, roomName: string, capacity: string, desc: string}[]=[];
+  public FullRooms:any;
   // public FullRoomsFinal: {name: string, capacity: string, description: string}[]=[];
   public loadEvent;
   public IsChangeEvent=false;
@@ -21,6 +21,7 @@ export class EventDataProvider {
   reservations;
   rooms;
   constructor(public storage: Storage, public apiProvider: ApiProvider) {
+    this.getRooms();
   } 
   public checkRoomName(value){
     for (var i=0; i<this.FullRooms.length; i++){
@@ -70,15 +71,15 @@ export class EventDataProvider {
     this.apiProvider.getRooms()
     .then(data => {
       this.rooms = data;
-      console.log(data)
-      console.log(this.rooms)
       for(var i=0;i<this.rooms.length;i++){
-        this.RoomsData = {roomId: this.rooms[i].roomId, roomName: this.rooms[i].roomName, capacity: this.rooms[i].capacity, desc: this.rooms[i].description};
+        let room = this.rooms[i].room;
+        this.RoomsData = {roomId:room.roomId, roomName: room.roomName, capacity: room.capacity, descript: room.description};
         this.FullRooms.push(this.RoomsData);
-      }
+      }   
     });
     // this.FullRoomsFinal=this.FullRooms;
-    return this.FullRooms;        
+        
+      return this.FullRooms; 
   }
 
   public checkTitle(value){
@@ -118,10 +119,9 @@ export class EventDataProvider {
     this.AllEvents=[];
     this.apiProvider.getReservations()
     .then(data => {
-      console.log(data)
       this.reservations = data;
       for(var i=0;i<this.reservations.length;i++){
-        this.Eventdata = {resId: this.reservations[i].resId, title: this.reservations[i].reservationTitle, startTime: this.reservations[i].meetStarts, endTime: this.reservations[i].meetEnds, allDay: this.reservations[i].allDay, room: this.reservations[i].room};
+        this.Eventdata = {resId: this.reservations[i].resId, title: this.reservations[i].reservationTitle, startTime: this.reservations[i].meetStarts, endTime: this.reservations[i].meetEnds, allDay: this.reservations[i].allDay, room: this.reservations[i].room, user: this.reservations[i].user};
         this.AllEvents.push(this.Eventdata);
       }
     });

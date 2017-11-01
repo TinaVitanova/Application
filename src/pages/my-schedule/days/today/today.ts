@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EventDataProvider } from '../../../../providers/event-data/event-data';
 import { ReserveEventPage } from '../../../reserve-event/reserve-event';
+import { UsernameGlobalProvider } from '../../../../providers/username-global/username-global';
 import * as moment from 'moment';
 
 @IonicPage()
@@ -10,16 +11,19 @@ import * as moment from 'moment';
   templateUrl: 'today.html',
 })
 export class TodayPage {
-  MyEvents=this.EventData.getEvents();
+  MyEvents;
   StartTime;
   EndTime;
   StartDate;
   EndDate;
+  userId;
   allDayEvent=false;
   FlagNextDay;
   FlagEventYesterday=true;
   roomName;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal:UsernameGlobalProvider , public alertCtrl: AlertController, public EventData: EventDataProvider) {
+  
+    this.userId=this.UserGlobal.getMyGlobalId();
   }
 
   ionViewDidLoad() {
@@ -41,6 +45,7 @@ export class TodayPage {
     let eventTitle = events.title;
 
     
+    if(events.user.userId==this.userId){
     if (dateStart <= dateToday && dateToday <= dateEnd){
       if(events.allDay==true){
         if(dateEnd!=dateToday){
@@ -57,6 +62,7 @@ export class TodayPage {
       else
         return false;
   }
+}
 
 
   AlertForEvent(events){
@@ -64,18 +70,17 @@ export class TodayPage {
     let dateend = moment(events.endTime).format('Do MMMM YYYY');
     let start = moment(events.startTime).format('HH:mm');
      let end = moment(events.endTime).format('HH:mm');
-     var allEvents = this.EventData.getEvents();
-     for(var i=0; i<allEvents.length;i++){
-      if (events.title==allEvents[i].title){
-        this.roomName=allEvents[i].room;
+     for(var i=0; i<this.MyEvents.length;i++){
+      if (events.title==this.MyEvents[i].title){
+        this.roomName=this.MyEvents[i].room;
       }
     }
-     var trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>'; 
+     var trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName.roomName + '</div>'; 
      if(events.allDay){
-      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>ALL DAY</b><br/><b>ROOM:</b> '+ this.roomName + '</div>';
+      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>ALL DAY</b><br/><b>ROOM:</b> '+ this.roomName.roomName + '</div>';
     }
     else if(datestart == dateend){
-      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>';
+      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName.roomName + '</div>';
     }
      let alert = this.alertCtrl.create({
        cssClass: 'alert-style',
@@ -105,5 +110,8 @@ export class TodayPage {
         }]
      });
      alert.present();
+  }
+  ionViewWillEnter(){
+    this.MyEvents=this.EventData.getEvents();
   }
 }

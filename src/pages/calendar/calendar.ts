@@ -32,7 +32,7 @@ export class CalendarPage {
     this.apiProvider.getReservations()
     .then(data => {
       this.reservations = data;
-      console.log (this.reservations)
+      console.log(this.reservations)
     });
     }
   onViewTitleChanged(title) {
@@ -70,12 +70,11 @@ export class CalendarPage {
   onRangeChanged(ev) {
   }
   showRoomEvents(r){
-    console.log("ova e show room events")
     var eventsRoom = [];
   for (var i=0; i<this.reservations.length; i++){
     let start = new Date(this.reservations[i].meetStarts)
     let end = new Date(this.reservations[i].meetEnds)
-    if(this.reservations[i].room.roomName == r.roomName && this.reservations[i].room.roomId == r.roomId){
+    if(this.reservations[i].room.roomId == r.roomId){
     eventsRoom.push({
           title: this.reservations[i].reservationTitle,
           startTime: start,
@@ -111,7 +110,6 @@ export class CalendarPage {
    let dateend = moment(event.endTime).format('Do MMMM YYYY');
    let start = moment(event.startTime).format('HH:mm');
     let end = moment(event.endTime).format('HH:mm');
-
     for(var i=0; i<this.reservations.length;i++){
       if (event.title==this.reservations[i].reservationTitle){
         this.roomName=this.reservations[i].room;

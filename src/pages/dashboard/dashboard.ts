@@ -26,11 +26,13 @@ export class DashboardPage {
   EndTime;
   StartDate;
   EndDate;
+  userId;
   FlagNextDay=false;
 
-  constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
     this.username=this.UserGlobal.getMyGlobalVar();
     this.role=this.UserGlobal.getMyGlobalRole();
+    this.userId=this.UserGlobal.getMyGlobalId();
   }
 
   MakeRoomNav(){
@@ -60,7 +62,7 @@ export class DashboardPage {
     this.EndTime = moment(events.endTime).format('HH:mm');
     this.StartDate = moment(events.startTime).format('DD.MM');
     this.EndDate = moment(events.endTime).format('-DD.MM');
-    
+    if(events.user.userId==this.userId){
     if (dateStart <= dateToday && dateToday <= dateEnd){
     if(this.StartTime=="00:00" && this.EndTime=="00:00"){
       if(dateEnd!=dateToday){
@@ -77,7 +79,7 @@ export class DashboardPage {
 
       this.showEvents = true;
       return true;
-
+    }
   }}
 
     else
@@ -94,11 +96,7 @@ export class DashboardPage {
   }
 
   ionViewWillEnter(){
-
-    console.log('aloooooooooooo')
     this.MyEvents=this.EventData.getEvents();
-    console.log(this.MyEvents)
-    //if(this.username=="admin" || this.username=="superadmin"){
 
 
     if(this.role.category==0 || this.role.category==1){

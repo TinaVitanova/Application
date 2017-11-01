@@ -34,6 +34,8 @@ export class ReserveEventPage {
   public startday;
   public endday;
   public room: {roomId: number};
+  public User=this.UserGlobal.getMyGlobalId();
+  public user= {userId: this.User};
   public roomName;
   public allDay:boolean=false;
   public BlurEndTimeFlag;
@@ -245,9 +247,15 @@ export class ReserveEventPage {
     }
     else{
 
-       this.showAvailableRooms=true;
+       this.startday = new Date(this.startday);
+       this.endday= new Date(this.endday);
+       var startDate = moment(this.startTime,"hh:mm").toDate();
+       var endDate = moment(this.endTime,"hh:mm").toDate();
+       var startTimeEvent = new Date(this.startday.getFullYear(), this.startday.getMonth(), this.startday.getDate(), startDate.getHours(), startDate.getMinutes());
+       var endTimeEvent = new Date(this.endday.getFullYear(), this.endday.getMonth(), this.endday.getDate(), endDate.getHours(), endDate.getMinutes());
+       // this.FullListOfRooms=this.apiProvider.getFreeRooms(startTimeEvent.getTime(),endTimeEvent.getTime());
   
-  
+        this.showAvailableRooms=true;
     this.isReserved=true;
   }}
   save(){
@@ -290,14 +298,14 @@ export class ReserveEventPage {
                     this.room = {roomId: this.FullListOfRooms[i].roomId};
                 }
                 if (this.IsChangeEvent==true){
-                  this.updateReservation={resId: this.ChangeEvent.resId, meetStarts: startTimeEvent.getTime(),meetEnds: endTimeEvent.getTime(),reservationTitle:this.title,room:this.room,user:null}
+                  this.updateReservation={resId: this.ChangeEvent.resId, meetStarts: startTimeEvent.getTime(),meetEnds: endTimeEvent.getTime(),reservationTitle:this.title,room:this.room,user:this.user}
                   this.apiProvider.updateReservation(this.updateReservation);
                  // this.EventData.updateEvent(this.reservation,this.IndexofChangeEvent);
                   this.isReserved=false;
                   this.navCtrl.pop()
                 }
                 else{
-                this.reservation={meetStarts: startTimeEventAllDay.getTime()- 3600 * 1000,meetEnds: endTimeEventAllDay.getTime()- 3600 * 1000,reservationTitle:this.title,room:this.room,user:null}
+                this.reservation={meetStarts: startTimeEventAllDay.getTime()- 3600 * 1000,meetEnds: endTimeEventAllDay.getTime()- 3600 * 1000,reservationTitle:this.title,room:this.room,user:this.user}
                 this.apiProvider.addReservation(this.reservation);
                // this.EventData.addEvent(this.reservation);
                 this.isReserved=false;
@@ -315,20 +323,20 @@ export class ReserveEventPage {
             var startTimeEvent = new Date(this.startday.getFullYear(), this.startday.getMonth(), this.startday.getDate(), startDate.getHours(), startDate.getMinutes());
             var endTimeEvent = new Date(this.endday.getFullYear(), this.endday.getMonth(), this.endday.getDate(), endDate.getHours(), endDate.getMinutes());
             for (var j=0; j<this.FullListOfRooms.length; j++){
-              console.log(this.FullListOfRooms[j].roomName +"  iminja na site sobi i imeto na mojata soba  "+ this.roomName)
               if(this.FullListOfRooms[j].roomName == this.roomName)
                 this.room = {roomId: this.FullListOfRooms[j].roomId};
-                console.log(this.room)
             }
             if (this.IsChangeEvent==true){
-              this.updateReservation={resId: this.ChangeEvent.resId,meetStarts: startTimeEvent.getTime(),meetEnds: endTimeEvent.getTime(),reservationTitle:this.title,room:this.room,user:null}
+              
+              this.updateReservation={resId: this.ChangeEvent.resId,meetStarts: startTimeEvent.getTime(),meetEnds: endTimeEvent.getTime(),reservationTitle:this.title,room:this.room,user:this.user}
+              console.log(this.updateReservation)
               this.apiProvider.updateReservation(this.updateReservation);
             //  this.EventData.updateEvent(this.reservation,this.IndexofChangeEvent);
               this.isReserved=false;
               this.navCtrl.pop();
             }
             else{
-              this.reservation={meetStarts: startTimeEvent.getTime(),meetEnds: endTimeEvent.getTime(),reservationTitle:this.title,room:this.room,user:null}
+              this.reservation={meetStarts: startTimeEvent.getTime(),meetEnds: endTimeEvent.getTime(),reservationTitle:this.title,room:this.room,user:this.user}
             this.apiProvider.addReservation(this.reservation);
            // this.EventData.addEvent(this.reservation);
             this.isReserved=false;
