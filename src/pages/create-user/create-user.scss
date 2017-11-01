@@ -13,6 +13,16 @@ page-create-user {
         text-transform: uppercase;
     }
 
+    .select-ios .select-icon .select-icon-inner,
+    .select-md .select-icon .select-icon-inner,
+    .select-wp .select-icon .select-icon-inner{
+        color: white;
+    }
+
+    .user-role{
+        margin-top:7%;
+    }
+
     .background, .background .pane, .background .item, .background .item-complex .item-content{
         background-color: map-get($colors, secondary);
         color: white;
@@ -29,7 +39,7 @@ page-create-user {
         border: none;
         background: #fff;
         color: map-get($colors, secondary);
-        margin-top: 10%; 
+        margin-top: 15%; 
         @include create-btn;    
     }
 
@@ -40,3 +50,28 @@ page-create-user {
     }
 
 }
+
+// *******************
+// TABLET DESIGN START
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    page-create-user {
+    
+        .item-ios, .item-md, .item-wp{
+            border-bottom: 4px solid white;
+            font-size: 220%;
+            margin-top:10%!important;
+        }
+
+        #create-user{
+            font-size: 250%!important;
+            margin-top: 20%!important;
+        }
+
+    }
+
+}
+
+// *******************
+// TABLET DESIGN END

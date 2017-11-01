@@ -6,3 +6,24 @@ page-my-schedule {
     }
 
 }
+
+// *******************
+// TABLET DESIGN START
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    page-my-schedule {
+
+        .tabs .tab-button{
+            padding: 4% 0%!important;
+        }
+
+        .tabs .tab-button-text{
+            font-size:200%;
+        }
+
+    }
+}
+
+// *******************
+// TABLET DESIGN END

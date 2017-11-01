@@ -33,7 +33,7 @@
             </ion-item>
             <p text-center [hidden]="!flagIncorrectRoomCapacity">Maximum room capacity is 30!</p>
             <ion-item>
-                <ion-label floating> &nbsp; Short Description...</ion-label>
+                <ion-label class="room-description" floating> &nbsp; Short Description...</ion-label>
                 <ion-textarea formControlName="Description" [class.invalid]="!MakeRoomForm.controls.Description.valid && MakeRoomForm.controls.Description.dirty && submitAttempt" [(ngModel)]="description" name="description"></ion-textarea>
             </ion-item>
         </ion-list>

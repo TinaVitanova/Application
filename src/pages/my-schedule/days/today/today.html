@@ -1,15 +1,13 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Today</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Today</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content no-padding>
-        
-                <hr class="main-hr" />
 
                 <ion-grid class="schedule-list" *ngFor="let events of MyEvents">
                         
@@ -30,8 +28,10 @@
                             <ion-col class="event-title" col-12>{{events.title}}<span>| Room: {{events.room.roomName}}</span></ion-col>
                     </ion-row>
 
-                    <hr />
-                    </div>
-                </ion-grid>
+
+        <hr />
+        </div>
+    </ion-grid>
            
 </ion-content>
+
