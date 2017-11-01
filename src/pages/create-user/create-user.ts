@@ -110,13 +110,6 @@ export class CreateUserPage {
   }
  
  
-  shouldHide(){
-    if(this.username=="superadmin")
-    return false;
-    else
-    return true;
-  }
- 
   CreateNewUser(){
     if(this.CreateUserForm.valid){
       this.flagIncorrectUsername = false;

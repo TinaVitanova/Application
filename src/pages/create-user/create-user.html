@@ -19,14 +19,14 @@
                 <ion-label floating>
 
                     <ion-icon name="person-add"></ion-icon> &nbsp; Username</ion-label>
-                <ion-input type="text" formControlName="username" (ionBlur)="onBlurUsername()" [class.invalid]="!CreateUserForm.controls.username.valid && CreateUserForm.controls.username.dirty && submitAttempt" [(ngModel)]="userName" name="username"></ion-input>
+                <ion-input type="text" formControlName="username" (ionBlur)="onBlurUsername()" [class.invalid]="!CreateUserForm.controls.username.valid && CreateUserForm.controls.username.dirty && submitAttempt" [(ngModel)]="user.userName" name="username"></ion-input>
             </ion-item>
             <p text-center class="invalid-style" [hidden]="!flagIncorrectUsername">This username already exists or you have inserted an invalid character!</p>
 
             <ion-item>
                 <ion-label floating>
                     <ion-icon name="mail"></ion-icon> &nbsp; E-mail</ion-label>
-                <ion-input type="mail" formControlName="email" (ionBlur)="onBlurEmail()" [class.invalid]="!CreateUserForm.controls.email.valid && CreateUserForm.controls.email.dirty && submitAttempt" [(ngModel)]="email" name="email"></ion-input>
+                <ion-input type="mail" formControlName="email" (ionBlur)="onBlurEmail()" [class.invalid]="!CreateUserForm.controls.email.valid && CreateUserForm.controls.email.dirty && submitAttempt" [(ngModel)]="user.email" name="email"></ion-input>
             </ion-item>
             <p text-center class="invalid-style" [hidden]="!flagIncorrectEmail">This email already exists or you have inserted invalid email!</p>
 
@@ -40,7 +40,8 @@
 
     </form>
     <ion-item>
-        <ion-label class="user-role"><ion-icon name="contact"></ion-icon> &nbsp; Role</ion-label>
+        <ion-label class="user-role">
+            <ion-icon name="contact"></ion-icon> &nbsp; Role</ion-label>
         <ion-select [(ngModel)]="role" name="role">
             <ion-option *ngFor="let r of roleName" (ionSelect)="addRole(r)">{{r}}</ion-option>
         </ion-select>

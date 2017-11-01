@@ -160,4 +160,22 @@ export class ApiProvider{
         });
     }
 
+    forgotPassword(forgotusername,forgotemail){
+        let headers = new Headers({ 
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*'
+        });
+        console.log(forgotusername,forgotemail)
+        return new Promise(resolve => {
+            this.http.post(this.apiUrl+'/forgotpassword/'+forgotusername+'/'+forgotemail, { headers: headers })
+            .subscribe(res => {
+                resolve(res);
+            }, (err) => {
+                console.log(err);
+            });
+        });
+    }
+
+
 }
