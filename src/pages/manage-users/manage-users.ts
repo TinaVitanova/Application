@@ -15,40 +15,38 @@ export class ManageUsersPage {
   public AllUsers = this.UserGlobal.getFullUsers();
 
   imageLoaded: boolean = false;
-
   users: any;
   
 
   getUser() {
+    this.users = [];
     this.apiProvider.getUser()
     .then(data => {
       this.users = data;
-      console.log(this.users);
     });
   }
 
   constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController, public menuCtrl: MenuController) {
-    this.initializeUsers();
-    this.getUser();
+
   }
 
   initializeUsers(){
     this.singleArray=[];
         for (var _i = 0; _i < this.AllUsers.length; _i++) {
           this.singleArray.push({
-                               username: this.AllUsers[_i].username,
+                               username: this.AllUsers[_i].userName,
                                email: this.AllUsers[_i].email,
-                               picture: "data:image/png;base64," + this.AllUsers[_i].picture
+                               //picture: "data:image/png;base64," + this.AllUsers[_i].picture
                               });                                                        
       }
       
   }
-
+  
   deleteUser(item){
     let alert = this.alertCtrl.create({
       cssClass: 'alert-style',
       title: '<p class="alert-title"><b>DELETE USER:</b><br /></p><hr />',
-      message: '<div class="alert-message"><b>Delete the user:</b> ' + item,
+      message: '<div class="alert-message"><b>Are you sure you want to delete this user:</b> ' + item.username,
       buttons: [
         {
           text: 'CANCEL',
@@ -59,8 +57,12 @@ export class ManageUsersPage {
           text: 'DELETE',
           cssClass: 'alert-btn',
           handler: () => {
-            this.UserGlobal.setDeleteAccName(this.AllUsers.indexOf(item));
+           //let index = this.AllUsers[this.singleArray.indexOf(item)];
+           console.log(this.singleArray.indexOf(item));
+            this.UserGlobal.setDeleteAccName(this.AllUsers[this.singleArray.indexOf(item)].userId);
+            this.AllUsers.splice(this.singleArray.indexOf(item), 1);
             this.initializeUsers();
+            //valjda treba getUser() 
           }
         }
       ]
@@ -73,9 +75,10 @@ export class ManageUsersPage {
     this.imageLoaded = true;
   }
 
-  getUsers(ev){
+  searchUsers(ev){
     //reset users back to all of users
     this.initializeUsers();
+    //this.getUser();
     //set val to the value of the ev target
     var val1 = ev.target.value;
 
@@ -88,6 +91,8 @@ export class ManageUsersPage {
   }
 
   ionViewDidEnter(){
+    //this.getUser();
+    this.initializeUsers();
     this.menuCtrl.enable(false, "userMenu");
     this.menuCtrl.enable(false, "adminMenu");
   }

@@ -18,11 +18,13 @@ page-reserve-event{
             font-size: 110%;
             border-radius: 5px;
             padding: 4% 0%;
+            margin-bottom:  0px!important;
         }
 
         .time-input{
             width: 95%;
-            border-bottom: 2px solid map-get($colors, primary);
+            border: 2px solid map-get($colors, primary);
+            border-radius: 5px;
             color: map-get($colors, text-color);
             font-size: 130%;
         }
@@ -65,3 +67,55 @@ page-reserve-event{
 }
 
 }
+
+
+// *******************
+// TABLET DESIGN START
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    page-reserve-event{
+
+        .item-ios, .item-md, .item-wp{
+            margin-top:5%;
+            font-size:220%;
+        }
+
+        .time-label{       
+            font-size: 220%;
+            padding: 4% 0%;
+            width: 85%;
+            margin: 10% 0% 0% 5%;
+        }
+
+        .time-input{
+            width: 85%;
+            border: 4px solid map-get($colors, primary);
+            font-size: 220%;
+            margin-left: 5%;
+            height: 50%;
+            padding-top:5%;
+        }
+
+        #find-room{
+            margin:10% 0% 5% 0%;
+            button{
+            width: 55%;
+            font-size:250%;
+            @include button-style;
+            }
+
+        }
+
+        .invalid-style{
+            margin-top:10%;
+        }
+
+        #add-event{
+            font-size: 230%;
+        }
+    }
+}
+
+// ******************
+// TABLET DESIGN END

@@ -23,7 +23,9 @@ page-calendar {
             font-weight: 600;
         }
     }
+
     // choose room style
+
     .choose-room {
         @include button-style;
         margin: 7% 0%;
@@ -33,7 +35,9 @@ page-calendar {
     {
         color: map-get($colors, secondary);
     }
+
     //calendar style
+
     #title {
         color: map-get($colors, primary);
         border: 2px solid map-get($colors, primary);
@@ -44,13 +48,14 @@ page-calendar {
         .toolbar-title {
             color: map-get($colors, secondary);
         }
+        div .toolbar-title-md{
+            font-size:1.7rem!important;
+        }
     }
     .table-bordered[_ngcontent-c1] {
         border: 2px solid map-get($colors, primary);
-        // padding-bottom: 10px!important;
     }
     table[_ngcontent-c1] {
-        // padding: 10px 0px!important;
         thead[_ngcontent-c1] {
             background: map-get($colors, primary);
             color: white;
@@ -80,9 +85,9 @@ page-calendar {
     .text-muted[_ngcontent-c1] {
         color: rgba(36, 198, 220, .5);
     }
-    // .ng-reflect-ng-class{
-    //     background: black;
-    // }
+    .ng-reflect-ng-class{
+        background: black;
+    }
     .monthview-datetable[_ngcontent-c1] td:hover {
         background: rgba(36, 198, 220, .5);
         border-radius: 50%!important;
@@ -91,7 +96,6 @@ page-calendar {
     }
     .monthview-current[_ngcontent-c1] {
         background: rgba(36, 198, 220, .9);
-        ;
         border-radius: 50%!important;
         color: white;
     }
@@ -109,12 +113,13 @@ page-calendar {
         overflow: hidden;
         white-space: nowrap;
     }
+
     //events modification
+
     .event-detail-container[_ngcontent-c0] {
-        background: map-get($colors, text-color);
         border-radius: 7px;
-        border: none!important;
-        text-transform: uppercase;
+        border: 1px solid map-get($colors, primary);
+        background: white;
         font-weight: normal;
     }
     ion-list[_ngcontent-c0] {
@@ -122,12 +127,13 @@ page-calendar {
         margin-top: 8%;
         .item-ios,
         .item-md {
-            background: rgba(white, 0.45);
+            background: map-get($colors, primary);
             color: rgba(77, 150, 165, 0.8);
             text-transform: uppercase;
             .no-events-label {
-                color: map-get($colors, text-color);
+                color: #dddddd;
                 letter-spacing: 1px;
+                text-transform: uppercase;
             }
         }
         .item-block:last-child,
@@ -137,4 +143,90 @@ page-calendar {
             border: 1px solid rgba(white, 0.7);
         }
     }
+
+    .monthview-eventdetail-timecolumn[_ngcontent-c0]{
+        color: white;
+        font-size: 95%;
+        font-weight: bold;
+    }
+
+    .event-detail[_ngcontent-c0]{
+        color:rgba(white, .7);
+    }
 }
+
+// *******************
+// TABLET DESIGN START
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    page-calendar{
+
+        #add-event {
+            width: 190%;
+            right: 120%;
+            border: 4px solid map-get($colors, secondary);
+            box-shadow: 0 0 0 4px white;
+
+            ion-icon {
+                font-size: 180%;
+            }
+        }
+
+        .choose-room {
+            font-size: 240%!important;
+            border: 4px solid map-get($colors, secondary);
+            padding: 1.5%;
+        }
+
+        #title{
+            border: 4px solid map-get($colors, primary);
+            div .toolbar-title-md{
+                font-size:4rem!important;
+                padding: 1% 4% 1% 7%;
+            }
+
+            ion-icon{
+                font-size:60px;
+            }
+
+        }
+        
+        .table-bordered[_ngcontent-c1] {
+            border: 4px solid map-get($colors, primary);
+        }
+
+        table[_ngcontent-c1] {
+            font-size: 220%!important;
+            
+        }
+        
+        .table[_ngcontent-c1]    > thead[_ngcontent-c1]    > tr[_ngcontent-c1]    > th[_ngcontent-c1], .table[_ngcontent-c1]    > tbody[_ngcontent-c1]    > tr[_ngcontent-c1]    > th[_ngcontent-c1], .table[_ngcontent-c1]    > tfoot[_ngcontent-c1]    > tr[_ngcontent-c1]    > th[_ngcontent-c1], .table[_ngcontent-c1]    > thead[_ngcontent-c1]    > tr[_ngcontent-c1]    > td[_ngcontent-c1], .table[_ngcontent-c1]    > tbody[_ngcontent-c1]    > tr[_ngcontent-c1]    > td[_ngcontent-c1], .table[_ngcontent-c1]    > tfoot[_ngcontent-c1]    > tr[_ngcontent-c1]    > td[_ngcontent-c1]{
+            padding: 37px;
+        }
+
+        .event-detail-container[_ngcontent-c0] {
+            font-size:220%!important;
+        }
+        ion-list[_ngcontent-c0] {
+            border: 2px solid map-get($colors, secondary);
+            margin-top: 8%;
+            .item-ios,
+            .item-md {
+                font-size:120%;
+                .no-events-label {
+                    padding: 2% 0%;
+                }
+            }
+            .item-block:last-child,
+            .list-ios .item-wrapper:last-child .item-block {
+                border: 3px solid rgba(white, 0.7);
+            }
+        }
+    
+    }
+
+}
+
+// *******************
+// TABLET DESIGN END

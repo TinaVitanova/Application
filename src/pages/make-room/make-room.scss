@@ -37,4 +37,43 @@ page-make-room {
         @include create-btn;       
     }
 
+    .invalid-style{
+        width: 90%;
+        padding-left: 10%;
+    }
+
 }
+
+// *******************
+// TABLET DESIGN START
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    
+    page-make-room {
+    
+        .item-ios, .item-md, .item-wp{
+            border-bottom: 4px solid white;
+            font-size: 220%;
+            margin-top:10%!important;
+        }
+
+        #create-room{
+            font-size: 250%!important;
+            margin-top: 10%!important;
+        }
+
+        ion-textarea{
+            border: 4px solid white;
+        }
+
+        .room-description{
+            position: relative;
+            top: 15%;
+            left:5%;
+        }
+    
+    }
+}
+
+// *******************
+// TABLET DESIGN END

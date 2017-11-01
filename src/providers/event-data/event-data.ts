@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { ApiProvider } from '../../providers/api-provider/api-provider';
 
 @Injectable()
 export class EventDataProvider {
   public flag;
   public RoomsData: {name: string, capacity: string, description: string};
-  public Eventdata: {title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object};
-  public AllEvents: {title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object}[]=[];
+  public Eventdata: {resId: number, title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object};
+  public AllEvents: {resId: number, title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object}[]=[];
   public FullRooms: {name: string, capacity: string, description: string}[]=[];
   public ShowRoom: boolean = false;
   public loadEvent;
+  public IsChangeEvent=false;
+  public changeEvent;
   public FlagStartEndTime;
-  constructor(public storage: Storage) {
-
+  reservations;
+  constructor(public storage: Storage, public apiProvider: ApiProvider) {
   } 
   public checkRoomName(value){
     for (var i=0; i<this.FullRooms.length; i++){
@@ -29,7 +32,24 @@ export class EventDataProvider {
   public getShowRoom(){
     return this.ShowRoom;
   }
+  public deleteEvent(event){
+    this.apiProvider.deleteReservation(event.resId)
+  }
+  // public setIsChangeEvent(value){
+  //   this.IsChangeEvent=value;
+  // }
+  // public setChangeEvent(value){
+  //   this.changeEvent=value;
+  // }
+  // public getChangeEvent(){
+  //   return this.changeEvent;
+  // }
+  // public getIsChangeEvent(){
+  //   return this.IsChangeEvent;
+  // }
 
+
+  
   public getRoomName(i){
     var roomName;
     for (var j=0; j<this.AllEvents.length; j++){
@@ -59,11 +79,26 @@ export class EventDataProvider {
   }
 
   public setEvent(value1,value2,value3,value4,value5){
-    this.Eventdata = {title: value1 +" Room: "+  value5.name, startTime: value2, endTime: value3, allDay: value4, room: value5};
+
+ this.apiProvider.getReservations()
+    .then(data => {
+      this.reservations = data;
+    });
+    this.Eventdata = {resId: value1, title: value1, startTime: value2, endTime: value3, allDay: value4, room: value5};
     this.AllEvents.push(this.Eventdata);
   }
 
   public getEvents(){
+    this.AllEvents=[];
+    this.apiProvider.getReservations()
+    .then(data => {
+      this.reservations = data;
+      for(var i=0;i<this.reservations.length;i++){
+        this.Eventdata = {resId: this.reservations[i].resId, title: this.reservations[i].reservationTitle, startTime: this.reservations[i].meetStarts, endTime: this.reservations[i].meetEnds, allDay: this.reservations[i].allDay, room: this.reservations[i].room};
+        this.AllEvents.push(this.Eventdata);
+      }
+    });
     return this.AllEvents;
+    
   }
 }

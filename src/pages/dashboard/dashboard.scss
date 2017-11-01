@@ -26,10 +26,13 @@ page-dashboard {
     .main-buttons .admin-btn {
         width: 70%;
         margin-left: 2%;
-        margin-top: 7%;
+        margin-top: 5.5%;
     }
     span {
         margin-left: 5%;
+    }
+    .margin{
+        margin-left:5%!important;
     }
     .main-buttons button {
         background: map-get($colors, primary);
@@ -56,7 +59,7 @@ page-dashboard {
             letter-spacing: .3px;
         }
 
-        hr{
+        .main-hr{
             width:95%;
             border-bottom: 1px solid map-get($colors, secondary-light);
         }
@@ -70,3 +73,48 @@ page-dashboard {
         }
     }
 }
+
+// *******************
+// TABLET DESIGN START
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    page-dashboard{
+
+        .main-buttons div button {
+            margin-top: 10%;
+            font-size: 260%;
+        }
+        .main-buttons button {
+            width: 67%;
+            margin-left:1%;
+        }
+        .main-buttons .admin-btn {
+            width: 70%;
+            margin-left: 2%;
+            margin-top: 7.5%;
+            font-size: 260%;
+        }
+        .upcoming-events{
+            padding: 5%;
+            margin-top: 7%;
+            ion-title .toolbar-title{
+                font-size:250%;
+                margin-bottom: 1.5%;
+                letter-spacing: 4px;
+            }
+        }
+        .main-hr{
+            width: 95%!important;
+            border-top: 6px solid map-get($colors, secondary-light);
+            margin-bottom: 4%;
+            position: relative;
+            left: -2%;
+        }
+
+    }
+
+}
+
+// *******************
+// TABLET DESIGN END

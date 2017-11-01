@@ -4,29 +4,27 @@ import { ApiProvider } from '../../providers/api-provider/api-provider';
 
 @Injectable()
 export class UsernameGlobalProvider {
-  public Usernames = ['test','admin','superadmin'];
-  public Emails = ['test@test.com', 'admin@admin.com','superadmin@superadmin.com'];
-  public Passwords = ['pass', 'pass', 'pass'];
-  public IsAdmin = [false,true,true];
+  public Usernames = [];
+  public Emails = [];
+  public Passwords = [];
+  public log = [];
+  public role = [];
   public userIndex:any;
   public CurrentUser;
   public IsLoggedIn;
   public UserLoggedIn;
-  public UsersData: {username: string, email: string, password: string, isAdmin: boolean, picture: string};
-  public FullUsers:{username: string,  email: string, password: string, isAdmin: boolean, picture: string}[]= [];
+  public UsersData: {userId:number, email:string,userName:string,password:string,log:boolean,role:number};
+  public FullUsers:{userId:number, email:string,userName:string,password:string,log:boolean,role:number}[]= [];
   public CurrentUserIndex = 0;
+  
+  newuser: {userId:number, email:string,userName:string,password:string}
 
-  public drn;
+
+  users;
+
 
   constructor(public storage: Storage, private apiProvider: ApiProvider) {
-    for (var i=0; i<3; i++){
-    this.UsersData = {username: this.Usernames[i], email: this.Emails[i], password: this.Passwords[i], isAdmin: this.IsAdmin[i], picture: this.defaultImage };
-    this.FullUsers.push(this.UsersData);
-    }
-
-
-    this.drn = this.apiProvider.getUser();
-    console.log(this.drn);
+    this.getFullUsers();
   }
 
   public setIsLoggedIn(value){
@@ -50,16 +48,16 @@ export class UsernameGlobalProvider {
 
   public setMyGlobalVar(value:any) {
     for (var i=0; i<this.FullUsers.length; i++){
-    if (this.FullUsers[i].username==value)
+    if (this.FullUsers[i].userName==value)
       this.userIndex = i;
     }
     this.CurrentUserIndex=this.userIndex;
-    this.CurrentUser=this.FullUsers[this.CurrentUserIndex].username;
+    this.CurrentUser=this.FullUsers[this.CurrentUserIndex].userName;
   }
   
-  public getUserImage(){
-    return this.FullUsers[this.CurrentUserIndex].picture;
-  }
+  // public getUserImage(){
+  //   return this.FullUsers[this.CurrentUserIndex].picture;
+  // }
 
 
   public setEmail(value){
@@ -68,39 +66,61 @@ export class UsernameGlobalProvider {
   }
 
   public setDeleteAccName(value){
-
+    this.apiProvider.deleteUser(value);
     this.FullUsers.splice(value,1);
   }
 
-  public addNewUser(value,value1) {
-   this.UsersData = {username: value.username, email: value.email, password: value.password, isAdmin: value.isAdmin, picture: value1 };
+  public addNewUser(value) {
+   this.UsersData = {userId: value.userId, email: value.email, userName: value.userName, password: value.password, log: value.log, role: value.role};
    this.FullUsers.push(this.UsersData);
   }
   
-  public ChangeUser(value,value1){
-    this.FullUsers[this.CurrentUserIndex].username = value.newusername;
+  public ChangeUser(value){
+    this.FullUsers[this.CurrentUserIndex].userId = value.userId;
+    this.FullUsers[this.CurrentUserIndex].userName = value.newusername;
     this.FullUsers[this.CurrentUserIndex].password = value.newpassword;
     this.FullUsers[this.CurrentUserIndex].email = value.newemail;
-    this.FullUsers[this.CurrentUserIndex].picture = value1;
-    this.CurrentUser=this.FullUsers[this.CurrentUserIndex].username;
+    this.newuser = {userId: value.userId,userName: value.newusername, email: value.newemail, password: value.newpassword};
+    this.CurrentUser=this.FullUsers[this.CurrentUserIndex].userName;
+    
+    this.apiProvider.editUser(this.newuser);
   }
 
   public getFullUsers(){
+    this.FullUsers = [];
+    this.apiProvider.getUser()
+    .then(data => {
+      this.users = data;
+      for (var i=0; i<this.users.length; i++){
+        this.UsersData = {userId: this.users[i].userId, email: this.users[i].email, userName: this.users[i].userName, password: this.users[i].password, log: this.users[i].log, role: this.users[i].role};
+        this.FullUsers.push(this.UsersData);
+      }
+    });
     return this.FullUsers;
   }
+
+  public getMyGlobalId(){
+    return this.FullUsers[this.CurrentUserIndex].userId;
+  }
+
   public getEmail(){
     return this.FullUsers[this.CurrentUserIndex].email;
   }
 
   public getUsernames(){
     for (var i=0; i<this.FullUsers.length; i++)
-    this.Usernames[i] = this.FullUsers[i].username;
+    this.Usernames[i] = this.FullUsers[i].userName;
     return this.Usernames;
   }
 
   public getMyGlobalVar() {
-      return this.FullUsers[this.CurrentUserIndex].username;
+      return this.FullUsers[this.CurrentUserIndex].userName;
   }
+
+  public getMyGlobalRole() {
+    return this.FullUsers[this.CurrentUserIndex].role;
+}
+  
   public getMyGlobalPass() {
     return this.FullUsers[this.CurrentUserIndex].password;
 }
@@ -116,7 +136,7 @@ public getMyGlobalEmail() {
 
   checkUsername(value){
     for (var i=0; i<this.FullUsers.length; i++){
-      if (value == this.FullUsers[i].username){
+      if (value == this.FullUsers[i].userName){
        return true
       }
       }
@@ -134,7 +154,7 @@ public getMyGlobalEmail() {
   }
 
   checkPassword(value){
-    
+    return true;
   }
 
 
