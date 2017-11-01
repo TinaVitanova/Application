@@ -1,13 +1,14 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>NextDays</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>NextDays</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content no-padding>
+
     <ion-grid class="schedule-list" *ngFor="let events of MyEvents">
             
         <div [hidden]="!IsDate(events)"  (mousedown)="AlertForEvent(events)">
@@ -30,3 +31,4 @@
         </div>
     </ion-grid>        
 </ion-content>
+

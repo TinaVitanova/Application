@@ -11,18 +11,19 @@
         <label class="uploader">
                 <span style="padding: 5% 0%;"><ion-icon name="person-add"></ion-icon></span>
                         <img 
-                        [src]="imageSrc"
+                        src="../assets/avatar.png"
                         (load)="ImageLoad()" 
                         [class.loaded]="imageLoaded"/>
                     
-                    <input type="file" name="file" accept="image/*"
-                        (change)="InputChange($event)">
+                    <!-- <input type="file" name="file" accept="image/*"
+                        (change)="InputChange($event)"> -->
             </label>
 
         <ion-list text-center>
             <ion-item>
                 <ion-label floating>New Username</ion-label>
-                <ion-input type="text" formControlName="newusername" (ionBlur)="onBlur()" [class.invalid]="!ChangeUserForm.controls.newusername.valid && SubmitAttempt" [(ngModel)]="todo.newusername" name="username"></ion-input>
+                <ion-input type="text" formControlName="newusername" [(ngModel)]="todo.newusername" name="username" disabled></ion-input>
+                <!-- <ion-input type="text" formControlName="newusername" (ionBlur)="onBlur()" [class.invalid]="!ChangeUserForm.controls.newusername.valid && SubmitAttempt" [(ngModel)]="todo.newusername" name="username" disabled></ion-input>     -->
             </ion-item>
             <p text-center class="invalid-style" [hidden]="!flagIncorrectUsername">Incorrect username or already exists!</p>
 
