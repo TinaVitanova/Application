@@ -60,6 +60,10 @@ page-create-user {
         color: map-get($colors, secondary)!important;
     }
 
+    .invalid-style{
+        color: hsl(0, 100%, 76%);
+    }
+
 }
 
 // *******************
