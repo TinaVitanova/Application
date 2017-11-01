@@ -37,6 +37,7 @@ export class CreateUserPage {
       isAdmin:[''],
   });
     this.username = navParams.get('param2');
+    
   }
  
   addRole(role){
@@ -56,22 +57,23 @@ export class CreateUserPage {
  
   getRole(){
     this.apiProvider.getRole()
-    .then(data => {
-      this.roles = data;
-    });
- 
-    for(var i=0; i<this.roles.length; i++){
-      if(this.roles[i].category == 0){
-        this.roleName[i] = "superadmin";
-      }else if(this.roles[i].category==1){
-        this.roleName[i] = "admin";
-      }else if(this.roles[i].category==2){
-        this.roleName[i] = "user";
+
+    .then(data1 => {
+      this.roles = data1;
+      for(var i=0; i<this.roles.length; i++){
+        if(this.roles[i].category == 0){
+          this.roleName[i] = "SUPERADMIN";
+        }else if(this.roles[i].category==1){
+          this.roleName[i] = "ADMIN";
+        }else if(this.roles[i].category==2){
+          this.roleName[i] = "USER";
+        }
       }
-      console.log(this.roleName)
-    }
+
+    });
   }
- 
+  
+
   onBlurUsername(){
     if(!this.user.userName){
       this.flagCorrectUsername = false;
@@ -123,9 +125,11 @@ export class CreateUserPage {
       let alert = this.alertCtrl.create({
         cssClass: 'alert-style',
         title: '<p class="alert-title"><b>USER CREATED:</b><br /></p><hr />',
-        subTitle: '<div class="alert-message"><b>USERNAME:</b> ' + this.user.userName +
-                  '<br><b>EMAIL:</b> ' + this.user.email
-                  + '</div>',  
+
+        subTitle: '<div class="alert-message"><b>USERNAME:</b> ' + this.user.userName + 
+                  '<br><b>EMAIL:</b> ' + this.user.email 
+                  + '</div>',   
+
        buttons:[
         {
           cssClass: 'alert-btn',
@@ -139,8 +143,8 @@ export class CreateUserPage {
           handler: data => {
             this.addUser();
             this.submitAttempt = true;
-            this.picture = this.UserGlobal.getDefaultImage();
-            this.UserGlobal.addNewUser(this.user,this.picture);
+            //this.picture = this.UserGlobal.getDefaultImage();
+            this.UserGlobal.addNewUser(this.user);
             this.resetForm();
           }
         }

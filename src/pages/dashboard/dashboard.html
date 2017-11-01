@@ -17,7 +17,7 @@
 
         <div>
             <button large ion-button (click)=CalendarNav()>
-                <ion-icon name="calendar"></ion-icon><span style="margin-left:20%;">CALENDAR</span>
+                <ion-icon name="calendar"></ion-icon><span class="margin">CALENDAR</span>
             </button>
         </div>
         <ion-grid [style.display]="adminBtn ? 'flex': 'none'">
@@ -33,7 +33,7 @@
             <ion-row>
                 <ion-col>
                     <button large ion-button class="admin-btn" (click)=MakeRoomNav()>
-                        <ion-icon name="cube"></ion-icon><span style="margin-left:20%;">CREATE ROOM</span>
+                        <ion-icon name="cube"></ion-icon><span class="margin">CREATE ROOM</span>
                     </button>
                 </ion-col>
             </ion-row>
@@ -44,6 +44,7 @@
         <hr class="main-hr" />
         <ion-grid class="schedule-list" *ngFor="let events of MyEvents">
             <div [hidden]="!IsDate(events)">
+
                 <div [hidden]="allDayEvent">
             <ion-row >
                 <ion-col class="event-time" col-6><ion-icon name="time"></ion-icon> {{StartTime}}-{{EndTime}}</ion-col>
@@ -60,6 +61,7 @@
                     <ion-col class="event-title" col-12>{{events.title}}<span>| Room: {{events.room.roomName}}</span></ion-col>
             </ion-row>
             <hr />
+
             </div>
 
         </ion-grid>

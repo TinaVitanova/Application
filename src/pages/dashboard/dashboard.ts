@@ -7,6 +7,7 @@ import { CreateUserPage } from '../create-user/create-user';
 import { UsernameGlobalProvider } from '../../providers/username-global/username-global';
 import { EventDataProvider } from '../../providers/event-data/event-data';
 import * as moment from 'moment';
+
 @IonicPage()
 @Component({
   selector: 'page-dashboard',
@@ -15,6 +16,7 @@ import * as moment from 'moment';
 export class DashboardPage {
   calendarpage=CalendarPage;
   username;
+  role;
   adminBtn = false;
   showEvents = false;
   flagCalendar;
@@ -25,6 +27,12 @@ export class DashboardPage {
   StartDate;
   EndDate;
   FlagNextDay=false;
+
+  constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
+    this.username=this.UserGlobal.getMyGlobalVar();
+    this.role=this.UserGlobal.getMyGlobalRole();
+  }
+
   MakeRoomNav(){
     this.navCtrl.push(MakeRoomPage)
   }
@@ -69,14 +77,16 @@ export class DashboardPage {
 
       this.showEvents = true;
       return true;
+
   }}
+
     else
       return false;
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
-    this.username=this.UserGlobal.getMyGlobalVar();
-  }
+
+
+
   
   ionViewDidEnter(){
     this.username=this.UserGlobal.getMyGlobalVar();
@@ -84,16 +94,23 @@ export class DashboardPage {
   }
 
   ionViewWillEnter(){
+
     console.log('aloooooooooooo')
     this.MyEvents=this.EventData.getEvents();
     console.log(this.MyEvents)
-    if(this.username=="admin" || this.username=="superadmin"){
+    //if(this.username=="admin" || this.username=="superadmin"){
+
+
+    if(this.role.category==0 || this.role.category==1){
+
+
       this.adminBtn=true;
       this.menuCtrl.enable(true, "adminMenu");
     }
-    else{
+    else if(this.role.category==2){
     this.menuCtrl.enable(true, "userMenu");
     }
+
   }
   
 }

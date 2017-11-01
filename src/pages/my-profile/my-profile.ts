@@ -14,10 +14,13 @@ import { ApiProvider } from '../../providers/api-provider/api-provider';
 })
 export class MyProfilePage {
   public todo = {
+    userId:this.UserGlobal.getMyGlobalId(),
     newusername:this.UserGlobal.getMyGlobalVar(),
     newpassword:this.UserGlobal.getMyGlobalPass(),
     newemail:this.UserGlobal.getMyGlobalEmail(),
   };
+
+  user = {email:'',userName:'',password:''};
 
   //public imageSrc: String = "data:image/png;base64," + this.UserGlobal.getUserImage();
   //base64textString = this.UserGlobal.getUserImage();
@@ -35,11 +38,12 @@ export class MyProfilePage {
   flagIncorrectEmail:boolean = false;
   flagIncorrectPassword:boolean = false;
 
-  user = {email:'',userName:'',passwprd:''};
+  
 
   constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public events:Events, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public formBuilder: FormBuilder, public EventData: EventDataProvider, private menuCtrl: MenuController) {
     this.ChangeUserForm = formBuilder.group({
-    newusername: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9]*/),Validators.required, new Validator(UserGlobal, EventData).isNewUsernameValid])],
+      newusername:[''],
+      //newusername: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9]*/),Validators.required, new Validator(UserGlobal, EventData).isNewUsernameValid])],
       newemail: ['',Validators.compose([Validators.pattern(/[a-z0-9]+\@[a-z]+\.[a-z]{2,3}/),Validators.required, new Validator(UserGlobal, EventData).isNewEmailValid])],
       newpassword: ['', Validators.compose([Validators.required])],
     });
@@ -47,14 +51,14 @@ export class MyProfilePage {
   
   onBlur(){
     if(!this.ChangeUserForm.valid){
-      if(!this.ChangeUserForm.controls.newusername.valid){
-        this.flagIncorrectUsername = true; 
-        this.flagCorrectUsername=false;
-      }
-      else{
-      this.flagIncorrectUsername = false; 
-        this.flagCorrectUsername=true;
-      }
+      // if(!this.ChangeUserForm.controls.newusername.valid){
+      //   this.flagIncorrectUsername = true; 
+      //   this.flagCorrectUsername=false;
+      // }
+      // else{
+      // this.flagIncorrectUsername = false; 
+      //   this.flagCorrectUsername=true;
+      // }
   
       if(!this.ChangeUserForm.controls.newemail.valid){
         this.flagIncorrectEmail = true;
@@ -76,11 +80,11 @@ export class MyProfilePage {
     }
   }
 
-  editUser() {
-    this.apiProvider.editUser(this.user);
-  }
+  // editUser() {
+  //   this.apiProvider.editUser(this.user);
+  // }
 
-  Change(){
+  Change(todo){
     if(this.ChangeUserForm.valid){   
       this.flagIncorrectUsername = false;
       this.flagIncorrectPassword = false;
@@ -115,7 +119,9 @@ export class MyProfilePage {
 
               if (data.password == "ok") {
                 //this.events.publish('image:added', this.base64textString);
+                //console.log(this.todo.newusername.userId)
                 this.UserGlobal.ChangeUser(this.todo);
+                //this.apiProvider.editUser(this.todo);
               }else {
 
                 return false;
