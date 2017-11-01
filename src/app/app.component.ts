@@ -30,7 +30,7 @@ export class MyApp {
     this.pages1 = [
       { title: 'My Profile', component: MyProfilePage },
       { title: 'My Schedule', component: MySchedulePage },
-      { title: 'Manage Users', component: ManageUsersPage }
+      { title: 'Manage Users', component: ManageUsersPage },
     ];
 
     this.pages2 = [

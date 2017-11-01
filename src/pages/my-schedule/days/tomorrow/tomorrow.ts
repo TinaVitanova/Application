@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EventDataProvider } from '../../../../providers/event-data/event-data';
+import { ReserveEventPage } from '../../../reserve-event/reserve-event';
 import * as moment from 'moment';
 
 @IonicPage()
@@ -69,16 +70,16 @@ if(events.allDay){
      let end = moment(events.endTime).format('HH:mm');
      var allEvents = this.EventData.getEvents();
      for(var i=0; i<allEvents.length;i++){
-       if (events.title==allEvents[i].title){
-         this.roomName=this.EventData.getRoomName(i);
-       }
-     }
-     let trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>'; 
+      if (events.title==allEvents[i].title){
+        this.roomName=allEvents[i].room;
+      }
+    }
+     let trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName.roomName + '</div>'; 
      if(events.allDay){
-      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>ALL DAY</b><br/><b>ROOM:</b> '+ this.roomName + '</div>';
+      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>ALL DAY</b><br/><b>ROOM:</b> '+ this.roomName.roomName + '</div>';
     }
     else if(datestart == dateend){
-      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>';
+      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName.roomName + '</div>';
     }
      let alert = this.alertCtrl.create({
        cssClass: 'alert-style',
@@ -90,6 +91,16 @@ if(events.allDay){
             text: 'Delete',
             handler: data => {
               this.EventData.deleteEvent(events);
+            }
+          },
+          {
+            cssClass:'alert-btn',
+            text:'Change',
+            handler: data =>{
+              this.EventData.setChangeEvent(events);
+              this.EventData.setIndexOfChangeEvent(this.MyEvents.indexOf(events));
+              this.EventData.setIsChangeEvent(true);
+              this.navCtrl.push(ReserveEventPage);
             }
           },
         {

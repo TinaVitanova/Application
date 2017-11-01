@@ -6,24 +6,29 @@ import 'rxjs/add/operator/map';
 export class ApiProvider{
     apiUrl = 'http://10.10.20.177:8080';
     data:any;
+
+    dataRooms:any;
+    dataReservations:any;
+
     data1:any
     
+
     constructor(public http:Http){
         
     }
 
     
     getReservations(){
-        if (this.data) {
-            return Promise.resolve(this.data);
+        if (this.dataReservations) {
+            return Promise.resolve(this.dataReservations);
         }
         
         return new Promise(resolve => {
             this.http.get(this.apiUrl+'/reservation/getall')
             .map(res => res.json())
-            .subscribe(data => {
-                this.data = data;
-                resolve(this.data);
+            .subscribe(dataReservations => {
+                this.dataReservations = dataReservations;
+                resolve(this.dataReservations);
             });
         });
     }
@@ -44,6 +49,7 @@ export class ApiProvider{
     }
 
     addReservation(reservation){
+        console.log(reservation)
         let headers = new Headers({ 
             'Accept':'application/json',
             'Content-Type':'application/json',
@@ -51,6 +57,23 @@ export class ApiProvider{
         });
         return new Promise(resolve => {
             this.http.post(this.apiUrl+'/reservation/add', JSON.stringify(reservation) , { headers: headers })
+            .subscribe(res => {
+                console.log(res)
+                resolve(res);
+            }, (err) => {
+                console.log(err);
+            });
+        });
+    }
+
+    updateReservation(reservation){
+        let headers = new Headers({ 
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*'
+        });
+        return new Promise(resolve => {
+            this.http.put(this.apiUrl+'/reservation/update', JSON.stringify(reservation) , { headers: headers })
             .subscribe(res => {
                 console.log(res)
                 resolve(res);
@@ -76,23 +99,57 @@ export class ApiProvider{
             });
         });
     }
+    deleteRoom(room){
+        let headers = new Headers({ 
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*'
+        });
+        return new Promise(resolve => {
+            this.http.delete(this.apiUrl+'/room/delete/'+room, { headers: headers })
+            .subscribe(res => {
+                console.log(res)
+                resolve(res);
+            }, (err) => {
+                console.log(err);
+            });
+        });
+    }
 
+
+
+    getRooms(){
+        if (this.dataRooms) {
+            return Promise.resolve(this.dataRooms);
+        }                     
+        return new Promise(resolve => {
+            this.http.get(this.apiUrl+'/room/getall')
+            .map(res => res.json())
+          .subscribe(dataRooms => {
+                this.dataRooms = dataRooms;
+                resolve(this.dataRooms);
+                       });  
+                                 });
+                  }                  
 
     getRole() {
         if (this.data1) {
             return Promise.resolve(this.data1);
-
         }
-        
         return new Promise(resolve => {
             this.http.get(this.apiUrl+'/role/role')
             .map(res => res.json())
-            .subscribe(data1 => {
+              .subscribe(data1 => {
                 this.data1 = data1;
                 resolve(this.data1);
-            });
-        });
-    }
+                });
+          });
+        }
+
+
+          
+      
+   
 
     getUser() {
         if (this.data) {
