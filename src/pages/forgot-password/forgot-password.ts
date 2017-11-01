@@ -12,14 +12,17 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 })
 export class ForgotPasswordPage {
   ForgotPasswordForm: FormGroup;
-  newemail: string;
+  email: string;
+  username:string;
   public SubmitAttempt = false;
   flagIncorrectEmail:boolean = false;
+  flagIncorrectUsername:boolean = false;
   warning=false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public formBuilder: FormBuilder, public UserGlobal: UsernameGlobalProvider, public EventData: EventDataProvider) {
     this.ForgotPasswordForm = formBuilder.group({
-    newemail: ['',Validators.compose([Validators.pattern(/[a-z0-9]+\@[a-z]+\.[a-z]{2,3}/),Validators.required, new Validator(UserGlobal, EventData).isGlobalEmailValid])]
+      username: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9]*/),Validators.required, new Validator(UserGlobal, EventData).isGlobalUsernameValid])],
+      email: ['',Validators.compose([Validators.pattern(/[a-z0-9]+\@[a-z]+\.[a-z]{2,3}/),Validators.required, new Validator(UserGlobal, EventData).isGlobalEmailValid])]
   });
   }
 
@@ -27,13 +30,13 @@ export class ForgotPasswordPage {
     this.viewCtrl.dismiss();
   }
 
-  onBlur(){
-    if(!this.newemail){
+  onBlurEmail(){
+    if(!this.email){
       this.flagIncorrectEmail = false;
     }
     else{
     if(!this.ForgotPasswordForm.valid){
-      if(!this.ForgotPasswordForm.controls.newemail.valid){
+      if(!this.ForgotPasswordForm.controls.email.valid){
         this.flagIncorrectEmail = true;
       }else{
         this.flagIncorrectEmail = false;
@@ -42,9 +45,26 @@ export class ForgotPasswordPage {
     }
   }
 
+  onBlurUsername(){
+    if(!this.username){
+      this.flagIncorrectUsername = false;
+    }
+    else{
+    if(!this.ForgotPasswordForm.valid){
+      if(!this.ForgotPasswordForm.controls.email.valid){
+        this.flagIncorrectUsername = true;
+      }else{
+        this.flagIncorrectUsername = false;
+      }
+    }
+    }
+  }
+  
+
   Reset(){
     if(this.ForgotPasswordForm.valid){
       this.flagIncorrectEmail = false;
+      this.flagIncorrectUsername = false;
       this.SubmitAttempt=true;
       //prati na backend
     }

@@ -37,6 +37,7 @@ export class CreateUserPage {
       isAdmin:[''],
   });
     this.username = navParams.get('param2');
+    
   }
 
   addRole(role){
@@ -56,20 +57,18 @@ export class CreateUserPage {
 
   getRole(){
     this.apiProvider.getRole()
-    .then(data => {
-      this.roles = data;
-    });
-
-    for(var i=0; i<this.roles.length; i++){
-      if(this.roles[i].category == 0){
-        this.roleName[i] = "superadmin";
-      }else if(this.roles[i].category==1){
-        this.roleName[i] = "admin";
-      }else if(this.roles[i].category==2){
-        this.roleName[i] = "user";
+    .then(data1 => {
+      this.roles = data1;
+      for(var i=0; i<this.roles.length; i++){
+        if(this.roles[i].category == 0){
+          this.roleName[i] = "superadmin";
+        }else if(this.roles[i].category==1){
+          this.roleName[i] = "admin";
+        }else if(this.roles[i].category==2){
+          this.roleName[i] = "user";
+        }
       }
-      console.log(this.roleName)
-    }
+    });
   }
   
   onBlurUsername(){
@@ -139,8 +138,8 @@ export class CreateUserPage {
           handler: data => {
             this.addUser();
             this.submitAttempt = true;
-            this.picture = this.UserGlobal.getDefaultImage();
-            this.UserGlobal.addNewUser(this.user,this.picture);
+            //this.picture = this.UserGlobal.getDefaultImage();
+            this.UserGlobal.addNewUser(this.user);
             this.resetForm();
           }
         }

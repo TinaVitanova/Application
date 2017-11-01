@@ -23,18 +23,11 @@ export class ManageUsersPage {
     .then(data => {
       this.users = data;
     });
-    for(var i = 0; i < this.users.length; i++){
-      this.singleArray.push({
-              username: this.users[i].userName,
-              email: this.users[i].email,
-              picture: "data:image/png;base64," + this.UserGlobal.getDefaultImage()
-      });
-    }
   }
 
   constructor(private apiProvider: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public UserGlobal: UsernameGlobalProvider, public alertCtrl: AlertController, public menuCtrl: MenuController) {
-    this.initializeUsers();
-    this.getUser();
+    
+    //this.getUser();
   }
 
   initializeUsers(){
@@ -48,7 +41,7 @@ export class ManageUsersPage {
       }
       
   }
-
+  
   deleteUser(item){
     let alert = this.alertCtrl.create({
       cssClass: 'alert-style',
@@ -64,8 +57,13 @@ export class ManageUsersPage {
           text: 'DELETE',
           cssClass: 'alert-btn',
           handler: () => {
-            this.UserGlobal.setDeleteAccName(this.AllUsers.indexOf(item));
+            console.log(this.singleArray.indexOf(item))
+            console.log(this.AllUsers[this.singleArray.indexOf(item)].userId)
+           //let index = this.AllUsers[this.singleArray.indexOf(item)];
+            this.UserGlobal.setDeleteAccName(this.AllUsers[this.singleArray.indexOf(item)].userId);
+            this.AllUsers.splice(this.singleArray.indexOf(item), 1);
             this.initializeUsers();
+            //valjda treba getUser() 
           }
         }
       ]
@@ -78,9 +76,10 @@ export class ManageUsersPage {
     this.imageLoaded = true;
   }
 
-  getUsers(ev){
+  searchUsers(ev){
     //reset users back to all of users
     this.initializeUsers();
+    //this.getUser();
     //set val to the value of the ev target
     var val1 = ev.target.value;
 
@@ -92,12 +91,9 @@ export class ManageUsersPage {
     }
   }
 
-  ionViewWillEnter(){
-    this.getUser();
-  }
   ionViewDidEnter(){
-    
-    this.getUser();
+    //this.getUser();
+    this.initializeUsers();
     this.menuCtrl.enable(false, "userMenu");
     this.menuCtrl.enable(false, "adminMenu");
   }

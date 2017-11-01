@@ -4,18 +4,20 @@ import { ApiProvider } from '../../providers/api-provider/api-provider';
 
 @Injectable()
 export class UsernameGlobalProvider {
-  public Usernames = ['test','admin','superadmin'];
-  public Emails = ['test@test.com', 'admin@admin.com','superadmin@superadmin.com'];
-  public Passwords = ['pass', 'pass', 'pass'];
-  public log = [false,true,true];
-  public role = [0,1,2];
+  public Usernames = [];
+  public Emails = [];
+  public Passwords = [];
+  public log = [];
+  public role = [];
   public userIndex:any;
   public CurrentUser;
   public IsLoggedIn;
   public UserLoggedIn;
-  public UsersData: {email:string,userName:string,password:string,log:boolean,role:number};
-  public FullUsers:{email:string,userName:string,password:string,log:boolean,role:number}[]= [];
+  public UsersData: {userId:number, email:string,userName:string,password:string,log:boolean,role:number};
+  public FullUsers:{userId:number, email:string,userName:string,password:string,log:boolean,role:number}[]= [];
   public CurrentUserIndex = 0;
+  
+  newuser: {userId:number, email:string,userName:string,password:string}
 
   users;
 
@@ -62,34 +64,43 @@ export class UsernameGlobalProvider {
   }
 
   public setDeleteAccName(value){
-
+    this.apiProvider.deleteUser(value);
     this.FullUsers.splice(value,1);
   }
 
-  public addNewUser(value,value1) {
-   this.UsersData = {userName: value.username, email: value.email, password: value.password, log: value.log, role: value.role};
+  public addNewUser(value) {
+   this.UsersData = {userId: value.userId, userName: value.username, email: value.email, password: value.password, log: value.log, role: value.role};
    this.FullUsers.push(this.UsersData);
   }
   
   public ChangeUser(value){
+    this.FullUsers[this.CurrentUserIndex].userId = value.userId;
     this.FullUsers[this.CurrentUserIndex].userName = value.newusername;
     this.FullUsers[this.CurrentUserIndex].password = value.newpassword;
     this.FullUsers[this.CurrentUserIndex].email = value.newemail;
-    //this.FullUsers[this.CurrentUserIndex].picture = value1;
+    this.newuser = {userId: value.userId,userName: value.newusername, email: value.newemail, password: value.newpassword};
     this.CurrentUser=this.FullUsers[this.CurrentUserIndex].userName;
+    
+    this.apiProvider.editUser(this.newuser);
   }
 
   public getFullUsers(){
+    this.FullUsers = [];
     this.apiProvider.getUser()
     .then(data => {
       this.users = data;
       for (var i=0; i<this.users.length; i++){
-        this.UsersData = {email: this.users[i].email, userName: this.users[i].userName, password: this.users[i].password, log: this.users[i].log, role: this.users[i].role};
+        this.UsersData = {userId: this.users[i].userId, email: this.users[i].email, userName: this.users[i].userName, password: this.users[i].password, log: this.users[i].log, role: this.users[i].role};
         this.FullUsers.push(this.UsersData);
       }
     });
     return this.FullUsers;
   }
+
+  public getMyGlobalId(){
+    return this.FullUsers[this.CurrentUserIndex].userId;
+  }
+
   public getEmail(){
     return this.FullUsers[this.CurrentUserIndex].email;
   }
@@ -103,6 +114,11 @@ export class UsernameGlobalProvider {
   public getMyGlobalVar() {
       return this.FullUsers[this.CurrentUserIndex].userName;
   }
+
+  public getMyGlobalRole() {
+    return this.FullUsers[this.CurrentUserIndex].role;
+}
+  
   public getMyGlobalPass() {
     return this.FullUsers[this.CurrentUserIndex].password;
 }
@@ -118,7 +134,6 @@ public getMyGlobalEmail() {
 
   checkUsername(value){
     for (var i=0; i<this.FullUsers.length; i++){
-      console.log(this.FullUsers+"checkuseranfdfgfb");
       if (value == this.FullUsers[i].userName){
        return true
       }
