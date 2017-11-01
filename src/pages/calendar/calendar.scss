@@ -62,7 +62,6 @@ page-calendar {
             border: none;
             text-transform: uppercase;
             font-size: 97%;
-            line-height: 1.7em;
             th[_ngcontent-c1] {
                 border: none!important;
             }
@@ -78,6 +77,11 @@ page-calendar {
             line-height: 1.5em;
         }
     }
+
+    .table[_ngcontent-c1]    > thead[_ngcontent-c1]    > tr[_ngcontent-c1]    > th[_ngcontent-c1], .table[_ngcontent-c1]    > tbody[_ngcontent-c1]    > tr[_ngcontent-c1]    > th[_ngcontent-c1], .table[_ngcontent-c1]    > tfoot[_ngcontent-c1]    > tr[_ngcontent-c1]    > th[_ngcontent-c1], .table[_ngcontent-c1]    > thead[_ngcontent-c1]    > tr[_ngcontent-c1]    > td[_ngcontent-c1], .table[_ngcontent-c1]    > tbody[_ngcontent-c1]    > tr[_ngcontent-c1]    > td[_ngcontent-c1], .table[_ngcontent-c1]    > tfoot[_ngcontent-c1]    > tr[_ngcontent-c1]    > td[_ngcontent-c1]{
+        padding: 12.5px;
+    }
+
     .monthview-datetable[_ngcontent-c1] {
         color: map-get($colors, primary);
         box-shadow: none;
@@ -99,8 +103,11 @@ page-calendar {
         border-radius: 50%!important;
         color: white;
     }
+    .monthview-secondary-with-event[_ngcontent-c1]{
+        border-radius: 50%!important;
+    }
     .monthview-selected[_ngcontent-c1] {
-        background: map-get($colors, secondary);
+        background: map-get($colors, secondary-hover);
         border-radius: 50%!important;
         color: white;
     }
@@ -117,21 +124,25 @@ page-calendar {
     //events modification
 
     .event-detail-container[_ngcontent-c0] {
-        border-radius: 7px;
-        border: 1px solid map-get($colors, primary);
+        border-radius: 3px;
+        border: 2px solid map-get($colors, secondary-hover);
         background: white;
         font-weight: normal;
     }
     ion-list[_ngcontent-c0] {
-        border: 2px solid map-get($colors, secondary);
         margin-top: 8%;
         .item-ios,
         .item-md {
-            background: map-get($colors, primary);
-            color: rgba(77, 150, 165, 0.8);
+            background: map-get($colors, secondary-hover);
+            border: 2px solid white;
+            outline: 2px solid map-get($colors, secondary-hover);
+            outline-offset: 1px;            
+            color: rgba(106, 181, 196, 0.8);
+            border-radius: 3px;
             text-transform: uppercase;
+            margin: 5% 0%;
             .no-events-label {
-                color: #dddddd;
+                color: map-get($colors, light);
                 letter-spacing: 1px;
                 text-transform: uppercase;
             }
@@ -202,18 +213,21 @@ page-calendar {
         }
         
         .table[_ngcontent-c1]    > thead[_ngcontent-c1]    > tr[_ngcontent-c1]    > th[_ngcontent-c1], .table[_ngcontent-c1]    > tbody[_ngcontent-c1]    > tr[_ngcontent-c1]    > th[_ngcontent-c1], .table[_ngcontent-c1]    > tfoot[_ngcontent-c1]    > tr[_ngcontent-c1]    > th[_ngcontent-c1], .table[_ngcontent-c1]    > thead[_ngcontent-c1]    > tr[_ngcontent-c1]    > td[_ngcontent-c1], .table[_ngcontent-c1]    > tbody[_ngcontent-c1]    > tr[_ngcontent-c1]    > td[_ngcontent-c1], .table[_ngcontent-c1]    > tfoot[_ngcontent-c1]    > tr[_ngcontent-c1]    > td[_ngcontent-c1]{
-            padding: 37px;
+            padding: 35px;
         }
 
         .event-detail-container[_ngcontent-c0] {
-            font-size:220%!important;
+            font-size:210%!important;
         }
         ion-list[_ngcontent-c0] {
-            border: 2px solid map-get($colors, secondary);
+            border: 3px solid map-get($colors, secondary);
             margin-top: 8%;
             .item-ios,
             .item-md {
                 font-size:120%;
+                padding: 1.5%;
+                border: 3px solid white;
+                outline: 3px solid map-get($colors, secondary-hover);
                 .no-events-label {
                     padding: 2% 0%;
                 }

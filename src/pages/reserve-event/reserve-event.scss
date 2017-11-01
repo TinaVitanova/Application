@@ -82,11 +82,12 @@ page-reserve-event{
 
         .item-ios, .item-md, .item-wp{
             margin-top:5%;
-            font-size:220%;
+            font-size:240%;
+            border-bottom: 4px solid map-get($colors, primary);            
         }
 
         .time-label{       
-            font-size: 220%;
+            font-size: 240%;
             padding: 4% 0%;
             width: 85%;
             margin: 10% 0% 0% 5%;

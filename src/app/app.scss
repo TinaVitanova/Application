@@ -25,7 +25,7 @@
     background-color: white;
 
     img{
-        width:35%;
+        width:45%;
     }
 }
 
@@ -516,6 +516,7 @@ ion-list .sm-list {
         border-bottom: 2px solid white;
         padding: 2% 0% 3% 0%;
         text-align: center;
+        text-transform: uppercase;
         &:hover,
         &:active,
         &:focus {
@@ -562,6 +563,28 @@ ion-list .sm-list {
   // *****************
   // alerts style
 
+  
+.alert-wp .alert-wrapper,
+.alert-md .alert-wrapper,
+.alert-ios .alert-wrapper{
+    background: white;
+    .alert-title, .alert-radio-icon{
+        color: map-get($colors, secondary);
+        text-transform: uppercase;
+    }
+    .alert-radio-label{
+        color: map-get($colors, secondary);
+    }
+    .alert-message, button{
+        color: map-get($colors, primary);
+    }
+    .alert-button{
+        background: transparent;
+        color: map-get($colors, primary);
+        text-transform: uppercase;
+    }
+}
+
   .alert-style{  
     padding-bottom: 20px!important;  
     div{
@@ -605,6 +628,7 @@ ion-list .sm-list {
 .alert-button-group-vertical{
     flex-direction: row!important;
 }
+
 
  // *******************
     // TABLET DESIGN START
@@ -670,7 +694,26 @@ ion-list .sm-list {
             font-size: 250%;
         }
 
-
+        .alert-wp .alert-wrapper,
+        .alert-md .alert-wrapper,
+        .alert-ios .alert-wrapper{
+            max-width:600px!important;
+            width:600px!important;
+            height:600px!important;
+            .alert-title{
+                font-size:180%;
+            }
+            .alert-radio-icon, .alert-radio-label, .alert-message, .alert-button{
+                font-size: 150%;
+            }
+            .alert-message{
+                margin-left:5%;
+                line-height: 2em;
+            }
+            button{
+                font-size:50px!important;
+            }
+        }
             
     }
 

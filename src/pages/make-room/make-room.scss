@@ -94,6 +94,28 @@ page-make-room {
             top: 15%;
             left:5%;
         }
+
+        
+    // manage rooms style
+
+    .manage-rooms{     
+        ion-card-header{
+            font-size: 260%;
+            border: 4px solid white;
+            padding: 3% 0%!important;   
+        }
+
+        ion-list{
+            color: white;
+            ion-item ion-icon, h2, p{
+                color: white;
+                font-size: 220%;
+            }
+            button ion-icon{
+                font-size: 300%;
+            }
+        }
+    }
     
     }
 }
