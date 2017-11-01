@@ -33,6 +33,7 @@ export class DashboardPage {
     this.username=this.UserGlobal.getMyGlobalVar();
     this.role=this.UserGlobal.getMyGlobalRole();
     this.userId=this.UserGlobal.getMyGlobalId();
+    console.log(this.userId)
   }
 
   MakeRoomNav(){
@@ -62,13 +63,14 @@ export class DashboardPage {
     this.EndTime = moment(events.endTime).format('HH:mm');
     this.StartDate = moment(events.startTime).format('DD.MM');
     this.EndDate = moment(events.endTime).format('-DD.MM');
+    
+    console.log(events.user.userId+"    "+this.userId)
     if(events.user.userId==this.userId){
     if (dateStart <= dateToday && dateToday <= dateEnd){
     if(this.StartTime=="00:00" && this.EndTime=="00:00"){
       if(dateEnd!=dateToday){
         this.allDayEvent=true;
-        
-    this.showEvents = true;
+        this.showEvents = true;
         return true;
       }
       else{
@@ -76,7 +78,6 @@ export class DashboardPage {
       }
     }else {
       this.allDayEvent=false;
-
       this.showEvents = true;
       return true;
     }

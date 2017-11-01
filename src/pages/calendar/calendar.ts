@@ -143,7 +143,7 @@ export class CalendarPage {
     this.menuCtrl.enable(false, "adminMenu");
   }
 
-  ionViewDidLoad(){    
+  ionViewWillEnter(){    
     this.ListOfRooms = this.EventData.getRooms();
     this.showRoom = true;
   }

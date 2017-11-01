@@ -247,12 +247,12 @@ export class ReserveEventPage {
     }
     else{
 
-       this.startday = new Date(this.startday);
-       this.endday= new Date(this.endday);
-       var startDate = moment(this.startTime,"hh:mm").toDate();
-       var endDate = moment(this.endTime,"hh:mm").toDate();
-       var startTimeEvent = new Date(this.startday.getFullYear(), this.startday.getMonth(), this.startday.getDate(), startDate.getHours(), startDate.getMinutes());
-       var endTimeEvent = new Date(this.endday.getFullYear(), this.endday.getMonth(), this.endday.getDate(), endDate.getHours(), endDate.getMinutes());
+      //  this.startday = new Date(this.startday);
+      //  this.endday= new Date(this.endday);
+      //  var startDate = moment(this.startTime,"hh:mm").toDate();
+      //  var endDate = moment(this.endTime,"hh:mm").toDate();
+      //  var startTimeEvent = new Date(this.startday.getFullYear(), this.startday.getMonth(), this.startday.getDate(), startDate.getHours(), startDate.getMinutes());
+      //  var endTimeEvent = new Date(this.endday.getFullYear(), this.endday.getMonth(), this.endday.getDate(), endDate.getHours(), endDate.getMinutes());
        // this.FullListOfRooms=this.apiProvider.getFreeRooms(startTimeEvent.getTime(),endTimeEvent.getTime());
   
         this.showAvailableRooms=true;
