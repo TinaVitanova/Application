@@ -18,7 +18,7 @@ export class CalendarPage {
   ListOfRooms;
   roomName;
   reservations;
-  showRoom = this.EventData.getShowRoom();
+  showRoom = true;
   
   calendar = {
       mode: 'month',
@@ -70,15 +70,17 @@ export class CalendarPage {
   onRangeChanged(ev) {
   }
   showRoomEvents(r){
-    var allEvents = this.EventData.getEvents();
+    console.log("ova e show room events")
     var eventsRoom = [];
-  for (var i=0; i<allEvents.length; i++){
-    if(allEvents[i].room == r){
+  for (var i=0; i<this.reservations.length; i++){
+    let start = new Date(this.reservations[i].meetStarts)
+    let end = new Date(this.reservations[i].meetEnds)
+    if(this.reservations[i].room.roomName == r.roomName && this.reservations[i].room.roomId == r.roomId){
     eventsRoom.push({
-          title: allEvents[i].title,
-          startTime: allEvents[i].startTime,
-          endTime: allEvents[i].endTime,
-          allday: allEvents[i].allDay
+          title: this.reservations[i].reservationTitle,
+          startTime: start,
+          endTime: end,
+          allday: false
       });
     }}
       return eventsRoom;
@@ -88,9 +90,8 @@ export class CalendarPage {
     for (var i=0; i<this.reservations.length; i++){
       let start = new Date(this.reservations[i].meetStarts)
       let end = new Date(this.reservations[i].meetEnds)
-
       events.push({
-            title: this.reservations[i].reservationTitle, //+ " Room: " + this.EventData.getRoomName(i),
+            title: this.reservations[i].reservationTitle,
             startTime: start,
             endTime: end,
             allDay: false
@@ -111,18 +112,17 @@ export class CalendarPage {
    let start = moment(event.startTime).format('HH:mm');
     let end = moment(event.endTime).format('HH:mm');
 
-    var allEvents = this.EventData.getEvents();
-    for(var i=0; i<allEvents.length;i++){
-      if (event.title==allEvents[i].title){
-        this.roomName=this.EventData.getRoomName(i);
+    for(var i=0; i<this.reservations.length;i++){
+      if (event.title==this.reservations[i].reservationTitle){
+        this.roomName=this.reservations[i].room;
       }
     }
-    let trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>'; 
+    let trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName.roomName + '</div>'; 
     if(event.allDay){
-      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>ALL DAY</b><br/><b>ROOM:</b> '+ this.roomName + '</div>';
+      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>ALL DAY</b><br/><b>ROOM:</b> '+ this.roomName.roomName + '</div>';
     }
     else if(datestart == dateend){
-      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>';
+      trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName.roomName + '</div>';
     }
     let alert = this.alertCtrl.create({
       cssClass: 'alert-style',
@@ -146,8 +146,8 @@ export class CalendarPage {
   }
 
   ionViewDidLoad(){    
-    this.ListOfRooms = this.EventData.getRoomData();
-    this.showRoom = this.EventData.getShowRoom();
+    this.ListOfRooms = this.EventData.getRooms();
+    this.showRoom = true;
   }
 
 }

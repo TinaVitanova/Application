@@ -57,11 +57,16 @@ page-dashboard {
             color: map-get($colors, secondary);
             text-align:left;
             letter-spacing: .3px;
+
+        }
+
+        .toolbar-title-ios{
+            margin-left: 2%;
         }
 
         .main-hr{
             width:95%;
-            border-bottom: 1px solid map-get($colors, secondary-light);
+            border-bottom: 2px solid map-get($colors, secondary-light);
         }
     }
 

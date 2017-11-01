@@ -5,7 +5,21 @@
 </ion-header>
 
 <ion-content no-padding class="background">
-    <form (ngSubmit)="logForm()" [formGroup]="MakeRoomForm">
+    <ion-card [hidden]="!showCard" class="manage-rooms">
+        <ion-card-header text-center>
+            ALL ROOMS &nbsp; <ion-icon name="arrow-dropdown-circle"></ion-icon>
+        </ion-card-header>
+        <ion-list>
+            <ion-item *ngFor="let room of ListOfRooms">
+                <h2>{{room.roomName}}</h2>
+                <p>{{room.desc}}</p>
+                <button ion-button clear icon-only item-end (click)="deleteRoom(room)">
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+            </ion-item>
+        </ion-list>
+    </ion-card>
+    <form (ngSubmit)="logForm()" [formGroup]="MakeRoomForm" [hidden]="showCard">
         <ion-list>
             <ion-item>
                 <ion-label floating>Room Name</ion-label>
@@ -23,7 +37,14 @@
             </ion-item>
         </ion-list>
     </form>
-    <ion-buttons text-center>
+    <ion-buttons text-center [hidden]="showCard">
         <button id="create-room" large ion-button round outline (click)="CreateRoom()">Create this Room</button>
     </ion-buttons>
+
+    <ion-buttons text-center [hidden]="showCard">
+        <button id="create-room" large ion-button round outline (click)="ManageRooms()">Manage Rooms</button>
+    </ion-buttons>
+    <ion-buttons text-center [hidden]="!showCard">
+            <button id="create-room" large ion-button round outline (click)="CancelManageRooms()">Cancel</button>
+        </ion-buttons>
 </ion-content>

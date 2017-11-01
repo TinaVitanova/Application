@@ -80,9 +80,7 @@ export class Validator {
     }
 
     isEventTitleValid(control: FormControl):any{
-        var events=Validator.eventProvider.getEvents();
-        for (var i=0;i<events.length;i++){
-            if(control.value == events[i].title)
+            if(!Validator.eventProvider.checkTitle(control.value)){
             return {
                 "That title already exists":true
             }

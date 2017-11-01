@@ -234,10 +234,10 @@ $toolbar-ios-title-font-weight: 500;
       height:85%!important;
     }
 
-    ion-grid hr{
-      border-bottom: 1px solid map-get($colors, light);
+    hr{
+      height: 3px;
       width: 100%;
-      margin-top: 5%;
+      margin-top: 3%;
     }
 
     .event-time, .event-date{
@@ -248,8 +248,6 @@ $toolbar-ios-title-font-weight: 500;
         text-align: center;
         font-size: 100%;
         padding: 2% 0%;
-        margin-top:3%!important;
-
         ion-icon{
           bottom: 7%;
         }
@@ -267,8 +265,8 @@ $toolbar-ios-title-font-weight: 500;
         font-size: 95%;
         border: 2px solid map-get($colors, primary);
         border-radius: 5px;
-        margin-left: 1%;
         overflow-x: hidden;
+        margin-bottom:2%!important;        
 
         span{
           color: rgba(black, .6);
@@ -464,15 +462,19 @@ $picker-wp-toolbar-background-color:  color($colors, bg-gray);
       font-size:230%!important;
     }
 
+    .event-time, .event-date{
+      margin-top: 2%;
+    }
+
     .event-title{
       border: 3px solid map-get($colors, primary)!important;
       position: relative;
-      left: -1%;
+      left: 0%;
     }
 
     hr{
       height: 6px!important;
-      width: 95%;
+      width: 95%!important;
       margin: 4% 0% 5% 0%;
       
     }

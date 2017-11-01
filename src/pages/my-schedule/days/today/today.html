@@ -9,25 +9,25 @@
 
 <ion-content no-padding>
 
-        
-    <ion-grid class="schedule-list" *ngFor="let events of MyEvents">
-            
-        <div [hidden]="!IsDateToday(events)"  (mousedown)="AlertForEvent(events)">
-            <div [hidden]="allDayEvent">
-        <ion-row >
-            <ion-col class="event-time" col-6><ion-icon name="time"></ion-icon> {{StartTime}}-{{EndTime}}</ion-col>
-            <ion-col class="event-date" col-6><ion-icon name="calendar"></ion-icon> {{StartDate}}{{EndDate}}</ion-col>
-        </ion-row>
-        </div>
-        <div [hidden]="!allDayEvent">
-        <ion-row>
-            <ion-col class="event-time" col-6><ion-icon name="time"></ion-icon>ALL DAY</ion-col>
-            <ion-col class="event-date" col-6><ion-icon name="calendar"></ion-icon> {{StartDate}} </ion-col>
-        </ion-row>
-        </div>
-        <ion-row>
-                <ion-col class="event-title" col-12>{{events.title}}<span>| Room: <!--{{events.room.name}}--></span></ion-col>
-        </ion-row>
+                <ion-grid class="schedule-list" *ngFor="let events of MyEvents">
+                        
+                    <div [hidden]="!IsDateToday(events)"  (mousedown)="AlertForEvent(events)">
+                        <div [hidden]="allDayEvent">
+                    <ion-row >
+                        <ion-col class="event-time" col-6><ion-icon name="time"></ion-icon> {{StartTime}}-{{EndTime}}</ion-col>
+                        <ion-col class="event-date" col-6><ion-icon name="calendar"></ion-icon> {{StartDate}}{{EndDate}}</ion-col>
+                    </ion-row>
+                    </div>
+                    <div [hidden]="!allDayEvent">
+                    <ion-row>
+                        <ion-col class="event-time" col-6><ion-icon name="time"></ion-icon>ALL DAY</ion-col>
+                        <ion-col class="event-date" col-6><ion-icon name="calendar"></ion-icon> {{StartDate}} </ion-col>
+                    </ion-row>
+                    </div>
+                    <ion-row>
+                            <ion-col class="event-title" col-12>{{events.title}}<span>&nbsp; | Room: {{events.room.roomName}}</span></ion-col>
+                    </ion-row>
+
 
         <hr />
         </div>

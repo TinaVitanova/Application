@@ -18,7 +18,7 @@
         <ion-select [(ngModel)]="rooms" name="rooms">
             <ion-option value="all" [selected]="all == rooms" (ionSelect)="loadEvents()">All Rooms</ion-option>
             <span *ngIf="showRooms()">
-                <ion-option *ngFor="let r of ListOfRooms" (ionSelect)="loadRoomEvents(r)">{{r.name}}</ion-option>
+                <ion-option *ngFor="let r of ListOfRooms" (ionSelect)="loadRoomEvents(r)">{{r.roomName}}</ion-option>
             </span>
         </ion-select>
     </ion-item>
