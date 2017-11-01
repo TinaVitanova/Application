@@ -18,11 +18,13 @@ page-reserve-event{
             font-size: 110%;
             border-radius: 5px;
             padding: 4% 0%;
+            margin-bottom:  0px!important;
         }
 
         .time-input{
             width: 95%;
-            border-bottom: 2px solid map-get($colors, primary);
+            border: 2px solid map-get($colors, primary);
+            border-radius: 5px;
             color: map-get($colors, text-color);
             font-size: 130%;
         }

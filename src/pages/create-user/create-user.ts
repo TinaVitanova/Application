@@ -18,6 +18,7 @@ export class CreateUserPage {
   CreateUserForm: FormGroup;
   submitAttempt: boolean = false;
   picture;
+
   role;
   roles:{roleId:number,category:number}[]=[];
   user = {email:'',userName:'',role:{}};
@@ -39,6 +40,7 @@ export class CreateUserPage {
     this.username = navParams.get('param2');
     
   }
+
 
   addRole(role){
     this.role=role
@@ -68,6 +70,7 @@ export class CreateUserPage {
           this.roleName[i] = "user";
         }
       }
+
     });
   }
   

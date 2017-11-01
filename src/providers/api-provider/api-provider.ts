@@ -12,6 +12,40 @@ export class ApiProvider{
         
     }
 
+    
+    getReservations(){
+        if (this.data) {
+            return Promise.resolve(this.data);
+        }
+        
+        return new Promise(resolve => {
+            this.http.get(this.apiUrl+'/reservation/getall')
+            .map(res => res.json())
+            .subscribe(data => {
+                this.data = data;
+                resolve(this.data);
+            });
+        });
+    }
+    addReservation(ress){
+        let headers = new Headers({ 
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*'
+        });
+        return new Promise(resolve => {
+            this.http.post(this.apiUrl+'/reservation/add', JSON.stringify(ress) , { headers: headers })
+            .subscribe(res => {
+                console.log(res)
+                console.log(JSON.stringify(ress))
+                resolve(res);
+            }, (err) => {
+                console.log(JSON.stringify(ress))
+                console.log(err);
+            });
+        });
+    }
+
     getRole() {
         if (this.data1) {
             return Promise.resolve(this.data1);
@@ -41,7 +75,6 @@ export class ApiProvider{
             });
         });
     }
-
     
 
     addUser(data) {
@@ -50,6 +83,7 @@ export class ApiProvider{
             'Content-Type':'application/json',
             'Access-Control-Allow-Origin': '*'
         });
+
         return new Promise(resolve => {
             this.http.post(this.apiUrl+'/user/add', JSON.stringify(data) , { headers: headers })
             .subscribe(res => {

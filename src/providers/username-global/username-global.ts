@@ -19,7 +19,9 @@ export class UsernameGlobalProvider {
   
   newuser: {userId:number, email:string,userName:string,password:string}
 
+
   users;
+
 
   constructor(public storage: Storage, private apiProvider: ApiProvider) {
     this.getFullUsers();
@@ -152,7 +154,7 @@ public getMyGlobalEmail() {
   }
 
   checkPassword(value){
-    
+    return true;
   }
 
 

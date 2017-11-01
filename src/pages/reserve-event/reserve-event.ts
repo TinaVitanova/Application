@@ -5,6 +5,7 @@ import { UsernameGlobalProvider } from '../../providers/username-global/username
 import { EventDataProvider } from '../../providers/event-data/event-data';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Validator } from '../../validators/FormValidator';
+import { ApiProvider } from '../../providers/api-provider/api-provider';
 
 @IonicPage()
 @Component({
@@ -16,6 +17,8 @@ export class ReserveEventPage {
   ReserveEventForm: FormGroup;
   isReserved: boolean;
   flag;
+  // IsChangeEvent;
+  // ChangeEvent;
   flagForWarning=false;
   flagTimeEqual=false;
   flagIsNextDay=false;
@@ -41,10 +44,11 @@ export class ReserveEventPage {
   public AllEvents = this.EventData.getEvents();
   public FullListOfRooms = this.EventData.getRoomData();
   public ListOfRooms=JSON.parse(JSON.stringify(this.FullListOfRooms));
+  reservation: {meetStarts:number,meetEnds:number,reservationTitle:string,room:Object,user:Object};
   showRoom = this.EventData.getShowRoom();
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder, public menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider:ApiProvider, public alertCtrl: AlertController, public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, public formBuilder: FormBuilder, public menuCtrl: MenuController) {
     this.ReserveEventForm = formBuilder.group({
       title: ['', Validators.compose([Validators.maxLength(15),Validators.pattern(/[a-zA-Z0-9][\w]+\s?[\w]+$/),Validators.required, new Validator(UserGlobal, EventData).isEventTitleValid])],
       startday: ['',Validators.required],
@@ -129,8 +133,11 @@ export class ReserveEventPage {
     this.BlurEndTimeFlag = true;
     if (this.BlurStartTimeFlag == true){
       if(this.startTime == this.endTime){
+        if(this.startday==this.endday){
         this.flagTimeEqual=true;
         this.showAvailableRooms=false;
+        }
+        else this.flagTimeEqual=false;
       }
       else{
       this.flagTimeEqual=false;
@@ -148,8 +155,11 @@ export class ReserveEventPage {
     this.BlurStartTimeFlag = true;
     if (this.BlurEndTimeFlag == true){
       if(this.startTime == this.endTime){
+        if(this.startday==this.endday){
         this.flagTimeEqual=true;
         this.showAvailableRooms=false;
+        }
+        else this.flagTimeEqual=false;
       }
       else{
       this.flagTimeEqual=false;
@@ -477,13 +487,16 @@ export class ReserveEventPage {
   }}
   save(){
     this.flag = this.EventData.getFlagisCalendarPage();
-
       let datestart = moment(this.startday).format('Do MMMM YYYY');
       let dateend = moment(this.endday).format('Do MMMM YYYY');
       let start = this.startTime;
       let end = this.endTime;
       let trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>'; 
       if(datestart == dateend){
+        if(this.flagAllDay){
+          trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>ALL DAY</b><br/><b>ROOM:</b> '+ this.roomName + '</div>';
+        }
+        else
         trueDay = '<div class="alert-message"><b>DATE:</b> '+datestart+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName + '</div>';
       }
      let alert = this.alertCtrl.create({
@@ -507,13 +520,19 @@ export class ReserveEventPage {
                 this.startday = new Date(this.startday);
                 var startTimeEventAllDay = new Date(Date.UTC(this.startday.getUTCFullYear(), this.startday.getUTCMonth(), this.startday.getUTCDate()));
                 var endTimeEventAllDay = new Date(Date.UTC(this.startday.getUTCFullYear(), this.startday.getUTCMonth(), this.startday.getUTCDate()+1));
+                console.log(endTimeEventAllDay.getTime()- 3600 * 1000 + ' ova e end time' + startTimeEventAllDay.getTime() + ' start time')
                 for (var i=0; i<this.FullListOfRooms.length; i++){
                   if(this.FullListOfRooms[i].name == this.roomName)
                     this.room = this.FullListOfRooms[i];
                 }
-                this.EventData.setEvent(this.title, startTimeEventAllDay, endTimeEventAllDay, true, this.room);
+                this.reservation={meetStarts: startTimeEventAllDay.getTime()- 3600 * 1000,meetEnds: endTimeEventAllDay.getTime()- 3600 * 1000,reservationTitle:this.title,room:null,user:null}
+                this.apiProvider.addReservation(this.reservation);
                 this.isReserved=false;
-                  if (this.flag == true)
+                // if (this.IsChangeEvent==true){
+                //   this.navCtrl.pop()
+                // }
+                // else 
+                if (this.flag == true)
                     this.navCtrl.pop();
                     else
                     this.resetForm()
@@ -525,13 +544,19 @@ export class ReserveEventPage {
             var endDate = moment(this.endTime,"hh:mm").toDate();
             var startTimeEvent = new Date(this.startday.getFullYear(), this.startday.getMonth(), this.startday.getDate(), startDate.getHours(), startDate.getMinutes());
             var endTimeEvent = new Date(this.endday.getFullYear(), this.endday.getMonth(), this.endday.getDate(), endDate.getHours(), endDate.getMinutes());
+            console.log(endTimeEvent.getTime() + ' ova e end time' + startTimeEvent.getTime() + ' start time')
             for (var j=0; j<this.FullListOfRooms.length; j++){
               if(this.FullListOfRooms[j].name == this.roomName)
                 this.room = this.FullListOfRooms[j];
             }
-            this.EventData.setEvent(this.title, startTimeEvent, endTimeEvent, false, this.room);
-            this.isReserved=false;
-              if (this.flag == true)
+            this.reservation={meetStarts: startTimeEvent.getTime(),meetEnds: endTimeEvent.getTime(),reservationTitle:this.title,room:null,user:null}
+            this.apiProvider.addReservation(this.reservation);
+            // this.isReserved=false;
+            // if (this.IsChangeEvent==true){
+            //   this.navCtrl.pop()
+            // }
+            // else 
+            if (this.flag == true)
                 this.navCtrl.pop();
                 else
                 this.resetForm()
@@ -551,6 +576,19 @@ export class ReserveEventPage {
     this.endTime="08:00";
     this.startTime="07:00";
     this.showAvailableRooms=false;
+  }
+  ionViewWillEnter(){
+    // this.IsChangeEvent=this.EventData.getIsChangeEvent();
+    // this.ChangeEvent=this.EventData.getChangeEvent();
+    // if(this.IsChangeEvent==true){
+    //   this.title=this.ChangeEvent.title;
+    //   this.allDay=this.ChangeEvent.allDay;
+    //   this.startday=this.ChangeEvent.startDate;
+    //   this.endday=this.ChangeEvent.endDate;
+    //   this.startTime=moment(this.ChangeEvent.startTime).format("HH:mm").toString();
+    //   this.endTime=moment(this.ChangeEvent.endTime).format("HH:mm").toString();
+    // }
+
   }
 
   ionViewDidEnter(){

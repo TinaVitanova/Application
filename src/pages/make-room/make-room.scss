@@ -37,4 +37,9 @@ page-make-room {
         @include create-btn;       
     }
 
+    .invalid-style{
+        width: 90%;
+        padding-left: 10%;
+    }
+
 }
