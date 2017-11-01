@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EventDataProvider } from '../../../../providers/event-data/event-data';
 import { ReserveEventPage } from '../../../reserve-event/reserve-event';
+import { UsernameGlobalProvider } from '../../../../providers/username-global/username-global';
 import * as moment from 'moment';
 
 @IonicPage()
@@ -10,14 +11,19 @@ import * as moment from 'moment';
   templateUrl: 'tomorrow.html',
 })
 export class TomorrowPage {
-  MyEvents=this.EventData.getEvents();
+  MyEvents;
   StartTime;
   EndTime;
+  StartDate;
+  EndDate;
+  userId;
   allDayEvent=false;
   FlagEventYesterday=true;
   FlagNextDay;
   roomName;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public EventData: EventDataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UserGlobal:UsernameGlobalProvider, public alertCtrl: AlertController, public EventData: EventDataProvider) {
+    
+    this.userId=this.UserGlobal.getMyGlobalId();
   }
 
   ionViewDidLoad() {
@@ -30,6 +36,8 @@ export class TomorrowPage {
     this.EndTime = moment(events.endTime).format('HH:mm');
 
     
+    this.StartDate = moment(events.startTime).format('DD.MM');
+    this.EndDate = moment(events.endTime).format('-DD.MM');
     //Podeleni start i end time vo saati minuti i datum
 
     let startTimeEventDate=moment(this.StartTime).format('DD MM YYYY');
@@ -45,7 +53,7 @@ export class TomorrowPage {
 if(events.allDay){
       dateEnd=moment(events.endTime).add(-1,"days").format('DD MM YYYY');
     }
-    
+    if(events.user.userId==this.userId){
     if (dateStart <= nextDay && nextDay <= dateEnd){
       if(events.allDay==true){
         if(dateEnd!=nextDay){
@@ -63,15 +71,16 @@ if(events.allDay){
         return false;
     
   }
+}
   AlertForEvent(events){
     let datestart = moment(events.startTime).format('Do MMMM YYYY');
     let dateend = moment(events.endTime).format('Do MMMM YYYY');
     let start = moment(events.startTime).format('HH:mm');
      let end = moment(events.endTime).format('HH:mm');
-     var allEvents = this.EventData.getEvents();
-     for(var i=0; i<allEvents.length;i++){
-      if (events.title==allEvents[i].title){
-        this.roomName=allEvents[i].room;
+     
+     for(var i=0; i<this.MyEvents.length;i++){
+      if (events.title==this.MyEvents[i].title){
+        this.roomName=this.MyEvents[i].room;
       }
     }
      let trueDay = '<div class="alert-message"><b>FROM:</b> '+datestart+'<br><b>UNTILL:</b> '+dateend+'<br><b>TIME:</b> '+start+ ' <b>-</b> ' +end+'<br/><b>ROOM:</b> '+ this.roomName.roomName + '</div>'; 
@@ -109,6 +118,9 @@ if(events.allDay){
         }]
      });
      alert.present();
+  }
+  ionViewWillEnter(){
+    this.MyEvents=this.EventData.getEvents();
   }
 
 }

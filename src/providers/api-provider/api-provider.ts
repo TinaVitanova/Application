@@ -19,9 +19,7 @@ export class ApiProvider{
 
     
     getReservations(){
-        if (this.dataReservations) {
-            return Promise.resolve(this.dataReservations);
-        }
+      
         
         return new Promise(resolve => {
             this.http.get(this.apiUrl+'/reservation/getall')
@@ -39,7 +37,7 @@ export class ApiProvider{
         }
         
         return new Promise(resolve => {
-            this.http.get(this.apiUrl+'/reservation/getallfreeroooms'+ data1 + '/' +data2)
+            this.http.get(this.apiUrl+'/reservation/getavailablerooms/'+ data1 + '/' +data2)
             .map(res => res.json())
             .subscribe(data => {
                 this.data = data;
@@ -100,6 +98,23 @@ export class ApiProvider{
         });
     }
 
+    updateRoom(room){
+        let headers = new Headers({ 
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*'
+        });
+        return new Promise(resolve => {
+            this.http.put(this.apiUrl+'/room/update', JSON.stringify(room) , { headers: headers })
+            .subscribe(res => {
+                console.log(res)
+                resolve(res);
+            }, (err) => {
+                console.log(err);
+            });
+        });
+    }
+
     deleteReservation(reservation){
         let headers = new Headers({ 
             'Accept':'application/json',
@@ -136,9 +151,7 @@ export class ApiProvider{
 
 
     getRooms(){
-        if (this.dataRooms) {
-            return Promise.resolve(this.dataRooms);
-        }                     
+  
         return new Promise(resolve => {
             this.http.get(this.apiUrl+'/room/getall')
             .map(res => res.json())

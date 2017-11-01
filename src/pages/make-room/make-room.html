@@ -11,13 +11,17 @@
         </ion-card-header>
         <ion-list>
             <ion-item *ngFor="let room of ListOfRooms">
-                <h2>{{room.roomName}}</h2>
-                <p>{{room.desc}}</p>
-                <button ion-button clear icon-only item-end (click)="deleteRoom(room)">
-                    <ion-icon name="trash"></ion-icon>
-                </button>
-            </ion-item>
-        </ion-list>
+                    <h2>{{room.roomName}}</h2>
+                    <p>{{room.descript}}</p>
+                    <button ion-button clear icon-only item-end (click)="updateRoom(room)">
+                            <ion-icon name="build"></ion-icon>
+                        </button>
+                    <button ion-button clear icon-only item-end (click)="deleteRoom(room)">
+                        <ion-icon name="trash"></ion-icon>
+                    </button>
+                </ion-item>
+  </ion-list>
+
     </ion-card>
     <form (ngSubmit)="logForm()" [formGroup]="MakeRoomForm" [hidden]="showCard">
         <ion-list>
