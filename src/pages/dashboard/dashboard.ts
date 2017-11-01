@@ -22,7 +22,9 @@ export class DashboardPage {
   showEvents = false;
   flagCalendar;
   allDayEvent = false;
-  MyEvents=this.EventData.getEvents();
+  MyEvents=[];
+  Eventdata : {title: string, startTime: number, endTime: number, allDay: boolean, room: Object};
+  reservations;
   StartTime;
   EndTime;
   StartDate;
@@ -62,51 +64,52 @@ export class DashboardPage {
     this.EndTime = moment(events.endTime).format('HH:mm');
     this.StartDate = moment(events.startTime).format('DD.MM');
     this.EndDate = moment(events.endTime).format('-DD.MM');
+    if(events.allDay){
+      dateEnd=moment(events.endTime).add(-1,"days").format('DD MM YYYY');
+    }
 
-    if (dateStart <= dateToday && dateToday <= dateEnd)
-
-//     this.StartTime = moment(events.startTime).format('DD MM YYYY HH:mm');
-//     this.EndTime = moment(events.endTime).format('DD MM YYYY HH:mm');
-
-//     //Podeleni start i end time vo saati minuti i datum
-
-//     let startTimeEventDate=moment(this.StartTime).format('DD MM YYYY');
-//     let startTimeEventHoursMinutes=moment(this.StartTime).format('HH:mm');
-//     let endTimeEventDate=moment(this.EndTime).format('DD MM YYYY');
-//     let endTimeEventHoursMinutes=moment(this.EndTime).format('HH:mm');
-
-//     //Sobata ime i event title
-
-//     let eventTitle = events.title;
-//     // let eventRoomName = events.room.name;
-
-//     if (dateStart <= dateToday && dateToday <= dateEnd){
-//     if(events.allDay==true){
-//       if(dateEnd!=dateToday){
-//         this.allDayEvent=true;
-//         return true;
-//       }
-//       else{
-//         return false;
-//       }
-//     }else {
-//       this.allDayEvent=false;
+    if (dateStart <= dateToday && dateToday <= dateEnd){
+    if(events.allDay==true){
+      if(dateEnd!=dateToday){
+        this.allDayEvent=true;
+        return true;
+      }
+      else{
+        return false;
+      }
+    }else {
+      this.allDayEvent=false;
 
       return true;
- // }}
+ }}
     else
       return false;
   }
 
- 
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiProvider, public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
+    this.username=this.UserGlobal.getMyGlobalVar();
+  }
+
   
   ionViewDidEnter(){
     this.username=this.UserGlobal.getMyGlobalVar();
     // this.EventData.setIsChangeEvent(false);
+    this.MyEvents=[];
+    this.apiProvider.getReservations()
+    .then(data => {
+      this.reservations = data;
+      for(var i=0;i<this.reservations.length;i++){
+        this.Eventdata = {title: this.reservations[i].reservationTitle, startTime: this.reservations[i].meetStarts, endTime: this.reservations[i].meetEnds, allDay: this.reservations[i].allDay, room: this.reservations[i].room};
+        this.MyEvents.push(this.Eventdata);
+      }
+    });
   }
 
   ionViewWillEnter(){
+
     if(this.role.category==0 || this.role.category==1){
+
       this.adminBtn=true;
       this.menuCtrl.enable(true, "adminMenu");
     }

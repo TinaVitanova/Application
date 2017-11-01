@@ -54,7 +54,6 @@
 #custom-overlay img {
     display: block;
     margin: 0 auto;
-    width: 50%;
     height: auto;
     animation: animation 3100ms linear infinite both;
     animation-delay: 1s;
@@ -72,6 +71,8 @@
 // animation start
 .animation-target {
     -webkit-animation: animation 2800ms linear infinite both;
+    -moz-animation: animation 2800ms linear infinite both;
+    -ms-animation: animation 2800ms linear infinite both;
     animation: animation 2800ms linear infinite both;
 }
 
@@ -607,10 +608,67 @@ ion-list .sm-list {
     @media (min-width: 768px) and (max-width: 1024px) {
         
         #custom-overlay img{
-            width: 60%;
+            width: 45%;
+            animation: pulse 3100ms ease-in-out;
+            -webkit-animation: pulse 3100ms ease-in-out;
+            -moz-animation: pulse 3100ms ease-in-out;
+            -ms-animation: pulse 3100ms ease-in-out;
         }
-       
-     }
+
+        .animation-target, .flb {
+            -webkit-animation: none;
+            -moz-animation: none;
+            -ms-animation: none;
+            animation: none;
+        }
+
+        .menu-inner{
+            width: 500px;
+        }
+
+        .avatar {
+            width: 250px;
+            height: 250px;
+            margin: 20% 25% 10% 25%;
+            border-radius: 50%;
+        }
+
+        ion-list .sm-list {
+            width: 85%;
+            .item .item-inner {
+                border-bottom: 4px solid white;
+                padding: 2% 0% 3% 0%;
+                text-align: center;
+                margin: 5% 0% 0% 15%;
+                font-size:180%;
+                &:hover,
+                &:active,
+                &:focus {
+                    color: map-get($colors, secondary);
+                    border-bottom: 4px solid map-get($colors, secondary);
+                    @include basic-transition;
+                }
+            }
+        }
+
+        .notifications{
+            border-bottom: 4px solid white;
+            margin: 5% 0% 0% 17%;
+            width: 65%;
+            ion-label{
+                font-size:180%;
+            }
+        }
+
+                
+        .logout-btn {
+            margin-top: 50%;
+            font-size: 250%;
+        }
+
+
+            
+    }
 
     // *******************
     // TABLET DESIGN END

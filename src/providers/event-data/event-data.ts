@@ -6,9 +6,8 @@ import { ApiProvider } from '../../providers/api-provider/api-provider';
 export class EventDataProvider {
   public flag;
   public RoomsData: {name: string, capacity: string, description: string};
-  public Eventdata: {title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object};
-  public AllEvents: {title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object}[]=[];
-  public AllEventsFinal: {title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object}[]=[];
+  public Eventdata: {resId: number, title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object};
+  public AllEvents: {resId: number, title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object}[]=[];
   public FullRooms: {name: string, capacity: string, description: string}[]=[];
   public ShowRoom: boolean = false;
   public loadEvent;
@@ -34,12 +33,7 @@ export class EventDataProvider {
     return this.ShowRoom;
   }
   public deleteEvent(event){
-    for (var i=0; i<this.AllEvents.length;i++){
-      if(event.title==this.AllEvents[i].title){
-        this.AllEvents.splice(i,1);
-        break;
-      }
-    }
+    this.apiProvider.deleteReservation(event.resId)
   }
   // public setIsChangeEvent(value){
   //   this.IsChangeEvent=value;
@@ -89,9 +83,8 @@ export class EventDataProvider {
  this.apiProvider.getReservations()
     .then(data => {
       this.reservations = data;
-      console.log (this.reservations)
     });
-    this.Eventdata = {title: value1, startTime: value2, endTime: value3, allDay: value4, room: value5};
+    this.Eventdata = {resId: value1, title: value1, startTime: value2, endTime: value3, allDay: value4, room: value5};
     this.AllEvents.push(this.Eventdata);
   }
 
@@ -101,13 +94,10 @@ export class EventDataProvider {
     .then(data => {
       this.reservations = data;
       for(var i=0;i<this.reservations.length;i++){
-        this.Eventdata = {title: this.reservations[i].reservationTitle, startTime: this.reservations[i].meetStarts, endTime: this.reservations[i].meetEnds, allDay: this.reservations[i].allDay, room: this.reservations[i].room};
+        this.Eventdata = {resId: this.reservations[i].resId, title: this.reservations[i].reservationTitle, startTime: this.reservations[i].meetStarts, endTime: this.reservations[i].meetEnds, allDay: this.reservations[i].allDay, room: this.reservations[i].room};
         this.AllEvents.push(this.Eventdata);
       }
-      console.log(this.AllEvents)
     });
-    
-    console.log(this.AllEvents)
     return this.AllEvents;
     
   }

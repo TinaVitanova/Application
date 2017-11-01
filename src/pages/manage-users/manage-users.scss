@@ -1,53 +1,5 @@
 page-manage-users {
-    .uploader {
-        -webkit-align-items: center;
-        align-items: center;
-        //border: 2px solid map-get($colors, primary);
-        border-radius: 50%;
-        display: -webkit-flex;
-        display: flex;
-        width: 12%;
-        -webkit-justify-content: center;
-        justify-content: center;
-        position: relative;
-    }
-    .uploader img,
-    .uploader .icon {
-        pointer-events: none;
-    }
-    .uploader,
-    .uploader .icon {
-        -webkit-transition: all 100ms ease-in;
-        -moz-transition: all 100ms ease-in;
-        -ms-transition: all 100ms ease-in;
-        -o-transition: all 100ms ease-in;
-        transition: all 100ms ease-in;
-    }
-    .uploader .icon {
-        color: map-get($colors, primary);
-        font-size: 2em;
-    }
-    .uploader img {
-        left: 50%;
-        opacity: 0;
-        max-height: 100%;
-        max-width: 100%;
-        position: absolute;
-        top: 50%;
-        border-radius: 50%;
-        @include basic-transition;
-        -webkit-transform: translate(-50%, -50%);
-        -moz-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        -o-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        z-index: -1;
-        margin-bottom: 2%;
-    }
-    .uploader img.loaded {
-        opacity: 1;
-        z-index: 3;
-    }
+
     ion-searchbar {
         border-radius: 5px;
         width: 90%;
@@ -102,3 +54,59 @@ page-manage-users {
         @include basic-transition;
     }
 }
+
+
+// *******************
+// TABLET DESIGN START
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    page-manage-users{
+
+        ion-searchbar{
+
+            margin-bottom: 3%;
+
+            .searchbar-input{
+                font-size:250%!important;
+                padding-top: 25px!important;
+                padding-bottom: 25px!important;
+            }
+
+            div .searchbar-search-icon{
+                //!!!!!!!!!!!!!!!
+                // FIX THIS
+                // !!!!!!!!!!!!!!
+                display:none!important;
+            }
+        }
+       
+        ion-list {
+            border: 4px solid map-get($colors, secondary);
+        }
+
+        .item-md,
+        .item-ios,
+        .item-wp {
+            border-bottom: 4px solid map-get($colors, secondary);
+            padding: 3% 0% 4% 0%;
+            p, h2{
+                font-size: 200%!important;
+            }
+            button{
+                font-size: 130%!important;
+            }
+            ion-avatar ion-img, ion-avatar img{
+               width: 80px;
+               height: 80px;
+            }
+
+        }
+
+    }
+
+}
+
+
+// *******************
+// TABLET DESIGN END

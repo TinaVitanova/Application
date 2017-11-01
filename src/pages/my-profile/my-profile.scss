@@ -106,3 +106,50 @@ page-my-profile {
         z-index: 3;
     }
 }
+
+// *******************
+// TABLET DESIGN START
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    page-my-profile {
+
+        .uploader {
+            width: 280px;
+            height: 280px;
+            margin: 7% 0% 5% 0%;
+            left: 35%;
+            top: 15%;
+            border: 4px solid map-get($colors, primary);
+        }
+
+        ion-list{
+
+            .item-ios, .item-md, .item-wp{
+                font-size: 220%!important;
+                border-bottom: 4px solid map-get($colors, primary);
+                margin-top:5%!important;
+            }
+
+            #new-pass{
+                border-bottom: 4px solid map-get($colors, primary);
+                font-size: 100%!important;
+            }
+
+        } 
+
+        .uploader .icon {
+            font-size: 8.5em;
+        }
+
+        #change-info{
+            font-size:250%;
+            margin-top: 10%;
+        }
+
+    }
+
+}
+
+// *******************
+// TABLET DESIGN END

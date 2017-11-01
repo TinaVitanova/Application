@@ -12,6 +12,8 @@ export class TodayPage {
   MyEvents=this.EventData.getEvents();
   StartTime;
   EndTime;
+  StartDate;
+  EndDate;
   allDayEvent=false;
   FlagNextDay;
   FlagEventYesterday=true;
@@ -28,14 +30,13 @@ export class TodayPage {
     this.StartTime = moment(events.startTime).format('HH:mm');
     this.EndTime = moment(events.endTime).format('HH:mm');
 
-    let startTimeEventDate=moment(this.StartTime).format('DD MM YYYY');
-    let startTimeEventHoursMinutes=moment(this.StartTime).format('HH:mm');
-    let endTimeEventDate=moment(this.EndTime).format('DD MM YYYY');
-    let endTimeEventHoursMinutes=moment(this.EndTime).format('HH:mm');
 
-
+    this.StartDate = moment(events.startTime).format('DD.MM');
+    this.EndDate = moment(events.endTime).format('-DD.MM');
     
-
+    if(events.allDay){
+      dateEnd=moment(events.endTime).add(-1,"days").format('DD MM YYYY');
+    }
     let eventTitle = events.title;
 
     

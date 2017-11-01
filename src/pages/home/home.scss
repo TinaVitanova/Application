@@ -10,6 +10,10 @@ page-home {
     margin-top:10%;
   }
 
+  .login-form{
+    margin: 30% 0% 5% 0%!important;
+  }
+
   form{
 
     .custom-input{
@@ -62,3 +66,49 @@ page-home {
     }
   
   }
+
+  // *******************
+    // TABLET DESIGN START
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+
+      page-home {
+
+        img{
+          margin-top:3%;
+        }
+
+        .login-form{
+          margin: 18% 0% 10% 0%!important;
+        }
+
+        .list-ios .item-block .item-inner,
+        ion-item .item-md .item-input,
+        ion-item .item-ios .item-input,
+        .item-block{
+          font-size: 250%;
+        }
+  
+        .password-eye{        
+          bottom: 50%;       
+          ion-icon{
+            font-size: 270%;
+          }
+        }
+  
+        .login-btn{
+          font-size:280%;
+          letter-spacing: 3px;
+          margin: -5% 0% 3% 0%;
+        }
+
+        p a{
+          font-size: 220%;;
+        }
+
+      }
+
+  }
+
+  // *******************
+    // TABLET DESIGN END

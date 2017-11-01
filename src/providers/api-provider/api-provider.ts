@@ -27,28 +27,61 @@ export class ApiProvider{
             });
         });
     }
-    addReservation(ress){
+
+    getFreeRooms(data1,data2){
+        if (this.data) {
+            return Promise.resolve(this.data);
+        }
+        
+        return new Promise(resolve => {
+            this.http.get(this.apiUrl+'/reservation/getallfreeroooms'+ data1 + '/' +data2)
+            .map(res => res.json())
+            .subscribe(data => {
+                this.data = data;
+                resolve(this.data);
+            });
+        });
+    }
+
+    addReservation(reservation){
         let headers = new Headers({ 
             'Accept':'application/json',
             'Content-Type':'application/json',
             'Access-Control-Allow-Origin': '*'
         });
         return new Promise(resolve => {
-            this.http.post(this.apiUrl+'/reservation/add', JSON.stringify(ress) , { headers: headers })
+            this.http.post(this.apiUrl+'/reservation/add', JSON.stringify(reservation) , { headers: headers })
             .subscribe(res => {
                 console.log(res)
-                console.log(JSON.stringify(ress))
                 resolve(res);
             }, (err) => {
-                console.log(JSON.stringify(ress))
                 console.log(err);
             });
         });
     }
 
+    deleteReservation(reservation){
+        let headers = new Headers({ 
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*'
+        });
+        return new Promise(resolve => {
+            this.http.delete(this.apiUrl+'/reservation/delete/'+reservation, { headers: headers })
+            .subscribe(res => {
+                console.log(res)
+                resolve(res);
+            }, (err) => {
+                console.log(err);
+            });
+        });
+    }
+
+
     getRole() {
         if (this.data1) {
             return Promise.resolve(this.data1);
+
         }
         
         return new Promise(resolve => {
