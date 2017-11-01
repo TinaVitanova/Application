@@ -87,10 +87,6 @@ export class DashboardPage {
   }
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiProvider, public EventData: EventDataProvider, public UserGlobal: UsernameGlobalProvider, private menuCtrl: MenuController) {
-    this.username=this.UserGlobal.getMyGlobalVar();
-  }
-
   
   ionViewDidEnter(){
     this.username=this.UserGlobal.getMyGlobalVar();

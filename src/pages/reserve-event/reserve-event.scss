@@ -64,6 +64,10 @@ page-reserve-event{
             @include basic-transition;
         }
 
+        h2 .alert-title{
+            content: 'CHOOSE ROLE';
+            color: map-get($colors, secondary);
+        }
 }
 
 }
