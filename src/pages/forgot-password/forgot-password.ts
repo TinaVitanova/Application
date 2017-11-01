@@ -45,6 +45,7 @@ export class ForgotPasswordPage {
       //ako uspealo so backend
       this.warning=true;
     }
+    this.navCtrl.pop();
   }
 
 }

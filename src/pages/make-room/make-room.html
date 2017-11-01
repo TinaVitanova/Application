@@ -6,9 +6,6 @@
 
 <ion-content no-padding class="background">
     <ion-card [hidden]="!showCard" class="manage-rooms">
-        <ion-card-header text-center>
-            ALL ROOMS &nbsp; <ion-icon name="arrow-dropdown-circle"></ion-icon>
-        </ion-card-header>
         <ion-list>
             <ion-item *ngFor="let room of ListOfRooms">
                     <h2>{{room.roomName}}</h2>

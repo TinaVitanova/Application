@@ -108,6 +108,7 @@ export class MakeRoomPage {
               this.roomUpdate={roomId: room.roomId,roomName:data.roomName,capacity:data.capacity,descript:room.descript};
               this.apiProvider.updateRoom(this.roomUpdate);
               this.ListOfRooms=this.EventData.getRooms();
+              this.showCard=true;
             }
            },
            {
