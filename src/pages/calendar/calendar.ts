@@ -71,16 +71,16 @@ export class CalendarPage {
   }
   showRoomEvents(r){
     console.log("ova e show room events")
-    var allEvents = this.EventData.getEvents();
     var eventsRoom = [];
-  for (var i=0; i<allEvents.length; i++){
-    console.log(allEvents[i].room +"  ova se site a ova e kliknatata "+ r)
-    if(allEvents[i].room == r){
+  for (var i=0; i<this.reservations.length; i++){
+    let start = new Date(this.reservations[i].meetStarts)
+    let end = new Date(this.reservations[i].meetEnds)
+    if(this.reservations[i].room.roomName == r.roomName && this.reservations[i].room.roomId == r.roomId){
     eventsRoom.push({
-          title: allEvents[i].title,
-          startTime: allEvents[i].startTime,
-          endTime: allEvents[i].endTime,
-          allday: allEvents[i].allDay
+          title: this.reservations[i].reservationTitle,
+          startTime: start,
+          endTime: end,
+          allday: false
       });
     }}
       return eventsRoom;

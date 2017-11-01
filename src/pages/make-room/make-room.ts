@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { EventDataProvider } from '../../providers/event-data/event-data';
-
 import { ApiProvider } from '../../providers/api-provider/api-provider';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Validator } from '../../validators/FormValidator';
@@ -17,6 +16,8 @@ export class MakeRoomPage {
   name;
   capacity;
   description;
+  ListOfRooms;
+  showCard=false;
   flagIncorrectRoomName:boolean = false;
   flagIncorrectRoomCapacity:boolean = false;
   MakeRoomForm: FormGroup;
@@ -51,6 +52,18 @@ export class MakeRoomPage {
     }
   }
 }
+  }
+  ManageRooms(){
+    this.showCard=true;
+  }
+  CancelManageRooms(){
+    this.showCard=false;
+  }
+  deleteRoom(room){
+    console.log(room)
+    console.log("aaaaaaaaa")
+    this.EventData.deleteRoom(room);
+
   }
 
   CreateRoom(){
@@ -101,6 +114,7 @@ export class MakeRoomPage {
   }
 
   ionViewDidEnter(){
+    this.ListOfRooms=this.EventData.getRooms();
     this.menuCtrl.enable(false, "userMenu");
     this.menuCtrl.enable(false, "adminMenu");
   }

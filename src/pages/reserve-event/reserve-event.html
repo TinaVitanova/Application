@@ -51,7 +51,7 @@
         <ion-select class="choose-room-opt" [(ngModel)]="rooms">
             <ion-label *ngIf="!showRooms()">NO ROOM CREATED</ion-label>
             <span *ngIf="showRooms()">
-                        <ion-option (ionSelect)="SelectedRoom(r)" *ngFor="let r of FullListOfRooms">{{r.name}}</ion-option>
+                        <ion-option (ionSelect)="SelectedRoom(r)" *ngFor="let r of FullListOfRooms">{{r.roomName}}</ion-option>
             </span>
         </ion-select>
     </ion-item>

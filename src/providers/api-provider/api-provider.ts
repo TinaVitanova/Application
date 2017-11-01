@@ -93,6 +93,22 @@ export class ApiProvider{
             });
         });
     }
+    deleteRoom(room){
+        let headers = new Headers({ 
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*'
+        });
+        return new Promise(resolve => {
+            this.http.delete(this.apiUrl+'/room/delete/'+room, { headers: headers })
+            .subscribe(res => {
+                console.log(res)
+                resolve(res);
+            }, (err) => {
+                console.log(err);
+            });
+        });
+    }
 
     addRoom(room){
         let headers = new Headers({ 

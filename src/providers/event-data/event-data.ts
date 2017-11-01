@@ -5,13 +5,13 @@ import { ApiProvider } from '../../providers/api-provider/api-provider';
 @Injectable()
 export class EventDataProvider {
   public flag;
-  public RoomsData: {roomId:number, name: string, capacity: string, description: string};
+  public RoomsData: {roomId:number, roomName: string, capacity: string, desc: string};
   // public RoomsDataFinal: {name: string, capacity: string, description: string};
   public Eventdata: {resId: number, title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object};
   // public EventdataFinal: {title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object};
   public AllEvents: {resId: number, title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object}[]=[];
   // public AllEventsFinal: {title: string, startTime: Date, endTime: Date, allDay: boolean, room: Object}[]=[];
-  public FullRooms: {roomId: number, name: string, capacity: string, description: string}[]=[];
+  public FullRooms: {roomId: number, roomName: string, capacity: string, desc: string}[]=[];
   // public FullRoomsFinal: {name: string, capacity: string, description: string}[]=[];
   public loadEvent;
   public IsChangeEvent=false;
@@ -24,7 +24,7 @@ export class EventDataProvider {
   } 
   public checkRoomName(value){
     for (var i=0; i<this.FullRooms.length; i++){
-      if (this.FullRooms[i].name == value)
+      if (this.FullRooms[i].roomName == value)
       return true;
     }
     return false;
@@ -73,7 +73,7 @@ export class EventDataProvider {
       console.log(data)
       console.log(this.rooms)
       for(var i=0;i<this.rooms.length;i++){
-        this.RoomsData = {roomId: this.rooms[i].roomId, name: this.rooms[i].roomName, capacity: this.rooms[i].capacity, description: this.rooms[i].description};
+        this.RoomsData = {roomId: this.rooms[i].roomId, roomName: this.rooms[i].roomName, capacity: this.rooms[i].capacity, desc: this.rooms[i].description};
         this.FullRooms.push(this.RoomsData);
       }
     });
@@ -94,6 +94,9 @@ export class EventDataProvider {
   
   public deleteEvent(event){
     this.apiProvider.deleteReservation(event.resId)
+  }
+  public deleteRoom(room){
+    this.apiProvider.deleteRoom(room.roomId)
   }
 
   // public updateEvent(event, index){
