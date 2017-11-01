@@ -1,13 +1,6 @@
 page-tomorrow {    
     @include schedule-list;
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-    
-    page-tomorrow{
-        ion-content{
-            width:80%!important;
-            margin: 3% 0% 0% 10%;
-        }
-    }        
+    .schedule-list{
+        width: 85%;
+    }
 }

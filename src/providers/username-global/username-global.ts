@@ -71,7 +71,7 @@ export class UsernameGlobalProvider {
   }
 
   public addNewUser(value) {
-   this.UsersData = {userId: value.userId, userName: value.username, email: value.email, password: value.password, log: value.log, role: value.role};
+   this.UsersData = {userId: value.userId, email: value.email, userName: value.userName, password: value.password, log: value.log, role: value.role};
    this.FullUsers.push(this.UsersData);
   }
   

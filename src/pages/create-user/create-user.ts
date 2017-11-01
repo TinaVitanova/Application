@@ -19,7 +19,7 @@ export class CreateUserPage {
   submitAttempt: boolean = false;
   picture;
   role;
-  roles:{roleId:number,category:number}[]=[];
+  roles:any;
   user = {email:'',userName:'',role:{}};
  
  
@@ -45,11 +45,11 @@ export class CreateUserPage {
   }
  
   addUser() {
-      if(this.role == "superadmin"){
+      if(this.role == "SUPERADMIN"){
         this.user={email:this.user.email,userName:this.user.userName,role:this.roles[0]}
-      }else if(this.role == "admin"){
+      }else if(this.role == "ADMIN"){
         this.user={email:this.user.email,userName:this.user.userName,role:this.roles[1]}
-      }else if(this.role == "user"){
+      }else if(this.role == "USER"){
         this.user={email:this.user.email,userName:this.user.userName,role:this.roles[2]}
       }
     this.apiProvider.addUser(this.user);
@@ -69,7 +69,6 @@ export class CreateUserPage {
           this.roleName[i] = "USER";
         }
       }
-
     });
   }
   
@@ -96,25 +95,16 @@ export class CreateUserPage {
       this.flagIncorrectEmail = false;
     }
     else{
-    if(!this.CreateUserForm.valid){
-    if(!this.CreateUserForm.controls.email.valid){
-      this.flagIncorrectEmail = true;
-      this.flagCorrectEmail=false;
- 
-    }else{
-      this.flagIncorrectEmail = false;
-      this.flagCorrectEmail=true;
+      if(!this.CreateUserForm.valid){
+        if(!this.CreateUserForm.controls.email.valid){
+          this.flagIncorrectEmail = true;
+          this.flagCorrectEmail=false;
+        }else{
+          this.flagIncorrectEmail = false;
+          this.flagCorrectEmail=true;
+        }
+      }
     }
-  }
-}
-  }
- 
- 
-  shouldHide(){
-    if(this.username=="superadmin")
-    return false;
-    else
-    return true;
   }
  
   CreateNewUser(){
